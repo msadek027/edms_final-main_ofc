@@ -1,0 +1,78 @@
+
+Delete from DSM_Documents
+Delete from DSM_DocumentsMeta
+
+Delete from DSM_DocumentsVersion
+Delete from DSM_DocumentsMetaVersion
+
+delete from WFM_DocTypeProperty
+delete from WFM_ObjectNextStageMap
+delete from WFM_ObjectPropertyMap
+delete from WFM_Objects
+delete from WFM_ObjectStatusForStages
+delete from WFM_ProcessingStage
+delete from WFM_ProcessingStageConnection
+
+delete from WFM_StageChangeHistory
+delete from WFM_StageMap
+delete from WFM_StageWiseDocumentPermission
+
+delete from WFM_UserStagePermission
+delete from WFM_Workflow
+
+
+delete from Z_20021700003
+delete from Z_20021700007
+
+
+Select * from DSM_Documents
+Select *  from DSM_DocumentsMeta
+
+Select *  from DSM_DocumentsVersion
+Select *  from DSM_DocumentsMetaVersion
+
+Flow: 
+--//Setup
+Select * from WFM_Workflow ---1
+Select * from WFM_ProcessingStage ---3
+Select * from WFM_StageMap ----3
+Select * from WFM_ProcessingStageConnection ---2
+
+
+Select * from WFM_DocTypeProperty ----1
+Select * from WFM_StageWiseDocumentPermission --2,1 as per policy loop
+--background work
+Select * from DSM_DocType  order by seton DESC--//Document Type
+Select * from DSM_DocProperty order by seton DESC
+Select * from WFM_UserStagePermission
+
+---Transaction
+Select * from WFM_StageChangeHistory
+-- Select * from WFM_Objects
+-- Select * from WFM_ObjectPropertyMap
+Select * from WFM_ObjectNextStageMap
+-- Select * from WFM_ObjectStatusForStages
+
+Update WFM_ObjectNextStageMap Set IsMake=0 Where ObjectNextStageMapID=398
+--SP_Helptext 'WFM_SetDocumentsInfo'
+
+--tr_dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344_Sender
+
+Select * from DSM_DocType  order by seton DESC--//Document Type
+Select * from DSM_DocProperty order by seton DESC
+Select * from DSM_DocType Where DocTypeID=23121900001 
+Select * from DSM_DocProperty Where  DocTypeID=23121900001 
+--ShortCut
+Delete from DSM_DocType Where DocTypeID=23112500004 
+Delete from DSM_DocProperty Where  DocTypeID=23112500004 
+
+WFM_SetDocumentsInfo
+
+---Transaction Deleted
+Delete  from WFM_StageChangeHistory 
+Delete  from WFM_Objects
+Delete from WFM_ObjectPropertyMap
+Delete  from WFM_ObjectNextStageMap
+Delete  from WFM_ObjectStatusForStages
+
+

@@ -1,0 +1,58 @@
+Live Web URL: RealIP: http://202.59.140.186:93/
+Web App user as Admin :UserId/Passpord:superadmin/abapmmfi
+Web App user as endUser :UserId/Passpord:Manir/123456
+
+
+
+IP Addresses: 172.16.224.39 & 172.16.224.40 
+User: administrator
+Pass: Admin@4321
+Real IP: http://202.59.140.186:93/
+Local IP: http://172.16.224.39:81/
+User: Manir Pass: 123456
+
+
+IP Addresses: 172.16.224.39 &172.16.224.40
+ 
+User: administrator
+Pass: Admin@4321
+Real IP: http://202.59.140.186:93/
+User: Manir Pass: 123456
+
+
+
+We have configured the following FTP server for the Notification System Resources:
+
+FTP Address:
+ftp://172.24.16.174:21
+User/Pass: sfblftp/Ftp@Sfbl#2k22
+Real IP: 103.118.79.86
+Here is the server machine information:
+IP Address: 172.24.16.174
+Administrator Pass: Sfbl@2022
+
+
+Database Server Machine:
+IP:172.16.224.11:8899
+UserId/Password: Administrator/Admin@123
+
+SQL Server:
+IP:172.16.224.11
+User:sa
+Password:@Password
+DB:SILDMS_DEV
+
+http://202.59.140.136:8000/user/login/
+username:JohniDoe
+password:123456789
+
+
+http://202.59.140.186:81/SecurityModule/Account/Dashboard
+
+
+I would like to inform that I have published e-DMS for Testing at http://202.59.140.186:81. please check
+
+
+172.16.224.40/21
+Administrator/Admin@4321
+

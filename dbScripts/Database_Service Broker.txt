@@ -1,0 +1,107 @@
+
+All User terminal must be off
+
+ALTER DATABASE dbEDMS SET ENABLE_BROKER;
+SELECT is_broker_enabled FROM sys.databases WHERE name = 'dbEDMS';
+
+ALTER DATABASE dbEDMS SET TRUSTWORTHY ON;
+--Menu Create:
+
+
+Select * from SEC_Menu Where MenuID='16021100002'
+Union All
+Select * from SEC_Menu Where MenuID='16021100022'
+Union All
+Select * from SEC_Menu Where MenuID='16021100023'
+Union All
+Select * from SEC_Menu Where MenuID='16021100070'
+Union All
+Select * from SEC_Menu Where MenuID IN ('16021100026','16021100027','23083100001','23081600001','23083100001','23082200001','23082700001','22080100015')
+
+
+--------------------
+Select * Into SEC_RoleMenuPermission2 from SEC_RoleMenuPermission
+Delete from SEC_RoleMenuPermission
+-------------------
+
+Insert Into SEC_RoleMenuPermission
+Select * from(
+Select * from SEC_RoleMenuPermission2 Where MenuID='16021100002' and RoleID='16060800005'
+Union All
+Select * from SEC_RoleMenuPermission2 Where MenuID='16021100022' and RoleID='16060800005'
+Union All
+Select * from SEC_RoleMenuPermission2 Where MenuID='16021100023' and RoleID='16060800005'
+Union All
+Select * from SEC_RoleMenuPermission2 Where MenuID='16021100070' and RoleID='16060800005'
+
+Union All
+Select * from SEC_RoleMenuPermission2 Where MenuID
+IN ('16021100026','16021100027','23083100001','23081600001','23083100001','23082200001','23082700001','22080100015') 
+and RoleID='16060800005'
+)a
+
+-------------------------------------------------
+Select * from SEC_User Where UserFullName='Manir' Order by UserFullName
+
+Update SEC_Menu Set MenuUrl='/Home/DocumentScan' Where MenuID='16021100026'
+Update SEC_Menu Set MenuUrl='/Home/OriginalDocSearch' Where MenuID='16021100027'
+
+Update SEC_Menu Set MenuUrl='/Home/VersioningOriginalDocNew' Where MenuID='23081600001'
+Update SEC_Menu Set MenuUrl='/Home/VersioningVersionedDocNew' Where MenuID='23083100001'
+
+Update SEC_Menu Set MenuUrl='/Home/VersionDocSearchingNew' Where MenuID='23082200001'
+Update SEC_Menu Set MenuUrl='/Home/DocumentDistributionNew' Where MenuID='23082700001'
+Update SEC_Menu Set MenuUrl='/Home/NewDocMassDistribution' Where MenuID='22080100015'
+
+
+====================================================================================================
+
+--//Database Rename: The database name is changed from SILDMS_DEV to db_eDMS
+USE master;
+GO
+ALTER DATABASE SILDMS_DEV SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE SILDMS_DEV MODIFY NAME = dbEDMS;
+GO
+ALTER DATABASE dbEDMS SET MULTI_USER;
+GO
+--------------------------------
+--// Database Physical and logical File Rename
+USE dbEDMS
+GO
+Select name as ligical_name ,physical_name from sys.database_files
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (NAME=N'SILDMS_DEV', NEWNAME=N'dbEDMS')
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (NAME=N'SILDMS_DEV_log', NEWNAME=N'dbEDMS_log')
+-----------
+USE dbEDMS
+GO
+Select name as ligical_name ,physical_name from sys.database_files
+-----------
+USE master
+GO
+ALTER DATABASE dbEDMS SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+ALTER DATABASE dbEDMS SET OFFLINE
+------------------------
+select name,state_desc from sys.databases
+
+
+--File Rename physicaly at location and then
+
+ALTER DATABASE dbEDMS MODIFY FILE (Name='dbEDMS', FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\dbEDMS_DEV.mdf')
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (Name='dbEDMS_log', FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\dbEDMS_DEV_log.ldf')
+
+-----------------------
+ALTER DATABASE dbEDMS SET ONLINE
+Go
+ALTER DATABASE dbEDMS SET MULTI_USER
+Go
+
+
+
+
+
+

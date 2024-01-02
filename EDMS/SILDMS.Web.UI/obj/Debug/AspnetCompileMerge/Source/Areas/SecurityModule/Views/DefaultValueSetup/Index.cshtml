@@ -1,0 +1,631 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+<div class="box box-primary box-body" ng-controller="defaultValueSetupController">
+    <!-- box-header -->
+    <div class="box-header with-border">
+        <i class="fa  fa-files-o"></i>
+        <h3 class="box-title">Default Value Setup</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable(row)" class="btn btn-flat pull-right" ng-disabled=""><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button" id="btnAdd" data-ng-click="toggleAdd(row)" class="btn btn-flat btn-primary pull-right btnSave" ng-disabled="defaultValueSetup.Menu.MenuID===''"> <i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <div class="row">
+                        <label for="mnuTitle" style="margin-left: 15px;">Menu Title</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <input type="text" id="mnuTitle" name="mnuTitle" class="form-control" ng-model="defaultValueSetup.Menu.MenuTitle"
+                                   placeholder="Get menu list." readonly="readonly" />
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="button" class="form-control btn btn-info animated fadeInRight" value="Menu List" ng-click="checkkey($event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="mnuUrl">Menu URL</label>
+                    <input type="text" id="mnuUrl" name="mnuUrl" class="form-control" ng-model="defaultValueSetup.Menu.MenuUrl"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="OwnerLevel">Owner Level</label>
+                    <input type="text" id="OwnerLevel" name="OwnerLevel" class="form-control" ng-model="defaultValueSetup.LevelName"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="Owner">Owner</label>
+                    <input type="text" id="Owner" name="Owner" class="form-control" ng-model="defaultValueSetup.Owner.OwnerName"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="DocCategory">Document Category</label>
+                    <input type="text" id="DocCategory" name="DocCategory" class="form-control" ng-model="defaultValueSetup.DocCategory.DocCategoryName"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="DocType">Document Type</label>
+                    <input type="text" id="DocType" name="DocType" class="form-control" ng-model="defaultValueSetup.DocType.DocTypeName"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="typeDoc">Documents in Type</label>
+                    <input type="text" id="typeDoc" name="typeDoc" class="form-control" ng-model="defaultValueSetup.DocProperty.DocPropertyName"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="configCat">Configure Category</label>
+                    <input type="text" id="configCat" name="configCat" class="form-control" ng-model="defaultValueSetup.ConfigureCategory"
+                           placeholder="Auto" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="configFor">Configure For</label>
+                    <input type="text" id="configFor" name="configCat" class="form-control" ng-model="defaultValueSetup.ConfigurationFor"
+                           placeholder="Defalut Value Generation" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="dfltVluGrp">Default Value Group</label>
+                    <input type="text" id="dfltVluGrp" name="dfltVluGrp" class="form-control" ng-model="defaultValueSetup.AutoValueGroup"
+                           placeholder="Mail" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="clmnTitle">Column Title</label>
+                    <input type="text" id="clmnTitle" name="clmnTitle" class="form-control" ng-model="defaultValueSetup.Column.AutoColumnTitle"
+                           placeholder="Mail To" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="tblName">Table Name</label>
+                    <input type="text" id="tblName" name="tblName" class="form-control" ng-model="defaultValueSetup.Column.ConfigureToTable"
+                           placeholder="No need to display" readonly="readonly" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="clmnName">Column Name</label>
+                    <input type="text" id="clmnName" name="clmnName" class="form-control" ng-model="defaultValueSetup.Column.ConfigureToColumn"
+                           placeholder="No need to display" readonly="readonly" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="vluDrvnTyp">Value Driven Type</label>
+                    <select id="vluDrvnTyp" name="vluDrvnTyp" class="form-control" ng-model="defaultValueSetup.ValueDrivenType"
+                            ng-change="GetDefaultValueSetups()">
+                        <option value="" style="display: none">-- None --</option>
+                        <option value="Accumulated">Accumulated</option>
+                        <option value="Respective">Respective</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="box-body table-responsive" data-ng-disabled="">
+        
+        <hr />
+        <!-- Data table for Document type -->
+        <table st-table="displayedDefault" st-safe-src="defaultList" class="table table-condensed table-bordered table-striped table-hover pnlView">
+            <thead>
+                <tr>
+                    @*<th st-sort="">Column Title</th>*@
+                    <th st-sort="DefaultValue">Default Value</th>
+                    <th st-sort="AutoColumnTitle">Respective Column</th>
+                    <th st-sort="UpdateAllowed">Update Allowed</th>
+                    <th st-sort="Remarks">Remarks</th>
+                    <th st-sort="Status">Status</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <th><input st-search="" placeholder="" class="input-sm form-control" type="search" /></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in displayedDefault">
+                    @*<td>{{row.VirtualColumn}}</td>*@
+                    <td>{{row.DefaultValue}}</td>
+                    <td>{{row.AutoColumnTitle}}</td>
+                    <td>{{row.UpdateAllowed}}</td>
+                    <td>{{row.Remarks}}</td>
+                    <td>
+                        <span ng-attr-class="{{row.Status ==true? 'label label-success' : 'label label-danger' }}">
+                            {{row.Status == true? 'Active':'InActive'}}
+                        </span>
+                    </td>
+                    <td><button type="button" class="btn btn-sm btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)"><i class="fa fa-edit"></i> Edit</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div><!-- Data table for Document type end -->
+    <form name="defaultValueSetupFrm" id="defaultValueSetupFrm" ng-submit="">
+        <!-- Add DocProperty Modal -->
+        <div class="bs-example">
+            <div id="addModal" class="modal fade">
+                <!-- Modal HTML -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modal-title">Default Value Entry Form</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="defaultValueId">Default Value ID</label>
+                                            <input type="text" id="defaultValueId" name="defaultValueId" class="form-control"
+                                                   ng-model="defaultValueSetup.DefaultValueID" placeholder="" readonly="readonly" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <!-- Drop Down for Owner -->
+                                            <label for="defaultValue">Default Value</label>
+                                            <input type="text" id="defaultValue" name="defaultValue" class="form-control"
+                                                   ng-model="defaultValueSetup.DefaultValue" placeholder="" required="required"/>
+                                        </div>
+                                        <div ng-show="defaultValueSetupFrm.$submitted || defaultValueSetupFrm.defaultValue.$touched">
+                                            <span ng-show="defaultValueSetupFrm.defaultValue.$error.required" class="label label-danger">Please enter a default value.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="virtualColumn">virtual Column</label>
+                                            <input type="text" id="virtualColumn" name="virtualColumn" class="form-control"
+                                                   ng-model="defaultValueSetup.VirtualColumn" placeholder="" />
+                                        </div>
+                                    </div>*@
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="updateAllowed">Update Allowed?</label>
+                                            <select id="updateAllowed" name="updateAllowed" class="form-control" ng-model="defaultValueSetup.UpdateAllowed"
+                                                    required="required">
+                                                <option value="" style="display: none">-- None --</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                            <div ng-show="defaultValueSetupFrm.$submitted || defaultValueSetupFrm.updateAllowed.$touched">
+                                                <span ng-show="!defaultValueSetupFrm.updateAllowed.$dirty && defaultValueSetupFrm.updateAllowed.$pristine" class="label label-danger">Please select an option.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="respectiveColumn">Respective Column</label>
+                                            @*<input type="text" id="respectiveColumn" class="form-control"
+                                                   ng-model="defaultValueSetup.AutoColumnTitle" placeholder=""/>*@
+                                            <select id="respectiveColumn" name="respectiveColumn" class="form-control" data-ng-model="defaultValueSetup.Column"
+                                                    data-ng-options="tableColumn as tableColumn.AutoColumnTitle for tableColumn in columnList track by tableColumn.ConfigureColumnID"
+                                                    ng-change="changeColumn(defaultValueSetup.Column)" required="required">
+                                                <option value="" style="display: none;">--Select--</option>
+                                            </select>
+                                            <div ng-show="defaultValueSetupFrm.$submitted || defaultValueSetupFrm.respectiveColumn.$touched">
+                                                <span ng-show="!defaultValueSetupFrm.respectiveColumn.$dirty && defaultValueSetupFrm.respectiveColumn.$pristine" class="label label-danger">Please select a column.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="remarks">Remarks</label>
+                                            <input type="text" id="remarks" class="form-control"
+                                                   ng-model="defaultValueSetup.Remarks" placeholder=""/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Status">Status</label>
+                                            <select id="Status" class="form-control" ng-model="defaultValueSetup.Status">
+                                                <option value="" style="display: none">-- None --</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <button type="button" id="btnSubmit" class="btn btn-primary btn-flat btnEdit"
+                                                ng-click="defaultValueSetupFrm.$setSubmitted(); defaultValueSetupFrm.$valid && save()" ng-disabled="loading">
+                                            Save
+                                        </button>
+                                        <button type="button" id="btnClose" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form><!-- /Add DocProperty Modal end -->
+
+    <div id="menuModal" class="modal fade">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Menu List</h3>
+                </div>
+                <div class="modal-body">
+                    <table st-table="displayedMenu" st-safe-src="menuList" class="table table-condensed table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th st-sort="MenuTitle">Menu Title</th>
+                                <th st-sort="MenuUrl">MenuUrl</th>
+                                <th st-sort="MenuOrder">MenuOrder</th>
+                                @*<th st-sort="">Status</th>*@
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <th><input st-search="MenuTitle" placeholder="" class="input-sm form-control" type="search" /></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in displayedMenu">
+                                <td>{{row.MenuTitle}}</td>
+                                <td>{{row.MenuUrl}}</td>
+                                <td>{{row.MenuOrder}}</td>
+                                @*<td>
+                <span ng-attr-class="{{row.Status==true? 'label label-success' : 'label label-danger' }}">
+                    {{row.Status == true? 'Active':'InActive'}}
+                </span>
+            </td>*@
+                                <td><button type="button" class="btn btn-sm btn-primary btn-flat" data-ng-click="initDefaultLoad(row)"><i class="fa fa-edit"></i> Select</button></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="3" st-displayed-pages="10"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <button type="button" id="btnCloseMenu" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Add DocProperty Modal -->
+    @*<div id="mydiv" data-ng-show="loading">
+            <div class="overlay">
+                <div class="loder">
+                    <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+                </div>
+            </div>
+        </div>*@
+</div>
+
+
+
+<script type="text/javascript">
+    // Controller for Owner page
+    app.controller('defaultValueSetupController', ["$scope", "$http", function ($scope, $http) {
+        applySecurity();
+
+        // Model for Default Value Setup
+        $scope.modelReset = function () {
+            $scope.defaultValueSetup = {
+                DefaultValueSetupID: "",
+                DefaultValueGroupID: "",
+                DefaultValueID: "",
+                ConfigureID: "",
+                Menu: { MenuID: "", MenuTitle: "", MenuUrl: "" },
+                LevelName: "",
+                Owner: { OwnerID: "", OwnerName: "" },
+                DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+                DocType: { DocTypeID: "", DocTypeName: "" },
+                DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+                DocPropIdentifyID: "",
+                Column: { ConfigureColumnID: "", ConfigureToTable: "", ConfigureToColumn: "", AutoColumnTitle: ""},
+                ConfigureCategory: "",
+                ConfigurationFor: "",
+                AutoValueGroupID: "",
+                AutoValueGroup: "",
+                ValueDrivenType: "",
+                DefaultValue: "",
+                UpdateAllowed: "",
+                //VirtualColumn: "",
+                Remarks: "",
+                Status: ""
+            };
+        };
+
+        $scope.modelReset();
+        // Model for the data to be saved/updated
+
+        //$scope.displayedCollection = [].concat($scope.owners);
+        $scope.saveModel = [];
+        $scope.itemsByPage = 10;
+        $scope.loading = false;
+        $scope.defaultPrimary = {};
+
+
+        // ################# Prepare save data ####################
+       
+        // ################# Menu Modal ####################
+        $scope.getMenus = function () {
+            $http.get("/SecurityModule/DefaultValueSetup/GetAllMenu")
+                .success(function (result) {
+                    $scope.menuList = result;
+                    $scope.displayedMenu = [].concat($scope.menuList);
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        $scope.initDefaultLoad = function (selected) {
+            $scope.defaultValueSetup.Menu.MenuID = selected.MenuID;
+            $scope.defaultValueSetup.Menu.MenuTitle = selected.MenuTitle;
+            $scope.defaultValueSetup.Menu.MenuUrl = selected.MenuUrl;
+            $http.get("/SecurityModule/DefaultValueSetup/GetDefaultPrimary?menuId=" + $scope.defaultValueSetup.Menu.MenuID)
+                .success(function (response) {
+                    //console.log(response.dVS);
+                    $scope.defaultPrimary = response.dVS;
+                    if ($scope.defaultPrimary !== {}) {
+                        $scope.defaultValueSetup.ConfigureID = $scope.defaultPrimary.ConfigureID;
+                        $scope.defaultValueSetup.Menu.MenuID = $scope.defaultPrimary.MenuID;
+                        $scope.defaultValueSetup.Menu.MenuTitle = $scope.defaultPrimary.MenuTitle;
+                        $scope.defaultValueSetup.Menu.MenuUrl = $scope.defaultPrimary.MenuUrl;
+                        $scope.defaultValueSetup.LevelName = $scope.defaultPrimary.LevelName;
+                        $scope.defaultValueSetup.Owner.OwnerID = $scope.defaultPrimary.OwnerID;
+                        $scope.defaultValueSetup.Owner.OwnerName = $scope.defaultPrimary.OwnerName;
+                        $scope.defaultValueSetup.DocCategory.DocCategoryID = $scope.defaultPrimary.DocCategoryID;
+                        $scope.defaultValueSetup.DocCategory.DocCategoryName = $scope.defaultPrimary.DocCategoryName;
+                        $scope.defaultValueSetup.DocType.DocTypeID = $scope.defaultPrimary.DocTypeID;
+                        $scope.defaultValueSetup.DocType.DocTypeName = $scope.defaultPrimary.DocTypeName;
+                        $scope.defaultValueSetup.DocProperty.DocPropertyID = $scope.defaultPrimary.DocPropertyID;
+                        $scope.defaultValueSetup.DocProperty.DocPropertyName = $scope.defaultPrimary.DocPropertyName;
+                        $scope.defaultValueSetup.DocPropIdentifyID = $scope.defaultPrimary.DocPropIdentifyID;
+                        $scope.defaultValueSetup.Column.ConfigureColumnID = $scope.defaultPrimary.ConfigureColumnID;
+                        $scope.defaultValueSetup.ConfigureCategory = $scope.defaultPrimary.ConfigureCategory;
+                        $scope.defaultValueSetup.ConfigurationFor = $scope.defaultPrimary.ConfigurationFor;
+                        $scope.defaultValueSetup.Column.ConfigureToTable = $scope.defaultPrimary.ConfigureToTable;
+                        $scope.defaultValueSetup.Column.ConfigureToColumn = $scope.defaultPrimary.ConfigureToColumn;
+                        $scope.defaultValueSetup.Column.AutoColumnTitle = $scope.defaultPrimary.AutoColumnTitle;
+                        $scope.defaultValueSetup.AutoValueGroupID = $scope.defaultPrimary.AutoValueGroupID;
+                        $scope.defaultValueSetup.AutoValueGroup = $scope.defaultPrimary.AutoValueGroup;
+                    }
+                    $scope.loading = false;
+                    $('#menuModal').modal('hide');
+                })
+                .error(function () {
+                    $scope.loading = false;
+                    $('#menuModal').modal('hide');
+                });
+        }
+
+        $scope.searchParamInit = function() {
+            $scope.searchParam = {
+                OwnerID: $scope.defaultPrimary.OwnerID,
+                DocCategoryID: $scope.defaultPrimary.DocCategoryID,
+                DocTypeID: $scope.defaultPrimary.DocTypeID,
+                DocPropertyID: $scope.defaultPrimary.DocPropertyID,
+                DocPropIdentifyID: $scope.defaultPrimary.DocPropIdentifyID,
+                //ConfigureColumnID: $scope.defaultPrimary.ConfigureColumnID,
+                AutoValueGroupID: $scope.defaultPrimary.AutoValueGroupID,
+                ValueDrivenType: $scope.defaultValueSetup.ValueDrivenType
+            };
+        };
+
+
+        $scope.GetDefaultValueSetups = function () {
+            if ($scope.defaultValueSetup.ValueDrivenType !== "") {
+                $scope.searchParamInit();
+                $http.get("/SecurityModule/DefaultValueSetup/GetDefaultValueSetup", {params: $scope.searchParam})
+                .success(function (response) {
+                    $scope.defaultList = response.result;
+                    $scope.displayedDefault = [].concat($scope.defaultList);
+                    
+                    $scope.loading = false;
+                })
+                .error(function (response) {
+                    $scope.loading = false;
+                });
+            }
+        }
+        $scope.GetColumns = function () {
+            $scope.searchParamInit();
+            if ($scope.defaultValueSetup.searchParam !== "") {
+                
+                $http.get("/SecurityModule/DefaultValueSetup/GetAllColumn", { params: $scope.searchParam })
+                .success(function (response) {
+                    $scope.columnList = response.result;
+                    //console.log($scope.columnList);
+                    //$scope.displayedColumn = [].concat($scope.defaultList);
+                    $scope.loading = false;
+                })
+                .error(function (response) {
+                    $scope.loading = false;
+                });
+            }
+        }
+
+        $scope.changeColumn = function(tableColumn) {
+            console.log(tableColumn);
+        };
+        $scope.checkkey = function (x) {
+            //if (x.keyCode === 120) {
+            //console.log(x);
+            //}
+            $scope.getMenus();
+            $('#menuModal').modal('show');
+
+        }
+
+        // ################# Edit Modal ####################
+        $scope.toggleEdit = function (row) {
+            $scope.GetColumns();
+            $scope.defaultValueSetup.DefaultValueSetupID = row.DefaultValueSetupID;
+            $scope.defaultValueSetup.DefaultValueGroupID = row.DefaultValueGroupID;
+            $scope.defaultValueSetup.DefaultValueID = row.DefaultValueID;
+            $scope.defaultValueSetup.DefaultValue = row.DefaultValue;
+            //$scope.defaultValueSetup.VirtualColumn = row.VirtualColumn;
+            $scope.defaultValueSetup.Remarks = row.Remarks;
+            $scope.defaultValueSetup.UpdateAllowed = row.UpdateAllowed;
+            $scope.defaultValueSetup.Status = row.Status;
+            $scope.defaultValueSetupFrm.$setPristine("true");
+            $scope.defaultValueSetupFrm.$setUntouched();
+            if ($scope.defaultValueSetup.UpdateAllowed !== "") { $scope.defaultValueSetupFrm.updateAllowed.$setDirty(); }
+            if ($scope.defaultValueSetup.Column.ConfigureColumnID !== "") { $scope.defaultValueSetupFrm.respectiveColumn.$setDirty(); }
+            $('#addModal').modal('show');
+        };
+
+        //############## Save Modal ########################
+        $scope.toggleAdd = function () {
+            $scope.GetColumns();
+            $scope.defaultValueSetup.DefaultValueSetupID = "";
+            $scope.defaultValueSetup.DefaultValueGroupID = "";
+            $scope.defaultValueSetup.DefaultValueID = "";
+            $scope.defaultValueSetup.DefaultValue = "";
+            //$scope.defaultValueSetup.VirtualColumn = "";
+            $scope.defaultValueSetup.Remarks = "";
+            $scope.defaultValueSetup.UpdateAllowed = "Yes";
+            $scope.defaultValueSetup.Status = "1";
+            $scope.defaultValueSetupFrm.$setPristine();
+            $scope.defaultValueSetupFrm.$setUntouched();
+            if ($scope.defaultValueSetup.UpdateAllowed !== "") { $scope.defaultValueSetupFrm.updateAllowed.$setDirty(); }
+            if ($scope.defaultValueSetup.Column.ConfigureColumnID !== "") { $scope.defaultValueSetupFrm.respectiveColumn.$setDirty(); }
+            $('#addModal').modal('show');
+        };
+
+        $scope.convert = function () {
+            $scope.saveModel = {
+                DefaultValueSetupID: $scope.defaultValueSetup.DefaultValueSetupID,
+                DefaultValueGroupID: $scope.defaultValueSetup.DefaultValueGroupID,
+                DefaultValueID: $scope.defaultValueSetup.DefaultValueID,
+                ConfigureID: $scope.defaultValueSetup.ConfigureID,
+                OwnerID: $scope.defaultValueSetup.Owner.OwnerID,
+                DocCategoryID: $scope.defaultValueSetup.DocCategory.DocCategoryID,
+                DocTypeID: $scope.defaultValueSetup.DocType.DocTypeID,
+                DocPropertyID: $scope.defaultValueSetup.DocProperty.DocPropertyID,
+                DocPropIdentifyID: $scope.defaultValueSetup.DocPropIdentifyID,
+                ConfigureColumnID: $scope.defaultValueSetup.Column.ConfigureColumnID,
+                ConfigureCategory: $scope.defaultValueSetup.ConfigureCategory,
+                ConfigurationFor: $scope.defaultValueSetup.ConfigurationFor,
+                ConfigureToTable: $scope.defaultValueSetup.Column.ConfigureToTable,
+                ConfigureToColumn: $scope.defaultValueSetup.Column.ConfigureToColumn,
+                //AutoColumnTitle: $scope.defaultValueSetup.AutoColumnTitle,
+                AutoValueGroupID: $scope.defaultValueSetup.AutoValueGroupID,
+                //AutoValueGroup: $scope.defaultValueSetup.AutoValueGroup,
+                ValueDrivenType: $scope.defaultValueSetup.ValueDrivenType,
+                DefaultValue: $scope.defaultValueSetup.DefaultValue,
+                UpdateAllowed: $scope.defaultValueSetup.UpdateAllowed,
+                //VirtualColumn: $scope.defaultValueSetup.VirtualColumn,
+                Remarks: $scope.defaultValueSetup.Remarks,
+                Status: $scope.defaultValueSetup.Status
+            }
+        }
+
+        $scope.save = function () {
+            $scope.convert();
+            //console.log($scope.saveModel);
+            if ($scope.defaultValueSetup.DefaultValueID) {
+                $http.post('/SecurityModule/DefaultValueSetup/EditDefaultValue/', JSON.stringify(convArrToObj($scope.saveModel)))
+                    .success(function (data) {
+                        if (data._respStatus.Status === "1") {
+                            $scope.loading = false;
+                            $('#addModal').modal('hide');
+                            $scope.GetDefaultValueSetups();
+                            toastr.success(data.Message);
+                        }
+                        else {
+                            $scope.loading = false;
+                            toastr.error(data.Message);
+                        }
+                    }).error(function () {
+                        $scope.loading = false;
+                        toastr.error('Update Failed.');
+                    });
+            } else {
+                $http.post('/SecurityModule/DefaultValueSetup/AddDefaultValue/', JSON.stringify(convArrToObj($scope.saveModel)))
+                   .success(function (data) {
+                       if (data._respStatus.Status === "1") {
+                           $scope.loading = false;
+                           $('#addModal').modal('hide');
+                           $scope.GetDefaultValueSetups();
+                           toastr.success(data.Message);
+                       }
+                       else {
+                           $scope.loading = false;
+                           toastr.error(data.Message);
+                       }
+                   }).error(function () {
+                       $scope.loading = false;
+                       toastr.error('Update Failed.');
+                   });
+            }
+        }
+        $scope.toggleRefreshTable = function () {
+            $scope.loading = true;
+        };
+    }]);
+
+</script>

@@ -1,0 +1,372 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="VersioningOriginalDocCtr">
+
+    <div class="box-header with-border">
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <i class="fa  fa-table"></i>
+                <h3 class="box-title">Versioning of Original Document</h3>
+
+            </div>
+            <div class="col-lg-6">
+                <table class="pull-right">
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" style="height: 34px;" ng-model="pagingInfo.search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="button" name="search" id="search-btn" class="btn btn-flat" ng-click="search()"><i class="fa fa-search"></i> Search </button>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="box-tools ">
+                                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-default btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.OwnerLevel"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                        track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="Owner">Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.Owner"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!docPropIdentityModel.OwnerLevel">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docPropIdentityModel.DocCategory"
+                            data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in
+                         docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                            data-ng-disabled="!docPropIdentityModel.Owner">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Doc Sub Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docPropIdentityModel.DocType"
+                            data-ng-options="docType as docType.DocTypeName for docType in
+                         docTypeForSpecificDocCategory track by docType.DocTypeID"
+                            data-ng-disabled="!docPropIdentityModel.DocCategory">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Documents</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docPropIdentityModel.DocProperty"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in
+                         docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!docPropIdentityModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Search By</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select data-ng-model="docPropIdentityModel.SearchBy"
+                        class="form-control" required="required" data-ng-disabled="!docPropIdentityModel.DocProperty">
+                    <option value="" selected="selected">--Select--</option>
+                    <option value="1">Required Attribute</option>
+                    <option value="0">Optional Attribute</option>
+                </select>
+            </div>
+        </div>
+        <br />
+
+
+        <div class="row">
+            <table class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Doc No.</th>
+                        <th>Identificaiton Attribute</th>
+                        <th>Attribute Value</th>
+                        <th class="hidden">FileServerURL</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in GridDisplayCollection">
+                        <td class="col-lg-1">{{row.DocumentID}}</td>
+                        <td class="hidden">{{row.DocDistributionID}}</td>
+                        <td class="col-lg-4">{{row.DocPropIdentifyName}}</td>
+                        <td class="col-lg-4">{{row.MetaValue}}</td>
+                        <td class="hidden">{{row.FileServerURL}}</td>
+                        <td class="col-lg-3">
+                            <button type="button" class="btn btn-xs btn-default btn-flat" data-ng-click="LoadImage(row)" style="display: inline-block;"><i class="fa fa-search-plus"></i> Quick View</button>
+                            <button type="button" class="btn btn-xs btn-success btn-flat btnMakeVersion" data-ng-click="ShowDetailView(row)" style="display: inline-block;"><i class="fa fa-list"></i> Make Version</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div ng-if="pagingInfo.totalItems > 0" class="text-center">
+                <ul uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page" items-per-page="{{pagingInfo.itemsPerPage}}" max-size="7" boundary-links="true" rotate="true" force-ellipses="true" ng-change="selectPage()"></ul>
+            </div>
+            <div ng-if="pagingInfo.totalItems <= 0" class="text-center">
+                NO ITEM
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <label> Your Document (Quick View) </label>
+
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <br />
+                <div id="dwtQuickViewer" class="box-body"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bs-example">
+        <!-- Modal HTML -->
+        <div id="DetailViewModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form name="myForm" novalidate>
+                        <div class="modal-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="modal-title">Edit Original Documents</h3>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-default  btn-flat pull-right" data-dismiss="modal" ng-click="ResetModel()">Close</button>
+                                        <input type="button" class="btn btn-flat btnSave btn-primary  pull-right" value="Save" ng-click="SaveImage();"  />
+                                        <button class="btn btn-flat btn-primary  pull-right" data-ng-click="DoneEditing()"> Done</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <input type="hidden" id="DocumentID" />
+                                <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label>{{item.IdentificationAttribute}}</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="text" name="{{item.DocPropIdentifyID}}" id="{{item.DocPropIdentifyID}}" ng-model="item.MetaValue" ng-required="true" />
+                                            <span class="label label-danger" ng-show="myForm[item.DocPropIdentifyID].$error.required && myForm[item.DocPropIdentifyID].$touched">{{item.IdentificationAttribute}} is Required.</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <br />
+                                <div class="col-lg-2">
+                                    <h4><label>Thumbnail: </label></h4>
+                                </div>
+                                <div class="col-lg-10">
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomIn()"> Zoom In</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomOut()"> Zoom Out</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="Crop()"> Crop</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="Masking()">Masking</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="RotateRight()"> Rotate Right</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ShowChangeImageSizeDiv()"> ReSize</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ShowAddTextDiv()"> Add Text</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ShowMoveImageDiv()"> Move Image</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="RemoveAllSelectedImages()"> Remove Selected Image</button>
+                                    <button class="btn btn-flat btn-sm btn-default" data-ng-click="ShowWatermarkDiv()"> Watermark</button>
+
+
+                                </div>
+                            </div>
+                            <div id="ChangeImageSize" class="row hidden">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <label>New Width</label><input type="text" id="NewImageWidth" />
+                                    <label>New Height</label><input type="text" id="NewImageHeight" />
+                                    <button class="btn btn-primary btn-flat btn-sm" ng-click="ChangeImageSize()">Change</button>
+                                </div>
+                            </div>
+                            <div id="AddWatermark" class="row hidden">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <label>Watermark</label><input type="file" id="watermark" />
+                                    <label>Height</label><input type="text" id="watermark_height" />
+
+                                    <label>Width</label><input type="text" id="watermark_width" />
+                                    <button class="btn btn-primary btn-flat btn-sm" ng-click="Watermark_Add_Page()">Change</button>
+                                </div>
+                            </div>
+
+                            <div id="AddText" class="row hidden">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <label>Text</label><input type="text" id="TextToAdd" />
+                                    <label>Text</label><input type="text" id="ColorToAddR" value="255" /><input type="text" id="ColorToAddG" value="0" /><input type="text" id="ColorToAddB" value="0" />
+
+                                    <button class="btn btn-primary btn-flat btn-sm" ng-click="AddText()">Add</button>
+                                </div>
+                            </div>
+                            <div id="MoveImage" class="row hidden">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-10">
+                                    <label>Which Image</label><input type="text" id="WhichImage" />
+                                    <label>Where</label><input type="text" id="Where" />
+                                    <button class="btn btn-primary btn-flat btn-sm" ng-click="MoveImage()">Move</button>
+                                </div>
+                            </div>
+
+                            <div class="row" style="zoom:.75">
+                                <br />
+                                <div class="col-lg-2">
+
+                                    @*<label> Your Document (Large View) </label>*@
+                                    <div id="dwtVerticalThumbnil" class="box-body"></div>
+
+                                </div>
+                                <div class="col-lg-10">
+                                    @*<label> Your Document (Large View) </label>*@
+                                    <div id="dwtLargeViewer" class="box-body"></div>
+                                    <p>StartX: {{ startX }}, StartY: {{ startY }}, EndX: {{ endX }}, EndY: {{ endY }}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.intellisense.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.initiate.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.config.js"></script>*@
+
+<script type="text/javascript" src="~/NgScripts/Controller/VersioningOriginalDocCtr.js?v=2"></script>
+<script type="text/javascript" src="~/NgScripts/Services/ImageProcessServices.js"></script>
+<script type="text/javascript" src="~/NgScripts/Base/environmentServices.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+    app.directive('editInPlace', function () {
+        return {
+            restrict: 'E',
+            scope: { value: '=' },
+            template: '<input ng-model="value"></input>',
+            link: function ($scope, element, attrs) {
+                // Let's get a reference to the input element, as we'll want to reference it.
+                var inputElement = angular.element(element.children()[1]);
+
+                // This directive should have a set class so we can style it.
+                element.addClass('edit-in-place');
+
+                // Initially, we're not editing.
+                $scope.editing = false;
+
+                // ng-click handler to activate edit-in-place
+                $scope.edit = function () {
+                    $scope.editing = true;
+
+                    // We control display through a class on the directive itself. See the CSS.
+                    element.addClass('active');
+
+                    // And we must focus the element.
+                    // `angular.element()` provides a chainable array, like jQuery so to access a native DOM function,
+                    // we have to reference the first element in the array.
+                    inputElement[0].focus();
+                };
+
+                // When we leave the input, we're done editing.
+                inputElement.prop('onblur', function () {
+                    $scope.editing = false;
+                    element.removeClass('active');
+                });
+            }
+        };
+    });
+
+</script>
+
+
+

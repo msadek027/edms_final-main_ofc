@@ -1,0 +1,827 @@
+CREATE  TABLE DSM_Distribution_Documents(
+AID bigint Identity(1,1) Constraint pk_DSM_Distribution_Documents_AID Primary Key,
+DocumentID nvarchar(12) NOT NULL,
+OwnerID nvarchar(12) NULL,
+DocCategoryID nvarchar(12) NULL,
+DocTypeID nvarchar(12) NULL,
+DocPropertyID nvarchar(12) NULL,
+FileCodeName nvarchar(max) NULL,
+ServerID nvarchar(12) NULL,
+FileServerUrl nvarchar(max) NULL,
+UploaderIP nvarchar(128) NULL,
+SetDate datetime NOT NULL Default(GetDate()),
+SetBy nvarchar(12) NULL,
+DistributionTo nvarchar(12) NOT NULL,
+Status int NOT NULL Default(1)
+)
+
+-----------------
+CREATE   TABLE DSM_Distribution_DocumentsVersion(
+AID bigint Identity(1,1) Constraint pk_DSM_Distribution_DocumentsVersion_AID Primary Key,
+DocVersionID nvarchar(12) NOT NULL,
+DocumentID nvarchar(12) NOT NULL,
+VersionNo int,
+OwnerID nvarchar(12) NOT NULL,
+DocCategoryID nvarchar(12) NOT NULL,
+DocTypeID nvarchar(12) NOT NULL,
+DocPropertyID nvarchar(128) NOT NULL,
+FileCodeName nvarchar(max) NULL,
+FileServerUrl nvarchar(max) NULL,
+UploaderIP nvarchar(128) NULL,
+ServerID nvarchar(12) NULL,
+SetDate datetime NOT NULL Default(GetDate()),
+SetBy nvarchar(12) NULL,
+DistributionTo nvarchar(12) NOT NULL,
+Status int NOT NULL Default(1)
+)
+-----------------------------------------------------
+--//  exec dbo.GetDistributionDocuments @UserID='16060900001'
+ 
+Alter PROCEDURE GetDistributionDocuments   
+ @UserID NVARCHAR(12)
+ --,@page=1,@itemsPerPage=20
+AS  
+BEGIN  
+ SET NOCOUNT ON;   
+  DECLARE @Tmp_DataPermission TABLE  
+ (  
+  DocCategoryID NVARCHAR(MAX),  
+  DocTypeID NVARCHAR(MAX),  
+  DocPropertyID NVARCHAR(MAX),  
+  DocPropIdentifyID NVARCHAR(MAX)  
+ )  
+  DECLARE @Tmp_Temp_DataPermission TABLE  
+ (  
+  DocCategoryID NVARCHAR(MAX),  
+  DocTypeID NVARCHAR(MAX),  
+  DocPropertyID NVARCHAR(MAX),  
+  DocPropIdentifyID NVARCHAR(MAX)  
+ )
+    
+ DECLARE @DocCategoryID NVARCHAR(MAX) 
+ DECLARE @DocTypeID NVARCHAR(MAX) 
+ DECLARE @DocPropertyID NVARCHAR(MAX) 
+ DECLARE @DocPropIdentifyID NVARCHAR(MAX) 
+ 
+ 
+ 
+ INSERT INTO @Tmp_Temp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)   
+ SELECT distinct a.DocCategoryID, a.DocTypeID, a.DocPropertyID,b.DocPropIdentifyID 
+ FROM DSM_Distribution_Documents a,DSM_DocumentsMeta b 
+ Where a.DocumentID=b.DocumentID AND  a.OwnerID=b.OwnerID And a.DocCategoryID=b.DocCategoryID  And a.DocTypeID=b.DocTypeID 
+ 
+ And a.SetBy= @UserID
+  ---------------
+   SELECT @DocCategoryID = COALESCE(@DocCategoryID+',' ,'') + DocCategoryID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocTypeID = COALESCE(@DocTypeID+',' ,'') + DocTypeID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocPropertyID = COALESCE(@DocPropertyID+',' ,'') + DocPropertyID  FROM @Tmp_Temp_DataPermission
+   SELECT @DocPropIdentifyID = COALESCE(@DocPropIdentifyID+',' ,'') + DocPropIdentifyID  FROM @Tmp_Temp_DataPermission 
+ 
+  ----------------
+   INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)   
+   Select @DocCategoryID,@DocTypeID,@DocPropertyID,@DocPropIdentifyID
+  -----------
+   
+  SELECT  
+  T1.DocumentID,  
+  dbo.FIRSTNOTNULL(T1.FileCodeName) FileCodeName,   
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum) DocPropIdentifyID,  
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum) DocPropIdentifyName,  
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum) MetaValue,  
+  
+  dbo.FIRSTNOTNULL(T1.DocPropertyName) DocPropertyName,  
+  dbo.FIRSTNOTNULL(T1.FileServerURL) FileServerURL,  
+  dbo.FIRSTNOTNULL(T1.ServerIP) ServerIP,  
+  dbo.FIRSTNOTNULL(T1.ServerPort) ServerPort,  
+  dbo.FIRSTNOTNULL(T1.FtpUserName) FtpUserName,  
+  dbo.FIRSTNOTNULL(T1.FtpPassword) FtpPassword,  
+  
+ -- dbo.FIRSTNOTNULL(T1.VersionNo),  
+  T1.DocDistributionID,   
+  
+  dbo.FIRSTNOTNULL(T1.OwnerID) OwnerID,  
+  dbo.FIRSTNOTNULL(T1.DocCategoryID) DocCategoryID,   
+  dbo.FIRSTNOTNULL(T1.DocTypeID) DocTypeID,  
+  dbo.FIRSTNOTNULL(T1.DocPropertyID) DocPropertyID,  
+  
+  dbo.FIRSTNOTNULL(T1.SetDate) SetDate,   
+  dbo.FIRSTNOTNULL(T1.Status) Status,  
+  COUNT(*) OVER (),  
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID) OwnerLevelID ,
+  --dbo.FIRSTNOTNULL(T1.FileExtension),  
+  --dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,  
+ -- dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete ,
+  dbo.FIRSTNOTNULL(T1.Employee) Employee 
+ FROM   
+ (  
+  SELECT d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,d.SetBy,  
+   dp.DocPropertyName, s.ServerLocation , d.FileServerUrl, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword,  
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetDate, d.Status,d.DistributionTo, u.EmployeeID +','+ u.UserFullName Employee, 
+   ROW_NUMBER() OVER(PARTITION BY d.DocumentID, dm.DocDistributionID   
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID  
+  FROM DSM_Distribution_Documents d  
+  LEFT JOIN DSM_DocumentsMeta dm ON d.DocumentID = dm.DocumentID  
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID  
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID   
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID  
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID  
+   INNER JOIN SEC_User u ON d.DistributionTo = u.UserID  
+  WHERE   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'   
+   
+   --AND d.DistributionTo =   @UserID
+   AND d.SetBy =   @UserID
+    
+ ) T1  
+ WHERE   
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))  
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))   
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))        
+  GROUP BY T1.DocumentID, T1.DocDistributionID  
+  ORDER BY T1.DocumentID DESC  
+  -- OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY   
+  
+   
+END  
+-----------------------------------------------
+--//  exec dbo.GetDistributionDocumentsVersion @UserID='16060900001'
+ 
+ALTER PROCEDURE GetDistributionDocumentsVersion   
+ @UserID NVARCHAR(12)
+ --,@page=1,@itemsPerPage=20
+AS  
+BEGIN  
+ SET NOCOUNT ON;   
+  DECLARE @Tmp_DataPermission TABLE  
+ (  
+  DocCategoryID NVARCHAR(MAX),  
+  DocTypeID NVARCHAR(MAX),  
+  DocPropertyID NVARCHAR(MAX),  
+  DocPropIdentifyID NVARCHAR(MAX)  
+ )  
+  DECLARE @Tmp_Temp_DataPermission TABLE  
+ (  
+  DocCategoryID NVARCHAR(MAX),  
+  DocTypeID NVARCHAR(MAX),  
+  DocPropertyID NVARCHAR(MAX),  
+  DocPropIdentifyID NVARCHAR(MAX)  
+ )
+    
+ DECLARE @DocCategoryID NVARCHAR(MAX) 
+ DECLARE @DocTypeID NVARCHAR(MAX) 
+ DECLARE @DocPropertyID NVARCHAR(MAX) 
+ DECLARE @DocPropIdentifyID NVARCHAR(MAX) 
+ 
+ 
+ 
+ INSERT INTO @Tmp_Temp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)   
+ SELECT distinct a.DocCategoryID, a.DocTypeID, a.DocPropertyID,b.DocPropIdentifyID 
+ FROM DSM_Distribution_DocumentsVersion a,DSM_DocumentsMetaVersion b 
+ Where a.DocVersionID=b.DocVersionID AND  a.OwnerID=b.OwnerID And a.DocCategoryID=b.DocCategoryID  And a.DocTypeID=b.DocTypeID 
+ 
+ And a.SetBy= @UserID
+  ---------------
+   SELECT @DocCategoryID = COALESCE(@DocCategoryID+',' ,'') + DocCategoryID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocTypeID = COALESCE(@DocTypeID+',' ,'') + DocTypeID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocPropertyID = COALESCE(@DocPropertyID+',' ,'') + DocPropertyID  FROM @Tmp_Temp_DataPermission
+   SELECT @DocPropIdentifyID = COALESCE(@DocPropIdentifyID+',' ,'') + DocPropIdentifyID  FROM @Tmp_Temp_DataPermission 
+ 
+  ----------------
+   INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)   
+   Select @DocCategoryID,@DocTypeID,@DocPropertyID,@DocPropIdentifyID
+  -----------
+   
+  SELECT  
+  T1.DocumentID, 
+  dbo.FIRSTNOTNULL(T1.FileCodeName) FileCodeName,   
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum) DocPropIdentifyID,  
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum) DocPropIdentifyName,  
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum) MetaValue,  
+  
+  dbo.FIRSTNOTNULL(T1.DocPropertyName) DocPropertyName,  
+  dbo.FIRSTNOTNULL(T1.FileServerURL) FileServerURL,  
+  dbo.FIRSTNOTNULL(T1.ServerIP) ServerIP,  
+  dbo.FIRSTNOTNULL(T1.ServerPort) ServerPort,  
+  dbo.FIRSTNOTNULL(T1.FtpUserName) FtpUserName,  
+  dbo.FIRSTNOTNULL(T1.FtpPassword) FtpPassword, 
+  T1.DocDistributionID,   
+  dbo.FIRSTNOTNULL(T1.OwnerID) OwnerID,  
+  dbo.FIRSTNOTNULL(T1.DocCategoryID) DocCategoryID,   
+  dbo.FIRSTNOTNULL(T1.DocTypeID) DocTypeID,  
+  dbo.FIRSTNOTNULL(T1.DocPropertyID) DocPropertyID, 
+  dbo.FIRSTNOTNULL(T1.SetDate) SetDate,   
+  dbo.FIRSTNOTNULL(T1.Status) Status,  
+  COUNT(*) OVER (),  
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID) OwnerLevelID ,
+  --dbo.FIRSTNOTNULL(T1.FileExtension),  
+  --dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,  
+ -- dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete ,
+  dbo.FIRSTNOTNULL(T1.Employee) Employee ,
+  dbo.FIRSTNOTNULL(T1.VersionNo) VersionNo ,
+  dbo.FIRSTNOTNULL(T1.DocVersionID) DocVersionID 
+ FROM   
+ (  
+  SELECT d.DocVersionID,d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,d.SetBy,d.VersionNo,  
+   dp.DocPropertyName, s.ServerLocation , d.FileServerUrl, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword,  
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetDate, d.Status,d.DistributionTo, u.EmployeeID +','+ u.UserFullName Employee, 
+   ROW_NUMBER() OVER(PARTITION BY d.DocumentID, dm.DocDistributionID   
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID  
+  FROM DSM_Distribution_DocumentsVersion d  
+  LEFT JOIN DSM_DocumentsMetaVersion dm ON d.DocVersionID = dm.DocVersionID  
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID  
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID   
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID  
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID  
+   INNER JOIN SEC_User u ON d.DistributionTo = u.UserID  
+  WHERE   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'   
+   
+   --AND d.DistributionTo =   @UserID
+   AND d.SetBy =   @UserID
+    
+ ) T1  
+ WHERE   
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))  
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))   
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))        
+  GROUP BY T1.DocumentID, T1.DocDistributionID  
+  ORDER BY T1.DocumentID DESC  
+  -- OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY   
+  
+   
+END  
+-------------------------------------------------
+  
+-- GetOriginalDocBySearchParam '18071700001','18080800001','18080800001','18080800001','1','18112600001',1,20,20,0,'','',10    
+CREATE PROCEDURE [dbo].[GetOriginalDocBySearchParam]    
+ -- Add the parameters for the stored procedure here    
+ @OwnerID NVARCHAR(12),    
+ @DocCategoryID NVARCHAR(12),    
+ @DocTypeID NVARCHAR(12),    
+ @DocPropertyID NVARCHAR(12),    
+ @SearchBy NVARCHAR(256),    
+ @UserID NVARCHAR(12),    
+ @page int,     
+ @itemsPerPage int,    
+ @sortBy NVARCHAR(max),     
+ @reverse int,     
+ @attribute NVARCHAR(MAX),    
+ @search NVARCHAR(max),    
+ @p_Status varchar(10) output    
+AS    
+BEGIN    
+ SET NOCOUNT ON;    
+    
+ DECLARE @Tmp_DataPermission TABLE    
+ (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )    
+    
+ INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+ SELECT * FROM GetAuthorizedData(@UserID)    
+    
+ Declare @usersts int =ISNULL((select Obsulate from SEC_User where UserID=@UserID),0)    
+ --print @usersts    
+ Declare @datasts int = ISNULL((select Obsulate from DSM_DocProperty where OwnerID=@OwnerID and DocCategoryID=@DocCategoryID and DocTypeID=@DocTypeID and DocPropertyID=@DocPropertyID),0)    
+ --print @datasts    
+    
+ Declare @username nvarchar(50) = (select UserName from SEC_User where UserID=@UserID)    
+    
+ if(@usersts = 1 OR @username = 'superadmin')    
+ begin    
+  --SELECT * FROM GetAuthorizedData('16060800002')    
+     
+  SELECT    
+  T1.DocumentID,    
+  dbo.FIRSTNOTNULL(T1.FileCodeName),     
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum),    
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum),    
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum),    
+    
+  dbo.FIRSTNOTNULL(T1.DocPropertyName),    
+  dbo.FIRSTNOTNULL(T1.FileServerURL),    
+  dbo.FIRSTNOTNULL(T1.ServerIP),    
+  dbo.FIRSTNOTNULL(T1.ServerPort),    
+  dbo.FIRSTNOTNULL(T1.FtpUserName),    
+  dbo.FIRSTNOTNULL(T1.FtpPassword),    
+    
+  dbo.FIRSTNOTNULL(T1.VersionNo),    
+  T1.DocDistributionID,     
+    
+  dbo.FIRSTNOTNULL(T1.OwnerID),    
+  dbo.FIRSTNOTNULL(T1.DocCategoryID),     
+  dbo.FIRSTNOTNULL(T1.DocTypeID),    
+  dbo.FIRSTNOTNULL(T1.DocPropertyID),    
+    
+  dbo.FIRSTNOTNULL(T1.SetOn),     
+  dbo.FIRSTNOTNULL(T1.[Status]),    
+  COUNT(*) OVER (),    
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID),    
+  dbo.FIRSTNOTNULL(T1.FileExtension),    
+  dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,    
+  dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete,  
+  dbo.FIRSTNOTNULL(T1.ServerID) ServerID   
+ FROM     
+ (    
+  SELECT d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,    
+   dp.DocPropertyName, (s.ServerLocation + d.FileServerUrl) FileServerURL, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword, d.VersionNo, d.ServerID,   
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetOn, d.[Status], d.FileExtension, ISNULL(d.IsSecured, 0) IsSecured,    
+   ISNULL(d.IsObsolete, 0) IsObsolete, ROW_NUMBER() OVER(PARTITION BY d.DocumentID, dm.DocDistributionID     
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID    
+  FROM DSM_Documents d    
+  LEFT JOIN DSM_DocumentsMeta dm ON d.DocumentID = dm.DocumentID    
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID    
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID     
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID    
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID    
+  WHERE    
+   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'     
+   AND ((@OwnerID IS NULL) OR (@OwnerID = '') OR (d.OwnerID = @OwnerID))     
+   AND ((@DocCategoryID IS NULL) OR (@DocCategoryID = '') OR (d.DocCategoryID = @DocCategoryID))    
+   AND ((@DocTypeID IS NULL) OR (@DocTypeID = '') OR (d.DocTypeID = @DocTypeID))     
+   AND ((@DocPropertyID IS NULL) OR (@DocPropertyID = '') OR (d.DocPropertyID = @DocPropertyID))    
+   AND ((@SearchBy IS NULL) OR (@SearchBy = '') OR (dpi.IsRequired = @SearchBy))    
+   AND ((@attribute IS NULL) OR (@attribute = '') OR (dpi.IdentificationAttribute = @attribute))    
+   AND ((@search IS NULL) OR (dm.MetaValue like '%' + @search + '%'))    
+   AND d.SetBy IN     
+   (    
+    SELECT UserID FROM GetAuthorizedOwnerUserID(@UserID)     
+   )    
+ ) T1    
+ WHERE     
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))          
+  GROUP BY T1.DocumentID, T1.DocDistributionID    
+  ORDER BY T1.DocumentID DESC    
+  OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY    
+    
+ end    
+ --else if(@DocPropertyID = '16082300003')    
+ --begin    
+ --SELECT    
+ -- T1.DocumentID,    
+ -- dbo.FIRSTNOTNULL(T1.FileCodeName),     
+ -- dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum),    
+ -- dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum),    
+ -- dbo.[Concatenate](T1.MetaValue,T1.RowNum),    
+    
+ -- dbo.FIRSTNOTNULL(T1.DocPropertyName),    
+ -- dbo.FIRSTNOTNULL(T1.FileServerURL),    
+ -- dbo.FIRSTNOTNULL(T1.ServerIP),    
+ -- dbo.FIRSTNOTNULL(T1.ServerPort),    
+ -- dbo.FIRSTNOTNULL(T1.FtpUserName),    
+ -- dbo.FIRSTNOTNULL(T1.FtpPassword),    
+    
+ -- dbo.FIRSTNOTNULL(T1.VersionNo),    
+ -- T1.DocDistributionID,     
+    
+ -- dbo.FIRSTNOTNULL(T1.OwnerID),    
+ -- dbo.FIRSTNOTNULL(T1.DocCategoryID),     
+ -- dbo.FIRSTNOTNULL(T1.DocTypeID),    
+ -- dbo.FIRSTNOTNULL(T1.DocPropertyID),    
+    
+ -- dbo.FIRSTNOTNULL(T1.SetOn),     
+ -- dbo.FIRSTNOTNULL(T1.[Status]),    
+ -- COUNT(*) OVER (),    
+ -- dbo.FIRSTNOTNULL(T1.OwnerLevelID),    
+ -- dbo.FIRSTNOTNULL(T1.FileExtension),    
+ -- dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,    
+ -- dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete    
+ --FROM     
+ --(    
+ -- SELECT  d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,    
+ --  dp.DocPropertyName, (s.ServerLocation + d.FileServerUrl) FileServerURL, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword, d.VersionNo,    
+ --  dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetOn, d.[Status], d.FileExtension, ISNULL(d.IsSecured, 0) IsSecured,    
+ --  ISNULL(d.IsObsolete, 0) IsObsolete, ROW_NUMBER() OVER(PARTITION BY d.DocumentID, dm.DocDistributionID     
+ --  ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID    
+ -- FROM DSM_Documents d    
+ -- LEFT JOIN DSM_DocumentsMeta dm ON d.DocumentID = dm.DocumentID    
+ -- LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID    
+ -- LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID     
+ -- LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID    
+ -- INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID    
+ -- WHERE    
+ --  d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1' AND ISNULL(d.IsObsolete, 0)= 0    
+ --  AND ((@OwnerID IS NULL) OR (@OwnerID = '') OR (d.OwnerID = @OwnerID))     
+ --  AND ((@DocCategoryID IS NULL) OR (@DocCategoryID = '') OR (d.DocCategoryID = @DocCategoryID))    
+ --  AND ((@DocTypeID IS NULL) OR (@DocTypeID = '') OR (d.DocTypeID = @DocTypeID))     
+ --  AND ((@DocPropertyID IS NULL) OR (@DocPropertyID = '') OR (d.DocPropertyID = @DocPropertyID))    
+ --  AND ((@SearchBy IS NULL) OR (@SearchBy = '') OR (dpi.IsRequired = @SearchBy))    
+ --  AND ((@attribute IS NULL) OR (@attribute = '') OR (dpi.IdentificationAttribute = @attribute))    
+ --  AND ((@search IS NULL) OR (dm.MetaValue like '%' + @search + '%'))    
+ --  AND d.SetBy IN     
+ --  (    
+ --   SELECT UserID FROM GetAuthorizedOwnerUserID(@UserID)     
+ --  )     
+       
+ --) T1    
+ --WHERE     
+ -- ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+ -- AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+ -- AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))          
+ -- GROUP BY T1.DocumentID, T1.DocDistributionID    
+ -- ORDER BY T1.DocumentID DESC    
+ -- OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY    
+      
+ --end    
+     
+ else    
+ begin    
+  SELECT    
+  T1.DocumentID,    
+  dbo.FIRSTNOTNULL(T1.FileCodeName),     
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum),    
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum),    
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum),    
+    
+  dbo.FIRSTNOTNULL(T1.DocPropertyName),    
+  dbo.FIRSTNOTNULL(T1.FileServerURL),    
+  dbo.FIRSTNOTNULL(T1.ServerIP),    
+  dbo.FIRSTNOTNULL(T1.ServerPort),    
+  dbo.FIRSTNOTNULL(T1.FtpUserName),    
+  dbo.FIRSTNOTNULL(T1.FtpPassword),    
+    
+  dbo.FIRSTNOTNULL(T1.VersionNo),    
+  T1.DocDistributionID,     
+    
+  dbo.FIRSTNOTNULL(T1.OwnerID),    
+  dbo.FIRSTNOTNULL(T1.DocCategoryID),     
+  dbo.FIRSTNOTNULL(T1.DocTypeID),    
+  dbo.FIRSTNOTNULL(T1.DocPropertyID),    
+    
+  dbo.FIRSTNOTNULL(T1.SetOn),     
+  dbo.FIRSTNOTNULL(T1.[Status]),    
+  COUNT(*) OVER (),    
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID),    
+  dbo.FIRSTNOTNULL(T1.FileExtension),    
+  dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,    
+  dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete,  
+   dbo.FIRSTNOTNULL(T1.ServerID) ServerID   
+ FROM     
+ (    
+  SELECT d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,    
+   dp.DocPropertyName, (s.ServerLocation + d.FileServerUrl) FileServerURL, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword, d.VersionNo,d.ServerID,    
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetOn, d.[Status], d.FileExtension, ISNULL(d.IsSecured, 0) IsSecured,    
+   ISNULL(d.IsObsolete, 0) IsObsolete, ROW_NUMBER() OVER(PARTITION BY d.DocumentID, dm.DocDistributionID     
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID    
+  FROM DSM_Documents d    
+  LEFT JOIN DSM_DocumentsMeta dm ON d.DocumentID = dm.DocumentID    
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID    
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID     
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID    
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID    
+  WHERE    
+   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1' AND ISNULL(d.IsObsolete, 0)= 0    
+   AND ((@OwnerID IS NULL) OR (@OwnerID = '') OR (d.OwnerID = @OwnerID))     
+   AND ((@DocCategoryID IS NULL) OR (@DocCategoryID = '') OR (d.DocCategoryID = @DocCategoryID))    
+   AND ((@DocTypeID IS NULL) OR (@DocTypeID = '') OR (d.DocTypeID = @DocTypeID))     
+   AND ((@DocPropertyID IS NULL) OR (@DocPropertyID = '') OR (d.DocPropertyID = @DocPropertyID))    
+   AND ((@SearchBy IS NULL) OR (@SearchBy = '') OR (dpi.IsRequired = @SearchBy))    
+   AND ((@attribute IS NULL) OR (@attribute = '') OR (dpi.IdentificationAttribute = @attribute))    
+   AND ((@search IS NULL) OR (dm.MetaValue like '%' + @search + '%'))    
+   AND d.SetBy IN     
+   (    
+    SELECT UserID FROM GetAuthorizedOwnerUserID(@UserID)     
+   )     
+ ) T1    
+ WHERE     
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))          
+  GROUP BY T1.DocumentID, T1.DocDistributionID    
+  ORDER BY T1.DocumentID DESC    
+  OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY    
+ end    
+    
+     
+END 
+--------------------------------------------------------------
+    
+-- EXEC GetVersionDocBySearchParam '16040400005','16040300026','16040400006','16040400008','16040500015','1', '11'    
+    
+CREATE PROCEDURE [dbo].[GetVersionDocBySearchParam]    
+ @UserID  NVARCHAR(12),    
+ @OwnerID NVARCHAR(12),    
+ @DocCategoryID NVARCHAR(12),    
+ @DocTypeID NVARCHAR(12),    
+ @DocPropertyID NVARCHAR(12),    
+ @SearchBy NVARCHAR(256),    
+ @p_Status varchar(10) output    
+AS    
+BEGIN    
+     
+ SET NOCOUNT ON;    
+ DECLARE @Tmp_DataPermission TABLE (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )    
+    
+ INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+ SELECT * FROM GetAuthorizedData(@UserID)    
+ SELECT * FROM (    
+  SELECT    
+  dv.DocVersionID, dv.DocumentID, dv.ReferenceVersionID, (s.ServerLocation + dv.FileServerUrl) FileServerURL, dv.VersionNo,dv.ServerID,    
+  dmv.DocMetaIDVersion, dmv.DocMetaID, dv.DocPropertyID, dp.DocPropertyName, dpi.DocPropIdentifyID,    
+  dpi.IdentificationAttribute DocPropIdentifyName, dmv.MetaValue,    
+  dm.MetaValue OriginalReference, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword, dmv.DocDistributionID,    
+  DV.OwnerID, DV.DocCategoryID, dv.DocTypeID, dv.SetOn    
+    
+  FROM DSM_DocumentsVersion dv    
+  left join DSM_DocumentsMetaVersion dmv on dv.DocVersionID = dmv.DocVersionID    
+  left join DSM_DocProperty dp on dv.DocPropertyID = dp.DocPropertyID    
+  left join DSM_DocPropIdentify dpi on dmv.DocPropIdentifyID = dpi.DocPropIdentifyID     
+  left join SEC_Server s on dv.ServerID = s.ServerID    
+  left join DSM_DocumentsMeta dm on dv.DocumentID = dm.DocumentID and dmv.DocPropIdentifyID = dm.DocPropIdentifyID     
+    
+  WHERE dv.[Status] = '1' AND dmv.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'     
+  AND dv.OwnerID = @OwnerID  AND dv.DocCategoryID = @DocCategoryID AND dv.DocTypeID = @DocTypeID AND dv.DocPropertyID = @DocPropertyID    
+  AND dpi.IsRequired = @SearchBy    
+  AND dv.SetBy IN     
+  (    
+   SELECT UserID FROM GetAuthorizedOwnerUserID(@UserID)     
+  )    
+ ) T1    
+ WHERE     
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))      
+ ORDER BY T1.SetOn DESC    
+END    
+    
+-----------------------
+
+Sp_HelpText 'GetOriginalDocBySearchParam'
+Sp_HelpText 'GetVersionDocBySearchParam'
+
+
+    
+-------------------------
+
+CREATE  TABLE DSM_Share_Documents(
+AID bigint Identity(1,1) Constraint pk_DSM_Share_Documents_AID Primary Key,
+DocumentID nvarchar(12) NOT NULL,
+OwnerID nvarchar(12) NULL,
+DocCategoryID nvarchar(12) NULL,
+DocTypeID nvarchar(12) NULL,
+DocPropertyID nvarchar(12) NULL,
+FileCodeName nvarchar(max) NULL,
+ServerID nvarchar(12) NULL,
+FileServerUrl nvarchar(max) NULL,
+UploaderIP nvarchar(128) NULL,
+SetDate datetime NOT NULL Default(GetDate()),
+SetBy nvarchar(12) NULL,
+ShareTo nvarchar(300) NOT NULL,
+Status int NOT NULL Default(1)
+)
+------------------------------------------------------------
+
+CREATE  TABLE DSM_Share_DocumentsVersion(
+AID bigint Identity(1,1) Constraint pk_DSM_Share_DocumentsVersion_AID Primary Key,
+DocVersionID nvarchar(12) NOT NULL,
+DocumentID nvarchar(12) NOT NULL,
+VersionNo int,
+OwnerID nvarchar(12) NOT NULL,
+DocCategoryID nvarchar(12) NOT NULL,
+DocTypeID nvarchar(12) NOT NULL,
+DocPropertyID nvarchar(128) NOT NULL,
+FileCodeName nvarchar(max) NULL,
+FileServerUrl nvarchar(max) NULL,
+UploaderIP nvarchar(128) NULL,
+ServerID nvarchar(12) NULL,
+SetDate datetime NOT NULL Default(GetDate()),
+SetBy nvarchar(12) NULL,
+ShareTo nvarchar(300) NOT NULL,
+Status int NOT NULL Default(1)
+)
+---------------
+
+ 
+ --//  Exec dbo.GetShareDocuments @UserID='23101500003', @FromDate='2023-11-01', @ToDate='2023-11-23'
+
+Alter PROCEDURE GetShareDocuments     
+ @UserID NVARCHAR(12),  
+ @FromDate varchar(10),  
+ @ToDate varchar(10)  
+ --,@page=1,@itemsPerPage=20  
+AS    
+BEGIN    
+ SET NOCOUNT ON;     
+  DECLARE @Tmp_DataPermission TABLE    
+ (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )    
+  DECLARE @Tmp_Temp_DataPermission TABLE    
+ (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )  
+      
+ DECLARE @DocCategoryID NVARCHAR(MAX)   
+ DECLARE @DocTypeID NVARCHAR(MAX)   
+ DECLARE @DocPropertyID NVARCHAR(MAX)   
+ DECLARE @DocPropIdentifyID NVARCHAR(MAX)   
+   
+   
+   
+ INSERT INTO @Tmp_Temp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+ SELECT distinct d.DocCategoryID, d.DocTypeID, d.DocPropertyID,e.DocPropIdentifyID
+ FROM DSM_Share_Documents d,DSM_DocumentsMeta e   
+ Where d.DocumentID=e.DocumentID AND  d.OwnerID=e.OwnerID And d.DocCategoryID=e.DocCategoryID  And d.DocTypeID=e.DocTypeID   
+ AND (d.SetBy= @UserID)  
+ AND Convert(varchar(10),d.SetDate,126) between @FromDate AND @ToDate  
+-- AND d.SetBy='23101500003'
+-- AND Convert(varchar(10),d.SetDate,126) between '2023-01-01' AND '2023-11-22'  
+  ---------------  
+   SELECT @DocCategoryID = COALESCE(@DocCategoryID+',' ,'') + DocCategoryID  FROM @Tmp_Temp_DataPermission    
+   SELECT @DocTypeID = COALESCE(@DocTypeID+',' ,'') + DocTypeID  FROM @Tmp_Temp_DataPermission    
+   SELECT @DocPropertyID = COALESCE(@DocPropertyID+',' ,'') + DocPropertyID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocPropIdentifyID = COALESCE(@DocPropIdentifyID+',' ,'') + DocPropIdentifyID  FROM @Tmp_Temp_DataPermission   
+   
+  ----------------  
+   INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+   Select @DocCategoryID,@DocTypeID,@DocPropertyID,@DocPropIdentifyID  
+  -----------  
+     
+  SELECT    
+  T1.DocumentID, T1.AID,   
+  dbo.FIRSTNOTNULL(T1.FileCodeName) FileCodeName,     
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum) DocPropIdentifyID,    
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum) DocPropIdentifyName,    
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum) MetaValue,    
+    
+  dbo.FIRSTNOTNULL(T1.DocPropertyName) DocPropertyName,    
+  dbo.FIRSTNOTNULL(T1.FileServerURL) FileServerURL,    
+  dbo.FIRSTNOTNULL(T1.ServerIP) ServerIP,    
+  dbo.FIRSTNOTNULL(T1.ServerPort) ServerPort,    
+  dbo.FIRSTNOTNULL(T1.FtpUserName) FtpUserName,    
+  dbo.FIRSTNOTNULL(T1.FtpPassword) FtpPassword,    
+    
+  dbo.FIRSTNOTNULL(T1.DocDistributionID) DocDistributionID,    
+    
+    
+  dbo.FIRSTNOTNULL(T1.OwnerID) OwnerID,    
+  dbo.FIRSTNOTNULL(T1.DocCategoryID) DocCategoryID,     
+  dbo.FIRSTNOTNULL(T1.DocTypeID) DocTypeID,    
+  dbo.FIRSTNOTNULL(T1.DocPropertyID) DocPropertyID,    
+    
+  dbo.FIRSTNOTNULL(T1.SetDate) SetDate,     
+  dbo.FIRSTNOTNULL(T1.Status) Status,    
+  COUNT(*) OVER (),    
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID) OwnerLevelID ,  
+  --dbo.FIRSTNOTNULL(T1.FileExtension),    
+  --dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,    
+ -- dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete ,  
+  dbo.FIRSTNOTNULL(T1.Employee) Employee   
+ FROM     
+ (    
+  SELECT d.DocumentID,d.AID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,d.SetBy,    
+   dp.DocPropertyName, s.ServerLocation , d.FileServerUrl, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword,    
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetDate, d.Status,d.ShareTo,u2.EmployeeID +','+ u2.UserFullName+' / '+d.ShareTo  Employee,   
+   ROW_NUMBER() OVER(PARTITION BY d.DocumentID, d.AID     
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID    
+  FROM DSM_Share_Documents d    
+  LEFT JOIN DSM_DocumentsMeta dm ON d.DocumentID = dm.DocumentID    
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID    
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID     
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID    
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID    
+ -- INNER JOIN SEC_User u ON d.DistributionTo = u.UserID    
+  INNER JOIN SEC_User u2 ON d.SetBy = u2.UserID    
+  WHERE   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'     
+    
+  AND (d.SetBy =   @UserID )  
+  AND Convert(varchar(10),d.SetDate,126) between @FromDate AND @ToDate  
+-- AND d.SetBy='23101500003'
+-- AND Convert(varchar(10),d.SetDate,126) between '2023-01-01' AND '2023-11-22'   
+ ) T1    
+ WHERE     
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))          
+  GROUP BY T1.DocumentID, T1.AID    
+  ORDER BY T1.DocumentID DESC    
+  -- OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY     
+    
+     
+END 
+---------------------------------
+--// exec dbo.GetShareDocumentsVersion @UserID='16060900001' , @FromDate='2023-01-01', @ToDate='2023-11-22'
+
+-- Drop PROCEDURE GetShareDocumentsVersion   
+
+CREATE PROCEDURE GetShareDocumentsVersion     
+ @UserID NVARCHAR(12),  
+ @FromDate varchar(10),  
+ @ToDate varchar(10)  
+AS    
+BEGIN    
+ SET NOCOUNT ON;     
+  DECLARE @Tmp_DataPermission TABLE    
+ (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )    
+  DECLARE @Tmp_Temp_DataPermission TABLE    
+ (    
+  DocCategoryID NVARCHAR(MAX),    
+  DocTypeID NVARCHAR(MAX),    
+  DocPropertyID NVARCHAR(MAX),    
+  DocPropIdentifyID NVARCHAR(MAX)    
+ )  
+      
+ DECLARE @DocCategoryID NVARCHAR(MAX)   
+ DECLARE @DocTypeID NVARCHAR(MAX)   
+ DECLARE @DocPropertyID NVARCHAR(MAX)   
+ DECLARE @DocPropIdentifyID NVARCHAR(MAX)   
+   
+   
+   
+ INSERT INTO @Tmp_Temp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+ SELECT distinct d.DocCategoryID, d.DocTypeID, d.DocPropertyID,e.DocPropIdentifyID   
+ FROM DSM_Share_DocumentsVersion d,DSM_DocumentsMetaVersion e   
+ Where d.DocVersionID=e.DocVersionID AND  d.OwnerID=e.OwnerID And d.DocCategoryID=e.DocCategoryID  And d.DocTypeID=e.DocTypeID   
+  And (d.SetBy= @UserID)  
+  AND Convert(varchar(10),d.SetDate,126) between @FromDate AND @ToDate  
+ -- AND Convert(varchar(10),d.SetDate,126) between '2023-01-01' AND '2023-10-16'  
+  ---------------  
+   SELECT @DocCategoryID = COALESCE(@DocCategoryID+',' ,'') + DocCategoryID  FROM @Tmp_Temp_DataPermission    
+   SELECT @DocTypeID = COALESCE(@DocTypeID+',' ,'') + DocTypeID  FROM @Tmp_Temp_DataPermission    
+   SELECT @DocPropertyID = COALESCE(@DocPropertyID+',' ,'') + DocPropertyID  FROM @Tmp_Temp_DataPermission  
+   SELECT @DocPropIdentifyID = COALESCE(@DocPropIdentifyID+',' ,'') + DocPropIdentifyID  FROM @Tmp_Temp_DataPermission   
+   
+  ----------------  
+   INSERT INTO @Tmp_DataPermission(DocCategoryID, DocTypeID, DocPropertyID, DocPropIdentifyID)     
+   Select @DocCategoryID,@DocTypeID,@DocPropertyID,@DocPropIdentifyID  
+  -----------  
+     
+  SELECT    
+  T1.DocumentID,  T1.AID,   
+  dbo.FIRSTNOTNULL(T1.FileCodeName) FileCodeName,     
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyID,T1.RowNum) DocPropIdentifyID,    
+  dbo.[Concatenate_Dist](T1.DocPropIdentifyName,T1.RowNum) DocPropIdentifyName,    
+  dbo.[Concatenate](T1.MetaValue,T1.RowNum) MetaValue,    
+    
+  dbo.FIRSTNOTNULL(T1.DocPropertyName) DocPropertyName,    
+  dbo.FIRSTNOTNULL(T1.FileServerURL) FileServerURL,    
+  dbo.FIRSTNOTNULL(T1.ServerIP) ServerIP,    
+  dbo.FIRSTNOTNULL(T1.ServerPort) ServerPort,    
+  dbo.FIRSTNOTNULL(T1.FtpUserName) FtpUserName,    
+  dbo.FIRSTNOTNULL(T1.FtpPassword) FtpPassword,   
+  dbo.FIRSTNOTNULL(T1.DocDistributionID) DocDistributionID,  
+   
+  dbo.FIRSTNOTNULL(T1.OwnerID) OwnerID,    
+  dbo.FIRSTNOTNULL(T1.DocCategoryID) DocCategoryID,     
+  dbo.FIRSTNOTNULL(T1.DocTypeID) DocTypeID,    
+  dbo.FIRSTNOTNULL(T1.DocPropertyID) DocPropertyID,   
+  dbo.FIRSTNOTNULL(T1.SetDate) SetDate,     
+  dbo.FIRSTNOTNULL(T1.Status) Status,    
+  COUNT(*) OVER (),    
+  dbo.FIRSTNOTNULL(T1.OwnerLevelID) OwnerLevelID ,  
+  --dbo.FIRSTNOTNULL(T1.FileExtension),    
+  --dbo.FIRSTNOTNULL(T1.IsSecured) IsSecured,    
+ -- dbo.FIRSTNOTNULL(T1.IsObsolete) IsObsolete ,  
+  dbo.FIRSTNOTNULL(T1.Employee) Employee ,  
+  dbo.FIRSTNOTNULL(T1.VersionNo) VersionNo ,  
+  dbo.FIRSTNOTNULL(T1.DocVersionID) DocVersionID   
+ FROM     
+ (    
+  SELECT d.DocVersionID,d.AID, d.DocumentID, d.FileCodeName, dm.DocMetaID, dpi.DocPropIdentifyID, dpi.IdentificationAttribute DocPropIdentifyName, dm.MetaValue,d.SetBy,d.VersionNo,    
+   dp.DocPropertyName, s.ServerLocation , d.FileServerUrl, s.ServerIP, s.FtpPort ServerPort, s.FtpUserName, s.FtpPassword,    
+   dm.DocDistributionID, d.OwnerID, d.DocCategoryID, d.DocTypeID, d.DocPropertyID, d.SetDate, d.Status,d.ShareTo, u2.EmployeeID +','+ u2.UserFullName+' / '+d.ShareTo Employee,   
+   ROW_NUMBER() OVER(PARTITION BY d.DocumentID, d.AID     
+   ORDER BY dm.DocMetaID, dpi.DocPropIdentifyID) AS RowNum, own.OwnerLevelID    
+  FROM DSM_Share_DocumentsVersion d    
+  LEFT JOIN DSM_DocumentsMetaVersion dm ON d.DocVersionID = dm.DocVersionID    
+  LEFT JOIN DSM_DocProperty dp ON d.DocPropertyID = dp.DocPropertyID    
+  LEFT JOIN DSM_DocPropIdentify dpi ON dm.DocPropIdentifyID = dpi.DocPropIdentifyID     
+  LEFT JOIN SEC_Server s ON d.ServerID = s.ServerID    
+  INNER JOIN DSM_Owner own ON d.OwnerID = own.OwnerID    
+  --INNER JOIN SEC_User u ON d.DistributionTo = u.UserID    
+   INNER JOIN SEC_User u2 ON d.SetBy = u2.UserID    
+  WHERE   d.[Status] = '1' AND dm.[Status] = '1' AND dpi.[Status] = '1' AND dp.[Status] = '1' AND s.[Status] = '1'     
+ And (d.SetBy= @UserID )  
+  AND Convert(varchar(10),d.SetDate,126) between @FromDate AND @ToDate  
+ -- AND Convert(varchar(10),d.SetDate,126) between '2023-01-01' AND '2023-10-16'  
+ ) T1    
+ WHERE     
+  ((T1.DocCategoryID IS NULL) OR (T1.DocCategoryID IN (SELECT * FROM Split((SELECT DocCategoryID FROM @Tmp_DataPermission), ','))))    
+  AND ((T1.DocTypeID IS NULL) OR T1.DocTypeID IN (SELECT * FROM Split((SELECT DocTypeID FROM @Tmp_DataPermission), ',')))     
+  AND ((T1.DocPropertyID IS NULL) OR T1.DocPropertyID IN (SELECT * FROM Split((SELECT DocPropertyID FROM @Tmp_DataPermission), ',')))          
+  GROUP BY T1.DocumentID, T1.AID    
+  ORDER BY T1.DocumentID DESC    
+  -- OFFSET ((@page - 1)*@itemsPerPage) ROWS FETCH NEXT (@itemsPerPage) ROWS ONLY     
+    
+     
+END 
+----------------------------------------------------    

@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CBPSModelStoreContainer" CdmEntityContainer="CBPSEntities">
+    <EntitySetMapping Name="CMS_Bank">
+      <EntityTypeMapping TypeName="CBPSModel.CMS_Bank">
+        <MappingFragment StoreEntitySet="CMS_Bank">
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CountryofOrigin" ColumnName="CountryofOrigin" />
+          <ScalarProperty Name="BankCategory" ColumnName="BankCategory" />
+          <ScalarProperty Name="BankType" ColumnName="BankType" />
+          <ScalarProperty Name="BIN" ColumnName="BIN" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMS_BankBranch">
+      <EntityTypeMapping TypeName="CBPSModel.CMS_BankBranch">
+        <MappingFragment StoreEntitySet="CMS_BankBranch">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+          <ScalarProperty Name="BranchPhone" ColumnName="BranchPhone" />
+          <ScalarProperty Name="BranchFax" ColumnName="BranchFax" />
+          <ScalarProperty Name="BranchEmail" ColumnName="BranchEmail" />
+          <ScalarProperty Name="BranchPerson" ColumnName="BranchPerson" />
+          <ScalarProperty Name="PersonDesignation" ColumnName="PersonDesignation" />
+          <ScalarProperty Name="PersonDepartment" ColumnName="PersonDepartment" />
+          <ScalarProperty Name="PersonCell" ColumnName="PersonCell" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BranchBftn" ColumnName="BranchBftn" />
+          <ScalarProperty Name="BranchRemarks" ColumnName="BranchRemarks" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CPS_BankBranchAccount">
+      <EntityTypeMapping TypeName="CBPSModel.CPS_BankBranchAccount">
+        <MappingFragment StoreEntitySet="CPS_BankBranchAccount">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="SignatoryGroup" ColumnName="SignatoryGroup" />
+          <ScalarProperty Name="AccountCloseDate" ColumnName="AccountCloseDate" />
+          <ScalarProperty Name="AccountOpenDate" ColumnName="AccountOpenDate" />
+          <ScalarProperty Name="ClosingAmt" ColumnName="ClosingAmt" />
+          <ScalarProperty Name="LastDebitAmt" ColumnName="LastDebitAmt" />
+          <ScalarProperty Name="LastCreditAmt" ColumnName="LastCreditAmt" />
+          <ScalarProperty Name="ConcernGL" ColumnName="ConcernGL" />
+          <ScalarProperty Name="DefaultCurrency" ColumnName="DefaultCurrency" />
+          <ScalarProperty Name="TransCurrencyType" ColumnName="TransCurrencyType" />
+          <ScalarProperty Name="TransAmt" ColumnName="TransAmt" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_MasterData">
+      <EntityTypeMapping TypeName="CBPSModel.Sys_MasterData">
+        <MappingFragment StoreEntitySet="Sys_MasterData">
+          <ScalarProperty Name="ParrentID" ColumnName="ParrentID" />
+          <ScalarProperty Name="UDCode" ColumnName="UDCode" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="MasterDataTypeID" ColumnName="MasterDataTypeID" />
+          <ScalarProperty Name="MasterDataValue" ColumnName="MasterDataValue" />
+          <ScalarProperty Name="MasterDataID" ColumnName="MasterDataID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_MasterDataType">
+      <EntityTypeMapping TypeName="CBPSModel.Sys_MasterDataType">
+        <MappingFragment StoreEntitySet="Sys_MasterDataType">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+          <ScalarProperty Name="TypePurpose" ColumnName="TypePurpose" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="MasterDataTypeID" ColumnName="MasterDataTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetAllBank" FunctionName="CBPSModel.Store.CBPS_GetAllBank">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetAllBank_Result">
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CountryofOrigin" ColumnName="CountryofOrigin" />
+          <ScalarProperty Name="BankCategory" ColumnName="BankCategory" />
+          <ScalarProperty Name="BankType" ColumnName="BankType" />
+          <ScalarProperty Name="BIN" ColumnName="BIN" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetAllOwnerByCompany" FunctionName="CBPSModel.Store.CBPS_GetAllOwnerByCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetAllOwnerByCompany_Result">
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="UDOwnerCode" ColumnName="UDOwnerCode" />
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetAllOwnerForRestrictedCompany" FunctionName="CBPSModel.Store.CBPS_GetAllOwnerForRestrictedCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetAllOwnerForRestrictedCompany_Result">
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="UDOwnerCode" ColumnName="UDOwnerCode" />
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillProcessGroup" FunctionName="CBPSModel.Store.CBPS_GetBillProcessGroup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillProcessGroup_Result">
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="ProcessGroupName" ColumnName="ProcessGroupName" />
+          <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+          <ScalarProperty Name="PurchaseGroup" ColumnName="PurchaseGroup" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="IdentyFlag" ColumnName="IdentyFlag" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillProcessingStage" FunctionName="CBPSModel.Store.CBPS_GetBillProcessingStage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillProcessingStage_Result">
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="StageNo" ColumnName="StageNo" />
+          <ScalarProperty Name="StageName" ColumnName="StageName" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="HardCopyMove" ColumnName="HardCopyMove" />
+          <ScalarProperty Name="InitiateIndicator" ColumnName="InitiateIndicator" />
+          <ScalarProperty Name="NextStage" ColumnName="NextStage" />
+          <ScalarProperty Name="StageBackKey" ColumnName="StageBackKey" />
+          <ScalarProperty Name="StageSuspendKey" ColumnName="StageSuspendKey" />
+          <ScalarProperty Name="PaymentBlockKey" ColumnName="PaymentBlockKey" />
+          <ScalarProperty Name="DataPullIndicator" ColumnName="DataPullIndicator" />
+          <ScalarProperty Name="DataSealIndicator" ColumnName="DataSealIndicator" />
+          <ScalarProperty Name="AutoIssue" ColumnName="AutoIssue" />
+          <ScalarProperty Name="AutoReceive" ColumnName="AutoReceive" />
+          <ScalarProperty Name="VendorNotify" ColumnName="VendorNotify" />
+          <ScalarProperty Name="InvoicePartyNotify" ColumnName="InvoicePartyNotify" />
+          <ScalarProperty Name="BenchMark" ColumnName="BenchMark" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ReleaseIndicator" ColumnName="ReleaseIndicator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceive" FunctionName="CBPSModel.Store.CBPS_GetBillReceive">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillReceive_Result">
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="PONo1" ColumnName="PONo1" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoicingPartyName" ColumnName="InvoicingPartyName" />
+          <ScalarProperty Name="CurrentStage" ColumnName="CurrentStage" />
+          <ScalarProperty Name="StageName" ColumnName="StageName" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="ProcessGroupName" ColumnName="ProcessGroupName" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="ProcessState" ColumnName="ProcessState" />
+          <ScalarProperty Name="IsStop" ColumnName="IsStop" />
+          <ScalarProperty Name="BrStatus" ColumnName="BrStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceiveForClearing" FunctionName="CBPSModel.Store.CBPS_GetBillReceiveForClearing">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillReceiveForClearing_Result">
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="BillClearingID" ColumnName="BillClearingID" />
+          <ScalarProperty Name="InvoiceDocNo" ColumnName="InvoiceDocNo" />
+          <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="POType" ColumnName="POType" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+          <ScalarProperty Name="DocCategoryName" ColumnName="DocCategoryName" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceCurrency" ColumnName="InvoiceCurrency" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="PreferedPayMode" ColumnName="PreferedPayMode" />
+          <ScalarProperty Name="BillSubmitDate" ColumnName="BillSubmitDate" />
+          <ScalarProperty Name="HardCopyMove" ColumnName="HardCopyMove" />
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
+          <ScalarProperty Name="IsReceived" ColumnName="IsReceived" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceiveForFDD" FunctionName="CBPSModel.Store.CBPS_GetBillReceiveForFDD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillReceiveForFDD_Result">
+          <ScalarProperty Name="BillReceiveID" ColumnName="BillReceiveID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorEmail" ColumnName="VendorEmail" />
+          <ScalarProperty Name="VendorMobileNo" ColumnName="VendorMobileNo" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+          <ScalarProperty Name="InvoicingPartyName" ColumnName="InvoicingPartyName" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="ProcessState" ColumnName="ProcessState" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="ProcessGroupName" ColumnName="ProcessGroupName" />
+          <ScalarProperty Name="CurrentStage" ColumnName="CurrentStage" />
+          <ScalarProperty Name="StageName" ColumnName="StageName" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceiveForIssueToPayment" FunctionName="CBPSModel.Store.CBPS_GetBillReceiveForIssueToPayment" />
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceiveForParking" FunctionName="CBPSModel.Store.CBPS_GetBillReceiveForParking">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillReceiveForParking_Result">
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="BillParkingID" ColumnName="BillParkingID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="POType" ColumnName="POType" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+          <ScalarProperty Name="DocCategoryName" ColumnName="DocCategoryName" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceCurrency" ColumnName="InvoiceCurrency" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="PreferedPayMode" ColumnName="PreferedPayMode" />
+          <ScalarProperty Name="BillSubmitDate" ColumnName="BillSubmitDate" />
+          <ScalarProperty Name="HardCopyMove" ColumnName="HardCopyMove" />
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBillReceiveForPosting" FunctionName="CBPSModel.Store.CBPS_GetBillReceiveForPosting">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBillReceiveForPosting_Result">
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="BillPostingID" ColumnName="BillPostingID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="POType" ColumnName="POType" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+          <ScalarProperty Name="DocCategoryName" ColumnName="DocCategoryName" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceCurrency" ColumnName="InvoiceCurrency" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="PreferedPayMode" ColumnName="PreferedPayMode" />
+          <ScalarProperty Name="BillSubmitDate" ColumnName="BillSubmitDate" />
+          <ScalarProperty Name="HardCopyMove" ColumnName="HardCopyMove" />
+          <ScalarProperty Name="BillStatus" ColumnName="BillStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetBranchForBank" FunctionName="CBPSModel.Store.CBPS_GetBranchForBank">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetBranchForBank_Result">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+          <ScalarProperty Name="BranchPhone" ColumnName="BranchPhone" />
+          <ScalarProperty Name="BranchFax" ColumnName="BranchFax" />
+          <ScalarProperty Name="BranchEmail" ColumnName="BranchEmail" />
+          <ScalarProperty Name="BranchPerson" ColumnName="BranchPerson" />
+          <ScalarProperty Name="PersonDesignation" ColumnName="PersonDesignation" />
+          <ScalarProperty Name="PersonDepartment" ColumnName="PersonDepartment" />
+          <ScalarProperty Name="PersonCell" ColumnName="PersonCell" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BranchBftn" ColumnName="BranchBftn" />
+          <ScalarProperty Name="BranchRemarks" ColumnName="BranchRemarks" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetDocPropertyForFDD" FunctionName="CBPSModel.Store.CBPS_GetDocPropertyForFDD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetDocPropertyForFDD_Result">
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertySL" ColumnName="DocPropertySL" />
+          <ScalarProperty Name="UDDocPropertyCode" ColumnName="UDDocPropertyCode" />
+          <ScalarProperty Name="DocPropertyName" ColumnName="DocPropertyName" />
+          <ScalarProperty Name="SerialNo" ColumnName="SerialNo" />
+          <ScalarProperty Name="DocClassification" ColumnName="DocClassification" />
+          <ScalarProperty Name="DocClassificationLevel" ColumnName="DocClassificationLevel" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="PreservationPolicy" ColumnName="PreservationPolicy" />
+          <ScalarProperty Name="PhysicalLocation" ColumnName="PhysicalLocation" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetFurtherDocumentDemand" FunctionName="CBPSModel.Store.CBPS_GetFurtherDocumentDemand">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetFurtherDocumentDemand_Result">
+          <ScalarProperty Name="DemandID" ColumnName="DemandID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="MailSmsSendID" ColumnName="MailSmsSendID" />
+          <ScalarProperty Name="DemandDocID" ColumnName="DemandDocID" />
+          <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+          <ScalarProperty Name="DocumentNature" ColumnName="DocumentNature" />
+          <ScalarProperty Name="NoOfCopy" ColumnName="NoOfCopy" />
+          <ScalarProperty Name="NecessityType" ColumnName="NecessityType" />
+          <ScalarProperty Name="RequireBy" ColumnName="RequireBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetIdentificationAttribute" FunctionName="CBPSModel.Store.CBPS_GetIdentificationAttribute">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetIdentificationAttribute_Result">
+          <ScalarProperty Name="DocMetaID" ColumnName="DocMetaID" />
+          <ScalarProperty Name="DocPropIdentifyName" ColumnName="DocPropIdentifyName" />
+          <ScalarProperty Name="MetaValue" ColumnName="MetaValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetMailSms" FunctionName="CBPSModel.Store.CBPS_GetMailSms">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetMailSms_Result">
+          <ScalarProperty Name="MailSmsID" ColumnName="MailSmsID" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="MailSmsSendID" ColumnName="MailSmsSendID" />
+          <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+          <ScalarProperty Name="MailCC" ColumnName="MailCC" />
+          <ScalarProperty Name="SmsMobileNo" ColumnName="SmsMobileNo" />
+          <ScalarProperty Name="SmsCC" ColumnName="SmsCC" />
+          <ScalarProperty Name="MailText" ColumnName="MailText" />
+          <ScalarProperty Name="SmsText" ColumnName="SmsText" />
+          <ScalarProperty Name="MailSendFrom" ColumnName="MailSendFrom" />
+          <ScalarProperty Name="SmsSendFrom" ColumnName="SmsSendFrom" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="ProcessState" ColumnName="ProcessState" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="OwnerID1" ColumnName="OwnerID1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetOwnersForAOwnerLevel" FunctionName="CBPSModel.Store.CBPS_GetOwnersForAOwnerLevel">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetOwnersForAOwnerLevel_Result">
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetPOInfoForBillReceive" FunctionName="CBPSModel.Store.CBPS_GetPOInfoForBillReceive">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetPOInfoForBillReceive_Result">
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="POType" ColumnName="POType" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocCategoryName" ColumnName="DocCategoryName" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocTypeName" ColumnName="DocTypeName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetReceivedBill" FunctionName="CBPSModel.Store.CBPS_GetReceivedBill">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetReceivedBill_Result">
+          <ScalarProperty Name="BillReceiveID" ColumnName="BillReceiveID" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceCurrency" ColumnName="InvoiceCurrency" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="PreferedPayMode" ColumnName="PreferedPayMode" />
+          <ScalarProperty Name="BillSubmitDate" ColumnName="BillSubmitDate" />
+          <ScalarProperty Name="BillSubmittedBy" ColumnName="BillSubmittedBy" />
+          <ScalarProperty Name="BearerContactNo" ColumnName="BearerContactNo" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="POType" ColumnName="POType" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="DocCategoryName" ColumnName="DocCategoryName" />
+          <ScalarProperty Name="BoothID" ColumnName="BoothID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetRestrictedCompany" FunctionName="CBPSModel.Store.CBPS_GetRestrictedCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetRestrictedCompany_Result">
+          <ScalarProperty Name="RestrictedCompanyID" ColumnName="RestrictedCompanyID" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetScannedDocumentInfoForBill" FunctionName="CBPSModel.Store.CBPS_GetScannedDocumentInfoForBill">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetScannedDocumentInfoForBill_Result">
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="DocPropertyName" ColumnName="DocPropertyName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetStageMakerChecker" FunctionName="CBPSModel.Store.CBPS_GetStageMakerChecker">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetStageMakerChecker_Result">
+          <ScalarProperty Name="StageMCID" ColumnName="StageMCID" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="MkCkTitle" ColumnName="MkCkTitle" />
+          <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetStopBill" FunctionName="CBPSModel.Store.CBPS_GetStopBill">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetStopBill_Result">
+          <ScalarProperty Name="StopBillID" ColumnName="StopBillID" />
+          <ScalarProperty Name="PONo" ColumnName="PONo" />
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VendorUpdate" ColumnName="VendorUpdate" />
+          <ScalarProperty Name="MailSmsSendID" ColumnName="MailSmsSendID" />
+          <ScalarProperty Name="ReleaseIndicator" ColumnName="ReleaseIndicator" />
+          <ScalarProperty Name="DeletionIndicator" ColumnName="DeletionIndicator" />
+          <ScalarProperty Name="CompletionStatus" ColumnName="CompletionStatus" />
+          <ScalarProperty Name="StageID" ColumnName="StageID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StopBillDtlID" ColumnName="StopBillDtlID" />
+          <ScalarProperty Name="StopDate" ColumnName="StopDate" />
+          <ScalarProperty Name="StopReason" ColumnName="StopReason" />
+          <ScalarProperty Name="ReopenDate" ColumnName="ReopenDate" />
+          <ScalarProperty Name="ReopenReason" ColumnName="ReopenReason" />
+          <ScalarProperty Name="ProcessState" ColumnName="ProcessState" />
+          <ScalarProperty Name="ProcessGroupID" ColumnName="ProcessGroupID" />
+          <ScalarProperty Name="ProcessGroupName" ColumnName="ProcessGroupName" />
+          <ScalarProperty Name="StageName" ColumnName="StageName" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="InvoicingPartyName" ColumnName="InvoicingPartyName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetVendorBillingInfo" FunctionName="CBPSModel.Store.CBPS_GetVendorBillingInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetVendorBillingInfo_Result">
+          <ScalarProperty Name="BillTrackingNo" ColumnName="BillTrackingNo" />
+          <ScalarProperty Name="BillSubmitDate" ColumnName="BillSubmitDate" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="InvoiceCurrency" ColumnName="InvoiceCurrency" />
+          <ScalarProperty Name="CurrentStage" ColumnName="CurrentStage" />
+          <ScalarProperty Name="InvoicingParty" ColumnName="InvoicingParty" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetVendorPhoneNoEmail" FunctionName="CBPSModel.Store.CBPS_GetVendorPhoneNoEmail" />
+    <FunctionImportMapping FunctionImportName="CBPS_GetVendors" FunctionName="CBPSModel.Store.CBPS_GetVendors">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetVendors_Result">
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorAddressCode" ColumnName="VendorAddressCode" />
+          <ScalarProperty Name="VendorGroup" ColumnName="VendorGroup" />
+          <ScalarProperty Name="VendorCategory" ColumnName="VendorCategory" />
+          <ScalarProperty Name="VendorType" ColumnName="VendorType" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+          <ScalarProperty Name="ConcernVendor" ColumnName="ConcernVendor" />
+          <ScalarProperty Name="TransBank" ColumnName="TransBank" />
+          <ScalarProperty Name="TransAccountName" ColumnName="TransAccountName" />
+          <ScalarProperty Name="TransAccountNo" ColumnName="TransAccountNo" />
+          <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_GetVendorsAddress" FunctionName="CBPSModel.Store.CBPS_GetVendorsAddress">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_GetVendorsAddress_Result">
+          <ScalarProperty Name="VendorAddressCode" ColumnName="VendorAddressCode" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="VendorAddress1" ColumnName="VendorAddress1" />
+          <ScalarProperty Name="VendorAddress2" ColumnName="VendorAddress2" />
+          <ScalarProperty Name="VendorCountry" ColumnName="VendorCountry" />
+          <ScalarProperty Name="VendorPhoneNo" ColumnName="VendorPhoneNo" />
+          <ScalarProperty Name="VendorMobileNo" ColumnName="VendorMobileNo" />
+          <ScalarProperty Name="VendorEmail" ColumnName="VendorEmail" />
+          <ScalarProperty Name="SkypeID" ColumnName="SkypeID" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="ContactCellNo" ColumnName="ContactCellNo" />
+          <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="VendorFax" ColumnName="VendorFax" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_InsertOrUpdateAccount" FunctionName="CBPSModel.Store.CBPS_InsertOrUpdateAccount" />
+    <FunctionImportMapping FunctionImportName="CBPS_InsertOrUpdateBank" FunctionName="CBPSModel.Store.CBPS_InsertOrUpdateBank" />
+    <FunctionImportMapping FunctionImportName="CBPS_InsertOrUpdateBranch" FunctionName="CBPSModel.Store.CBPS_InsertOrUpdateBranch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CBPS_InsertOrUpdateBranch_Result">
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BankID" ColumnName="BankID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+          <ScalarProperty Name="BranchPhone" ColumnName="BranchPhone" />
+          <ScalarProperty Name="BranchFax" ColumnName="BranchFax" />
+          <ScalarProperty Name="BranchEmail" ColumnName="BranchEmail" />
+          <ScalarProperty Name="BranchPerson" ColumnName="BranchPerson" />
+          <ScalarProperty Name="PersonDesignation" ColumnName="PersonDesignation" />
+          <ScalarProperty Name="PersonDepartment" ColumnName="PersonDepartment" />
+          <ScalarProperty Name="PersonCell" ColumnName="PersonCell" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="BranchBftn" ColumnName="BranchBftn" />
+          <ScalarProperty Name="BranchRemarks" ColumnName="BranchRemarks" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillClearing" FunctionName="CBPSModel.Store.CBPS_SetBillClearing" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillDocumentsInfo" FunctionName="CBPSModel.Store.CBPS_SetBillDocumentsInfo" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillParking" FunctionName="CBPSModel.Store.CBPS_SetBillParking" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillPosting" FunctionName="CBPSModel.Store.CBPS_SetBillPosting" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillProcessingStage" FunctionName="CBPSModel.Store.CBPS_SetBillProcessingStage" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetBillProcessStop" FunctionName="CBPSModel.Store.CBPS_SetBillProcessStop" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetFurtherDocumentDemand" FunctionName="CBPSModel.Store.CBPS_SetFurtherDocumentDemand" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetPOInfoFromSAP" FunctionName="CBPSModel.Store.CBPS_SetPOInfoFromSAP" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetRestrictedCompany" FunctionName="CBPSModel.Store.CBPS_SetRestrictedCompany" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetStageMakerChecker" FunctionName="CBPSModel.Store.CBPS_SetStageMakerChecker" />
+    <FunctionImportMapping FunctionImportName="CBPS_SetUpdatePOInfoFromSAP_BAK" FunctionName="CBPSModel.Store.CBPS_SetUpdatePOInfoFromSAP_BAK" />
+    <FunctionImportMapping FunctionImportName="CBPS_UpdateClearingBillStatus" FunctionName="CBPSModel.Store.CBPS_UpdateClearingBillStatus" />
+    <FunctionImportMapping FunctionImportName="CBPS_UpdateParkingBillStatus" FunctionName="CBPSModel.Store.CBPS_UpdateParkingBillStatus" />
+    <FunctionImportMapping FunctionImportName="CBPS_UpdatePOInfoFromSAP" FunctionName="CBPSModel.Store.CBPS_UpdatePOInfoFromSAP" />
+    <FunctionImportMapping FunctionImportName="CBPS_UpdatePostingBillStatus" FunctionName="CBPSModel.Store.CBPS_UpdatePostingBillStatus" />
+    <FunctionImportMapping FunctionImportName="CBPS_UpdateReceivedBillInfo" FunctionName="CBPSModel.Store.CBPS_UpdateReceivedBillInfo" />
+    <FunctionImportMapping FunctionImportName="CheckUserValidity" FunctionName="CBPSModel.Store.CheckUserValidity">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CBPSModel.CheckUserValidity_Result">
+          <ScalarProperty Name="OwnerLevelID" ColumnName="OwnerLevelID" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DefaultServer" ColumnName="DefaultServer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CMS_SetVendor" FunctionName="CBPSModel.Store.CMS_SetVendor" />
+    <FunctionImportMapping FunctionImportName="CMS_SetVendorAddress" FunctionName="CBPSModel.Store.CMS_SetVendorAddress" />
+    <EntitySetMapping Name="CPS_ChequeRegistration">
+      <EntityTypeMapping TypeName="CBPSModel.CPS_ChequeRegistration">
+        <MappingFragment StoreEntitySet="CPS_ChequeRegistration">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="ChequebookStatus" ColumnName="ChequebookStatus" />
+          <ScalarProperty Name="RegistrationBy" ColumnName="RegistrationBy" />
+          <ScalarProperty Name="RegistrationNote" ColumnName="RegistrationNote" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="ReceiveDate" ColumnName="ReceiveDate" />
+          <ScalarProperty Name="LastLefNo" ColumnName="LastLefNo" />
+          <ScalarProperty Name="FirstLeafNo" ColumnName="FirstLeafNo" />
+          <ScalarProperty Name="NoOfLeaf" ColumnName="NoOfLeaf" />
+          <ScalarProperty Name="ChequebookNo" ColumnName="ChequebookNo" />
+          <ScalarProperty Name="ReqSlipNo" ColumnName="ReqSlipNo" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="RequisitionID" ColumnName="RequisitionID" />
+          <ScalarProperty Name="RegistrationID" ColumnName="RegistrationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CMS_Vendor">
+      <EntityTypeMapping TypeName="CBPSModel.CMS_Vendor">
+        <MappingFragment StoreEntitySet="CMS_Vendor">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="SetBy" ColumnName="SetBy" />
+          <ScalarProperty Name="SetOn" ColumnName="SetOn" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="DocPropertyID" ColumnName="DocPropertyID" />
+          <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+          <ScalarProperty Name="DocCategoryID" ColumnName="DocCategoryID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+          <ScalarProperty Name="TransAccountNo" ColumnName="TransAccountNo" />
+          <ScalarProperty Name="TransAccountName" ColumnName="TransAccountName" />
+          <ScalarProperty Name="TransBank" ColumnName="TransBank" />
+          <ScalarProperty Name="ConcernVendor" ColumnName="ConcernVendor" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+          <ScalarProperty Name="VendorType" ColumnName="VendorType" />
+          <ScalarProperty Name="VendorCategory" ColumnName="VendorCategory" />
+          <ScalarProperty Name="VendorGroup" ColumnName="VendorGroup" />
+          <ScalarProperty Name="VendorAddressCode" ColumnName="VendorAddressCode" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,781 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="OwnerProperIdentityCtrl">
+
+
+    <div class="box-header with-border">
+        <i class="fa fa-list-alt"></i>
+        <h3 class="box-title">Auto Value Setup</h3>
+        <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable(row)" class="btn btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+        <button type="button" id="btnAdd" data-ng-click="toggleAdd(row)" class="btn btn-flat btn-primary pull-right btnSave" ng-disabled="loading"> <i class="fa fa-plus"></i> Add New</button>
+    </div>
+
+    <div class="box-body">
+        
+        <div class="row form-group">
+            <div class="col-lg-2">
+                <label>Menu Title</label>
+            </div>
+            <div class="col-lg-4">
+                
+                <select id="menu" class="form-control" data-ng-model="AutoValueSetupModel.Menu"
+                        data-ng-options="menu as menu.MenuTitle for menu in menuList track by
+                        menu.MenuID">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-lg-2">
+                <label>Owner Level</label>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" ng-model="AutoValueSetupModel.OwnerLevel"
+                        ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                        track by ownerLevel.OwnerLevelID">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-lg-2">
+                <label>Owner</label>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" ng-model="AutoValueSetupModel.Owner"
+                        data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                        data-ng-disabled="!AutoValueSetupModel.OwnerLevel">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-lg-2">
+                <label>Document Category</label>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" data-ng-model="AutoValueSetupModel.DocCategory"
+                        data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in
+                         docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                        data-ng-disabled="!AutoValueSetupModel.Owner">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-lg-2">
+                <label>Document Type</label>
+
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" data-ng-model="AutoValueSetupModel.DocType"
+                        data-ng-options="docType as docType.DocTypeName for docType in
+                         docTypeForSpecificDocCategory track by docType.DocTypeID"
+                        data-ng-disabled="!AutoValueSetupModel.DocCategory">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-lg-2">
+                <label>Documents in Type</label>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" data-ng-model="AutoValueSetupModel.DocProperty"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in
+                         docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!AutoValueSetupModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row form-group">
+
+            <div class="col-lg-2">
+                <label>Identification Attribute</label>
+            </div>
+            <div class="col-lg-4">
+                <select class="form-control" data-ng-model="AutoValueSetupModel.DocPropIdentify"
+                        data-ng-options="docPropIdentity as docPropIdentity.IdentificationAttribute for docPropIdentity in
+                         DocPropIdentifyForSpecificDocProperty track by docPropIdentity.DocPropIdentifyID"
+                        data-ng-disabled="!AutoValueSetupModel.DocProperty">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-lg-2">
+                <label>Column Title</label>
+            </div>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" placeholder="Configuration Title"
+                       ng-model="AutoValueSetupModel.AutoColumnTitle" readonly="readonly"/>
+                <input type="hidden" ng-model="AutoValueSetupModel.ConfigureID"/>
+                <input type="hidden" ng-model="AutoValueSetupModel.ConfigureColumnID"/>
+            </div>
+            <div class="col-lg-2">
+                <input type="button" class="form-control btn btn-info"
+                       value="Configuration List" ng-click="showConfigList()"/>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="table-responsive">
+            <table st-table="" st-safe-src="" class="table table-condensed table-bordered table-striped table-hover pnlView">
+                <thead>
+                    <tr>
+                        <th st-sort="AutoColumnTitle">Column Title</th>
+                        <th st-sort="ValueFormat">Value Format</th>
+                        <th st-sort="IncrementLength">Increment Length</th>
+                        <th st-sort="ReplaceBy">Replace By</th>
+                        <th st-sort="RestartBy">Restart By</th>
+                        <th st-sort="MaxValue">Max Value</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input st-search="" placeholder="Search" class="input-sm form-control" type="search" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in displayAutoSetupValues">
+                        <td>{{row.AutoColumnTitle}}</td>
+                        <td>{{row.AutoValueFormat}}</td>
+                        <td>{{row.IncrementValueLength}}</td>
+                        <td>{{row.IncrementReplaceBy}}</td>
+                        <td>{{row.IncrementRestartBy}}</td>
+                        <td>{{row.MaxValue}}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)"><i class="fa fa-edit"></i> Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+
+    <form id="autoValueSetupForm" name="autoValueSetupForm" ng-submit="">
+        <div class="bs-example">
+            <!-- Modal HTML -->
+            <div id="addModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" ng-click="ResetModel()" aria-hidden="true">x</button>
+                            <h3 class="modal-title">Auto Value Setup</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <div class="row form-group">
+                                    <div class="col-lg-3">
+                                        <label>Menu Title</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="hidden" ng-model="AutoValueSetupModel.AutoValueSetupID" />
+                                        <select id="" class="form-control" data-ng-model="AutoValueSetupModel.Menu"
+                                                data-ng-options="menu as menu.MenuTitle for menu in menuList track by
+                                                menu.MenuID">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Owner Level</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" ng-model="AutoValueSetupModel.OwnerLevel"
+                                                ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                                                track by ownerLevel.OwnerLevelID">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-lg-3">
+                                        <label>Owner</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" ng-model="AutoValueSetupModel.Owner"
+                                                data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                                                data-ng-disabled="!AutoValueSetupModel.OwnerLevel">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Document Category</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" data-ng-model="AutoValueSetupModel.DocCategory"
+                                                data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in
+                         docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                                                data-ng-disabled="!AutoValueSetupModel.Owner">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-lg-3">
+                                        <label>Document Type</label>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" data-ng-model="AutoValueSetupModel.DocType"
+                                                data-ng-options="docType as docType.DocTypeName for docType in
+                         docTypeForSpecificDocCategory track by docType.DocTypeID"
+                                                data-ng-disabled="!AutoValueSetupModel.DocCategory">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Documents in Type</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" data-ng-model="AutoValueSetupModel.DocProperty"
+                                                data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in
+                         docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                                                data-ng-disabled="!AutoValueSetupModel.DocType">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-3">
+                                        <label>Identification Attribute</label>
+
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select class="form-control" data-ng-model="AutoValueSetupModel.DocPropIdentify"
+                                                data-ng-options="docPropIdentity as docPropIdentity.IdentificationAttribute for docPropIdentity in
+                                                DocPropIdentifyForSpecificDocProperty track by docPropIdentity.DocPropIdentifyID"
+                                                data-ng-disabled="!AutoValueSetupModel.DocProperty">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label>Column Title</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" placeholder="Configuration Title"
+                                                       ng-model="AutoValueSetupModel.AutoColumnTitle" readonly="readonly" />
+                                                <input type="hidden" ng-model="AutoValueSetupModel.ConfigureID" />
+                                                <input type="hidden" ng-model="AutoValueSetupModel.ConfigureColumnID" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="button" class="form-control btn btn-info"
+                                                       value="Config List" ng-click="showConfigList()" />
+                                            </div>
+                                        </div>
+
+                                        
+                                        
+                                    </div>
+
+                                </div>
+
+                                
+
+                            <div class="row form-group">
+                                <div class="col-lg-3">
+                                    <label>Value Format</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" ng-model="AutoValueSetupModel.AutoValueFormat"
+                                            placeholder="Value Format" />
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label>Increment Value Length</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" ng-model="AutoValueSetupModel.IncrementValueLength"
+                                            placeholder="Increment Value Length" />
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-lg-3">
+                                    <label>Increment Replace By</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" ng-model="AutoValueSetupModel.IncrementReplaceBy" placeholder="Value Format" />
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label>Increment Restart By</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <select data-ng-model="AutoValueSetupModel.IncrementRestartBy"
+                                            class="form-control">
+                                        <option value="">--Select--</option>
+                                        <option value="Yearly">Yearly</option>
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Respectively">Respectively</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-lg-3">
+                                    <label>Maximum Value</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" ng-model="AutoValueSetupModel.MaxValue" placeholder="Maximum Value" />
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <label>Remarks</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" ng-model="AutoValueSetupModel.Remarks" placeholder="Remarks" />
+                                </div>
+
+                            </div>
+                                <div class="row form-group">
+                                    <div class="col-lg-3">
+                                        <label>Active Status</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <select data-ng-model="AutoValueSetupModel.Status"
+                                                class="form-control">
+                                            <option value="">--Select--</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <label></label>
+                                    </div>
+                                    <div class="col-lg-3">
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div><!-- /.box-body -->
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <button type="button" data-ng-click="Save()"
+                                            class="btn btn-primary btn-flat" ng-disabled="loading">
+                                        Save
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal" ng-click="ResetModel()">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+            <!-- Modal HTML -->
+            <div id="ConfigModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" ng-click="ResetModel()" aria-hidden="true">x</button>
+                            <h3 class="modal-title">Auto Value Configuration</h3>
+                        </div>
+                        <div class="modal-body">
+                            <table st-table="displayAutoConfigValues" st-safe-src="autoConfigVaules" class="table table-condensed table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th st-sort="AutoColumnTitle">Column Title</th>
+                                        <th st-sort="ConfigureToColumn">Column Name</th>
+                                        <th st-sort="ConfigureToTable">Table Name</th>
+                                        <th st-sort="ConfigureCategory">Configure Category</th>
+                                        <th st-sort="ConfigurationFor">Configuration For</th>
+                                        <th st-sort="AutoValueGroup">Auto Value Group</th>
+                                        <th st-sort="Remarks">Remarks</th>
+                                        <th st-sort="Status">Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <input st-search="IdentificationAttribute" placeholder="Attribute" class="input-sm form-control" type="search" />
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="row in displayAutoConfigValues">
+                                        <td>{{row.AutoColumnTitle}}</td>
+                                        <td>{{row.ConfigureToColumn}}</td>
+                                        <td>{{row.ConfigureToTable}}</td>
+                                        <td>{{row.ConfigureCategory}}</td>
+                                        <td>{{row.ConfigurationFor}}</td>
+                                        <td>{{row.AutoValueGroup}}</td>
+                                        <td>{{row.Remarks}}</td>
+                                        <td>
+                                            <span ng-attr-class="{{row.Status ==true? 'label label-success' : 'label label-danger' }}">
+                                                {{row.Status == true? 'Active':'InActive'}}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-primary btn-flat" data-ng-click="toggleSelect(row)"><i class="fa fa-edit"></i> Select</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="9" class="text-center">
+                                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    
+
+
+</div>
+
+<script type="text/javascript">
+
+    app.controller('OwnerProperIdentityCtrl', function ($scope, $http) {
+
+        $scope.AutoValueSetupModel = {
+            AutoValueSetupID: "",
+            DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            DocPropIdentify: {DocPropIdentifyID: "", IdentificationAttribute: ""},
+            Menu: { MenuID: "", MenuTitle: "" },
+            Remarks: "",
+            Status: "",
+            ConfigureID: "",
+            ConfigureColumnID: "",
+            AutoColumnTitle: "",
+            AutoValueFormat: "",
+            IncrementValueLength: "",
+            IncrementReplaceBy: "",
+            IncrementRestartBy: "",
+            MaxValue: ""
+        };
+
+        $scope.showConfigList = function () {
+            
+            $scope.paramForAutoValues = {
+                MenuID: $scope.AutoValueSetupModel.Menu.MenuID,
+                OwnerID: $scope.AutoValueSetupModel.Owner.OwnerID,
+                DocCategoryID: $scope.AutoValueSetupModel.DocCategory.DocCategoryID,
+                DocTypeID: $scope.AutoValueSetupModel.DocType.DocTypeID,
+                DocPropertyID: $scope.AutoValueSetupModel.DocProperty.DocPropertyID,
+                DocPropIdentifyID: $scope.AutoValueSetupModel.DocPropIdentify.DocPropIdentifyID
+            };
+            $http.get('/SecurityModule/AutoValueConf/GetAutoValues', { params: $scope.paramForAutoValues })
+                .success(function(response) {
+                    $scope.autoConfigVaules = response.result;
+                    $scope.displayAutoConfigValues = [].concat($scope.autoConfigVaules);
+                }).error(function(response) {
+                    $scope.loading = false;
+                    //toastr.error('Fail to Save.');
+                });
+
+            $("#ConfigModal").modal('show');
+        };
+
+
+        $scope.docPropIdentityGridData = [];  // base collection
+        $scope.GridDisplayCollection = [].concat($scope.docPropIdentityGridData);  // displayed collection
+
+        $scope.itemsByPage = 10;
+        $scope.loading = true;
+
+        $scope.menuList = [];
+        $http.get('/SecurityModule/AutoValueSetup/GetConfiguredMenuList')
+            .success(function (response) {
+                $scope.menuList = response;
+                $scope.loading = false;
+            }).error(function () {
+                $scope.loading = false;
+            });
+
+
+
+        // To get all the active owner level to bind to the dropdown
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.ownerLevels = response.result;
+                $scope.AutoValueSetupModel.OwnerLevel.OwnerLevelID = "";
+                $scope.AutoValueSetupModel.OwnerLevel.LevelName = "";
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+        // to bind owner dropdown against owner level dropdown change of value
+        $scope.$watch('AutoValueSetupModel.OwnerLevel', function (newVal) {
+            if (newVal) {
+                $scope.AutoValueSetupModel.Owner.OwnerID = "";
+                $scope.AutoValueSetupModel.Owner.OwnerName = "";
+                $scope.AutoValueSetupModel.DocCategory.DocCategoryID = "";
+                $scope.AutoValueSetupModel.DocCategory.DocCategoryName = "";
+                $scope.AutoValueSetupModel.DocType.DocTypeID = "";
+                $scope.AutoValueSetupModel.DocType.DocTypeName = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyID = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyName = "";
+                $scope.docPropIdentityGridData = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                    { _OwnerLevelID: $scope.AutoValueSetupModel.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        // to bind Doc Category dropdown against owner dropdown change of value
+        $scope.$watch('AutoValueSetupModel.Owner', function (newVal) {
+            if (newVal) {
+                $scope.AutoValueSetupModel.DocCategory.DocCategoryID = "";
+                $scope.AutoValueSetupModel.DocCategory.DocCategoryName = "";
+                $scope.AutoValueSetupModel.DocType.DocTypeID = "";
+                $scope.AutoValueSetupModel.DocType.DocTypeName = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyID = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyName = "";
+                $scope.docPropIdentityGridData = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.AutoValueSetupModel.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        // to bind Doc type dropdown against doc category dropdown change of value
+        $scope.$watch('AutoValueSetupModel.DocCategory', function (newVal) {
+            if (newVal) {
+                $scope.AutoValueSetupModel.DocType.DocTypeID = "";
+                $scope.AutoValueSetupModel.DocType.DocTypeName = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyID = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyName = "";
+                $scope.docPropIdentityGridData = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.AutoValueSetupModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.AutoValueSetupModel.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+
+        // to bind Doc property dropdown against doc type dropdown change of value
+        $scope.$watch('AutoValueSetupModel.DocType', function (newVal) {
+            if (newVal) {
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyID = "";
+                $scope.AutoValueSetupModel.DocProperty.DocPropertyName = "";
+                $scope.docPropIdentityGridData = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentPropertyForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.AutoValueSetupModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.AutoValueSetupModel.Owner.OwnerID,
+                        _DocTypeID: $scope.AutoValueSetupModel.DocType.DocTypeID
+                    })
+                    .success(function (response) {
+                        $scope.docPropertyForSpecificDocType = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        // to bind Doc property identity dropdown against doc property dropdown change of value
+        $scope.$watch('AutoValueSetupModel.DocProperty', function (newVal) {
+            if (newVal) {
+                $scope.AutoValueSetupModel.DocPropIdentify.DocPropIdentifyID = "";
+                $scope.AutoValueSetupModel.DocPropIdentify.IdentificationAttribute = "";
+                $scope.docPropIdentityGridData = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocPropIdentityForSpecificDocType',
+                    {
+                        _DocCategoryID: $scope.AutoValueSetupModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.AutoValueSetupModel.Owner.OwnerID,
+                        _DocTypeID: $scope.AutoValueSetupModel.DocType.DocTypeID,
+                        _DocPropertyID: $scope.AutoValueSetupModel.DocProperty.DocPropertyID
+                    })
+                    .success(function (response) {
+                        $scope.DocPropIdentifyForSpecificDocProperty = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        //---------------------------------------------
+        var BindDataToGrid = function () {
+            $http.post('/SecurityModule/AutoValueSetup/GetAutoValueSetupData',
+                {
+                    _ConfigureID: $scope.AutoValueSetupModel.ConfigureID,
+                    _ConfigureColumnID: $scope.AutoValueSetupModel.ConfigureColumnID
+                    
+                })
+                .success(function (response) {
+                    $scope.displayAutoSetupValues = response;
+                    //$scope.GridDisplayCollection = [].concat($scope.docPropIdentityGridData);
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+
+        };
+
+        //$scope.$watch('AutoValueSetupModel.DocProperty', function (newVal) {
+        //    if (newVal) {
+        //        BindDataToGrid();
+        //    };
+        //});
+
+
+
+        //############## Save Modal ########################
+        $scope.toggleAdd = function (model) {
+            //$scope.ResetModel();
+            $scope.AutoValueSetupModel.Status = "1";
+            $('#addModal').modal('show');
+        };
+
+        $scope.Save = function () {
+
+            //alert($scope.AutoValueSetupModel.AutoValueSetupID);
+            if ($scope.AutoValueSetupModel.AutoValueSetupID === "") {
+                // Save
+                $scope.loading = true;
+                $http.post('/SecurityModule/AutoValueSetup/AddAutoValueSetup', JSON.stringify($scope.AutoValueSetupModel))
+                    .success(function (response) {
+                        $scope.loading = false;
+                        $('#addModal').modal('hide');
+                        BindDataToGrid();
+                        toastr.success(response.Message);
+                    }).error(function (response) {
+                        $scope.loading = false;
+                        toastr.error('Fail to Save.');
+                    });
+
+            }
+            else {
+                $http.post('/SecurityModule/AutoValueSetup/EditAutoValueSetup',
+                    JSON.stringify(convArrToObj($scope.AutoValueSetupModel)))
+                    .success(function (response) {
+                        $('#addModal').modal('hide');
+                        $scope.loading = false;
+                        toastr.success(response.Message);
+                        BindDataToGrid();
+                    })
+                    .error(function (data) {
+                        $scope.loading = false;
+                        toastr.error('Failed to Update.');
+                    });
+
+            }
+        }
+
+        // ################# Edit Modal ####################
+        $scope.toggleEdit = function (tableRow) {
+
+            $scope.AutoValueSetupModel.AutoValueSetupID = tableRow.AutoValueSetupID;
+            $scope.AutoValueSetupModel.AutoValueFormat = tableRow.AutoValueFormat;
+            $scope.AutoValueSetupModel.IncrementValueLength = tableRow.IncrementValueLength;
+            $scope.AutoValueSetupModel.IncrementReplaceBy = tableRow.IncrementReplaceBy;
+
+            $scope.AutoValueSetupModel.IncrementRestartBy = tableRow.IncrementRestartBy;
+            $scope.AutoValueSetupModel.MaxValue = tableRow.MaxValue;
+            $scope.AutoValueSetupModel.Remarks = tableRow.Remarks;
+            //$scope.AutoValueSetupModel.IsRestricted = (tableRow.IsRestricted).toString();
+            $scope.AutoValueSetupModel.Status = (tableRow.Status).toString();
+            //$scope.AutoValueSetupModel.Remarks = (tableRow.Remarks).toString();
+
+            //$scope.docPropIdntyFrm.$setPristine();
+            //$scope.docPropIdntyFrm.$setUntouched();
+            
+            $('#addModal').modal('show');
+        };
+
+        $scope.toggleSelect = function (tableRow) {
+            //alert("test");
+            //alert(tableRow.base.ConfigureID);
+            $scope.AutoValueSetupModel.ConfigureID = tableRow.ConfigureID;
+            $scope.AutoValueSetupModel.ConfigureColumnID = tableRow.ConfigureColumnID;
+            $scope.AutoValueSetupModel.AutoColumnTitle = tableRow.AutoColumnTitle;
+
+            $('#ConfigModal').modal('hide');
+
+            BindDataToGrid();
+        };
+
+        $scope.ResetModel = function () {
+            $scope.AutoValueSetupModel.AutoValueSetupID = "";
+            $scope.AutoValueSetupModel.AttributeGroup = [];
+            $scope.AutoValueSetupModel.IdentificationSL = [];
+            $scope.AutoValueSetupModel.IdentificationCode = [];
+            $scope.AutoValueSetupModel.IdentificationAttribute = [];
+            $scope.AutoValueSetupModel.IsRequired = "";
+            $scope.AutoValueSetupModel.IsAuto = "";
+            $scope.AutoValueSetupModel.Status = "";
+            $scope.AutoValueSetupModel.Remarks = [];
+        };
+        //#################### Set Dropdown ################
+
+        $scope.toggleRefreshTable = function () {
+            $scope.loading = true;
+            BindDataToGrid();
+            $scope.loading = false;
+        };
+
+    });
+
+</script>

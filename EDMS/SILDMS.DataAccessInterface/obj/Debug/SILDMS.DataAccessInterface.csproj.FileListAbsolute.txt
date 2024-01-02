@@ -1,0 +1,229 @@
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\CBPS_Source\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\CBPS_Source\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+E:\CBPS_Source\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_Source\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_TFS\CBPS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\DMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojAssemblyReference.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.AssemblyReference.cache
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+D:\EDMS_TFS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+D:\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+D:\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_TFS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.AssemblyReference.cache
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS_TFS_LATEST\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csprojResolveAssemblyReference.cache
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.AssemblyReference.cache
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.AssemblyReference.cache
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\WebActivatorEx.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\SILDMS.Model.dll.config
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Common.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\bin\Debug\Ninject.Web.Mvc.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.AssemblyReference.cache
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CoreCompileInputs.cache
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.csproj.CopyComplete
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.DataAccessInterface\obj\Debug\SILDMS.DataAccessInterface.pdb

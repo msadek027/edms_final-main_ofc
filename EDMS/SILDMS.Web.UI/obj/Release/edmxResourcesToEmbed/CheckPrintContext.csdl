@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CBPSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CMS_Bank">
+    <Key>
+      <PropertyRef Name="BankID" />
+    </Key>
+    <Property Name="BankID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CountryofOrigin" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BankCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="BankType" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="BIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CMS_BankBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BankID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="BranchName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="BranchPhone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchFax" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchEmail" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchPerson" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PersonDesignation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PersonDepartment" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PersonCell" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchBftn" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BranchRemarks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="CBPSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CMS_Bank" EntityType="Self.CMS_Bank" />
+    <EntitySet Name="CMS_BankBranch" EntityType="Self.CMS_BankBranch" />
+    <EntitySet Name="CPS_BankBranchAccount" EntityType="CBPSModel.CPS_BankBranchAccount" />
+    <EntitySet Name="Sys_MasterData" EntityType="CBPSModel.Sys_MasterData" />
+    <EntitySet Name="Sys_MasterDataType" EntityType="CBPSModel.Sys_MasterDataType" />
+    <AssociationSet Name="FK_Sys_MasterData_Sys_MasterDataType" Association="CBPSModel.FK_Sys_MasterData_Sys_MasterDataType">
+      <End Role="Sys_MasterDataType" EntitySet="Sys_MasterDataType" />
+      <End Role="Sys_MasterData" EntitySet="Sys_MasterData" />
+    </AssociationSet>
+    <FunctionImport Name="CBPS_GetAllBank" ReturnType="Collection(CBPSModel.CBPS_GetAllBank_Result)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetAllOwnerByCompany" ReturnType="Collection(CBPSModel.CBPS_GetAllOwnerByCompany_Result)">
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetAllOwnerForRestrictedCompany" ReturnType="Collection(CBPSModel.CBPS_GetAllOwnerForRestrictedCompany_Result)">
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillProcessGroup" ReturnType="Collection(CBPSModel.CBPS_GetBillProcessGroup_Result)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillProcessingStage" ReturnType="Collection(CBPSModel.CBPS_GetBillProcessingStage_Result)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceive" ReturnType="Collection(CBPSModel.CBPS_GetBillReceive_Result)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="CurrentStage" Mode="In" Type="String" />
+      <Parameter Name="VendorCode" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceiveForClearing" ReturnType="Collection(CBPSModel.CBPS_GetBillReceiveForClearing_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceiveForFDD" ReturnType="Collection(CBPSModel.CBPS_GetBillReceiveForFDD_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceiveForIssueToPayment">
+      <Parameter Name="ClearingDateFrom" Mode="In" Type="String" />
+      <Parameter Name="ClearingDateTo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceiveForParking" ReturnType="Collection(CBPSModel.CBPS_GetBillReceiveForParking_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBillReceiveForPosting" ReturnType="Collection(CBPSModel.CBPS_GetBillReceiveForPosting_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetBranchForBank" ReturnType="Collection(CBPSModel.CBPS_GetBranchForBank_Result)">
+      <Parameter Name="BankID" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetChequePrintInfByCompany" ReturnType="Collection(CBPSModel.CBPS_GetChequePrintInfByCompany_Result)">
+      <Parameter Name="CompanyID" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetDocPropertyForFDD" ReturnType="Collection(CBPSModel.CBPS_GetDocPropertyForFDD_Result)">
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetFurtherDocumentDemand" ReturnType="Collection(CBPSModel.CBPS_GetFurtherDocumentDemand_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetIdentificationAttribute" ReturnType="Collection(CBPSModel.CBPS_GetIdentificationAttribute_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetMailSms" ReturnType="Collection(CBPSModel.CBPS_GetMailSms_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetOwnersForAOwnerLevel" ReturnType="Collection(CBPSModel.CBPS_GetOwnersForAOwnerLevel_Result)">
+      <Parameter Name="OwnerLevelName" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetPOInfoForBillReceive" ReturnType="Collection(CBPSModel.CBPS_GetPOInfoForBillReceive_Result)">
+      <Parameter Name="PONo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetReceivedBill" ReturnType="Collection(CBPSModel.CBPS_GetReceivedBill_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetRestrictedCompany" ReturnType="Collection(CBPSModel.CBPS_GetRestrictedCompany_Result)">
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetScannedDocumentInfoForBill" ReturnType="Collection(CBPSModel.CBPS_GetScannedDocumentInfoForBill_Result)">
+      <Parameter Name="BillReceiveID" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetStageMakerChecker" ReturnType="Collection(CBPSModel.CBPS_GetStageMakerChecker_Result)">
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetStopBill" ReturnType="Collection(CBPSModel.CBPS_GetStopBill_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetVendorBillingInfo" ReturnType="Collection(CBPSModel.CBPS_GetVendorBillingInfo_Result)">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetVendorPhoneNoEmail" ReturnType="Collection(String)">
+      <Parameter Name="VendorCode" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetVendors" ReturnType="Collection(CBPSModel.CBPS_GetVendors_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetVendorsAddress" ReturnType="Collection(CBPSModel.CBPS_GetVendorsAddress_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="String" />
+      <Parameter Name="VendorAddressCode" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_GetVendorsWithAddress" ReturnType="Collection(CBPSModel.CBPS_GetVendorsWithAddress_Result)">
+      <Parameter Name="VendorID" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_InsertOrUpdateAccount" ReturnType="Collection(String)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="BankID" Mode="In" Type="String" />
+      <Parameter Name="BranchID" Mode="In" Type="String" />
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+      <Parameter Name="AccountNo" Mode="In" Type="String" />
+      <Parameter Name="AccountName" Mode="In" Type="String" />
+      <Parameter Name="AccountType" Mode="In" Type="String" />
+      <Parameter Name="TransAmt" Mode="In" Type="String" />
+      <Parameter Name="TransCurrencyType" Mode="In" Type="String" />
+      <Parameter Name="DefaultCurrency" Mode="In" Type="String" />
+      <Parameter Name="AccountOpenDate" Mode="In" Type="DateTime" />
+      <Parameter Name="AccountCloseDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SignatoryGroup" Mode="In" Type="String" />
+      <Parameter Name="ConcernGL" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_InsertOrUpdateBank" ReturnType="Collection(String)">
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="BankID" Mode="In" Type="String" />
+      <Parameter Name="BankName" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_InsertOrUpdateBranch" ReturnType="Collection(CBPSModel.CBPS_InsertOrUpdateBranch_Result)">
+      <Parameter Name="BranchID" Mode="In" Type="String" />
+      <Parameter Name="BankID" Mode="In" Type="String" />
+      <Parameter Name="BranchName" Mode="In" Type="String" />
+      <Parameter Name="BranchCode" Mode="In" Type="String" />
+      <Parameter Name="BranchBftn" Mode="In" Type="String" />
+      <Parameter Name="BranchAddress" Mode="In" Type="String" />
+      <Parameter Name="BranchEmail" Mode="In" Type="String" />
+      <Parameter Name="BranchFax" Mode="In" Type="String" />
+      <Parameter Name="BranchPerson" Mode="In" Type="String" />
+      <Parameter Name="PersonCell" Mode="In" Type="String" />
+      <Parameter Name="BranchPhone" Mode="In" Type="String" />
+      <Parameter Name="BranchRemarks" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillClearing">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillDocumentsInfo">
+      <Parameter Name="OwnerLevelID" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="FileOriginalName" Mode="In" Type="String" />
+      <Parameter Name="FileCodeName" Mode="In" Type="String" />
+      <Parameter Name="FileExtension" Mode="In" Type="String" />
+      <Parameter Name="UploaderIP" Mode="In" Type="String" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+      <Parameter Name="ConfColumnIds" Mode="In" Type="String" />
+      <Parameter Name="BillReceiveID" Mode="In" Type="String" />
+      <Parameter Name="BoothID" Mode="In" Type="String" />
+      <Parameter Name="PONo" Mode="In" Type="String" />
+      <Parameter Name="InvoicingParty" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="InvoiceDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="InvoiceCurrency" Mode="In" Type="String" />
+      <Parameter Name="PreferedPayMode" Mode="In" Type="String" />
+      <Parameter Name="BillSubmittedBy" Mode="In" Type="String" />
+      <Parameter Name="BillSubmitDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BearerContactNo" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillParking">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillPosting">
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillProcessingStage">
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="StageNo" Mode="In" Type="Int32" />
+      <Parameter Name="StageName" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="HardCopyMove" Mode="In" Type="Boolean" />
+      <Parameter Name="InitiateIndicator" Mode="In" Type="String" />
+      <Parameter Name="ReleaseIndicator" Mode="In" Type="String" />
+      <Parameter Name="NextStage" Mode="In" Type="String" />
+      <Parameter Name="StageBackKey" Mode="In" Type="String" />
+      <Parameter Name="StageSuspendKey" Mode="In" Type="String" />
+      <Parameter Name="PaymentBlockKey" Mode="In" Type="String" />
+      <Parameter Name="DataPullIndicator" Mode="In" Type="String" />
+      <Parameter Name="DataSealIndicator" Mode="In" Type="String" />
+      <Parameter Name="AutoIssue" Mode="In" Type="Boolean" />
+      <Parameter Name="AutoReceive" Mode="In" Type="Boolean" />
+      <Parameter Name="VendorNotify" Mode="In" Type="Boolean" />
+      <Parameter Name="InvoicePartyNotify" Mode="In" Type="Boolean" />
+      <Parameter Name="BenchMark" Mode="In" Type="Int32" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetBillProcessStop">
+      <Parameter Name="StopBillID" Mode="In" Type="String" />
+      <Parameter Name="PONo" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="StopBillDtlID" Mode="In" Type="String" />
+      <Parameter Name="StopDate" Mode="In" Type="DateTime" />
+      <Parameter Name="StopReason" Mode="In" Type="String" />
+      <Parameter Name="ReopenDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ReopenReason" Mode="In" Type="String" />
+      <Parameter Name="ProcessState" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="MailSmsSendID" Mode="In" Type="String" />
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetFurtherDocumentDemand">
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetPOInfoFromSAP">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetRestrictedCompany">
+      <Parameter Name="RestrictedCompanyID" Mode="In" Type="String" />
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="OwnerLevelID" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="CompanyCode" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetStageMakerChecker">
+      <Parameter Name="StageMCID" Mode="In" Type="String" />
+      <Parameter Name="StageID" Mode="In" Type="String" />
+      <Parameter Name="MkCkTitle" Mode="In" Type="String" />
+      <Parameter Name="DefaultValue" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_SetUpdatePOInfoFromSAP_BAK">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_UpdateClearingBillStatus">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="billStatus" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_UpdateParkingBillStatus">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="billStatus" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_UpdatePOInfoFromSAP">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_UpdatePostingBillStatus">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="billStatus" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CBPS_UpdateReceivedBillInfo">
+      <Parameter Name="UploaderIP" Mode="In" Type="String" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+      <Parameter Name="BillReceiveID" Mode="In" Type="String" />
+      <Parameter Name="BoothID" Mode="In" Type="String" />
+      <Parameter Name="PONo" Mode="In" Type="String" />
+      <Parameter Name="BillTrackingNo" Mode="In" Type="String" />
+      <Parameter Name="InvoicingParty" Mode="In" Type="String" />
+      <Parameter Name="InvoiceNo" Mode="In" Type="String" />
+      <Parameter Name="InvoiceDate" Mode="In" Type="DateTime" />
+      <Parameter Name="InvoiceAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="InvoiceCurrency" Mode="In" Type="String" />
+      <Parameter Name="PreferedPayMode" Mode="In" Type="String" />
+      <Parameter Name="BillSubmittedBy" Mode="In" Type="String" />
+      <Parameter Name="BillSubmitDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BearerContactNo" Mode="In" Type="String" />
+      <Parameter Name="ProcessGroupID" Mode="In" Type="String" />
+      <Parameter Name="Remarks" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CheckUserValidity" ReturnType="Collection(CBPSModel.CheckUserValidity_Result)">
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="userIP" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CMS_SetVendor">
+      <Parameter Name="VendorID" Mode="In" Type="String" />
+      <Parameter Name="VendorCode" Mode="In" Type="String" />
+      <Parameter Name="VendorName" Mode="In" Type="String" />
+      <Parameter Name="VendorAddressCode" Mode="In" Type="String" />
+      <Parameter Name="VendorGroup" Mode="In" Type="String" />
+      <Parameter Name="VendorCategory" Mode="In" Type="String" />
+      <Parameter Name="VendorType" Mode="In" Type="String" />
+      <Parameter Name="IsUser" Mode="In" Type="Boolean" />
+      <Parameter Name="ConcernVendor" Mode="In" Type="String" />
+      <Parameter Name="TransBank" Mode="In" Type="String" />
+      <Parameter Name="TransAccountName" Mode="In" Type="String" />
+      <Parameter Name="TransAccountNo" Mode="In" Type="String" />
+      <Parameter Name="DataSource" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CMS_SetVendorAddress">
+      <Parameter Name="VendorAddressCode" Mode="In" Type="String" />
+      <Parameter Name="VendorID" Mode="In" Type="String" />
+      <Parameter Name="VendorAddress1" Mode="In" Type="String" />
+      <Parameter Name="VendorAddress2" Mode="In" Type="String" />
+      <Parameter Name="VendorCountry" Mode="In" Type="String" />
+      <Parameter Name="VendorPhoneNo" Mode="In" Type="String" />
+      <Parameter Name="VendorMobileNo" Mode="In" Type="String" />
+      <Parameter Name="VendorFax" Mode="In" Type="String" />
+      <Parameter Name="VendorEmail" Mode="In" Type="String" />
+      <Parameter Name="SkypeID" Mode="In" Type="String" />
+      <Parameter Name="ContactPerson" Mode="In" Type="String" />
+      <Parameter Name="ContactCellNo" Mode="In" Type="String" />
+      <Parameter Name="DataSource" Mode="In" Type="String" />
+      <Parameter Name="OwnerID" Mode="In" Type="String" />
+      <Parameter Name="DocCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DocTypeID" Mode="In" Type="String" />
+      <Parameter Name="DocPropertyID" Mode="In" Type="String" />
+      <Parameter Name="UserLevel" Mode="In" Type="Int32" />
+      <Parameter Name="SetBy" Mode="In" Type="String" />
+      <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="p_Status" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="CPS_ChequeRegistration" EntityType="CBPSModel.CPS_ChequeRegistration" />
+    <EntitySet Name="CMS_Vendor" EntityType="CBPSModel.CMS_Vendor" />
+  </EntityContainer>
+  <EntityType Name="CPS_BankBranchAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="BranchID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="BankID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccountName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="AccountType" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="TransAmt" Type="Decimal" Precision="22" Scale="4" />
+    <Property Name="TransCurrencyType" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="DefaultCurrency" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ConcernGL" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="LastCreditAmt" Type="Decimal" Precision="22" Scale="4" />
+    <Property Name="LastDebitAmt" Type="Decimal" Precision="22" Scale="4" />
+    <Property Name="ClosingAmt" Type="Decimal" Precision="22" Scale="4" />
+    <Property Name="AccountOpenDate" Type="DateTime" Precision="0" />
+    <Property Name="AccountCloseDate" Type="DateTime" Precision="0" />
+    <Property Name="SignatoryGroup" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Sys_MasterData">
+    <Key>
+      <PropertyRef Name="MasterDataID" />
+    </Key>
+    <Property Name="MasterDataID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="MasterDataValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MasterDataTypeID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="IsDefault" Type="Int32" />
+    <Property Name="SerialNo" Type="Int32" />
+    <Property Name="UDCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParrentID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sys_MasterDataType" Relationship="CBPSModel.FK_Sys_MasterData_Sys_MasterDataType" FromRole="Sys_MasterData" ToRole="Sys_MasterDataType" />
+  </EntityType>
+  <EntityType Name="Sys_MasterDataType">
+    <Key>
+      <PropertyRef Name="MasterDataTypeID" />
+    </Key>
+    <Property Name="MasterDataTypeID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="TypeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TypePurpose" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="TypeCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Sys_MasterData" Relationship="CBPSModel.FK_Sys_MasterData_Sys_MasterDataType" FromRole="Sys_MasterDataType" ToRole="Sys_MasterData" />
+  </EntityType>
+  <Association Name="FK_Sys_MasterData_Sys_MasterDataType">
+    <End Type="CBPSModel.Sys_MasterDataType" Role="Sys_MasterDataType" Multiplicity="0..1" />
+    <End Type="CBPSModel.Sys_MasterData" Role="Sys_MasterData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MasterDataType">
+        <PropertyRef Name="MasterDataTypeID" />
+      </Principal>
+      <Dependent Role="Sys_MasterData">
+        <PropertyRef Name="MasterDataTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="CBPS_GetAllBank_Result">
+    <Property Type="String" Name="BankID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="BankName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="CountryofOrigin" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BankCategory" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="BankType" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BIN" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetAllOwnerByCompany_Result">
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="UDOwnerCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OwnerLevelID" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetAllOwnerForRestrictedCompany_Result">
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="UDOwnerCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OwnerLevelID" Nullable="false" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillProcessGroup_Result">
+    <Property Type="String" Name="ProcessGroupID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="DataSource" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PurchaseGroup" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ShortName" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="IdentyFlag" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillProcessingStage_Result">
+    <Property Type="String" Name="StageID" Nullable="false" MaxLength="12" />
+    <Property Type="Int32" Name="StageNo" Nullable="true" />
+    <Property Type="String" Name="StageName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="Boolean" Name="HardCopyMove" Nullable="true" />
+    <Property Type="String" Name="InitiateIndicator" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="NextStage" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageBackKey" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageSuspendKey" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PaymentBlockKey" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DataPullIndicator" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DataSealIndicator" Nullable="true" MaxLength="12" />
+    <Property Type="Boolean" Name="AutoIssue" Nullable="true" />
+    <Property Type="Boolean" Name="AutoReceive" Nullable="true" />
+    <Property Type="Boolean" Name="VendorNotify" Nullable="true" />
+    <Property Type="Boolean" Name="InvoicePartyNotify" Nullable="true" />
+    <Property Type="Int32" Name="BenchMark" Nullable="true" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="ReleaseIndicator" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillReceive_Result">
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PONo1" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" />
+    <Property Type="String" Name="VendorID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="InvoicingPartyName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="CurrentStage" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ProcessState" Nullable="true" MaxLength="12" />
+    <Property Type="Boolean" Name="IsStop" Nullable="false" />
+    <Property Type="Int32" Name="BrStatus" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillReceiveForClearing_Result">
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BillClearingID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="InvoiceDocNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="FiscalYear" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="POType" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="PODate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DocCategoryName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="16" Scale="4" />
+    <Property Type="String" Name="InvoiceCurrency" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PreferedPayMode" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="BillSubmitDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="HardCopyMove" Nullable="true" />
+    <Property Type="String" Name="BillStatus" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="IsReceived" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillReceiveForFDD_Result">
+    <Property Type="String" Name="BillReceiveID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorEmail" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorMobileNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="InvoicingPartyName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProcessState" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="CurrentStage" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillReceiveForParking_Result">
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BillParkingID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="POType" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="PODate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DocCategoryName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="16" Scale="4" />
+    <Property Type="String" Name="InvoiceCurrency" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PreferedPayMode" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="BillSubmitDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="HardCopyMove" Nullable="true" />
+    <Property Type="String" Name="BillStatus" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBillReceiveForPosting_Result">
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BillPostingID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="POType" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="PODate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DocCategoryName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="16" Scale="4" />
+    <Property Type="String" Name="InvoiceCurrency" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PreferedPayMode" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="BillSubmitDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="HardCopyMove" Nullable="true" />
+    <Property Type="String" Name="BillStatus" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetBranchForBank_Result">
+    <Property Type="String" Name="BranchID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="BankID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="BranchPhone" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchFax" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchEmail" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchPerson" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonDesignation" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonDepartment" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonCell" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchCode" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchBftn" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchRemarks" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetChequePrintInfByCompany_Result">
+    <Property Type="String" Name="BillClearingID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="ClearingNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Beneficiary" Nullable="true" MaxLength="128" />
+    <Property Type="Decimal" Name="Amount" Nullable="true" Precision="38" Scale="4" />
+    <Property Type="DateTime" Name="ChequeDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TransType" Nullable="false" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetDocPropertyForFDD_Result">
+    <Property Type="String" Name="DocPropertyID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="OwnerLevelID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="DocPropertySL" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="UDDocPropertyCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DocPropertyName" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="SerialNo" Nullable="true" />
+    <Property Type="String" Name="DocClassification" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DocClassificationLevel" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="String" Name="PreservationPolicy" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PhysicalLocation" Nullable="true" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="false" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetFurtherDocumentDemand_Result">
+    <Property Type="String" Name="DemandID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MailSmsSendID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DemandDocID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocumentID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocumentNature" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="NoOfCopy" Nullable="true" />
+    <Property Type="String" Name="NecessityType" Nullable="true" MaxLength="128" />
+    <Property Type="DateTime" Name="RequireBy" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetIdentificationAttribute_Result">
+    <Property Type="String" Name="DocMetaID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropIdentifyName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="MetaValue" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetMailSms_Result">
+    <Property Type="String" Name="MailSmsID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="VendorID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="MailSmsSendID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="MailAddress" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="MailCC" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SmsMobileNo" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="SmsCC" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="MailText" Nullable="true" />
+    <Property Type="String" Name="SmsText" Nullable="true" />
+    <Property Type="String" Name="MailSendFrom" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SmsSendFrom" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="SendDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProcessState" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageID" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="OwnerID1" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetOwnersForAOwnerLevel_Result">
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetPOInfoForBillReceive_Result">
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="POType" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="PODate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="142" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="164" />
+    <Property Type="String" Name="OwnerLevelID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="LevelName" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeName" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetReceivedBill_Result">
+    <Property Type="String" Name="BillReceiveID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="false" Precision="16" Scale="4" />
+    <Property Type="String" Name="InvoiceCurrency" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="InvoiceDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PreferedPayMode" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="BillSubmitDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="BillSubmittedBy" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BearerContactNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Remarks" Nullable="true" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="POType" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="PODate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="DocCategoryName" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="BoothID" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetRestrictedCompany_Result">
+    <Property Type="String" Name="RestrictedCompanyID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="StageID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerLevelID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetScannedDocumentInfoForBill_Result">
+    <Property Type="String" Name="DocPropertyID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyName" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetStageMakerChecker_Result">
+    <Property Type="String" Name="StageMCID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="StageID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="MkCkTitle" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DefaultValue" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetStopBill_Result">
+    <Property Type="String" Name="StopBillID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="PONo" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="VendorUpdate" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="MailSmsSendID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ReleaseIndicator" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DeletionIndicator" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CompletionStatus" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="StageID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="StopBillDtlID" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="StopDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="StopReason" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="ReopenDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ReopenReason" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ProcessState" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="ProcessGroupName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="StageName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="InvoicingPartyName" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetVendorBillingInfo_Result">
+    <Property Type="String" Name="BillTrackingNo" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="BillSubmitDate" Nullable="true" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="true" Precision="16" Scale="4" />
+    <Property Type="String" Name="InvoiceCurrency" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="CurrentStage" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="InvoicingParty" Nullable="true" MaxLength="12" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetVendors_Result">
+    <Property Type="String" Name="VendorID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorAddressCode" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorGroup" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorCategory" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorType" Nullable="true" MaxLength="128" />
+    <Property Type="Boolean" Name="IsUser" Nullable="true" />
+    <Property Type="String" Name="ConcernVendor" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransBank" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransAccountName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransAccountNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DataSource" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetVendorsAddress_Result">
+    <Property Type="String" Name="VendorAddressCode" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="VendorID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorAddress1" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="VendorAddress2" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="VendorCountry" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorPhoneNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorMobileNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorEmail" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="SkypeID" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ContactPerson" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ContactCellNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DataSource" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="VendorFax" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="CBPS_GetVendorsWithAddress_Result">
+    <Property Type="String" Name="VendorID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="VendorCode" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="VendorName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorAddressCode" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorGroup" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorCategory" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorType" Nullable="true" MaxLength="128" />
+    <Property Type="Boolean" Name="IsUser" Nullable="true" />
+    <Property Type="String" Name="ConcernVendor" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransBank" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransAccountName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="TransAccountNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DataSource" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocCategoryID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocTypeID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="DocPropertyID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+    <Property Type="String" Name="VendorAddress1" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="VendorEmail" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="VendorMobileNo" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ContactPerson" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="ContactCellNo" Nullable="true" MaxLength="128" />
+  </ComplexType>
+  <ComplexType Name="CBPS_InsertOrUpdateBranch_Result">
+    <Property Type="String" Name="BranchID" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="BankID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="BranchPhone" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchFax" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchEmail" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchPerson" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonDesignation" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonDepartment" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="PersonCell" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchCode" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchBftn" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="BranchRemarks" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="UserLevel" Nullable="true" />
+    <Property Type="DateTime" Name="SetOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="SetBy" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ModifiedBy" Nullable="true" MaxLength="12" />
+    <Property Type="Int32" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="CheckUserValidity_Result">
+    <Property Type="String" Name="OwnerLevelID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="LevelName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="OwnerID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="RoleID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="RoleTitle" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="UserID" Nullable="true" MaxLength="12" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DefaultServer" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <EntityType Name="CPS_ChequeRegistration">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="RequisitionID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="AccountID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ReqSlipNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChequebookNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfLeaf" Type="Int32" />
+    <Property Name="FirstLeafNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastLefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiveDate" Type="DateTime" Precision="3" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+    <Property Name="RegistrationNote" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ChequebookStatus" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CMS_Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="VendorCode" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="VendorName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VendorAddressCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VendorGroup" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VendorCategory" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VendorType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsUser" Type="Boolean" />
+    <Property Name="ConcernVendor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TransBank" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TransAccountName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TransAccountNo" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DataSource" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="OwnerID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="DocCategoryID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="DocTypeID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="DocPropertyID" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="SetOn" Type="DateTime" Precision="3" />
+    <Property Name="SetBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+</Schema>

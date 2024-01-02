@@ -1,0 +1,3566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\EDMSPUBLISH</_PublishTargetUrl>
+    <History>True|2023-09-04T09:03:13.0988785Z;True|2023-08-31T12:50:57.5039338+06:00;True|2023-08-30T12:24:59.0628643+06:00;True|2023-08-29T14:13:29.3211473+06:00;True|2023-08-23T16:01:16.9501083+06:00;True|2023-08-08T17:09:49.2046895+06:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/DocScanningModule/Views/AuditTrail/Index.cshtml">
+      <publishTime>04/23/2019 14:51:38</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocCategory/Index.cshtml">
+      <publishTime>05/23/2019 10:00:43</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocDestroy/Index.cshtml">
+      <publishTime>09/05/2018 11:24:42</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocDestroyByPolicy/Index.cshtml">
+      <publishTime>01/22/2019 09:23:18</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocDestroyPolicy/Index.cshtml">
+      <publishTime>10/21/2020 16:49:22</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocModification/Index.cshtml">
+      <publishTime>01/16/2020 14:29:16</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocProperty/Index.cshtml">
+      <publishTime>09/02/2019 11:23:48</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocType/Index.cshtml">
+      <publishTime>01/22/2019 09:23:18</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/DocumentUpdate/Index.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/MassDocPrint/Index.cshtml">
+      <publishTime>12/04/2018 09:05:02</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/MossDocumentPrint/Index.cshtml">
+      <publishTime>02/07/2019 10:38:30</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/MossDocumentPrint/IndexNew.cshtml">
+      <publishTime>08/31/2023 12:00:58</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/MultiDocScan/Index.cshtml">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/NewDocMassDistribution/UploadFiles.cshtml">
+      <publishTime>05/04/2023 10:54:02</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/OriginalDocSearching/GetPdf.cshtml">
+      <publishTime>12/09/2018 10:56:22</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/OriginalDocSearching/Index.cshtml">
+      <publishTime>05/17/2017 10:35:12</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/Owner/Index.cshtml">
+      <publishTime>09/02/2019 10:58:09</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/OwnerLevel/Index.cshtml">
+      <publishTime>03/27/2019 11:01:49</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/OwnerProperIdentity/Index.cshtml">
+      <publishTime>01/22/2019 09:23:18</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/PrintWithBatchNo/Index.cshtml">
+      <publishTime>03/05/2019 08:39:26</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/PrintWithBatchNo/IndexNew.cshtml">
+      <publishTime>08/30/2023 12:16:30</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/Shared/_Layout.cshtml">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/Test/Index.cshtml">
+      <publishTime>01/16/2020 14:29:16</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/VersionDocSearching/Index.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/web.config">
+      <publishTime>03/05/2019 08:39:26</publishTime>
+    </File>
+    <File Include="Areas/DocScanningModule/Views/_ViewStart.cshtml">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/Account/Dashboard.cshtml">
+      <publishTime>12/03/2019 14:09:50</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/Account/Login.cshtml">
+      <publishTime>09/04/2023 14:58:48</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/Account/Register.cshtml">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/AutoValueConf/Index.cshtml">
+      <publishTime>06/16/2016 11:29:06</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/AutoValueSetup/Index.cshtml">
+      <publishTime>06/19/2016 11:28:36</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/DataLevelPermission/Index.cshtml">
+      <publishTime>01/22/2018 08:58:58</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/DefaultValueSetup/Index.cshtml">
+      <publishTime>06/27/2016 08:24:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/NavMenuOprt/Index.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/NavMenuOptSetup/Index.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/NavMenuSetup/Index.cshtml">
+      <publishTime>06/05/2016 13:27:40</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/OwnerLevelPermission/Index.cshtml">
+      <publishTime>03/24/2019 09:40:36</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/RoleMenuPermission/Index.cshtml">
+      <publishTime>09/05/2018 11:24:42</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/RoleSetup/Index.cshtml">
+      <publishTime>03/27/2019 11:01:49</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/Server/Index.cshtml">
+      <publishTime>06/07/2016 14:05:28</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/Shared/_Layout.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/User/ChangePassword.cshtml">
+      <publishTime>03/27/2019 11:01:49</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/User/Index.cshtml">
+      <publishTime>09/02/2019 12:50:43</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/UserAccessLog/Index.cshtml">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/UserLevel/Index.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/web.config">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/SecurityModule/Views/_ViewStart.cshtml">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/DocMkCkStage/Index.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/MasterManage/Index.cshtml">
+      <publishTime>07/11/2018 11:21:46</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/MasterManage/Manage.cshtml">
+      <publishTime>07/11/2018 11:21:46</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/ProStage/Index.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/Shared/_Layout.cshtml">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/web.config">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/WorkflowCreate/Index.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/WorkflowPermission/Index.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/WorkflowSetup/Index.cshtml">
+      <publishTime>12/26/2018 09:26:06</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/WorkflowSetup/ParallelStageSetup.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/WorkflowSetup/WorkflowConfiguration.cshtml">
+      <publishTime>12/22/2020 11:11:58</publishTime>
+    </File>
+    <File Include="Areas/WorkflowModule/Views/_ViewStart.cshtml">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="asprise_imaging.dll">
+      <publishTime>08/23/2023 17:09:09</publishTime>
+    </File>
+    <File Include="asprise_imaging_x64.dll">
+      <publishTime>08/23/2023 17:09:08</publishTime>
+    </File>
+    <File Include="bin/AdminLte.dll">
+      <publishTime>04/19/2016 16:36:48</publishTime>
+    </File>
+    <File Include="bin/AdminLte.pdb">
+      <publishTime>04/19/2016 16:36:48</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>04/19/2016 16:36:48</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>04/19/2016 16:36:48</publishTime>
+    </File>
+    <File Include="bin/Areas/DocScanningModule/Controllers/NewDocMassDistributionController.cs">
+      <publishTime>07/05/2023 11:54:04</publishTime>
+    </File>
+    <File Include="bin/asprise-scan-scanner-twain-wia-api.dll">
+      <publishTime>08/16/2016 16:46:32</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.Core.dll">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.Core.pdb">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.dll">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.pdb">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/CRVsPackageLib.dll">
+      <publishTime>05/16/2022 20:03:04</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.CrystalReports.Design.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.ReportAppServer.DataSetConversion.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.ReportSource.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Shared.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.VSDesigner.dll">
+      <publishTime>07/24/2023 04:36:00</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Web.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Windows.Forms.dll">
+      <publishTime>05/16/2022 20:03:04</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/cs/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/da/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/de/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/de/PdfSharp.Charting.resources.dll">
+      <publishTime>02/04/2019 19:21:54</publishTime>
+    </File>
+    <File Include="bin/de/PdfSharp.resources.dll">
+      <publishTime>02/04/2019 19:21:52</publishTime>
+    </File>
+    <File Include="bin/DocDistribution/DocDistributionService.cs">
+      <publishTime>05/28/2023 08:48:32</publishTime>
+    </File>
+    <File Include="bin/DocDistribution/IDocDistributionService.cs">
+      <publishTime>05/28/2023 08:48:32</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/en/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>04/19/2016 16:36:50</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>04/19/2016 16:36:50</publishTime>
+    </File>
+    <File Include="bin/EnvDTE.dll">
+      <publishTime>10/06/2022 15:15:26</publishTime>
+    </File>
+    <File Include="bin/EnvDTE80.dll">
+      <publishTime>10/06/2022 15:15:26</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/es/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fi/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/fr/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/hu/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/it/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>01/22/2018 18:40:38</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ja/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ko/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>10/19/2020 12:40:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>06/26/2018 02:03:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>06/26/2018 02:03:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Build.Framework.dll">
+      <publishTime>12/01/2021 11:19:57</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Cors.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>04/19/2016 16:36:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>04/19/2016 16:36:50</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.ComponentModelHost.dll">
+      <publishTime>06/13/2023 10:17:40</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.GraphModel.dll">
+      <publishTime>06/13/2023 10:19:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.dll">
+      <publishTime>06/13/2023 10:18:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Interop.dll">
+      <publishTime>06/13/2023 10:18:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.ProjectAggregator.dll">
+      <publishTime>06/13/2023 10:18:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.RemoteControl.dll">
+      <publishTime>11/16/2021 18:51:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.RpcContracts.dll">
+      <publishTime>06/13/2023 10:19:02</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Shell.15.0.dll">
+      <publishTime>06/13/2023 10:18:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Shell.Framework.dll">
+      <publishTime>06/13/2023 10:18:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Telemetry.dll">
+      <publishTime>12/05/2022 00:20:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.TemplateWizardInterface.dll">
+      <publishTime>06/13/2023 10:20:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.VisualStudio.Utilities.Internal.dll">
+      <publishTime>11/16/2021 14:49:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Administration.dll">
+      <publishTime>03/08/2016 11:28:06</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/MvcSiteMapProvider.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/MvcSiteMapProvider.WebActivator.dll">
+      <publishTime>04/19/2016 16:36:58</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nb-NO/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Web.Common.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/Ninject.Web.Mvc.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/nl/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/NTwain.dll">
+      <publishTime>08/06/2022 21:39:34</publishTime>
+    </File>
+    <File Include="bin/NTwain.pdb">
+      <publishTime>08/06/2022 21:39:34</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/PdfSharp.Charting.dll">
+      <publishTime>02/04/2019 19:21:52</publishTime>
+    </File>
+    <File Include="bin/PdfSharp.dll">
+      <publishTime>02/04/2019 19:21:52</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pl/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/pt/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/Quartz.dll">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/Quartz.pdb">
+      <publishTime>01/25/2017 15:30:04</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintClearence.cs">
+      <publishTime>06/15/2023 11:01:30</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintClearence.rpt">
+      <publishTime>10/19/2016 11:24:16</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintFormat.cs">
+      <publishTime>06/13/2023 14:39:21</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintFormat.rpt">
+      <publishTime>10/20/2016 08:58:28</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintFormatPayee.cs">
+      <publishTime>06/13/2023 14:39:22</publishTime>
+    </File>
+    <File Include="bin/Reports/CheckPrintFormatPayee.rpt">
+      <publishTime>10/20/2016 08:58:22</publishTime>
+    </File>
+    <File Include="bin/Resources/DynamicWebTWAINHTML5Edition.exe">
+      <publishTime>05/17/2017 11:22:13</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>04/19/2016 16:36:56</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/ru/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/Saraff.Twain.dll">
+      <publishTime>03/18/2022 23:54:16</publishTime>
+    </File>
+    <File Include="bin/ScheduledTasks/JobScheduler.cs">
+      <publishTime>02/06/2019 14:59:30</publishTime>
+    </File>
+    <File Include="bin/SILDMS.DataAccess.dll">
+      <publishTime>09/04/2023 15:02:12</publishTime>
+    </File>
+    <File Include="bin/SILDMS.DataAccess.dll.config">
+      <publishTime>04/19/2016 16:37:02</publishTime>
+    </File>
+    <File Include="bin/SILDMS.DataAccess.pdb">
+      <publishTime>09/04/2023 15:02:12</publishTime>
+    </File>
+    <File Include="bin/SILDMS.DataAccessInterface.dll">
+      <publishTime>07/05/2023 11:54:39</publishTime>
+    </File>
+    <File Include="bin/SILDMS.DataAccessInterface.pdb">
+      <publishTime>07/05/2023 11:54:39</publishTime>
+    </File>
+    <File Include="bin/SILDMS.InfraStructure.dll">
+      <publishTime>09/04/2023 15:02:20</publishTime>
+    </File>
+    <File Include="bin/SILDMS.InfraStructure.dll.config">
+      <publishTime>04/19/2016 16:37:02</publishTime>
+    </File>
+    <File Include="bin/SILDMS.InfraStructure.pdb">
+      <publishTime>09/04/2023 15:02:20</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Model.dll">
+      <publishTime>07/05/2023 11:54:38</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Model.dll.config">
+      <publishTime>04/19/2016 16:37:02</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Model.pdb">
+      <publishTime>07/05/2023 11:54:38</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Service.dll">
+      <publishTime>09/04/2023 15:02:17</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Service.pdb">
+      <publishTime>09/04/2023 15:02:17</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Utillity.dll">
+      <publishTime>08/22/2023 14:50:12</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Utillity.pdb">
+      <publishTime>08/22/2023 14:50:12</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Web.UI.dll">
+      <publishTime>09/04/2023 15:03:04</publishTime>
+    </File>
+    <File Include="bin/SILDMS.Web.UI.pdb">
+      <publishTime>09/04/2023 15:03:04</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sk/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/stdole.dll">
+      <publishTime>05/06/2021 15:41:24</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/sv/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Collections.Immutable.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.IO.Pipelines.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Extensions.dll">
+      <publishTime>06/13/2023 10:17:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Owin.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>04/19/2016 16:36:52</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>04/19/2016 16:36:54</publishTime>
+    </File>
+    <File Include="bin/TableDependency.dll">
+      <publishTime>06/18/2018 15:50:50</publishTime>
+    </File>
+    <File Include="bin/TableDependency.SqlClient.dll">
+      <publishTime>06/18/2018 15:50:50</publishTime>
+    </File>
+    <File Include="bin/TableDependency.SqlClient.Where.dll">
+      <publishTime>06/18/2018 15:50:50</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/th/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/tr/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/Views/Home/NewDocMassDistribution.cshtml">
+      <publishTime>07/05/2023 11:54:04</publishTime>
+    </File>
+    <File Include="bin/VSLangProj.dll">
+      <publishTime>05/06/2021 15:41:24</publishTime>
+    </File>
+    <File Include="bin/VsWebSite.Interop.dll">
+      <publishTime>03/02/2015 11:55:24</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>04/19/2016 16:37:00</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHS/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.CrystalReports.Engine.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.ReportSource.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.Shared.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="bin/zh-CHT/CrystalDecisions.Web.resources.dll">
+      <publishTime>03/27/2023 19:44:30</publishTime>
+    </File>
+    <File Include="Buffer/BlankPDF/blank.pdf">
+      <publishTime>12/04/2018 09:05:02</publishTime>
+    </File>
+    <File Include="CheckPrintContext.edmx.diagram">
+      <publishTime>09/05/2016 18:08:12</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/AdminLTE.css">
+      <publishTime>03/27/2019 11:01:49</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/AdminLTE.min.css">
+      <publishTime>03/27/2019 11:01:49</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar04.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar160x160.png">
+      <publishTime>10/29/2016 21:33:44</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar2.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar3.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar5.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/avatar60x60.png">
+      <publishTime>10/29/2016 21:29:30</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/boxed-bg.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/boxed-bg.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/american-express.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/cirrus.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/mastercard.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/mestro.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/paypal.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/paypal2.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/credit/visa.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/cube.gif">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/default-50x50.gif">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/facebook.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/icons.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/in.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/login.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/photo1.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/photo2.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/sil_logo.png">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/SPL-logo.jpg">
+      <publishTime>10/25/2016 12:34:44</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user1-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user2-160x160.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user3-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user4-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user5-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user6-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user7-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/user8-128x128.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/img/youtube.jpg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-black.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-black.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-blue.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-blue.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-green.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-green.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-purple.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-purple.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-red.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-red.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-yellow.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/skin-yellow.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/_all-skins.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/AdminLTE/skins/_all-skins.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/css/animate.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/demo.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/external/cssgrids-min.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/external/prettify-min.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/ico-jsplumb.eot">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/ico-jsplumb.svg">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/ico-jsplumb.ttf">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/ico-jsplumb.woff">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/jsplumb-doc.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/jsplumb.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/jsplumb.js">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/jsplumbtoolkit-defaults.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/jsplumbtoolkit-demo.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/cssTree/main.css">
+      <publishTime>12/22/2020 11:24:46</publishTime>
+    </File>
+    <File Include="Content/css/font-awesome.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/css/font-awesome.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/css/ionicons.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/CustomSite.css">
+      <publishTime>08/01/2018 10:57:50</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.eot">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.svg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.ttf">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.woff">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/fonts/fontawesome-webfont.woff2">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/fonts/FontAwesome.otf">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery-1.9.1.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery-ui-1.9.2.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery.fileupload-ui.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery.fileupload.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery.fileupload.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/file-upload/jquery.iframe-transport.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/css/ionic.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/css/ionic.min.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/fonts/ionicons.eot">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/fonts/ionicons.svg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/fonts/ionicons.ttf">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/fonts/ionicons.woff">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/.DS_Store">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular-ui/angular-ui-router.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular-ui/angular-ui-router.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-animate.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-animate.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-resource.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-resource.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-sanitize.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular-sanitize.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/angular/angular.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic-angular.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic-angular.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic.bundle.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic.bundle.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/js/ionic.min.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/version.json">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/ionic-v1.2.4/__MACOSX/js/._.DS_Store">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/Select2/css/select2.css">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Content/plugin/Select2/css/select2.min.css">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Content/plugin/Select2/js/select2.js">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Content/plugin/Select2/js/select2.min.js">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Content/plugin/smart-table/smart-table.debug.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/smart-table/smart-table.js">
+      <publishTime>07/14/2016 15:01:06</publishTime>
+    </File>
+    <File Include="Content/plugin/smart-table/smart-table.min.js">
+      <publishTime>07/14/2016 15:01:06</publishTime>
+    </File>
+    <File Include="Content/plugin/toaster/toastr.css">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/plugin/toaster/toastr.js">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Content/sb-admin-2.css">
+      <publishTime>10/05/2016 13:49:54</publishTime>
+    </File>
+    <File Include="COPYING.LESSER.txt">
+      <publishTime>08/23/2023 17:37:39</publishTime>
+    </File>
+    <File Include="COPYING.txt">
+      <publishTime>08/23/2023 17:37:39</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>04/19/2016 16:37:06</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/19/2016 16:37:04</publishTime>
+    </File>
+    <File Include="Images/no_results.png">
+      <publishTime>07/17/2018 15:00:20</publishTime>
+    </File>
+    <File Include="Images/one_logo_png.png">
+      <publishTime>09/11/2018 10:47:50</publishTime>
+    </File>
+    <File Include="log.txt">
+      <publishTime>08/08/2023 16:52:29</publishTime>
+    </File>
+    <File Include="Mvc.sitemap">
+      <publishTime>01/22/2018 08:58:58</publishTime>
+    </File>
+    <File Include="NgScripts/Base/environmentServices.js">
+      <publishTime>07/26/2023 12:19:39</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/DocumentDodificationCtr.js">
+      <publishTime>08/29/2023 12:42:47</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/DocumentScanCtr.js">
+      <publishTime>08/29/2023 14:13:06</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/OriginalDocSearchCtr.js">
+      <publishTime>08/16/2023 13:57:54</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/OwnerProperIdentityCtr.js">
+      <publishTime>08/28/2023 11:31:08</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/PrintWithBatchNoCtr.js">
+      <publishTime>08/30/2023 12:23:29</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/VersioningOriginalDocCtr.js">
+      <publishTime>09/04/2023 14:10:11</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/VersioningVersionedDocCtr.js">
+      <publishTime>08/31/2023 10:28:05</publishTime>
+    </File>
+    <File Include="NgScripts/Controller/VersionSearchCtr.js">
+      <publishTime>08/22/2023 18:28:23</publishTime>
+    </File>
+    <File Include="NgScripts/Services/ImageProcessServices.js">
+      <publishTime>09/04/2023 13:59:50</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>08/24/2023 09:23:42</publishTime>
+    </File>
+    <File Include="ReadMe-AspriseScan.txt">
+      <publishTime>08/23/2023 17:09:08</publishTime>
+    </File>
+    <File Include="Reports/CheckPrintClearence.rpt">
+      <publishTime>10/19/2016 11:24:16</publishTime>
+    </File>
+    <File Include="Reports/CheckPrintFormat.rpt">
+      <publishTime>10/20/2016 08:58:28</publishTime>
+    </File>
+    <File Include="Reports/CheckPrintFormatPayee.rpt">
+      <publishTime>10/20/2016 08:58:22</publishTime>
+    </File>
+    <File Include="Resources/addon/Barcode.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/Barcodex64.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.barcode.intellisense.nonvs.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.barcode.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.pdf.intellisense.nonvs.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.pdf.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.webcam.intellisense.nonvs.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/dynamsoft.webtwain.addon.webcam.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/MacBarcode.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/Pdf.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/Pdfx64.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/Webcam.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/addon/Webcamx64.zip">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/asprise.ico">
+      <publishTime>08/23/2023 17:09:07</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAIN.cab">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAINActiveX.exe">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAINHTML5Edition.exe">
+      <publishTime>05/17/2017 11:22:13</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAINMacEdition.pkg">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAINPlugIn.msi">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/DynamicWebTWAINx64.cab">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/dynamic_web_twainx64.deb">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/dynamic_web_twainx64.rpm">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/dynamsoft.webtwain.config.js">
+      <publishTime>12/09/2018 10:56:22</publishTime>
+    </File>
+    <File Include="Resources/dynamsoft.webtwain.initiate.js">
+      <publishTime>09/11/2018 10:47:46</publishTime>
+    </File>
+    <File Include="Resources/dynamsoft.webtwain.install.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/dynamsoft.webtwain.intellisense.nonvs.js">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/MSI/DynamicWebTWAINHTML5Edition.msi">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Resources/reference/btn-download.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/hint.css">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/html5_editor.css">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/changeimagesize.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/close.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/crop.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/crop_grey.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/deskew.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/fit.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/fith.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/fitw.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/flip.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/hand.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/img.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/mirror.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/next.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/next_grey.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/originalsize.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/plug-in-blocked.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/previous.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/previous_grey.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/print.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/rectselect.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/restore.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/rotate.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/rotateleft.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/rotateright.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/save.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/stretch.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/zoom.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/zoomin.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/zoomin_grey.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/zoomout.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/imgs/zoomout_grey.png">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/LICENSE">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/loading.gif">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Resources/reference/logo.gif">
+      <publishTime>06/19/2017 15:11:24</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/angular-local-storage.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/app.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/app.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/demo.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/pages/dashboard.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/pages/dashboard2.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-slider/bootstrap-slider.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-slider/slider.css">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/chartjs/Chart.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/chartjs/Chart.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/adapters/jquery.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/build-config.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/CHANGES.md">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/ckeditor.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/config.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/contents.css">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/af.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ar.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/bg.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/bn.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/bs.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ca.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/cs.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/cy.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/da.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/de.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/el.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/en-au.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/en-ca.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/en-gb.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/en.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/eo.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/es.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/et.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/eu.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/fa.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/fi.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/fo.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/fr-ca.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/fr.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/gl.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/gu.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/he.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/hi.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/hr.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/hu.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/id.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/is.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/it.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ja.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ka.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/km.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ko.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ku.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/lt.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/lv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/mk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/mn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ms.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/nb.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/nl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/no.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/pl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/pt-br.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/pt.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ro.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ru.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/si.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sq.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sr-latn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/sv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/th.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/tr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/ug.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/uk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/vi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/zh-cn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/lang/zh.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/LICENSE.md">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/bg.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ca.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/cs.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/cy.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/da.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/de.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/el.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/en.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/eo.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/es.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/et.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/fa.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/fi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/fr-ca.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/fr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/gl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/gu.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/he.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/hi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/hr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/hu.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/id.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/it.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/km.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/no.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/si.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sq.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sr-latn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/sv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/th.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/tr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/ug.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/uk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/vi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/zh-cn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/zh.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/a11yhelp/dialogs/lang/_translationstatus.txt">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/about/dialogs/about.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/about/dialogs/hidpi/logo_ckeditor.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/about/dialogs/logo_ckeditor.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/clipboard/dialogs/paste.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/dialog/dialogDefinition.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/fakeobjects/images/spacer.gif">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/icons.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/icons_hidpi.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/image/dialogs/image.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/image/images/noimage.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/link/dialogs/anchor.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/link/dialogs/link.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/link/images/anchor.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/link/images/hidpi/anchor.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/magicline/images/hidpi/icon.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/magicline/images/icon.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/pastefromword/filter/default.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/scayt/dialogs/options.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/scayt/dialogs/toolbar.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/scayt/LICENSE.md">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/scayt/README.md">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ar.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/bg.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ca.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/cs.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/cy.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/de.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/el.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/en.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/eo.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/es.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/et.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/fa.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/fi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/fr-ca.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/fr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/gl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/he.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/hr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/hu.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/id.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/it.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ja.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/km.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ku.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/lv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/nb.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/nl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/no.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/pl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/pt-br.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/pt.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ru.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/si.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/sk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/sl.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/sq.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/sv.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/th.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/tr.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/ug.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/uk.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/vi.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/zh-cn.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/zh.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/specialchar/dialogs/specialchar.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/table/dialogs/table.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/tabletools/dialogs/tableCell.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/ciframe.html">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/tmp.html">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/tmpFrameset.html">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/wsc.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/wsc.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/dialogs/wsc_ie.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/LICENSE.md">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/plugins/wsc/README.md">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/README.md">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog_ie.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog_ie7.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog_ie8.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog_iequirks.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/dialog_opera.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor_gecko.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor_ie.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor_ie7.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor_ie8.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/editor_iequirks.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/icons.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/icons_hidpi.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/arrow.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/close.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/hidpi/close.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/hidpi/lock-open.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/hidpi/lock.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/hidpi/refresh.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/lock-open.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/lock.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/images/refresh.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/skins/moono/readme.md">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ckeditor/styles.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/img/alpha-horizontal.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/img/alpha.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/img/hue-horizontal.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/img/hue.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/colorpicker/img/saturation.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/dataTables.bootstrap.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/images/sort_asc.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/images/sort_asc_disabled.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/images/sort_both.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/images/sort_desc.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/images/sort_desc_disabled.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datatables/jquery.dataTables.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datepicker/datepicker/css/datepicker.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datepicker/datepicker/js/bootstrap-datepicker.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/datepicker/datepicker/less/datepicker.less">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/daterangepicker/daterangepicker.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fastclick/fastclick.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fastclick/fastclick.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/excanvas.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/excanvas.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.colorhelpers.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.colorhelpers.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.canvas.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.canvas.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.categories.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.categories.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.crosshair.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.crosshair.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.errorbars.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.errorbars.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.fillbetween.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.fillbetween.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.image.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.image.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.navigate.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.navigate.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.pie.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.pie.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.resize.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.resize.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.selection.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.selection.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.stack.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.stack.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.symbol.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.symbol.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.threshold.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.threshold.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.time.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/flot/jquery.flot.time.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fullcalendar/fullcalendar.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fullcalendar/fullcalendar.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fullcalendar/fullcalendar.min.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fullcalendar/fullcalendar.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/fullcalendar/fullcalendar.print.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/all.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/aero%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/aero.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/aero.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/blue%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/blue.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/blue.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/flat%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/flat.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/flat.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/green%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/green.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/green.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/grey%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/grey.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/grey.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/orange%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/orange.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/orange.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/pink%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/pink.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/pink.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/purple%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/purple.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/purple.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/red%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/red.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/red.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/yellow%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/yellow.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/yellow.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/flat/_all.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/futurico/futurico%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/futurico/futurico.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/futurico/futurico.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/icheck.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/icheck.min.js">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/aero.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/blue.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/green.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/grey.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/line%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/line.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/line.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/orange.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/pink.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/purple.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/red.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/yellow.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/line/_all.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/aero%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/aero.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/aero.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/blue%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/blue.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/blue.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/green%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/green.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/green.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/grey%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/grey.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/grey.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/minimal%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/minimal.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/minimal.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/orange%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/orange.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/orange.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/pink%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/pink.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/pink.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/purple%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/purple.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/purple.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/red%402x.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/red.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/red.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/yellow%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/yellow.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/yellow.png">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/minimal/_all.css">
+      <publishTime>04/19/2016 16:37:10</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/polaris/polaris%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/polaris/polaris.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/polaris/polaris.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/aero%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/aero.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/aero.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/blue%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/blue.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/blue.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/green%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/green.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/green.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/grey%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/grey.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/grey.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/orange%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/orange.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/orange.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/pink%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/pink.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/pink.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/purple%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/purple.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/purple.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/red%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/red.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/red.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/square%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/square.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/square.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/yellow%402x.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/yellow.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/yellow.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/iCheck/square/_all.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.numeric.extensions.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.phone.extensions.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/jquery.inputmask.regex.extensions.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/phone-codes/phone-be.json">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/phone-codes/phone-codes.json">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/input-mask/phone-codes/readme.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/img/sprite-skin-flat.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/img/sprite-skin-nice.png">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/ion.rangeSlider.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/ion.rangeSlider.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/ion.rangeSlider.skinFlat.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/ionslider/ion.rangeSlider.skinNice.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jQuery/jQuery-2.1.3.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jQueryUI/jquery-ui-1.10.3.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jQueryUI/jquery-ui-1.10.3.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/knob/jquery.knob.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/morris/morris.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/morris/morris.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/morris/morris.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/pace/pace.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/slimScroll/jquery.slimscroll.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/sparkline/jquery.sparkline.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/sparkline/jquery.sparkline.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/timepicker/bootstrap-timepicker.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/timepicker/bootstrap-timepicker.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/GPL-LICENSE.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/jquery.dynatree.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/jquery.dynatree.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/MIT-License.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin-vista/icons.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin-vista/loading.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin-vista/ui.dynatree.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/icons-rtl.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/icons.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/loading.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/ui.dynatree.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/vline-rtl.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/dist/skin/vline.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/Gruntfile.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/index.html">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/jquery-ui.custom.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/jquery-ui.custom.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/jquery.cookie.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/jquery.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/jquery.min.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/jquery/README.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/package.json">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/GPL-LICENSE.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/jquery.dynatree.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/MIT-License.txt">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin-vista/icons.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin-vista/loading.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin-vista/ui.dynatree.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/icons-rtl.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/icons.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/loading.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/ui.dynatree.css">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/vline-rtl.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/AdminLTE/plugins/tree/src/skin/vline.gif">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/angular-animate.js">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-animate.min.js">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-animate.min.js.map">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-Cookie.js">
+      <publishTime>07/31/2023 09:13:34</publishTime>
+    </File>
+    <File Include="Scripts/angular-cookie.min.js">
+      <publishTime>07/31/2023 09:14:17</publishTime>
+    </File>
+    <File Include="Scripts/angular-drag-and-drop-lists.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/angular-drag-and-drop-lists.min.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/angular-route.min.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-route.min.js.map">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-touch.js">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-touch.min.js">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-touch.min.js.map">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Scripts/angular-translate-loader-static-files.min.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-translate.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-translate.min.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/angular-validation.min.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/ca.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/en.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/es.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/fr.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/no.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/pl.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/pt-br.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular-validation/locales/ru.json">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular.js">
+      <publishTime>11/19/2017 14:07:06</publishTime>
+    </File>
+    <File Include="Scripts/angular.min.js">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/angular.min.js.map">
+      <publishTime>04/20/2016 09:11:24</publishTime>
+    </File>
+    <File Include="Scripts/App/app.js">
+      <publishTime>07/17/2018 15:00:20</publishTime>
+    </File>
+    <File Include="Scripts/App/appSilDms.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/Controller/DocCategoryController.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/Controller/DocTypeController.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/Controller/MenuController.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/Controller/MultiScanController.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/Controller/registerController.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/App/custom.js">
+      <publishTime>04/18/2019 14:42:10</publishTime>
+    </File>
+    <File Include="Scripts/App/Directives/numeric-directive.js">
+      <publishTime>09/21/2016 12:11:24</publishTime>
+    </File>
+    <File Include="Scripts/App/model.js">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/Chart.min.js">
+      <publishTime>09/26/2016 11:23:44</publishTime>
+    </File>
+    <File Include="Scripts/demo-list.js">
+      <publishTime>05/10/2020 13:49:23</publishTime>
+    </File>
+    <File Include="Scripts/demo.js">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ar.js">
+      <publishTime>01/26/2017 14:57:40</publishTime>
+    </File>
+    <File Include="Scripts/i18n/az.js">
+      <publishTime>01/26/2017 14:57:40</publishTime>
+    </File>
+    <File Include="Scripts/i18n/bg.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ca.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/cs.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/da.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/de.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/el.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/en.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/es.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/et.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/eu.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/fa.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/fi.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/fr.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/gl.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/he.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/hi.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/hr.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/hu.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/id.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/is.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/it.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ja.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/km.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ko.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/lt.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/lv.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/mk.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ms.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/nb.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/nl.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/pl.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/pt-BR.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/pt.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ro.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/ru.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/sk.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/sr-Cyrl.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/sr.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/sv.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/th.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/tr.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/uk.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/vi.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/zh-CN.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/i18n/zh-TW.js">
+      <publishTime>01/26/2017 14:57:38</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.map">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery-barcode.js">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery-barcode.min.js">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery.flot.categories.min.js">
+      <publishTime>10/03/2016 17:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery.flot.min.js">
+      <publishTime>10/06/2016 18:37:04</publishTime>
+    </File>
+    <File Include="Scripts/jquery.flot.resize.min.js">
+      <publishTime>10/03/2016 17:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-2.3.0.js">
+      <publishTime>08/01/2018 10:57:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-2.3.0.min.js">
+      <publishTime>08/01/2018 10:57:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/jsplumb.js">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/respond.matchmedia.addListener.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/respond.matchmedia.addListener.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>04/19/2016 16:37:08</publishTime>
+    </File>
+    <File Include="Scripts/select2.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/select2.min.js">
+      <publishTime>07/04/2018 09:55:18</publishTime>
+    </File>
+    <File Include="Scripts/smart-table.js">
+      <publishTime>02/06/2017 15:07:40</publishTime>
+    </File>
+    <File Include="Scripts/smart-table.min.js">
+      <publishTime>02/06/2017 15:07:40</publishTime>
+    </File>
+    <File Include="Scripts/smart-table.min.js.map">
+      <publishTime>02/06/2017 15:07:38</publishTime>
+    </File>
+    <File Include="Scripts/ui-bootstrap-tpls-0.10.0.js">
+      <publishTime>02/07/2017 11:44:34</publishTime>
+    </File>
+    <File Include="Scripts/ui-bootstrap-tpls-2.2.0.min.js">
+      <publishTime>02/07/2017 11:44:34</publishTime>
+    </File>
+    <File Include="Scripts/uiSelect2/select2.js">
+      <publishTime>11/19/2017 09:07:26</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>05/10/2020 13:49:22</publishTime>
+    </File>
+    <File Include="Stamp/InformationCopy.png">
+      <publishTime>05/23/2019 10:00:43</publishTime>
+    </File>
+    <File Include="Stamp/obsolete.png">
+      <publishTime>05/23/2019 10:00:43</publishTime>
+    </File>
+    <File Include="Views/Home/AccountingDocumentScanning.cshtml">
+      <publishTime>04/13/2022 09:54:22</publishTime>
+    </File>
+    <File Include="Views/Home/BadRequest.cshtml">
+      <publishTime>08/27/2016 15:23:44</publishTime>
+    </File>
+    <File Include="Views/Home/DocModification.cshtml">
+      <publishTime>03/22/2023 12:00:01</publishTime>
+    </File>
+    <File Include="Views/Home/DocModificationNew.cshtml">
+      <publishTime>08/29/2023 12:34:56</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentDistribution.cshtml">
+      <publishTime>03/22/2023 12:36:03</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentDistributionNew.cshtml">
+      <publishTime>08/27/2023 13:42:23</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentScan.cshtml">
+      <publishTime>08/29/2023 13:03:01</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentScanning.cshtml">
+      <publishTime>07/24/2023 14:05:56</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentSharing.cshtml">
+      <publishTime>10/21/2020 16:49:22</publishTime>
+    </File>
+    <File Include="Views/Home/DocumentUpdate.cshtml">
+      <publishTime>06/19/2023 10:35:11</publishTime>
+    </File>
+    <File Include="Views/Home/FilePassWord.cshtml">
+      <publishTime>03/14/2017 11:46:04</publishTime>
+    </File>
+    <File Include="Views/Home/NewDocMassDistribution.cshtml">
+      <publishTime>07/05/2023 11:54:04</publishTime>
+    </File>
+    <File Include="Views/Home/NotFound.cshtml">
+      <publishTime>07/11/2018 11:21:24</publishTime>
+    </File>
+    <File Include="Views/Home/OpenFilePassWord.cshtml">
+      <publishTime>03/14/2017 11:49:06</publishTime>
+    </File>
+    <File Include="Views/Home/OriginalDocSearch.cshtml">
+      <publishTime>08/14/2023 16:03:19</publishTime>
+    </File>
+    <File Include="Views/Home/OriginalDocSearching.cshtml">
+      <publishTime>08/07/2023 17:36:42</publishTime>
+    </File>
+    <File Include="Views/Home/OriginalDocSearchingV2.cshtml">
+      <publishTime>10/21/2020 16:49:22</publishTime>
+    </File>
+    <File Include="Views/Home/VersionDocSearching.cshtml">
+      <publishTime>08/22/2023 17:12:42</publishTime>
+    </File>
+    <File Include="Views/Home/VersionDocSearchingNew.cshtml">
+      <publishTime>08/22/2023 18:04:57</publishTime>
+    </File>
+    <File Include="Views/Home/VersioningOriginalDoc.cshtml">
+      <publishTime>05/10/2020 13:49:23</publishTime>
+    </File>
+    <File Include="Views/Home/VersioningOriginalDocNew.cshtml">
+      <publishTime>09/04/2023 15:00:56</publishTime>
+    </File>
+    <File Include="Views/Home/VersioningVersionedDoc.cshtml">
+      <publishTime>10/21/2020 16:49:22</publishTime>
+    </File>
+    <File Include="Views/Home/VersioningVersionedDocNew.cshtml">
+      <publishTime>08/31/2023 11:21:05</publishTime>
+    </File>
+    <File Include="Views/Home/WorkflowDocSearching.cshtml">
+      <publishTime>07/17/2018 15:00:20</publishTime>
+    </File>
+    <File Include="Views/Reports/ExportChecqueInfoInXls.cshtml">
+      <publishTime>10/18/2016 16:25:08</publishTime>
+    </File>
+    <File Include="Views/Reports/Index.cshtml">
+      <publishTime>06/15/2023 12:59:51</publishTime>
+    </File>
+    <File Include="Views/Reports/ReportByRoleWisePermission.cshtml">
+      <publishTime>03/24/2019 09:40:32</publishTime>
+    </File>
+    <File Include="Views/Reports/ShowAllDocInfo.cshtml">
+      <publishTime>12/11/2019 10:12:51</publishTime>
+    </File>
+    <File Include="Views/Shared/css/demo.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/external/cssgrids-min.css">
+      <publishTime>12/22/2020 11:12:13</publishTime>
+    </File>
+    <File Include="Views/Shared/css/external/prettify-min.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/ico-jsplumb.eot">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/ico-jsplumb.svg">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/ico-jsplumb.ttf">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/ico-jsplumb.woff">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/jsplumb-doc.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/jsplumb.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/jsplumbtoolkit-defaults.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/jsplumbtoolkit-demo.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/css/main.css">
+      <publishTime>12/22/2020 11:12:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/CanonicalHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/MenuHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/MetaRobotsHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapNodeModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapNodeModelList.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapPathHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapTitleHelperModel.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>11/19/2017 14:07:08</publishTime>
+    </File>
+    <File Include="Views/Shared/Lockout.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminLteBreadcrumb.cshtml">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminLteLayout.cshtml">
+      <publishTime>09/04/2023 14:57:55</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminLteLeftMenu.cshtml">
+      <publishTime>03/27/2019 11:01:50</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminLteTopMenu.cshtml">
+      <publishTime>03/31/2019 09:17:35</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>09/04/2023 14:56:52</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/19/2016 16:37:12</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/03/2017 11:58:24</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/29/2023 14:13:27</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

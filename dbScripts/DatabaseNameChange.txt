@@ -1,0 +1,43 @@
+--//Database Rename: The database name is changed from SILDMS_DEV to db_eDMS
+USE master;
+GO
+ALTER DATABASE SILDMS_DEV SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE SILDMS_DEV MODIFY NAME = dbEDMS;
+GO
+ALTER DATABASE dbEDMS SET MULTI_USER;
+GO
+--------------------------------
+--// Database Physical and logical File Rename
+USE dbEDMS
+GO
+Select name as ligical_name ,physical_name from sys.database_files
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (NAME=N'SILDMS_DEV', NEWNAME=N'dbEDMS')
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (NAME=N'SILDMS_DEV_log', NEWNAME=N'dbEDMS_log')
+-----------
+USE dbEDMS
+GO
+Select name as ligical_name ,physical_name from sys.database_files
+-----------
+USE master
+GO
+ALTER DATABASE dbEDMS SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+ALTER DATABASE dbEDMS SET OFFLINE
+------------------------
+select name,state_desc from sys.databases
+
+
+--File Rename physicaly at location and then
+
+ALTER DATABASE dbEDMS MODIFY FILE (Name='dbEDMS', FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\dbEDMS_DEV.mdf')
+GO
+ALTER DATABASE dbEDMS MODIFY FILE (Name='dbEDMS_log', FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\dbEDMS_DEV_log.ldf')
+
+-----------------------
+ALTER DATABASE dbEDMS SET ONLINE
+Go
+ALTER DATABASE dbEDMS SET MULTI_USER
+Go

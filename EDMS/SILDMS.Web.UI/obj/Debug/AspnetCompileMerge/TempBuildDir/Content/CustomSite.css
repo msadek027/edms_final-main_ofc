@@ -1,0 +1,218 @@
+﻿
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 2px solid #eee;
+}
+
+.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+    background: #367FA9;
+    color: white;
+    text-align: center;
+}
+
+.content-header {
+    padding: 10px 15px 10px 30px;
+}
+
+    .content-header > .breadcrumb {
+        top: 10px;
+        right: 30px;
+    }
+
+.modal.in .modal-dialog {
+    width: 85%;
+}
+
+span.dynatree-node a {
+    font-size: 11pt !important;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.datepicker {
+    z-index: 1151 !important;
+}
+
+.skin-blue .sidebar-menu > li > a:hover, .skin-blue .sidebar-menu > li.active > a {
+    color: #fff;
+    background: #1e282c !important;
+    border-left-color: #1e282c;
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 18px;
+}
+
+.box-footer {
+    border-top: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+
+.skin-blue .treeview-menu > li > a {
+    color: white;
+}
+
+.skin-blue .treeview-menu > li > a:hover, a:active, a:focus {
+    color: lightblue;
+}
+
+.ds-dwt-container-box {
+    position: absolute;
+    width: 100%;
+}
+
+.btnc1 {
+    background-color: rgb(202, 220, 236); 
+}
+
+.btnc2 {
+    background-color: lightcyan;
+}
+
+.btnc3 {
+    background-color: #FAE6EF;
+}
+
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 12222;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+}
+.loder {
+    z-index: 12223;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loder img {
+    -webkit-user-drag: none;
+    height: 100px;
+    width: 100px;
+}
+
+.pagination {
+    margin: 5px 0 0px 0px;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    line-height: 1.828571;
+}
+
+.skin-blue .sidebar-menu > li.header {
+    color: cornsilk;
+    font-weight: bold;
+}
+
+.tooltip {
+    z-index: 9000 !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(60, 141, 188, 0.26);
+}
+
+.modal-sm {
+    width: 500px !important;
+}
+
+.customFont {
+    font-size: 12px;
+}
+
+.testClass {
+    background-color: inherit;
+}
+
+#btnGetCheque {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+    #btnGetCheque :hover {
+        color: #FFFF00;
+    }
+
+#btnGetVendor {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+    #btnGetVendor:hover {
+        color: #FFFF00;
+    }
+
+#btnGetDocNo {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+#btnGetDateFrm {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+
+#btnGetDateTo {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.cstmBtn {
+    font-size: 10px;
+    background: #3c8dbc;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cstmBtn:hover {
+    border-color: #66afe9;
+    box-shadow: 0 0 8px rgba(60,141,188, 0.6);
+    color: #FFFF00;
+}
+.help-block {
+    color:red;
+}
+
+.external-event {
+    cursor:pointer;
+}
+
+#condencedTbl .form-control {
+    height: 25px;
+}
+
+.select2-container .select2-selection--single {
+    height: 32px;
+}
+
+.select2-container--default .select2-selection--single {
+    border-radius: 0px;
+}

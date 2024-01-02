@@ -1,0 +1,416 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="OriginalDocSearchCtr">
+
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <i class="fa  fa-table"></i>
+                <h3 class="box-title">Search Original Document</h3>
+
+            </div>
+            <div class="col-lg-6">
+                <table class="pull-right">
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" style="height: 34px;" ng-model="pagingInfo.search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="button" name="search" id="search-btn" class="btn btn-flat" ng-click="search()"><i class="fa fa-search"></i> Search </button>
+                                </span>
+                            </div>
+                        </td>
+                 
+                        <td>
+                            <div class="input-group">
+                                <a id="anchor" class="btn btn-flat btn-success pull-right" ng-hide="DWReadOnly" target="_blank" href="@Url.Action("GetPdf", "OriginalDocSearching")">Download</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-tools ">
+                                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-default btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="box-body">
+
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.OwnerLevel"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                        track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.Owner"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!docPropIdentityModel.OwnerLevel">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+
+                    <select ui-select2="{ allowClear: true}" id="select-option" ng-model="docPropIdentityModel.DocCat" data-placeholder="Document Category" style="width:100%;" class="form-control">
+                        <option value=""></option>
+                        <option ng-repeat="item in DocCatForOwner" value="{{item.DocCategoryID}}">{{item.DocCategoryName}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Doc Sub Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+
+                    <select ui-select2="{ allowClear: true}" id="select-option" ng-model="docPropIdentityModel.DocType" data-placeholder="Document Sub Category" style="width:100%; height:32px">
+                        <option value=""></option>
+                        <option ng-repeat="item in DocTypeForOwner" value="{{item.DocTypeID}}">{{item.DocTypeName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Documents</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docPropIdentityModel.DocProperty"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in
+                         docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!docPropIdentityModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Search By</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select data-ng-model="docPropIdentityModel.SearchBy" class="form-control" ng-init="docPropIdentityModel.SearchBy='1'">
+                    <option value="1" selected>Required Attribute</option>
+                    <option value="0">Optional Attribute</option>
+                </select>
+
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="table-responsive">
+                <h5 class="pull-right" style="padding-right:3px;margin-top:0px;margin-bottom:3px">Showing {{pagingInfo.totalItems==0 ? 0 : ((pagingInfo.page -1) * pagingInfo.itemsPerPage)+1}}-{{(((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage) >= pagingInfo.totalItems ? pagingInfo.totalItems : (((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage)}} of {{pagingInfo.totalItems}} results</h5>
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Identificaiton Attribute</th>
+                            <th>Attribute Value</th>
+                            <th class="hidden">FileServerURL</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input placeholder="Attribute Name" class="input-sm form-control" ng-model="AttrName" type="text" />
+                            </th>
+                            <th>
+                                <input placeholder="Attribute Value" class="input-sm form-control" ng-model="AttrValue" type="text" />
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-primary" ng-click="search()" ng-disabled="AttrName=='' || AttrValue==''">Search</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in GridDisplayCollection">
+                            <td class="hidden">{{row.DocumentID}}</td>
+                            <td class="hidden">{{row.DocDistributionID}}</td>
+                            <td class="col-lg-2">{{row.DocPropertyName}}</td>
+                            <td class="col-lg-3">{{row.DocPropIdentifyName}}</td>
+                            <td class="col-lg-3">{{row.MetaValue}}</td>
+                            <td class="hidden">{{row.FileServerURL}}</td>
+                            <td class="col-lg-4">
+                                <button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-info btn-flat" data-ng-click="LoadImage(row)" style="display: inline-block;"><i class="fa fa-search-plus"></i> Quick View</button>
+                                <button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-success btn-flat" data-ng-click="ShowDetailView_new(row)" style="display: inline-block;"><i class="fa fa-list"></i> Detail View</button>
+                                <a class="btn btn-xs btn-warning btn-flat btnDownload" href="/DocScanningModule/MultiDocScan/downloadFile?token={{urlParameter(row)}}"><i class="fa fa-download"></i>Download</a>
+                                <button type="button" class="btn btn-xs btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)" style="display: inline-block;"><i class="fa fa-edit"></i> Edit</button>
+                                <a class="btn btn-xs btn-danger btn-flat btnRemove" ng-click="ShowDeleteConfirmModal(row)"><i class="fa fa-remove"></i> Remove</a>
+                                @*<button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-info btn-flat" data-ng-click="LoadMergeImage(row)" style="display: inline-block;"><i class="fa fa-search-plus"></i> Merge Quick View</button>*@
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-if="pagingInfo.totalItems > 0" class="text-center">
+                    <ul uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page" items-per-page="pagingInfo.itemsPerPage" max-size="7" boundary-links="true" rotate="true" force-ellipses="true" ng-change="selectPage()"></ul>
+                </div>
+                <div ng-if="pagingInfo.totalItems <= 0" class="text-center">
+                    NO ITEM
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <form name="myForm" ng-submit="">
+        <div class="bs-example">
+            <!-- Modal HTML -->
+            <div id="addModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">                    
+                        <div class="modal-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="modal-title">Change Attribute Value</h3>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-danger btn-sm btn-flat pull-right" ng-click="CloseModalView('addModal')"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-flat pull-right" data-ng-click="Save()"  ng-disabled="myForm.$invalid || loading"><i class="fa fa-save"></i> Save</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2" hidden> {{documentID}} </div>
+                                    <div class="col-sm-10 col-md-10">
+                                        <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="{{item.DocMetaID}}" class="control-label">{{item.DocPropIdentifyName}}</label>
+                                                <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.MetaValue" ng-required="true" class="form-control" />
+                                                <span class="label label-danger" ng-show="myForm[item.DocMetaID].$error.required && myForm[item.DocMetaID].$touched">{{item.DocPropIdentifyName}} is Required.</span>
+                                                <span ng-hide="myForm[item.DocMetaID].$error.required && myForm[item.DocMetaID].$touched">&nbsp;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="bs-example">
+        <!-- Modal HTML -->
+        <div id="DetailViewModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">                
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="modal-title">Document Detail View</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger btn-sm btn-flat pull-right" ng-click="CloseModalView('DetailViewModal')"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                                    <button type="button" class="btn btn-primary btn-sm btn-flat pull-right" ng-click="DetailPrint();"><span class="glyphicon glyphicon-print"></span> Print </button>
+                                    <button type="button" class="btn btn-info btn-sm btn-flat pull-right" data-ng-click="ZoomIn()"><span class="glyphicon glyphicon-zoom-in"></span> Zoom In</button>
+                                    <button type="button" class="btn btn-info btn-sm btn-flat pull-right" data-ng-click="ZoomOut()"><span class="glyphicon glyphicon-zoom-out"></span> Zoom Out</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-body">                     
+                        <div class="row">
+                            <input type="hidden" id="serverIp" class="form-control" />
+                            <input type="hidden" id="FtpUserName" class="form-control" />
+                            <input type="hidden" id="FtpPassword" class="form-control" />
+                            <input type="hidden" id="FileServerURL" class="form-control" />
+                            <input type="hidden" id="IsObsolutable" class="form-control" />
+                            <input type="hidden" id="DocumentID" class="form-control" />
+                            <input type="hidden" id="ServerPort" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div id="dwtVerticalThumbnil" class="box-body"></div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div id="dwtLargeViewer" class="box-body"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{item.DocMetaID}}" class="control-label" style="font-size: smaller">{{item.DocPropIdentifyName}} Remarks</label>
+                                        <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.Remarks" ng-required="true" style="width: 300px; height: 25px; font-size: smaller" class="form-control" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="QuickViewModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">                
+                    <div class="modal-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="modal-title">Document Quick View</h3>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-danger btn-sm btn-flat pull-right" ng-click="CloseModalView('QuickViewModal')"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                                    <button type="button" class="btn btn-info btn-sm btn-flat pull-right" ng-click="showPDF(row);"><span class="glyphicon glyphicon-print"></span> Print </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="modal-body">                   
+                        <div id="dwtQuickViewer" class="box-body"></div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{item.DocMetaID}}" class="control-label" style="font-size:smaller;">{{item.DocPropIdentifyName}} Remarks</label>
+                                        <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.Remarks" ng-required="true" style="width: 150px; height: 25px; font-size: smaller" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <input type="hidden" id="serverIp" class="form-control" />
+                                <input type="hidden" id="FtpUserName" class="form-control" />
+                                <input type="hidden" id="FtpPassword" class="form-control" />
+                                <input type="hidden" id="FileServerURL" class="form-control" />
+                                <input type="hidden" id="IsObsolutable" class="form-control" />
+                                <input type="hidden" id="DocumentID" class="form-control" />
+                                <input type="hidden" id="ServerPort" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+ 
+
+    </div>
+
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="ConfirmDelete" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">            
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="modal-title">Are You Sure?</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger btn-sm btn-flat pull-right" ng-click="CloseModalView('ConfirmDelete')"><span class="glyphicon glyphicon-remove"></span> Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="hidden" ng-model="DocumentIDForDelete" />
+                            <h4>You Want to Delete the Document?</h4>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="yes" class="btn btn-danger" ng-disabled="loading" data-ng-click="DeleteDocument()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="~/NgScripts/Controller/OriginalDocSearchCtr.js"></script>
+<script type="text/javascript" src="~/NgScripts/Services/ImageProcessServices.js"></script>
+<script type="text/javascript" src="~/NgScripts/Base/environmentServices.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css" rel="stylesheet" type="text/css" />
+

@@ -1,0 +1,651 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="ownerCtrl">
+    <!-- box-header -->
+    <div class="box-header with-border">
+        <i class="fa fa-list-alt"></i>
+        <h3 class="box-title">Workflow Configuration</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-flat pull-right"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="OwnerLevel">Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="vmBase.OwnerLevel" ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="Owner">Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="vmBase.Owner" data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID" data-ng-disabled="!vmBase.OwnerLevel">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="vmBase.DocCategory" data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID" data-ng-disabled="!vmBase.Owner">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Type</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select id="" name="" class="form-control" data-ng-model="vmBase.DocType" data-ng-options="docType as docType.WorkflowName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID" data-ng-disabled="!vmBase.DocCategory">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+    <form name="PStageForm" novalidate>
+        <div class="row">
+
+
+            <div data-demo-id="statemachine">
+
+                
+
+                <div class="jtk-demo-main">
+                    <div id="divForCanvas">
+                    <div class="jtk-demo-canvas canvas-wide statemachine-demo jtk-surface jtk-surface-nopan" id="canvas">
+                        <div class="removeClass">
+                     
+                        </div>
+
+                    </div>
+
+                </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <button type="button" data-ng-click="Save()" class="btn btn-primary btn-flat pull-right"><i class="fa fa-save"></i> Save</button>
+    </form>
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <i class="fa fa-refresh fa-spin"></i>Loading...
+        </div>
+    </div>
+</div>
+
+<script>
+   
+</script>
+<script type="text/javascript">
+
+    var stagesForConfig;
+    var StagePositionList=[];
+      jsPlumb.ready(function () {
+        //console.log("test22");
+        // setup some defaults for jsPlumb.
+        window.instance = jsPlumb.getInstance({
+            Endpoint: ["Dot", { radius: 2 }],
+            Connector: "StateMachine",
+            HoverPaintStyle: { stroke: "#1e8151", strokeWidth: 2 },
+            ConnectionOverlays: [
+                ["Arrow", {
+                    location: 1,
+                    id: "arrow",
+                    length: 14,
+                    foldback: 0.8
+                }],
+                ["Label", { label: "FOO", id: "label", cssClass: "aLabel" }]
+            ],
+            Container: "canvas"
+        });
+
+        instance.registerConnectionType("basic", { anchor: "Continuous", connector: "StateMachine" });
+
+        window.jsp = instance;
+
+        var canvas = document.getElementById("canvas");
+        var windows = jsPlumb.getSelector(".statemachine-demo .w");
+          var divsWithWindowClass;
+
+ 
+        // bind a click listener to each connection; the connection is deleted. you could of course
+        // just do this: instance.bind("click", instance.deleteConnection), but I wanted to make it clear what was
+        // happening.
+          instance.bind("click", function (c) {
+          
+            instance.deleteConnection(c);
+        });
+      
+        // bind a connection listener. note that the parameter passed to this function contains more than
+        // just the new connection - see the documentation for a full list of what is included in 'info'.
+        // this listener sets the connection's internal
+        // id as the label overlay's text.
+        instance.bind("connection", function (info) {
+            info.connection.getOverlay("label").setLabel(info.connection.id);
+        });
+
+        // bind a double click listener to "canvas"; add new node when this occurs.
+        jsPlumb.on(canvas, "dblclick", function (a,b) {
+        
+        });
+
+        //
+        // initialise element as connection targets and source.
+        //
+        var initNode = function (el) {
+
+            // initialise draggable elements.
+           // instance.draggable(el);
+            divsWithWindowClass = jsPlumb.getSelector(".w");
+           // console.log(divsWithWindowClass);
+            instance.draggable(divsWithWindowClass, {
+                drag: function () {
+                    
+                    jsPlumb.repaint($(this));
+                },
+                stop: function (event, ui) {
+                 
+                    var StagePosition = { StageID: event.e.target.id.substr(1), PositionX: event.pos[0], PositionY: event.pos[1] };
+
+                    StagePositionList = $.grep(StagePositionList, function (e) {
+                        return e.StageID != StagePosition.StageID;
+                    });
+                    StagePositionList.push(StagePosition);
+
+                    console.log(StagePositionList);
+                }
+            });
+            // console.log(el);
+            instance.makeSource(el, {
+                filter: ".ep",
+                anchor: "Continuous",
+                connectorStyle: { stroke: "#5c96bc", strokeWidth: 2, outlineStroke: "transparent", outlineWidth: 4 },
+                connectionType: "basic",
+                extract: {
+                    "action": "the-action"
+                },
+                maxConnections: 200,
+                onMaxConnections: function (info, e) {
+                    alert("Maximum connections (" + info.maxConnections + ") reached");
+                }
+            });
+
+            instance.makeTarget(el, {
+                dropOptions: { hoverClass: "dragHover" },
+                anchor: "Continuous",
+                allowLoopback: true
+            });
+
+            // this is not part of the core demo functionality; it is a means for the Toolkit edition's wrapped
+            // version of this demo to find out about new nodes being added.
+            //
+            instance.fire("jsPlumbDemoNodeAdded", el);
+        };
+
+         window.newNode = function (x, y,sn,si) {
+            var d = document.createElement("div");
+            var id = "_"+si;
+            d.className = "w";
+             d.id = id;
+            
+            d.innerHTML = sn + "<div class=\"ep\"></div>";
+            d.style.left = x + "px";
+            d.style.top = y + "px";
+             instance.getContainer().appendChild(d);
+             
+             //console.log(divsWithWindowClass);
+            
+             initNode(d);
+             //console.log(d);
+            return d;
+        };
+
+        // suspend drawing and initialise.
+        instance.batch(function () {
+            for (var i = 0; i < windows.length; i++) {
+                //  console.log(windows[i]);
+                initNode(windows[i], true);
+            }
+         
+
+       
+        });
+          
+
+          
+        
+        jsPlumb.fire("jsPlumbDemoLoaded", instance);
+
+    });
+    app.controller('ownerCtrl', function ($scope, $http) {
+        //applySecurity();
+    
+        $scope.stageCollection = [];
+        var ProcessingStageConnections = [];
+        $scope.ParallelStages = [];
+        $scope.ParallelEndStages = [];
+        $scope.IsConfigured = false;
+        $scope.CurrentPStage = 0;
+        $scope.CurrentPEndStage = 0;
+
+        $scope.vmBase = {
+            StageMap: { StageMapID: "", StageName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            WorkflowId: ''
+        }
+          $scope.ProcessingStageConnection = {
+            StageConnectionID: '',
+            SourceStageId: '',
+            TargetStageId: '',
+            WorkflowID: '',
+            DocTypeID: ''
+        
+        }
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.vmBase.OwnerLevel = "";
+                $scope.ownerLevels = response.result;
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+        $scope.$watch('vmBase.OwnerLevel', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.Owner = "";
+                $scope.vmBase.DocCategory = "";
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.StageMap = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                    { _OwnerLevelID: $scope.vmBase.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('vmBase.Owner', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.DocCategory = "";
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.StageMap = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.vmBase.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('vmBase.DocCategory', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.StageMap = "";
+
+                $http.post('/WorkflowModule/ProStage/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.vmBase.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.vmBase.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+
+     
+
+
+
+        $scope.$watch('vmBase.DocType', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.StageMap = "";
+                 StagePositionList = [];
+                //console.log(newVal.DocTypeID);
+                //console.log($scope.vmBase.DocType.DocTypeID);
+                $http.post('/WorkflowModule/ProStage/GetProcessStagesByWorkflow',
+                    {
+                        DocTypeID: $scope.vmBase.DocType.DocTypeID
+                    })
+                    .success(function (response) {
+                        $scope.stageCollection = response.stages;
+                        $("div").remove(".w");
+                         instance.deleteEveryConnection();
+                         instance.deleteEveryEndpoint();
+                     
+                        if (response.code == '1') {
+                             $scope.vmBase.WorkflowID = $scope.stageCollection[0].WorkflowID;
+                           toastr.success("Success");
+                            stagesForConfig = response.stages;
+                           
+                         
+                            var i,StageAllConnections,lt=stagesForConfig.length;
+                            for (i = 0; i < lt; i++) {
+                                //newNode(Math.floor(Math.random() * 600)+i , Math.floor(Math.random() * 400), stagesForConfig[i].StageName, stagesForConfig[i].StageID);
+                                //console.log(stagesForConfig[i].PositionX);
+                                if (stagesForConfig[i].PositionX != 0) {
+                                    newNode(stagesForConfig[i].PositionX, stagesForConfig[i].PositionY, stagesForConfig[i].StageName, stagesForConfig[i].StageID);
+                                }
+                                else {
+                                    newNode(i * 85, Math.floor(Math.random() * 300), stagesForConfig[i].StageName, stagesForConfig[i].StageID);
+                                }
+                                
+
+                            }
+
+                            $http.post('/WorkflowModule/WorkflowSetup/GetProcessStagesConnectionsByWorkflow',
+                                {
+                                    WorkflowID:  $scope.vmBase.WorkflowID 
+                                    
+                                })
+                                    .then(function (response) {
+                                        if (response.data.Code == '1') {
+                                            
+                                            StageAllConnections = response.data.ProcessingStageConnections;
+                                          //  console.log(StageAllConnections);
+                                              for (i = 0; i < StageAllConnections.length; i++) {
+                                             
+                                                instance.connect({ source: "_"+StageAllConnections[i].SourceStageId, target: "_"+StageAllConnections[i].TargetStageId, type: "basic" });
+                                      
+
+                                                }
+                                            
+                                        }
+                                        else {
+                                           
+                                        }
+                                  
+                             });
+                           
+                          
+                         
+                        }
+                        else {
+                          
+                             
+                              
+                             toastr.error("Stages aren't created");
+
+                        } 
+
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+        $scope.$watch('vmBase.StageMap', function (newVal) {
+            if (newVal) {
+                var url = '/WorkflowModule/WorkflowSetup/GetALLPStageProperty?DocCategoryID=' + $scope.vmBase.DocCategory.DocCategoryID + ' &OwnerID=' + $scope.vmBase.Owner.OwnerID + ' &DocTypeID=' + $scope.vmBase.DocType.DocTypeID + ' &stageMapID=' + $scope.vmBase.StageMap.StageMapID + '';
+                $http.get(url).success(function (response) {
+                    $scope.ParallelStages = response.tp.ParallelStages;
+
+                    $scope.ParallelEndStages = response.tp.ParallelEndStages;
+                    //console.log( $scope.ParallelEndStages );
+                    $scope.IsConfigured = response.tp.IsConfigured;
+                    $scope.CurrentPStage = response.tp.CurrentPStage;
+                    $scope.CurrentPEndStage = response.tp.CurrentPEndStage;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                    toastr.error('Data Loading Faild.');
+                });
+            }
+        });
+
+        $scope.Save = function () {
+
+           
+           // console.log($scope.stageCollection);
+
+            var stagesForCheck = $scope.stageCollection;
+
+           // console.log(stagesForCheck.length);
+
+            var nodeConnector = instance.getAllConnections();
+
+            var hasChild = false,countChild=0,countParent=0,hasParent=false,hasSelfCon=false;
+            for (i = 0; i < stagesForCheck.length; i++) {
+                hasChild = false;
+                hasParent = false;
+                hasSelfCon = false;
+
+                var st = "_" + stagesForCheck[i].StageID;
+
+              //  console.log('target ' + st);
+               // console.log(nodeConnector.length);
+
+                for (j = 0; j < nodeConnector.length; j++) {
+                   // console.log(nodeConnector[j].sourceId);
+                    if (st== nodeConnector[j].sourceId) {
+                        hasChild = true;
+
+                    }
+                    if (st == nodeConnector[j].targetId) {
+                        hasParent = true;
+                        
+                    }
+                    if (nodeConnector[j].sourceId == nodeConnector[j].targetId) {
+                        hasSelfCon =true;
+
+                    }
+
+                }
+                if (!hasChild) {
+                    countChild++;
+                }
+                if (!hasParent) {
+                    countParent++;
+                }
+            }
+          //  console.log(countChild);
+            if (countChild > 1) {
+
+                toastr.error("There can't be multiple end Stage");
+                return;
+            }
+           // console.log(countParent);
+            if (countParent !=1) {
+
+                toastr.error("Some Connections are not properly given");
+                return;
+            }
+            if (hasSelfCon) {
+
+                toastr.error("Stages can't have self Connenction");
+                return;
+            }
+             if (nodeConnector.length>0) {
+                 for (i = 0; i < nodeConnector.length; i++) {
+
+                            $scope.ProcessingStageConnection.SourceStageId = nodeConnector[i].sourceId.substring(1);
+                            $scope.ProcessingStageConnection.TargetStageId=nodeConnector[i].targetId.substring(1);
+                            $scope.ProcessingStageConnection.DocTypeID = $scope.vmBase.DocType.DocTypeID;
+                            $scope.ProcessingStageConnection.WorkflowID =  $scope.vmBase.WorkflowID;
+                            //console.log( $scope.ProcessingStageConnection);
+                            ProcessingStageConnections.push($scope.ProcessingStageConnection);   
+                            $scope.ProcessingStageConnection = {
+                                StageConnectionID: '',
+                                SourceStageId: '',
+                                TargetStageId: '',
+                                WorkflowID: '',
+                                DocTypeID: ''
+                            }
+                               
+                  }
+
+                 
+                 $http.post('/WorkflowModule/WorkflowSetup/SaveProcessingStageConnections',
+                     {
+                         ProcessingStageConnections: ProcessingStageConnections,
+                         StagePositionList: StagePositionList
+                         })
+                    .then(function (response) {
+                        if (response.data.Code == '1') {
+                            toastr.success("Success");
+                            StagePositionList = [];
+                        }
+                        else {
+                            toastr.error("Something went wrong");
+                        }
+                    
+                    });
+            ProcessingStageConnections = [];
+             
+            }
+            else {
+                toastr.error("There's no active Connection");
+            }
+                
+
+        }
+    });
+</script>
+<style>
+.demo {
+    /* for IE10+ touch devices */
+    touch-action:none;
+}
+
+.w {
+    padding: 16px;
+    position: absolute;
+    z-index: 4;
+    border: 1px solid #2e6f9a;
+    box-shadow: 2px 2px 19px #e0e0e0;
+    -o-box-shadow: 2px 2px 19px #e0e0e0;
+    -webkit-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    opacity: 0.8;
+    cursor: move;
+    background-color: white;
+    font-size: 11px;
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.w:hover {
+    background-color: #5c96bc;
+    color: white;
+
+}
+
+.aLabel {
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.aLabel.jtk-hover, .jtk-source-hover, .jtk-target-hover {
+    background-color: #1e8151;
+    color: white;
+}
+
+.aLabel {
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    border: 1px solid #346789;
+    cursor: pointer;
+}
+
+.ep {
+    position: absolute;
+    bottom: 37%;
+    right: 5px;
+    width: 1em;
+    height: 1em;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 0 0 2px black;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
+}
+
+.ep:hover {
+    box-shadow: 0 0 6px black;
+}
+
+.statemachine-demo .jtk-endpoint {
+    z-index: 3;
+}
+
+#opened {
+    left: 110em;
+    top: 25em;
+}
+
+#phone1 {
+    left: 85em;
+    top: 12em;
+    width: 7em;
+}
+
+#inperson {
+    left: 72em;
+    top: 23em;
+}
+
+#phone2 {
+    left: 58em;
+    top: 24em;
+}
+
+#rejected {
+    left: 50em;
+    top: 35em;
+}
+
+.dragHover {
+    border: 2px solid orange;
+}
+
+path, .jtk-endpoint { cursor:pointer; }</style>

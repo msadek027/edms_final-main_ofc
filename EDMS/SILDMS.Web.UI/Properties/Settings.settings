@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SILDMS.Web.UI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TempFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\MailTemp</Value>
+    </Setting>
+    <Setting Name="SendFromEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">edms@squaregroup.com</Value>
+    </Setting>
+    <Setting Name="SendFromName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EDMS</Value>
+    </Setting>
+    <Setting Name="SendFromPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">edms321</Value>
+    </Setting>
+    <Setting Name="EmailHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">172.16.128.41</Value>
+    </Setting>
+    <Setting Name="EmailPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

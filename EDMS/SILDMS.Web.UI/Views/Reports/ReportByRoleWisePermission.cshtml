@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<title>Role Wise Permission</title>
+<div class="box box-primary box-body" ng-controller="ReportByRoleWisePermissionCtrl" data-ng-init="init()">
+    @using (Html.BeginForm("ReportByRoleWisePermission", "../Reports", System.Web.Mvc.FormMethod.Post, new { target = "_blank", name = "H1Form", id = "H1Form" }))
+    {
+        <!-- box-header -->
+        <div class="box-header with-border">
+            <i class="fa fa-user"></i>
+            <h3 class="box-title">Role Wise Permission</h3>
+            <div class="box-tools pull-right">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button ng-disabled="showPrint" type="submit" id="btnPreview" name="ButtonType" value="Preview" class="btn btn-flat btn-success pull-right">
+                            <i class="fa fa-print"></i> Preview
+                        </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button ng-disabled="showPrint" type="submit" id="btnDownload" name="ButtonType" value="Download" class="btn btn-flat btn-success pull-Left">
+                            <i class="fa fa-download"></i> Download
+                        </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button ng-disabled="loading" type="button" id="btnRefresh" name="btnRefresh" value="Refresh" data-ng-click="toggleRefreshTable()" class="btn btn-warning btn-flat pull-right">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <label style="padding-left:60px;">Owner Level</label>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select id="ddOwnerLevel" name="OwnerLevelID" class="form-control"
+                                ng-model="ReportModel.OwnerLevel" required="required" ng-change="GetOwner()"
+                                ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in OwnerLevelList track by ownerLevel.OwnerLevelID">
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <label style="padding-left:60px;">Owner</label>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select id="ddOwner" name="OwnerID" class="form-control"
+                                ng-model="ReportModel.Owner" required="required" ng-change="GetRole()"
+                                ng-options="owner as owner.OwnerName for owner in OwnerList track by owner.OwnerID"
+                                ng-disabled="!ReportModel.OwnerLevel.OwnerLevelID">
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <label style="padding-left:60px;">Role</label>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select id="ddRole" name="RoleID" class="form-control"
+                                ng-model="ReportModel.Role" required="required"
+                                ng-options="role as role.RoleTitle for role in RoleList track by role.RoleID"
+                                ng-disabled="!ReportModel.Owner.OwnerID">
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <label style="padding-left: 30px;">Download Type</label>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <input type="radio" name="ReportType" value="PDF" checked="checked" /> <label>PDF</label>
+                    <input type="radio" name="ReportType" value="EXCEL" /> <label>EXCEL</label>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+
+    app.controller('ReportByRoleWisePermissionCtrl', function ($scope, $http) {
+
+        $scope.ReportModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            Role: { RoleID: "", RoleTitle: "" }
+        };
+
+        $scope.pagingInfo = {
+            page: 1,
+            itemsPerPage: 10,
+            sortBy: null,
+            reverse: false,
+            search: null,
+            totalItems: 0
+        };
+
+        $(function () {
+            GetOwnerLevel();
+        });
+
+        function GetOwnerLevel() {
+            $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+                .success(function (response) {
+                    //debugger;
+                    //console.log(response.result);
+                    $scope.OwnerLevelList = response.result;
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        $scope.GetOwner = function () {
+            $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                {
+                    _OwnerLevelID: $scope.ReportModel.OwnerLevel.OwnerLevelID
+                })
+                .success(function (response) {
+                    //debugger;
+                    //console.log(response.result);
+                    $scope.OwnerList = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        $scope.GetRole = function () {
+            $http.get('/SecurityModule/RoleSetup/GetRole/_OwnerID?_OwnerID=' + $scope.ReportModel.Owner.OwnerID + '')
+                .success(function (response) {
+                    //debugger;
+                    //console.log(response.result);
+                    $scope.RoleList = response.result;
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        $scope.showPrint = false;
+        $scope.itemsByPage = 10;
+
+        $scope.sort = function (sortBy) {
+            if (sortBy === $scope.pagingInfo.sortBy) {
+                $scope.pagingInfo.reverse = !$scope.pagingInfo.reverse;
+            } else {
+                $scope.pagingInfo.sortBy = sortBy;
+                $scope.pagingInfo.reverse = false;
+            }
+            $scope.pagingInfo.page = 1;
+            $scope.GetVendors();
+        };
+
+        $scope.toggleRefreshTable = function () {
+            window.location.reload();
+        };
+
+    });
+</script>

@@ -1,0 +1,731 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+    <div class="box box-primary box-body" ng-controller="docStageCtrl">
+
+        <div class="box-header with-border">
+            <i class="fa  fa-files-o"></i>
+            <h3 class="box-title">Processing Stage List</h3>
+            <div class="box-tools pull-right">
+                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable(row)" class="btn btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                <button type="button" id="btnAdd" data-ng-click="toggleAdd(row)" class="btn btn-flat btn-primary pull-right btnSave" ng-disabled="loading"> <i class="fa fa-plus"></i> Add New</button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <label for="OwnerLevel">Owner Level</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="vmDocProperty.OwnerLevel" ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID" ng-change="ddOwnerLevelChange()">
+                            <option value="">-- Select One --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <label for="Owner">Owner</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" ng-model="vmDocProperty.Owner" data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID" ng-change="ddOwnerChange()"
+                                data-ng-disabled="!vmDocProperty.OwnerLevel">
+                            <option value="">-- Select One --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <label>Document Category</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" data-ng-model="vmDocProperty.DocCategory" data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                                data-ng-disabled="!vmDocProperty.Owner" ng-change="ddChategoryChange()">
+                            <option value="">-- Select One --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <div class="form-group">
+                        <label>Doc Sub Category</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="form-group">
+                        <select id="" name="" class="form-control" data-ng-model="vmDocProperty.DocType" data-ng-options="docType as docType.WorkflowName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID" ng-change="ddTypeChange()"
+                                data-ng-disabled="!vmDocProperty.DocCategory">
+                            <option value="">-- Select One --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content" id="stageTable" style="display:none">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-danger">
+
+                        <div class="box-body">
+
+                            <div class="modal-body table-responsive">
+                                <table id="testtable" st-table="CreatedStagesForWorkflowModelList"
+                                       class="table table-condensed table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Stage Serial</th>
+                                            <th>Stage Name</th>
+                                           
+                                            <th>Status</th>
+                                            <th>Action</th>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="row in CreatedStagesForWorkflowModelList">
+                                            <td class="hidden">{{row.DocTypeID}}</td>
+                                            <td class="hidden">{{row.WorkflowID}}</td>
+                                            <td class="hidden">{{row.StageID}}</td>
+                                            <td class="col-lg-1" align="center">
+                                                {{row.StageSL}}
+
+                                            </td>
+                                            <td class="col-lg-4" align="center">
+                                                {{row.StageName}}
+
+                                            </td>
+
+                                            <td class="col-lg-1" align="center">
+
+                                                <span ng-attr-class="{{row.Status!=1? 'label label-danger':'label label-success'  }}">
+                                                    {{row.Status!=1? 'InActive':'Active'}}
+                                                </span>
+                                            </td>
+                                            <td class="col-lg-2" align="center">
+                                                @*<button type="button" class="btn btn-sm btn-info btn-flat btnEdit" ng-show="!includeStage" data-ng-click="Postponed(row)"><i class="fa fa-stop"></i> Postponed</button>
+            <button type="button" class="btn btn-sm btn-warning btn-flat btnEdit" ng-show="includeStage" data-ng-click="Include(row)"><i class="fa fa-adjust"></i> Include</button>*@
+                                                <button type="button" class="btn btn-sm btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)"><i class="fa fa-edit"></i> Edit</button>
+
+                                                <button type="button" class="btn btn-sm btn-danger btn-flat btnEdit" data-ng-click="Delete(row)"><i class="fa fa-remove"></i> Delete</button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                @*<button type="button" style="float:right" class="btn btn-sm btn-success btn-flat btnEdit" data-ng-click="SaveChanges(row)"><i class="fa fa-save"></i> Save Changes</button>*@
+
+                            </div>
+
+
+                        </div>
+                    </div><!-- /.box -->
+
+                </div><!-- /.col (left) -->
+
+            </div><!-- /.row -->
+
+        </section>
+    
+        <section class="content" id="stageTableCreate" style="display:none">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-danger">
+
+                        <div class="box-body">
+
+                            <div class="modal-body table-responsive">
+                                <table id="testtable" st-table="stagesForWorkflowModelList"
+                                       class="table table-condensed table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Stage Serial</th>
+                                            <th>Stage Name</th>
+                                          
+                                            <th>Modification</th>
+                                            <th>Verification</th>
+                                            <th>Status</th>
+                                           
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="row in stagesForWorkflowModelList">
+                                            <td class="hidden">{{row.DocTypeID}}</td>
+
+                                            <td class="col-lg-1" align="center">
+                                                <input id="StageSL" class="form-control" readonly type="number" min="0" ng-model="row.StageSL" placeholder="Sl" />
+
+
+                                            </td>
+                                            <td class="col-lg-4" align="center">
+                                                <input id="StageName" class="form-control" type="text" ng-model="row.StageName" placeholder="Stage Name" />
+
+
+                                            </td>
+                                            <td class="col-lg-2" align="center">
+                                                <input type="checkbox" ng-model="row.HaveMk" id="mk{{row.StageSL}}" ng-disabled="{{row.StageSL>1?false:true}}" data-ng-click="check(row,'mk')">
+                                            </td>
+                                            <td class="col-lg-2" align="center">
+                                                <input type="checkbox" ng-model="row.HaveCk" id="ck{{row.StageSL}}" ng-disabled="{{row.StageSL>1?false:true}}" data-ng-click="check(row,'ck')">
+                                            </td>
+                                            <td class="col-lg-1" align="center">
+                                                
+                                                <span ng-attr-class="{{row.Status!=1? 'label label-danger':'label label-success'  }}">
+                                                    {{row.Status!=1? 'InActive':'Active'}}
+                                                </span>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                                <button type="button" style="float:right" class="btn btn-sm btn-success btn-flat btnEdit" data-ng-click="SaveChanges(row)"><i class="fa fa-save"></i> Save Changes</button>
+
+                            </div>
+
+
+                        </div>
+                    </div><!-- /.box -->
+                    
+                </div><!-- /.col (left) -->
+
+            </div><!-- /.row -->
+
+        </section>
+        <form name="docTypeFrm" id="docTypeFrm">
+            <div class="bs-example">
+                <div id="addModal" class="modal fade">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h3 class="modal-title">{{modalHeader}}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="StageName">Stage Name</label>
+                                                <input type="text" data-ng-model="stage.StageName" class="form-control" name="StageName" id="StageName"
+                                                       placeholder="Enter Stage Name" />
+                                            </div>
+                                        </div>
+                                 
+                                      
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="StageSL">Stage Serial</label>
+                                                <input type="number" data-ng-model="stage.StageSL" class="form-control" name="StageSL" id="StageSL" readonly
+                                                       placeholder="In AT" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="DocTypeName">Modification</label>
+                                                <input type="checkbox" ng-model="stage.HaveMk"  class="chb" @*ng-disabled="{{//stage.StageSL>1?false:true}}"*@>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="DocPreservationPolicy">Verification</label>
+                                                <input type="checkbox" ng-model="stage.HaveCk"  class="chb"  @*ng-disabled="{{//stage.StageSL>1?false:true}}"*@>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="DocPhysicalLocation">Notify User</label>
+                                                <input type="checkbox" ng-model="stage.NotifyMk">
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <button type="button" id="btnSubmit" class="btn btn-primary btn-flat btnEdit"
+                                                ng-click="Save()" ng-disabled="loading">
+                                            Save
+                                        </button>
+                                        <button type="button" id="btnClose" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div id="mydiv" data-ng-show="loading">
+            <div class="overlay">
+                <div class="loder">
+                    <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ConfirmDelete" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Do you want to delete this Stage?</h3>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" id="yes" class="btn btn-danger" ng-disabled="loading" data-ng-click="Delete()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    // Controller for Document Type page
+    $(".chb").change(function () {
+        $(".chb").prop('checked', false);
+        $(this).prop('checked', true);
+    });
+   
+    app.controller("docStageCtrl", ["$scope", "$http", function ($scope, $http) {
+        //applySecurity();
+
+        //button show/hide
+        $scope.includeStage = false;
+        $scope.displayedCollection = [];
+        $scope.stagesForWorkflowModel = {
+
+            StageID : "",
+            StageName : "",
+            StageSL : "",
+            Status : "1",
+            AutoIssue : false,
+            AutoReceive : true,
+            HaveMk : false,
+            HaveCk : false,
+            NotifyCk : false,
+            NotifyMk : false,
+            DocTypeID: "",
+            WorkflowID:""
+
+
+        };
+        $scope.check = function (row, action) {
+         
+            if (action == 'mk') {
+
+                if (row.HaveCk)
+                    row.HaveCk = !row.HaveCk;
+                
+               
+            }
+            if (action == 'ck') {
+                if (row.HaveMk)
+                     row.HaveMk = !row.HaveMk;
+
+            }
+  
+
+        }
+        $scope.stagesForWorkflowModelList = [];
+        $scope.CreatedStagesForWorkflowModelList = [];
+        $scope.stage = {};
+        $scope.vmDocProperty = {
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+        };
+ 
+
+
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.ownerLevels = response.result;
+                $scope.vmDocProperty.OwnerLevel = response.result[6];
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+        $scope.ddOwnerLevelChange = function () {
+            if ($scope.vmDocProperty.OwnerLevel) {
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel', { _OwnerLevelID: $scope.vmDocProperty.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+            else {
+                $scope.vmDocProperty.Owner = [];
+                $scope.vmDocProperty.DocCategory = [];
+                $scope.vmDocProperty.DocType = [];
+                $scope.getAllDocProperty = [];
+                $scope.displayedCollection = [].concat($scope.getAllDocProperty);
+            }
+        };
+
+        $scope.$watch('vmDocProperty.OwnerLevel', function (newVal, oldVal) {
+            if (newVal) {
+                if (newVal != "" && newVal != oldVal) {
+                    if ($scope.vmDocProperty.OwnerLevel) {
+                        $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel', { _OwnerLevelID: $scope.vmDocProperty.OwnerLevel.OwnerLevelID })
+                            .success(function (response) {
+                                $scope.ownersForSpecificOwnerLevel = response.result;
+                                $scope.vmDocProperty.Owner = response.result[0];
+                                $scope.ddOwnerChange();
+                                $scope.loading = false;
+                            }).error(function () {
+                                $scope.loading = false;
+                            });
+                    }
+                    else {
+                        $scope.vmDocProperty.Owner = [];
+                        $scope.vmDocProperty.DocCategory = [];
+                        $scope.vmDocProperty.DocType = [];
+                        $scope.getAllDocProperty = [];
+                        $scope.displayedCollection = [].concat($scope.getAllDocProperty);
+                    }
+                }
+            }
+        });
+
+        $scope.ddOwnerChange = function () {
+            if ($scope.vmDocProperty.Owner) {
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.vmDocProperty.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        //$scope.vmDocProperty.DocCategory.DocCategoryID = $scope.docCategoriesForSpecificOwner[0];
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+            else {
+                $scope.vmDocProperty.DocCategory = [];
+                $scope.vmDocProperty.DocType = [];
+                $scope.getAllDocProperty = [];
+                $scope.displayedCollection = [].concat($scope.getAllDocProperty);
+            }
+        }
+
+        $scope.ddChategoryChange = function () {
+            if ($scope.vmDocProperty.DocCategory) {
+                $http.post('/WorkflowModule/ProStage/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.vmDocProperty.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.vmDocProperty.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+            else {
+                $scope.vmDocProperty.DocType = [];
+                $scope.getAllDocProperty = [];
+                $scope.displayedCollection = [].concat($scope.getAllDocProperty);
+            }
+        }
+
+        $scope.ddTypeChange = function (newVal) {
+            if ($scope.vmDocProperty.DocType) {
+                $('#stageTable').hide();
+                  $('#stageTableCreate').hide();
+                //console.log($scope.vmDocProperty.DocType.DocTypeID);
+                $http.post("/WorkflowModule/ProStage/GetProcessStagesByWorkflow/",
+                    {
+                        DocTypeID: $scope.vmDocProperty.DocType.DocTypeID
+
+
+
+                    }).success(function (data) {
+                        $scope.stagesForWorkflowModelList = [];
+                         $scope.CreatedStagesForWorkflowModelList = [];
+                        if (data.code === "1") {
+                          
+                            $scope.loading = false;
+
+                            //var count = data.stages[1].NumberOFStage - data.stages.length;
+                           
+                            //if (count > 0) {
+
+                            //    for (var i = data.stages.length; i < data.stages[1].NumberOFStage; i++) {
+                            //       data.stages[i-1].StageName = "";
+                            //        data.stages[i-1].StageSL = i;
+                            //        data.stages[i - 1].WorkflowID = data.stages[1].WorkflowID;
+                            //        data.stages[i - 1].DocTypeID = data.stages[1].DocTypeID;
+                            //        data.stages[i - 1].StageID = "";
+                            //        data.stages[i - 1].Status = 1;
+                            //        data.stages[i - 1].AutoIssue = false;
+                            //        data.stages[i - 1].AutoReceive = true;
+                            //        data.stages[i - 1].HaveMk = true;
+                            //        data.stages[i - 1].HaveCk = true;
+                            //        data.stages[i - 1].NumberOfCheck = 1;
+                               
+                                
+                            //         }
+                            //}
+                           
+                               
+                            $scope.CreatedStagesForWorkflowModelList = data.stages;
+                            
+                           
+                            $('#stageTable').show();
+                            toastr.success(data.Msg);
+                        } else if (data.code === "2") {
+                          //  console.log(data.workflow);
+                            
+                            for (var i = 0; i < data.workflow.NumberOfStage; i++) {
+                                $scope.stagesForWorkflowModel.StageName = "";
+                                $scope.stagesForWorkflowModel.StageSL = i+1;
+                                $scope.stagesForWorkflowModel.WorkflowID = data.workflow.WorkflowID;
+                                $scope.stagesForWorkflowModel.DocTypeID = data.workflow.DocTypeID;
+                                if (i == 0) {
+                                    $scope.stagesForWorkflowModel.HaveMk = true;
+                                    $scope.stagesForWorkflowModel.HaveCk = false;
+                                   // console.log(i);
+                                }
+                                // console.log(i);
+                                $scope.stagesForWorkflowModelList = $scope.stagesForWorkflowModelList.concat($scope.stagesForWorkflowModel);
+                                $scope.stagesForWorkflowModel = {
+
+                                                StageID : "",
+                                                StageName : "",
+                                                StageSL : "",
+                                                Status : "1",
+                                                AutoIssue : false,
+                                                AutoReceive : true,
+                                                HaveMk : false,
+                                                HaveCk : false,
+                                                NotifyCk : false,
+                                                NotifyMk : false,
+                                                DocTypeID: "",
+                                                WorkflowID:"",
+                                                NumberOfCheck:""
+
+
+                                            };
+                            }
+                          //  console.log($scope.stagesForWorkflowModelList);
+                            $('#stageTableCreate').show();
+                            $('#mk1').attr('readonly', true);
+                            $('#ck1').hide();
+                            toastr.success(data.Msg);
+                        }
+                        else {
+                            toastr.error(data.Msg);
+                        }
+                    })
+                    .error(function (data) {
+                        $scope.loading = false;
+                        toastr.error("Save Failed.");
+                    });
+            }
+            else {
+                //console.log($scope.vmDocProperty.DocType);
+                $scope.getAllDocProperty = [];
+                $scope.displayedCollection = [].concat($scope.getAllDocProperty);
+            }
+        }
+
+
+        // Add new Document Type
+        $scope.toggleAdd = function () {
+            $scope.modalHeader = 'Add new stage';
+            $scope.stage.StageID = "";
+            $scope.stage.StageName = "";
+            $scope.stage.NumberOfCheck = 1;
+            $scope.stage.StageSL = "";
+            $scope.stage.AutoIssue = false;
+            $scope.stage.AutoReceive = true;
+            $scope.stage.HaveMk = true;
+            $scope.stage.HaveCk = true;
+            $scope.stage.NotifyMk = false;
+            $scope.stage.NotifyCk = false;
+            $('#addModal').modal('show');
+        };
+
+        // Edit Document Type
+        $scope.toggleEdit = function (row) {
+
+            //$scope.docTypeFrm.$setPristine();
+            //$scope.docTypeFrm.$setUntouched();
+
+           // console.log(row.StageID);
+            $http.post("/WorkflowModule/ProStage/GetProcessStagesByStageID/",
+                {
+                    StageID: row.StageID
+
+
+
+                }).success(function (data) {
+                 
+                    if (data.Message === "S201") {
+
+                        $scope.loading = false;
+                        $scope.modalHeader = 'Update stage';
+                        $scope.stage.StageID = row.StageID;
+                        $scope.stage.StageName = data.stage.StageName;
+                        $scope.stage.NumberOfCheck = data.stage.NumberOfCheck;
+                        $scope.stage.StageSL = row.StageSL;
+                        $scope.stage.AutoIssue = data.stage.AutoIssue;
+                        $scope.stage.AutoReceive = data.stage.AutoReceive;
+                        $scope.stage.HaveMk = data.stage.HaveMk;
+                        $scope.stage.HaveCk = data.stage.HaveCk;
+                        $scope.stage.NotifyMk = data.stage.NotifyMk;
+                        $scope.stage.NotifyCk = data.stage.NotifyCk;
+                        $("#addModal").modal("show");
+                       
+                    } else {
+                        //  console.log(data.workflow);
+
+                      
+                     
+                        toastr.error("Something went wrong");
+                    }
+                 
+                  
+                })
+                .error(function (data) {
+                    $scope.loading = false;
+                    toastr.error("Something went wrong");
+                });
+
+
+
+          
+        };
+
+        $scope.DeleteConfirm = function (row) {
+
+            $('#ConfirmDelete').modal('show');
+            
+            //$http.post("/WorkflowModule/ProStage/DeleteProcessStagesByStageID/",
+            //    {
+            //        StageID: row.StageID
+
+
+
+            //    }).success(function (data) {
+
+            //        if (data.Message === "S201") {
+
+            //            $scope.loading = false;
+                   
+            //            toastr.success("Successfully Deleted");
+
+            //        } else {
+            //            //  console.log(data.workflow);
+
+
+
+            //            toastr.error("Something went wrong");
+            //        }
+
+
+            //    })
+            //    .error(function (data) {
+            //        $scope.loading = false;
+            //        toastr.error("Something went wrong");
+            //    });
+
+
+
+
+        };
+        $scope.Save = function () {
+            $scope.loading = true;
+            $scope.stage.StageSL = $scope.CreatedStagesForWorkflowModelList.length + 1;
+            $scope.stage.DocTypeID = $scope.CreatedStagesForWorkflowModelList[1].DocTypeID;
+            $scope.stage.WorkflowID = $scope.CreatedStagesForWorkflowModelList[1].WorkflowID;
+            $http.post("/WorkflowModule/ProStage/AddProcessStage/", JSON.stringify(convArrToObj($scope.stage))).success(function (data) {
+                if (data.Code === "1") {
+                    $scope.loading = false;
+                    $("#addModal").modal("hide");
+                   // $scope.getAllStages();
+                    $scope.ddTypeChange();
+                    toastr.success(data.Message);
+                } else {
+                    $scope.loading = false;
+                    toastr.error(data.Message);
+                }
+            })
+                .error(function (data) {
+                    $scope.loading = false;
+                    toastr.error("Save Failed.");
+                });
+
+        };
+        $scope.SaveChanges = function () {
+            //$scope.loading = true;
+           // console.log($scope.stagesForWorkflowModelList);
+
+           
+            for (var i = 0; i < $scope.stagesForWorkflowModelList.length; i++) {
+
+                if (!($scope.stagesForWorkflowModelList[i].StageName.length > 0)) {
+              
+                    toastr.error("Every Stage Must Have a name");
+                    return;
+                }
+            }
+
+          //  console.log($scope.stagesForWorkflowModelList);
+             $http.post("/WorkflowModule/ProStage/AddProcessStages/",
+                    {
+                        stages: $scope.stagesForWorkflowModelList
+
+
+
+                    }).success(function (data) {
+                if (data.Code === "1") {
+                    $scope.loading = false;
+                   // $("#addModal").modal("hide");
+                   // $scope.getAllStages();
+                    $('#stageTableCreate').hide();
+                    $scope.ddTypeChange();
+                    toastr.success(data.Message);
+                } else {
+                    $scope.loading = false;
+                    toastr.error(data.Message);
+                }
+            })
+                .error(function (data) {
+                    $scope.loading = false;
+                    toastr.error("Save Failed.");
+                });
+
+        };
+        $scope.toggleRefreshTable = function () {
+            $scope.loading = true;
+            $scope.changeDocCategory();
+        };
+    }]);
+</script>
+

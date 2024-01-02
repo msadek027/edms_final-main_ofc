@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CBPSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CMS_Bank">
+    <Key>
+      <PropertyRef Name="BankID" />
+    </Key>
+    <Property Name="BankID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CountryofOrigin" Type="nvarchar" MaxLength="128" />
+    <Property Name="BankCategory" Type="nvarchar" MaxLength="30" />
+    <Property Name="BankType" Type="nvarchar" MaxLength="12" />
+    <Property Name="BIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="CMS_BankBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="BankID" Type="nvarchar" MaxLength="12" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="BranchPhone" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchFax" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchEmail" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchPerson" Type="nvarchar" MaxLength="128" />
+    <Property Name="PersonDesignation" Type="nvarchar" MaxLength="128" />
+    <Property Name="PersonDepartment" Type="nvarchar" MaxLength="128" />
+    <Property Name="PersonCell" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchBftn" Type="nvarchar" MaxLength="128" />
+    <Property Name="BranchRemarks" Type="nvarchar" MaxLength="128" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="CMS_Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="VendorCode" Type="nvarchar" MaxLength="12" />
+    <Property Name="VendorName" Type="nvarchar" MaxLength="128" />
+    <Property Name="VendorAddressCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="VendorGroup" Type="nvarchar" MaxLength="128" />
+    <Property Name="VendorCategory" Type="nvarchar" MaxLength="128" />
+    <Property Name="VendorType" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsUser" Type="bit" />
+    <Property Name="ConcernVendor" Type="nvarchar" MaxLength="128" />
+    <Property Name="TransBank" Type="nvarchar" MaxLength="128" />
+    <Property Name="TransAccountName" Type="nvarchar" MaxLength="128" />
+    <Property Name="TransAccountNo" Type="nvarchar" MaxLength="128" />
+    <Property Name="DataSource" Type="nvarchar" MaxLength="12" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="DocCategoryID" Type="nvarchar" MaxLength="12" />
+    <Property Name="DocTypeID" Type="nvarchar" MaxLength="12" />
+    <Property Name="DocPropertyID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="CPS_BankBranchAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="BranchID" Type="nvarchar" MaxLength="12" />
+    <Property Name="BankID" Type="nvarchar" MaxLength="12" />
+    <Property Name="AccountNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AccountName" Type="nvarchar" MaxLength="128" />
+    <Property Name="AccountType" Type="nvarchar" MaxLength="12" />
+    <Property Name="TransAmt" Type="numeric" Precision="22" Scale="4" />
+    <Property Name="TransCurrencyType" Type="nvarchar" MaxLength="12" />
+    <Property Name="DefaultCurrency" Type="nvarchar" MaxLength="12" />
+    <Property Name="ConcernGL" Type="nvarchar" MaxLength="12" />
+    <Property Name="LastCreditAmt" Type="numeric" Precision="22" Scale="4" />
+    <Property Name="LastDebitAmt" Type="numeric" Precision="22" Scale="4" />
+    <Property Name="ClosingAmt" Type="numeric" Precision="22" Scale="4" />
+    <Property Name="AccountOpenDate" Type="date" />
+    <Property Name="AccountCloseDate" Type="date" />
+    <Property Name="SignatoryGroup" Type="nvarchar" MaxLength="12" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="CPS_ChequeRegistration">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="RequisitionID" Type="nvarchar" MaxLength="12" />
+    <Property Name="AccountID" Type="nvarchar" MaxLength="12" />
+    <Property Name="ReqSlipNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChequebookNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="NoOfLeaf" Type="int" />
+    <Property Name="FirstLeafNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastLefNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReceiveDate" Type="datetime" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="RegistrationNote" Type="nvarchar" MaxLength="128" />
+    <Property Name="RegistrationBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ChequebookStatus" Type="nvarchar" MaxLength="12" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_MasterData">
+    <Key>
+      <PropertyRef Name="MasterDataID" />
+    </Key>
+    <Property Name="MasterDataID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="MasterDataValue" Type="nvarchar(max)" />
+    <Property Name="MasterDataTypeID" Type="nvarchar" MaxLength="12" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+    <Property Name="IsDefault" Type="int" />
+    <Property Name="SerialNo" Type="int" />
+    <Property Name="UDCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParrentID" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="Sys_MasterDataType">
+    <Key>
+      <PropertyRef Name="MasterDataTypeID" />
+    </Key>
+    <Property Name="MasterDataTypeID" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="128" />
+    <Property Name="TypePurpose" Type="nvarchar" MaxLength="256" />
+    <Property Name="TypeCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="OwnerID" Type="nvarchar" MaxLength="12" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="SetOn" Type="datetime" />
+    <Property Name="SetBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="12" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <Association Name="FK_Sys_MasterData_Sys_MasterDataType">
+    <End Role="Sys_MasterDataType" Type="Self.Sys_MasterDataType" Multiplicity="0..1" />
+    <End Role="Sys_MasterData" Type="Self.Sys_MasterData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sys_MasterDataType">
+        <PropertyRef Name="MasterDataTypeID" />
+      </Principal>
+      <Dependent Role="Sys_MasterData">
+        <PropertyRef Name="MasterDataTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CBPS_GetAllBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetAllOwnerByCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetAllOwnerForRestrictedCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StageID" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillProcessGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillProcessingStage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="CurrentStage" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceiveForClearing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceiveForFDD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceiveForIssueToPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClearingDateFrom" Type="nvarchar" Mode="In" />
+    <Parameter Name="ClearingDateTo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceiveForParking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBillReceiveForPosting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetBranchForBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BankID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetDocPropertyForFDD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetFurtherDocumentDemand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetIdentificationAttribute" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetMailSms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetOwnersForAOwnerLevel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerLevelName" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetPOInfoForBillReceive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetReceivedBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetRestrictedCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetScannedDocumentInfoForBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillReceiveID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetStageMakerChecker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetStopBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetVendorBillingInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetVendorPhoneNoEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Action" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetVendors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_GetVendorsAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorAddressCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_InsertOrUpdateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BranchID" Type="nvarchar" Mode="In" />
+    <Parameter Name="AccountID" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AccountNo" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AccountName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AccountType" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TransAmt" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TransCurrencyType" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="DefaultCurrency" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AccountOpenDate" Type="datetime" Mode="In" />
+    <Parameter Name="AccountCloseDate" Type="datetime" Mode="In" />
+    <Parameter Name="SignatoryGroup" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ConcernGL" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_InsertOrUpdateBank" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_InsertOrUpdateBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BranchID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BankID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BranchName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchCode" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchBftn" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchAddress" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchEmail" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchFax" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchPerson" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PersonCell" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchPhone" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="BranchRemarks" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetBillClearing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetBillDocumentsInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OwnerLevelID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="FileOriginalName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="FileCodeName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="FileExtension" Type="nvarchar" Mode="In" />
+    <Parameter Name="UploaderIP" Type="nvarchar" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+    <Parameter Name="ConfColumnIds" Type="varchar(max)" Mode="In" />
+    <Parameter Name="BillReceiveID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BoothID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PONo" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoicingParty" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceDate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceAmount" Type="numeric" Mode="In" />
+    <Parameter Name="InvoiceCurrency" Type="nvarchar" Mode="In" />
+    <Parameter Name="PreferedPayMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillSubmittedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillSubmitDate" Type="datetime" Mode="In" />
+    <Parameter Name="BearerContactNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="CBPS_SetBillParking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetBillPosting" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetBillProcessingStage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageNo" Type="int" Mode="In" />
+    <Parameter Name="StageName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="HardCopyMove" Type="bit" Mode="In" />
+    <Parameter Name="InitiateIndicator" Type="nvarchar" Mode="In" />
+    <Parameter Name="ReleaseIndicator" Type="nvarchar" Mode="In" />
+    <Parameter Name="NextStage" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageBackKey" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageSuspendKey" Type="nvarchar" Mode="In" />
+    <Parameter Name="PaymentBlockKey" Type="nvarchar" Mode="In" />
+    <Parameter Name="DataPullIndicator" Type="nvarchar" Mode="In" />
+    <Parameter Name="DataSealIndicator" Type="nvarchar" Mode="In" />
+    <Parameter Name="AutoIssue" Type="bit" Mode="In" />
+    <Parameter Name="AutoReceive" Type="bit" Mode="In" />
+    <Parameter Name="VendorNotify" Type="bit" Mode="In" />
+    <Parameter Name="InvoicePartyNotify" Type="bit" Mode="In" />
+    <Parameter Name="BenchMark" Type="int" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetBillProcessStop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StopBillID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PONo" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="StopBillDtlID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StopDate" Type="datetime" Mode="In" />
+    <Parameter Name="StopReason" Type="nvarchar" Mode="In" />
+    <Parameter Name="ReopenDate" Type="datetime" Mode="In" />
+    <Parameter Name="ReopenReason" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessState" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="MailSmsSendID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetFurtherDocumentDemand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetPOInfoFromSAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetRestrictedCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RestrictedCompanyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerLevelID" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompanyCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetStageMakerChecker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StageMCID" Type="nvarchar" Mode="In" />
+    <Parameter Name="StageID" Type="nvarchar" Mode="In" />
+    <Parameter Name="MkCkTitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="DefaultValue" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="nvarchar" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_SetUpdatePOInfoFromSAP_BAK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_UpdateClearingBillStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="billStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_UpdateParkingBillStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="billStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_UpdatePOInfoFromSAP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_UpdatePostingBillStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="billStatus" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CBPS_UpdateReceivedBillInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UploaderIP" Type="nvarchar" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+    <Parameter Name="BillReceiveID" Type="nvarchar" Mode="In" />
+    <Parameter Name="BoothID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PONo" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillTrackingNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoicingParty" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="InvoiceDate" Type="datetime" Mode="In" />
+    <Parameter Name="InvoiceAmount" Type="numeric" Mode="In" />
+    <Parameter Name="InvoiceCurrency" Type="nvarchar" Mode="In" />
+    <Parameter Name="PreferedPayMode" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillSubmittedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="BillSubmitDate" Type="datetime" Mode="In" />
+    <Parameter Name="BearerContactNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProcessGroupID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Remarks" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="CheckUserValidity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="userIP" Type="nvarchar" Mode="In" />
+    <Parameter Name="p_Status" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="CMS_SetVendor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorID" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorAddressCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorGroup" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorCategory" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorType" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsUser" Type="bit" Mode="In" />
+    <Parameter Name="ConcernVendor" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransBank" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransAccountName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TransAccountNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="DataSource" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="CMS_SetVendorAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VendorAddressCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorID" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorAddress1" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorAddress2" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorCountry" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorPhoneNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorMobileNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorFax" Type="nvarchar" Mode="In" />
+    <Parameter Name="VendorEmail" Type="nvarchar" Mode="In" />
+    <Parameter Name="SkypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+    <Parameter Name="ContactCellNo" Type="nvarchar" Mode="In" />
+    <Parameter Name="DataSource" Type="nvarchar" Mode="In" />
+    <Parameter Name="OwnerID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocTypeID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DocPropertyID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLevel" Type="int" Mode="In" />
+    <Parameter Name="SetBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Status" Type="int" Mode="In" />
+    <Parameter Name="Action" Type="varchar" Mode="In" />
+    <Parameter Name="p_Status" Type="varchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="CBPSModelStoreContainer">
+    <EntitySet Name="CMS_Bank" EntityType="Self.CMS_Bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CMS_BankBranch" EntityType="Self.CMS_BankBranch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CMS_Vendor" EntityType="Self.CMS_Vendor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CPS_BankBranchAccount" EntityType="Self.CPS_BankBranchAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CPS_ChequeRegistration" EntityType="Self.CPS_ChequeRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_MasterData" EntityType="Self.Sys_MasterData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_MasterDataType" EntityType="Self.Sys_MasterDataType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sys_MasterData_Sys_MasterDataType" Association="Self.FK_Sys_MasterData_Sys_MasterDataType">
+      <End Role="Sys_MasterDataType" EntitySet="Sys_MasterDataType" />
+      <End Role="Sys_MasterData" EntitySet="Sys_MasterData" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,191 @@
+USE [dbEDMS]
+GO
+/****** Object:  Trigger [dbo].[tr_dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344_Sender]    Script Date: 12/26/2023 4:58:53 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[tr_dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344_Sender] ON [dbo].[WFM_Objects]   
+--AFTER insert, update, delete AS     
+AFTER update AS   
+BEGIN    
+    SET NOCOUNT ON;    
+    
+    DECLARE @rowsToProcess INT    
+    DECLARE @currentRow INT    
+    DECLARE @records XML    
+    DECLARE @theMessageContainer NVARCHAR(MAX)    
+    DECLARE @dmlType NVARCHAR(10)    
+    DECLARE @modifiedRecordsTable TABLE ([RowNumber] INT IDENTITY(1, 1), [ObjectID] nvarchar(12), [OwnerID] nvarchar(12), [DocCategoryID] nvarchar(12), [DocTypeID] nvarchar(12), [PassedKey] bit)    
+    DECLARE @exceptTable TABLE ([RowNumber] INT, [ObjectID] nvarchar(12), [OwnerID] nvarchar(12), [DocCategoryID] nvarchar(12), [DocTypeID] nvarchar(12), [PassedKey] bit)    
+ DECLARE @deletedTable TABLE ([RowNumber] INT IDENTITY(1, 1), [ObjectID] nvarchar(12), [OwnerID] nvarchar(12), [DocCategoryID] nvarchar(12), [DocTypeID] nvarchar(12), [PassedKey] bit)    
+    DECLARE @insertedTable TABLE ([RowNumber] INT IDENTITY(1, 1), [ObjectID] nvarchar(12), [OwnerID] nvarchar(12), [DocCategoryID] nvarchar(12), [DocTypeID] nvarchar(12), [PassedKey] bit)    
+    DECLARE @var1 nvarchar(12)    
+    DECLARE @var2 nvarchar(12)    
+    DECLARE @var3 nvarchar(12)    
+    DECLARE @var4 nvarchar(12)    
+    DECLARE @var5 bit    
+        
+    IF NOT EXISTS(SELECT * FROM INSERTED)    
+    BEGIN    
+        SET @dmlType = 'Delete'    
+        INSERT INTO @modifiedRecordsTable SELECT [ObjectID], [OwnerID], [DocCategoryID], [DocTypeID], [PassedKey] FROM DELETED     
+    END    
+    ELSE    
+    BEGIN    
+        IF NOT EXISTS(SELECT * FROM DELETED)    
+        BEGIN    
+            SET @dmlType = 'Insert'    
+            INSERT INTO @modifiedRecordsTable SELECT [ObjectID], [OwnerID], [DocCategoryID], [DocTypeID], [PassedKey] FROM INSERTED     
+        END    
+        ELSE    
+        BEGIN    
+            SET @dmlType = 'Update';    
+            INSERT INTO @deletedTable SELECT [ObjectID],[OwnerID],[DocCategoryID],[DocTypeID],[PassedKey] FROM DELETED    
+INSERT INTO @insertedTable SELECT [ObjectID],[OwnerID],[DocCategoryID],[DocTypeID],[PassedKey] FROM INSERTED    
+    
+INSERT INTO @exceptTable SELECT [RowNumber],[ObjectID],[OwnerID],[DocCategoryID],[DocTypeID],[PassedKey] FROM @insertedTable EXCEPT SELECT [RowNumber],[ObjectID],[OwnerID],[DocCategoryID],[DocTypeID],[PassedKey] FROM @deletedTable    
+    
+INSERT INTO @modifiedRecordsTable     
+SELECT [ObjectID],[OwnerID],[DocCategoryID],[DocTypeID],[PassedKey] FROM @exceptTable e     
+        END    
+    END    
+    
+    SELECT @rowsToProcess = COUNT(*) FROM @modifiedRecordsTable        
+    IF @rowsToProcess < 1 RETURN    
+    SET @currentRow = 0    
+    
+    BEGIN TRY    
+        WHILE @currentRow < @rowsToProcess    
+        BEGIN    
+            SET @currentRow = @currentRow + 1    
+    
+            SELECT @var1 = [ObjectID], @var2 = [OwnerID], @var3 = [DocCategoryID], @var4 = [DocTypeID], @var5 = [PassedKey]    
+            FROM @modifiedRecordsTable    
+            WHERE [RowNumber] = @currentRow    
+                    
+            IF @dmlType = 'Insert'     
+            BEGIN    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/StartMessage/Insert] (CONVERT(NVARCHAR, @dmlType))    
+    
+                IF @var1 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (CONVERT(NVARCHAR(MAX), @var1))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (0x)    
+                END    
+                IF @var2 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (CONVERT(NVARCHAR(MAX), @var2))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (0x)    
+                END    
+                IF @var3 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (CONVERT(NVARCHAR(MAX), @var3))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (0x)    
+                END    
+                IF @var4 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (CONVERT(NVARCHAR(MAX), @var4))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (0x)    
+                END    
+                IF @var5 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (CONVERT(NVARCHAR(MAX), @var5))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (0x)    
+                END    
+    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/EndMessage] (0x)    
+            END    
+            
+            IF @dmlType = 'Update'    
+            BEGIN    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/StartMessage/Update] (CONVERT(NVARCHAR, @dmlType))    
+    
+                IF @var1 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (CONVERT(NVARCHAR(MAX), @var1))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (0x)    
+                END    
+                IF @var2 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (CONVERT(NVARCHAR(MAX), @var2))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (0x)    
+                END    
+                IF @var3 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (CONVERT(NVARCHAR(MAX), @var3))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (0x)    
+                END    
+                IF @var4 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (CONVERT(NVARCHAR(MAX), @var4))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (0x)    
+                END    
+                IF @var5 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (CONVERT(NVARCHAR(MAX), @var5))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (0x)    
+                END    
+    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/EndMessage] (0x)    
+            END    
+    
+            IF @dmlType = 'Delete'    
+            BEGIN    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/StartMessage/Delete] (CONVERT(NVARCHAR, @dmlType))    
+    
+                IF @var1 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (CONVERT(NVARCHAR(MAX), @var1))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/ObjectID] (0x)    
+                END    
+                IF @var2 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (CONVERT(NVARCHAR(MAX), @var2))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/OwnerID] (0x)    
+                END    
+                IF @var3 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (CONVERT(NVARCHAR(MAX), @var3))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocCategoryID] (0x)    
+                END    
+                IF @var4 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (CONVERT(NVARCHAR(MAX), @var4))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/DocTypeID] (0x)    
+                END    
+                IF @var5 IS NOT NULL BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (CONVERT(NVARCHAR(MAX), @var5))    
+                END    
+                ELSE BEGIN    
+                    ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/PassedKey] (0x)    
+                END    
+    
+                ;SEND ON CONVERSATION 'ab0124aa-605b-ee11-80bf-2cd02db3150f' MESSAGE TYPE [dbo_WFM_Objects_72e0a181-5bd8-4d1e-8045-bfd078fc7344/EndMessage] (0x)    
+            END                
+        END    
+    END TRY    
+    BEGIN CATCH    
+        DECLARE @ErrorMessage NVARCHAR(4000)    
+        DECLARE @ErrorSeverity INT    
+        DECLARE @ErrorState INT    
+    
+        SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE()    
+    
+        RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState)     
+    END CATCH    
+END

@@ -1,0 +1,1059 @@
+﻿@{
+    ViewBag.Title = "NewDocMassDistribution";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+
+<style>
+    #filedrag {
+        /*display: none;*/
+        font-weight: bold;
+        text-align: center;
+        padding: 1em 0;
+        margin: 1em 0;
+        color: #555;
+        border: 2px solid #555;
+        border-radius: 7px;
+        cursor: default;
+    }
+
+        #filedrag.hover {
+            color: #f00;
+            border-color: #f00;
+            border-style: solid;
+            box-shadow: inset 0 3px 4px;
+        }
+
+ /*   .custom-file-upload {
+      
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    }*/
+</style>
+<script>
+    $(document).ready(function () {
+        UploadFile.AddEventListenerForDragAndDrop();
+        UploadFile.AddEventListenerForFileSelect();
+    });
+
+    function UploadFile() { }
+
+    // file drag hover
+    UploadFile.FileDragHover = function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.target.className = (e.type == "dragover" ? "hover" : "");
+    }
+
+    // file selection
+    UploadFile.FileSelectHandler = function (e) {
+        // cancel event and hover styling
+        UploadFile.FileDragHover(e);
+
+        //if from drag and drop then reset file select
+        if (e.dataTransfer != undefined &&
+            e.dataTransfer.files != undefined) {
+            UploadFile.ResetFileSelect();
+        }
+
+        // fetch FileList object
+        var files = e.target.files || e.dataTransfer.files;
+
+        if (files != undefined && files.length > 0) {
+            UploadFile.UploadFileToServer(files[0]);
+        }
+    }
+
+    //Adds Event Listeners for drag drop div
+    UploadFile.AddEventListenerForDragAndDrop = function () {
+        var fileDrag = $("#filedrag");
+
+        // call initialization file
+        if (window.File && window.FileList && window.FileReader) {
+            // is XHR2 available?
+            var xhr = new XMLHttpRequest();
+
+            if (xhr.upload) {
+
+                // file drop
+                // fileDrag[0].addEventListener("ondragstart", UploadFile.FileDragHover, false);
+                // fileDrag[0].addEventListener("ondragenter", UploadFile.FileDragHover, false);
+                // fileDrag[0].addEventListener("ondragover", UploadFile.FileDragHover, false);
+                // fileDrag[0].addEventListener("ondragleave", UploadFile.FileDragHover, false);
+                // fileDrag[0].addEventListener("drop", UploadFile.FileSelectHandler, false);
+
+                //Works like this too!!!!
+                fileDrag[0].ondragstart = UploadFile.FileDragHover;
+                fileDrag[0].ondragenter = UploadFile.FileDragHover;
+                fileDrag[0].ondragover = UploadFile.FileDragHover;
+                fileDrag[0].ondragleave = UploadFile.FileDragHover;
+                fileDrag[0].ondrop = UploadFile.FileSelectHandler;
+            }
+        }
+        else {
+            fileDrag.innerHTML = '<p>File Drag and Drop not Supported </p>';
+        }
+    }
+
+    UploadFile.AddEventListenerForFileSelect = function () {
+        var fileselect = $("#fileselect");
+        // file select
+        fileselect[0].addEventListener("change", UploadFile.FileSelectHandler, false);
+    }
+
+    //Resets File Select
+    UploadFile.ResetFileSelect = function () {
+        $("#fileselect").replaceWith('<input type="file" id="fileselect" name="fileselect[]" class="form-control" />');
+        $("#fileName").replaceWith('<span id="fileName">Drop Files Here</span></div>')  // <span id="fileName">Drop Files Here</span></div>
+        $("#FileUpload1").replaceWith('<input type="file" id="FileUpload1" />'); // 
+
+        UploadFile.AddEventListenerForFileSelect();
+    }
+
+    //--------- Upload Functions ------- //
+    UploadFile.UploadFileToServer = function (file) {
+        var formdata = new FormData();
+        formdata.append(file.name, file);
+        $.ajax({
+            url: '/DocScanningModule/DocDistribution/UploadHandler',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                //alert(data);
+                if (data !== "1") {
+                    $("#fileName").text(data);
+                    console.log("",data);
+                }
+                else {
+                    toastr.info("N.B: Please input valid excel file.");
+                    $("#fileName").text("");
+                }
+
+            },
+            error: function (error) {
+                toastr.error('Invalid Data stracture');
+            }
+        });
+    }
+</script>
+
+<div class="box box-primary box-body" ng-controller="NewDocMassDistributionCtrl">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <i class="fa  fa-table"></i>
+                <h3 class="box-title">Document Distribution</h3>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="pull-right">
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" style="margin-top: 1px;height: 34px;" ng-model="pagingInfo.search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="button" name="search" id="search-btn" class="btn btn-flat" ng-click="search()"><i class="fa fa-search"></i> Search </button>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-tools ">
+                                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-default btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docMassDistributionModel.OwnerLevel" required="required" ng-change="loadOwner()"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docMassDistributionModel.Owner" required="required" ng-change="loadCategory()"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!docMassDistributionModel.OwnerLevel">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docMassDistributionModel.DocCategory" required="required" ng-change="loadType()"
+                            data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                            data-ng-disabled="!docMassDistributionModel.Owner">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Doc Sub Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docMassDistributionModel.DocType" required="required" ng-change="loadPropert()"
+                            data-ng-options="docType as docType.DocTypeName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID"
+                            data-ng-disabled="!docMassDistributionModel.DocCategory">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Documents in Type</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docMassDistributionModel.DocProperty" required="required"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!docMassDistributionModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            @*<div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Search By</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select data-ng-model="docMassDistributionModel.SearchBy" class="form-control" required="required" data-ng-disabled="!docMassDistributionModel.DocProperty">
+                    <option value="" selected="selected">--Select--</option>
+                    <option value="1">Required Attribute</option>
+                    <option value="0">Optional Attribute</option>
+                </select>
+            </div>*@
+        </div>
+        <br />
+
+        @*<div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Distribution Of</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docMassDistributionModel.DidtributionOf" required="required" data-ng-disabled="!docMassDistributionModel.DocProperty || !docMassDistributionModel.SearchBy" ng-change="loadPropertyIdentify()">
+                    <option value="">-- Select --</option>
+                    <option value="Original">Original</option>
+                    <option value="Version">Version</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Remarks</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <input type="text" data-ng-model="docMassDistributionModel.Remarks" maxlength="256" class="form-control" />
+            </div>
+        </div>*@
+
+        <br />
+
+        
+        <!--<div class="row">
+            <table class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Document Name</th>
+                        <th>Identificaiton Attribute</th>
+                        <th>Attribute Value</th>
+                        <th class="hidden">FileServerURL</th>-->
+                        @*<th>Action</th>*@
+                    <!--</tr>
+                    <tr>
+                        <th colspan="2">
+                            <input placeholder="Attribute Name" class="input-sm form-control" ng-model="AttrName" type="text" />
+                        </th>
+                        <th>
+                            <input placeholder="Attribute Value" class="input-sm form-control" ng-model="AttrValue" type="text" />
+                            <button type="button" class="btn btn-primary" ng-click="search()" ng-disabled="AttrName=='' || AttrValue==''">Search</button>
+                        </th>-->
+                        @*<th>
+                                <button type="button" class="btn btn-primary" ng-click="search()" ng-disabled="AttrName=='' || AttrValue==''">Search</button>
+                            </th>*@
+                    <!--</tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="row in GridDisplayCollection">
+                        <td class="hidden">{{row.DocumentID}}</td>
+                        <td class="hidden">{{row.DocDistributionID}}</td>
+                        <td class="col-lg-2">{{row.DocPropertyName}}</td>
+                        <td class="col-lg-3">{{row.DocPropIdentifyName}}</td>
+                        <td class="col-lg-3">{{row.MetaValue}}</td>
+                        <td class="hidden">{{row.FileServerURL}}</td>-->
+                        @*<td class="col-lg-4 col-md-4 col-sm-4 text-center">
+                                <button type="button" class="btn btn-sm btn-info btn-flat" data-ng-click="LoadImage(row)" style="display: inline-block;"><i class="fa fa-hand-o-down"></i> Select</button>
+                            </td>*@
+                    <!--</tr>
+                </tbody>
+            </table>
+
+            <div ng-if="pagingInfo.totalItems > 0" class="text-center">
+                <ul uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page" items-per-page="{{pagingInfo.itemsPerPage}}" max-size="7" boundary-links="true" rotate="true" force-ellipses="true" ng-change="selectPage()"></ul>
+            </div>
+            <div ng-if="pagingInfo.totalItems <= 0" class="text-center">
+                NO ITEM
+            </div>
+        </div>-->
+        
+
+        @*<div class="row">
+                <div class="col-lg-12">
+                    <div class="external-event bg-aqua" ng-click="LoadDocument()" style="position: relative;">
+                        <i class="fa fa-pagelines"></i> Load PDF
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="dwtHorizontalThumbnil"></div>
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                                <h4 class="box-title">Upload Documents:</h4>
+                            </div>
+                            <div class="box-body no-padding">
+                                <div class="row" style="padding-top: 17px; padding-bottom: 15px; padding-left: 10px;">
+                                    @*<div class="col-lg-1"></div>*@
+                                    <div class="col-lg-10 custom-file-upload">
+                                        <input type="file" id="FileUpload1" accept = "application/pdf" />
+                                    </div>
+                                </div>
+                                <div id="external-events" class="row" style="padding-top: 17px; padding-bottom: 15px; padding-left: 10px;">
+                                    @*<div class="col-lg-1"></div>*@
+                                    <div class="col-lg-2">
+                                        <div class="external-event bg-aqua " ng-click="Save11()" style="position: relative; width: 110px;">
+                                            <i class="fa fa-inbox"></i> Local Save
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /. box -->
+                    </div>
+                    <!-- /.col -->
+
+
+                    <!--<div class="col-md-2" style="padding-left:0px;">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h4 class="box-title">Options</h4>
+                            </div>
+                            <div class="box-body">
+                                <div id="external-events">
+                                    <div class="external-event bg-aqua " ng-click="Save11()" style="position: relative;">
+                                        <i class="fa fa-inbox"></i> Local Save
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!-- /.box-body -->
+                        <!--</div>
+                    </div>-->
+
+
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form id="uploadform" class="form-horizontal" role="form" onsubmit="return false;">
+                    <fieldset>
+                        <legend style="padding-left: 5px;">Load .xls File to Distribute Meta Value:</legend>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <input type="file" id="fileselect" accept=".xlsx, .xls, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="margin-top: 10px; border: 0px solid red" name="fileselect[]" class="form-control"/>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="filedrag" style="margin-top: 10px;"> <span id="fileName">Drop Files Here</span></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    <div class="box-footer with-border">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="button" id="btnSave" class="btn btn-lg btn-primary btn-flat pull-right btnDistribute" data-ng-disabled="!btnDistribute" data-ng-click="SaveExtra()">Distribute</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="viewerModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 class="modal-title">Image Viewer</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="box-body">
+                        <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomIn()"> Zoom In</button>
+                        <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomOut()"> Zoom Out</button>
+
+                        <div id="dwtLargeViewer" class="box-body"></div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.intellisense.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.initiate.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.config.js"></script>
+<script type="text/javascript" src="~/Resources/addon/dynamsoft.webtwain.addon.pdf.js"></script>
+
+<script type="text/javascript">
+    app.controller('NewDocMassDistributionCtrl', function ($scope, $http) {
+        // applySecurity();
+        $scope.docPropIdentityGridData2 = [];
+        $scope.btnDistribute = false;
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
+
+        var DWObjectLargeViewer;
+        var dwtHorizontalThumbnil;
+        var zoomFactor = .5;
+
+        function Dynamsoft_OnReady() {
+            dwtHorizontalThumbnil = Dynamsoft.WebTwainEnv.GetWebTwain('dwtHorizontalThumbnil');
+            DWObjectLargeViewer = Dynamsoft.WebTwainEnv.GetWebTwain('dwtLargeViewer');
+
+            //dwtHorizontalThumbnil.SetViewMode(4, -1);
+
+            DWObjectLargeViewer.SetViewMode(-1, -1);
+            DWObjectLargeViewer.MaxImagesInBuffer = 1;
+
+            dwtHorizontalThumbnil.SetViewMode(4, -1);
+            dwtHorizontalThumbnil.FitWindowType = 0;
+            dwtHorizontalThumbnil.SelectionImageBorderColor = 0x691254;
+            dwtHorizontalThumbnil.ShowPageNumber = true;
+            dwtHorizontalThumbnil.IfAppendImage = true;
+
+            dwtHorizontalThumbnil.RegisterEvent('OnMouseDoubleClick', $scope.updateLargeViewer);
+            dwtHorizontalThumbnil.RegisterEvent('OnImageAreaSelected', function (sImageIndex, left, top, right, bottom) {
+                dwtHorizontalThumbnil.Erase(sImageIndex, left, top, right, bottom);
+            });
+
+            if (dwtHorizontalThumbnil) {
+                var count = DWObject.SourceCount;
+
+                if (count == 0 && Dynamsoft.Lib.env.bMac) {
+                    dwtHorizontalThumbnil.CloseSourceManager();
+                    dwtHorizontalThumbnil.ImageCaptureDriverType = 0;
+                    dwtHorizontalThumbnil.OpenSourceManager();
+                    count = DWObject.SourceCount;
+                }
+
+                for (var i = 0; i < count; i++) {
+                    document.getElementById("source").options.add(new Option(dwtHorizontalThumbnil.GetSourceNameItems(i), i)); // Get Data Source names from Data Source Manager and put them in a drop-down box
+                }
+            }
+
+            dwtHorizontalThumbnil.Addon.PDF.Download("../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+        };
+
+        $scope.ZoomIn = function () {
+            DWObjectLargeViewer.Zoom = zoomFactor * 1.2;
+            zoomFactor = zoomFactor * 1.2;
+        };
+
+        $scope.ZoomOut = function () {
+            DWObjectLargeViewer.Zoom = zoomFactor / 1.2;
+            zoomFactor = zoomFactor / 1.2;
+        };
+
+
+        $scope.LoadDocument = function () {
+            $scope.btnDistribute = true;
+            dwtHorizontalThumbnil.Addon.PDF.Download("../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+
+            dwtHorizontalThumbnil.Addon.PDF.SetResolution(200);
+            dwtHorizontalThumbnil.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            dwtHorizontalThumbnil.IfShowFileDialog = true;
+
+            dwtHorizontalThumbnil.RemoveAllImages();
+            dwtHorizontalThumbnil.LoadImageEx("", EnumDWT_ImageType.IT_PDF, function () { }, function () { });
+
+            $scope.ShowUploadImageDivVar = false;
+        };
+
+        $scope.LoadImage = function (tableRow, e) {
+            $scope.btnDistribute = true;
+            $scope.docPropIdentityGridData2 = tableRow;
+            dwtHorizontalThumbnil.IfShowFileDialog = false;
+            dwtHorizontalThumbnil.RemoveAllImages();
+
+            dwtHorizontalThumbnil.FTPPort = tableRow.ServerPort;
+            dwtHorizontalThumbnil.FTPUserName = tableRow.FtpUserName;
+            dwtHorizontalThumbnil.FTPPassword = tableRow.FtpPassword;
+
+            if ($scope.docMassDistributionModel.DidtributionOf === 'Original') {
+                dwtHorizontalThumbnil.FTPDownload(tableRow.ServerIP, (tableRow.FileServerURL + "//" + tableRow.DocumentID + ".pdf"));
+            }
+            else if ($scope.docMassDistributionModel.DidtributionOf === 'Version') {
+                dwtHorizontalThumbnil.FTPDownload(tableRow.ServerIP, (tableRow.FileServerURL + "//" + tableRow.DocVersionID + "_v_" + tableRow.VersionNo + ".pdf"));
+            }
+        };
+
+        $scope.updateLargeViewer = function () {
+            dwtHorizontalThumbnil.CopyToClipboard(dwtHorizontalThumbnil.CurrentImageIndexInBuffer);
+            DWObjectLargeViewer.LoadDibFromClipboard();
+            $('#viewerModal').modal('show');
+        };
+        // Adee
+        $scope.docMassDistributionModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+            DocMetaID: "",
+            DocPropIdentifyID: "",
+            MetaValue: "",
+            Remarks: "",
+            IdentificationAttribute: "",
+            AttributeValue: "",
+            SearchBy: "",
+            DidtributionOf: "",
+            DocVersionID: ""
+        };
+
+        $scope.pagingInfo = {
+            page: 1,
+            itemsPerPage: 20,
+            sortBy: null,
+            reverse: false,
+            search: null,
+            totalItems: 0
+        };
+
+        $scope.selectPage = function () {
+            $scope.BindDataToGrid();
+        };
+
+        $scope.AttrName = '';
+        $scope.AttrValue = '';
+
+        $scope.search = function () {
+            $scope.pagingInfo.page = 1;
+            $scope.BindDataToGrid();
+        };
+
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.ownerLevels = response.result;
+                $scope.docMassDistributionModel.OwnerLevel = "";
+                $scope.docMassDistributionModel.Owner = "";
+                $scope.docMassDistributionModel.DocCategory = "";
+                $scope.docMassDistributionModel.DocType = "";
+                $scope.docMassDistributionModel.DocProperty = "";
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+        $scope.loadOwner = function () {
+            $scope.docMassDistributionModel.Owner = "";
+            $scope.docMassDistributionModel.DocCategory = "";
+            $scope.docMassDistributionModel.DocType = "";
+            $scope.docMassDistributionModel.DocProperty = "";
+            $scope.docPropertyForSpecificDocType = "";
+            $scope.docPropIdentityGridData = [];
+
+            $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                { _OwnerLevelID: $scope.docMassDistributionModel.OwnerLevel.OwnerLevelID })
+                .success(function (response) {
+                    $scope.ownersForSpecificOwnerLevel = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        $scope.loadCategory = function () {
+            $scope.docMassDistributionModel.DocCategory = "";
+            $scope.docMassDistributionModel.DocType = "";
+            $scope.docMassDistributionModel.DocProperty = "";
+            $scope.docPropertyForSpecificDocType = "";
+            $scope.docPropIdentityGridData = [];
+
+            $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                { _OwnerID: $scope.docMassDistributionModel.Owner.OwnerID })
+                .success(function (response) {
+                    $scope.docCategoriesForSpecificOwner = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        $scope.loadType = function () {
+            $scope.docMassDistributionModel.DocType = "";
+            $scope.docMassDistributionModel.DocProperty = "";
+            $scope.docPropertyForSpecificDocType = "";
+            $scope.docPropIdentityGridData = [];
+
+            $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                {
+                    _DocCategoryID: $scope.docMassDistributionModel.DocCategory.DocCategoryID,
+                    _OwnerID: $scope.docMassDistributionModel.Owner.OwnerID
+                })
+                .success(function (response) {
+                    $scope.docTypeForSpecificDocCategory = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        $scope.loadPropert = function () {
+            $scope.docMassDistributionModel.DocProperty = "";
+            $scope.docPropertyForSpecificDocType = "";
+            $scope.docPropIdentityGridData = [];
+
+            $http.post('/DocScanningModule/MultiDocScan/GetDocumentProperty',
+                {
+                    _DocCategoryID: $scope.docMassDistributionModel.DocCategory.DocCategoryID,
+                    _OwnerID: $scope.docMassDistributionModel.Owner.OwnerID,
+                    _DocTypeID: $scope.docMassDistributionModel.DocType.DocTypeID
+                })
+                .success(function (response) {
+                    $scope.docPropertyForSpecificDocType = response.result;
+                    $scope.loading = false;
+                    //$scope.BindDataToGrid();
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        $scope.loadPropertyIdentify = function () {
+            $scope.BindDataToGrid();
+        }
+
+        $scope.BindDataToGrid = function () {
+            if ($scope.docMassDistributionModel.DidtributionOf === "Original") {
+                $scope.loading = true;
+                $http.post('/DocScanningModule/OriginalDocSearching/GetDocumentsBySearchParam',
+                    {
+                        _DocCategoryID: $scope.docMassDistributionModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.docMassDistributionModel.Owner.OwnerID,
+                        _DocTypeID: $scope.docMassDistributionModel.DocType.DocTypeID,
+                        _DocPropertyID: $scope.docMassDistributionModel.DocProperty.DocPropertyID,
+                        _SearchBy: $scope.docMassDistributionModel.SearchBy,
+                        page: $scope.pagingInfo.page,
+                        itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                        sortBy: $scope.pagingInfo.itemsPerPage,
+                        reverse: $scope.pagingInfo.reverse,
+                        attribute: $scope.AttrName,
+                        search: $scope.AttrName == '' ? $scope.pagingInfo.search : $scope.AttrValue
+                    })
+                    .success(function (pageable) {
+                        $scope.GridDisplayCollection = pageable.lstDocSearch;
+                        $scope.pagingInfo.totalItems = pageable.totalPages;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            } else if ($scope.docMassDistributionModel.DidtributionOf === "Version") {
+                $scope.loading = true;
+                $http.post('/DocScanningModule/DocDistribution/GetVersionDocBySearchParam',
+                    {
+                        _DocCategoryID: $scope.docMassDistributionModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.docMassDistributionModel.Owner.OwnerID,
+                        _DocTypeID: $scope.docMassDistributionModel.DocType.DocTypeID,
+                        _DocPropertyID: $scope.docMassDistributionModel.DocProperty.DocPropertyID,
+                        _SearchBy: $scope.docMassDistributionModel.SearchBy,
+                        page: $scope.pagingInfo.page,
+                        itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                        sortBy: $scope.pagingInfo.itemsPerPage,
+                        reverse: $scope.pagingInfo.reverse,
+                        search: $scope.pagingInfo.search
+                    })
+                    .success(function (pageable) {
+                        $scope.GridDisplayCollection = pageable.content;
+                        $scope.pagingInfo.totalItems = pageable.totalPages;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        };
+
+        $scope.ResetModel = function () {
+        };
+        $scope.Save11 = function () {
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+            if (files.length > 0) {
+                if ($scope.docMassDistributionModel.OwnerLevel == "" || $scope.docMassDistributionModel.Owner == "" || $scope.docMassDistributionModel.DocCategory == ""
+                    || $scope.docMassDistributionModel.DocType == "" || $scope.docMassDistributionModel.DocProperty == "") {
+                    $scope.btnDistribute = false;
+                    toastr.error("Select All Dropdown !!");
+                }
+                else {
+                    $scope.btnDistribute = true;
+
+                    var breakFlag = false;
+                    for (var i = 0; i < files.length || breakFlag; i++) {
+                        if (window.FormData !== undefined) {
+                            var fileData = new FormData();
+
+                            fileData.append(files[i].name, files[i]);
+
+                            $.ajax({
+                                url: '/DocScanningModule/NewDocMassDistribution/UploadOtherFiles',
+                                type: "POST",
+                                contentType: false,
+                                processData: false,
+                                data: fileData,
+                                success: function (result) {
+                                    toastr.success("Document Uploaded Succesfully");
+                                    $scope.loading = false;
+                                },
+                                error: function (err) {
+                                    toastr.error("Document Upload Falied");
+                                    breakFlag = true;
+                                    $scope.loading = false;
+                                }
+                            });
+                        } else {
+                            toastr.error("FormData is not supported.");
+                            $scope.loading = false;
+                            break;
+                        }
+                    }
+                }
+
+               
+                
+            }
+            else {
+                toastr.error("Please Upload PDF TO BE ADDED !!!")
+            }
+        }
+
+        $scope.Save = function () {
+            if ($("#fileName").text() === "Drop Files Here") {
+                toastr.error("Please upload an excel file.");
+            }
+            $scope.loading = true;
+            var docCounts = 0;
+
+            
+            if (1 == 1) {
+
+                for (var i = 0; i <= dwtHorizontalThumbnil.HowManyImagesInBuffer - 1; i++) {
+                    //if (dwtHorizontalThumbnil.IsBlankImageExpress(i))
+                    docCounts++;
+                }
+
+                if (docCounts > 0) {
+                    for (var i = 0; i <= dwtHorizontalThumbnil.HowManyImagesInBuffer - 1; i++) {
+
+                        /* Adee
+                        if (dwtHorizontalThumbnil.IsBlankImageExpress(i)) {
+                            dwtHorizontalThumbnil.IfShowFileDialog = false;
+
+                            */
+
+                        //var strFTPServer = response.result[0].ServerIP;
+                        //dwtHorizontalThumbnil.FTPPort = response.result[0].ServerPort;
+                        //dwtHorizontalThumbnil.FTPUserName = response.result[0].FtpUserName;
+                        //dwtHorizontalThumbnil.FTPPassword = response.result[0].FtpPassword;
+
+                        //var isSave = dwtHorizontalThumbnil.FTPUploadAsMultiPagePDF( window.location.hostname,
+                        //    "Buffer/inputPdf" + "//" + "1" + ".pdf", function () { });
+
+                        dwtHorizontalThumbnil.HTTPPort = window.location.port;
+                        var CurrentPathName = unescape(window.location); // get current PathName in plain ASCII
+                        var CurrentPath = CurrentPathName.substring(0, CurrentPathName.lastIndexOf("/") + 1);
+                        var strActionPage = CurrentPath + "upload";
+                        var strHostIP = "localhost"; // modify the IP for cross-domain access
+                        var sFun = function () {
+                            alert('successful');
+                        }, fFun = function () {
+                            alert('failed');
+
+                        };
+                        //var isSave = dwtHorizontalThumbnil.SaveSelectedImagesAsMultiPagePDF(
+                        //    strHostIP + "/Buffer/mergePdf/" + "test.pdf",
+                        //    sFun,
+                        //    fFun
+                        //);
+
+                        //dwtHorizontalThumbnil.HTTPDownload("localhost", "/Buffer/mergePdf/test.pdf", function () {
+                        //    console.log("Sucess is called");
+                        //}, function () { console.log("Failure ...") });
+
+                        //var isSave = DWObject.FTPUploadAllAsPDF(strFTPServer,
+                        //    response.DistinctID[DocIDsCounter].FileServerUrl + "//" +
+                        //    response.DistinctID[DocIDsCounter].DocumentID + ".pdf", function () { });
+
+                        //if (isSave) {
+                        //    //DocIDsCounter++;
+                        //    dwtHorizontalThumbnil.RemoveAllSelectedImages();
+                        //    dwtHorizontalThumbnil.RemoveImage(0);
+                        //    i = -1;
+                        //    uploadCount++;
+                        //} else {
+                        //    break;
+                        //}
+                        //Adee   } else {
+                        // dwtHorizontalThumbnil.SelectedImagesCount = i + 1;
+                        // dwtHorizontalThumbnil.SetSelectedImageIndex(i, i);
+                        //Adee    }
+                    }
+
+                    //if (uploadCount == response.DistinctID.length) {
+                    //    $scope.docPropIdentityGridData = response.result;
+                    //    $scope.loading = false;
+                    //    toastr.success("Upload Successful");
+                    //    $scope.BindDataToGrid();
+                    //}
+                    //else {
+                    //    deleteFailedDocuments(response.DistinctID)
+                    //}
+                }
+                else {
+                    //  deleteFailedDocuments(response.DistinctID)
+                }
+            }
+
+            
+
+
+            $http.post('/DocScanningModule/NewDocMassDistribution/AddDocumentInfo',
+                {
+                    modelDocumentsInfo: $scope.docMassDistributionModel,
+                    selectedPropId: $scope.docMassDistributionModel.DocProperty.DocPropertyID,
+                    docMetaValues: $scope.docPropIdentityGridData2
+                })
+                .success(function (response) {
+                    $scope.loading = false;
+                    if (response.Message === "No column name match with property name. Please upload valid excel file.") {
+                        toastr.error(response.Message);
+                        $scope.btnDistribute = true;
+                    }
+                    else if (response.Message == null) {
+                        $scope.btnDistribute = true;
+                        toastr.error("Error Occured.");
+                    }
+                    else if (response.Message === "Saved Successfully.") {
+                        $scope.btnDistribute = false;
+                        $scope.docMassDistributionModel = [];
+                        $scope.docPropIdentityGridData = [];
+                        $scope.GridDisplayCollection = [];
+                        UploadFile.ResetFileSelect();
+                        dwtHorizontalThumbnil.RemoveAllImages();
+                        $scope.pagingInfo.page = 1;
+                        $scope.pagingInfo.totalItems = 0;
+                        toastr.success(response.Message);
+                        
+                    }
+                    
+
+                })
+                .error(function () {
+                    $scope.loading = false;
+                    toastr.error("Failed to Save Meta Data.");
+                });
+        };
+
+        $scope.SaveExtra = function () {
+            $scope.loading = true;
+            var docCounts = 0;
+            $scope.btnDistribute = false;
+            if ($scope.docMassDistributionModel.OwnerLevel == "" || $scope.docMassDistributionModel.Owner == "" || $scope.docMassDistributionModel.DocCategory == ""
+                || $scope.docMassDistributionModel.DocType == "" || $scope.docMassDistributionModel.DocProperty == "") {
+                toastr.error("Select All Dropdown");
+                $scope.loading = false;
+            }
+            else {
+                $http.post('/DocScanningModule/NewDocMassDistribution/AddDocumentInfo',
+                    {
+                        modelDocumentsInfo: $scope.docMassDistributionModel,
+                        selectedPropId: $scope.docMassDistributionModel.DocProperty.DocPropertyID,
+                        docMetaValues: $scope.docPropIdentityGridData2
+                    })
+                    .success(function (response) {
+                        $scope.loading = false;
+                        if (response.Message === "No column name match with property name. Please upload valid excel file.") {
+                            toastr.error(response.Message);
+                            $scope.ResetLoadXlsLoader();
+                        }
+                        else if (response.Message == null) {
+                            toastr.error("The Excel file is not well formatted");
+                            $scope.ResetLoadXlsLoader();
+                        }
+                        else if (response.Message === "Document Merge Successfully") {
+                        
+                            $scope.pagingInfo.page = 1;
+                            $scope.pagingInfo.totalItems = 0;
+                            toastr.success(response.Message);
+                            $scope.ResetLoadXlsLoader();
+                        }
+                        else{
+                            $scope.pagingInfo.page = 1;
+                            $scope.pagingInfo.totalItems = 0;
+                            toastr.error(response.Message);
+                            $scope.ResetLoadXlsLoader();
+
+                        }
+                    })
+                    .error(function () {
+                        $scope.loading = false;
+                        toastr.error("Failed to Save Meta Data.");
+                        $scope.ResetLoadXlsLoader();
+                    });
+
+            }
+        };
+
+        $scope.ResetLoadXlsLoader = function () {
+            setTimeout(function () {
+                $("#fileselect").val('');
+                $("#fileName").replaceWith('<span id="fileName">Drop Files Here</span></div>');
+                var $el = $('#FileUpload1');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+            }, 0);
+        }
+
+        $scope.ResetDocMassDistributionModel = function () {
+            $scope.docMassDistributionModel = {
+                OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+                Owner: { OwnerID: "", OwnerName: "" },
+                DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+                DocType: { DocTypeID: "", DocTypeName: "" },
+                DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+                DocMetaID: "",
+                DocPropIdentifyID: "",
+                MetaValue: "",
+                Remarks: "",
+                IdentificationAttribute: "",
+                AttributeValue: "",
+                SearchBy: "",
+                DidtributionOf: "",
+                DocVersionID: ""
+            };
+        }
+
+
+        $scope.toggleRefreshTable = function (row) {
+            $scope.loading = false;
+        };
+    });
+
+    app.directive('editInPlace', function () {
+        return {
+            restrict: 'E',
+            scope: { value: '=' },
+            template: '<input ng-model="value"></input>',
+            link: function ($scope, element, attrs) {
+                // Let's get a reference to the input element, as we'll want to reference it.
+                var inputElement = angular.element(element.children()[1]);
+
+                // This directive should have a set class so we can style it.
+                element.addClass('edit-in-place');
+
+                // Initially, we're not editing.
+                $scope.editing = false;
+
+                // ng-click handler to activate edit-in-place
+                $scope.edit = function () {
+                    $scope.editing = true;
+
+                    // We control display through a class on the directive itself. See the CSS.
+                    element.addClass('active');
+
+                    // And we must focus the element.
+                    // `angular.element()` provides a chainable array, like jQuery so to access a native DOM function,
+                    // we have to reference the first element in the array.
+                    inputElement[0].focus();
+                };
+
+                // When we leave the input, we're done editing.
+                inputElement.prop('onblur', function () {
+                    $scope.editing = false;
+                    element.removeClass('active');
+                });
+            }
+        };
+    });
+</script>
+

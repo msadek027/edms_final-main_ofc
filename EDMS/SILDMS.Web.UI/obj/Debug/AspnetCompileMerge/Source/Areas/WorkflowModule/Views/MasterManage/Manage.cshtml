@@ -1,0 +1,214 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="masterCtrl">
+    <!-- box-header -->
+    <div class="box-header with-border">
+        <i class="fa  fa-files-o"></i>
+        <h3 class="box-title">Document Type List</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable(row)" class="btn btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button" id="btnAdd" data-ng-click="toggleAdd(row)" class="btn btn-flat btn-primary pull-right btnSave" ng-disabled="loading"> <i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="OwnerLevel">Owner Level</label>
+                    <select class="form-control" ng-model="MasterTable">
+                        <option value="">--Select--</option>
+                        <option value={{item.MasterTableID}} ng-repeat="item in Masters">{{item.MasterTableName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-body table-responsive">
+        <table class="table table-condensed table-bordered table-striped table-hover pnlView">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in MasterItemList">
+                    <td class="col-lg-1">{{row.ID}}</td>
+                    <td class="col-lg-3">{{row.Name}}</td>
+                    <td class="col-lg-1 text-center">
+                        <button type="button" class="btn btn-sm btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)"><i class="fa fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-sm btn-danger btn-flat btnEdit" data-ng-click="delete(row)"><i class="fa fa-edit"></i> Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="6" class="text-center"></td></tr>
+            </tfoot>
+        </table>
+    </div><!-- Data table for Document type end -->
+    <form name="docTypeFrm" id="docTypeFrm" ng-submit="">
+        <!-- Add DocProperty Modal -->
+        <div class="bs-example">
+            <div id="addModal" class="modal fade">
+                <!-- Modal HTML -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modal-title">Document Type Entry Form</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Id">Id</label>
+                                            <input type="text" data-ng-model="masterModel.ID" class="form-control" id="Id" ng-disabled="true" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="Name">Name</label>
+                                            <input type="text" data-ng-model="masterModel.Name" class="form-control" id="Name"
+                                                   placeholder="Name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <button type="button" id="btnSubmit" class="btn btn-primary btn-flat btnEdit"
+                                            ng-click="Save()" ng-disabled="loading">
+                                        Save
+                                    </button>
+                                    <button type="button" id="btnClose" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </form><!-- /Add DocProperty Modal end -->
+    <!-- /Add DocProperty Modal -->
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    app.controller('masterCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.Masters = [];
+
+        $http.get('/WorkflowModule/MasterManage/GetMasterForTableType').then(
+            function (s) {
+                $scope.Masters = s.data.prm;
+            },
+            function (e) {
+
+            })
+
+
+        $scope.$watch('MasterTable', function (newVal) {
+            if (newVal) {
+                $scope.loadAllMasterData();
+            }
+        });
+
+
+
+        $scope.MasterItemList = [];
+        $scope.loadAllMasterData = function () {
+            $http.get('/WorkflowModule/MasterManage/GetMasterDataByTable?id=' + $scope.MasterTable).then(
+            function (s) {
+                $scope.MasterItemList = s.data.Objs;
+            },
+            function (e) {
+
+            })
+        };
+
+        $scope.masterModel = {
+            ID: 0,
+            Name:''
+        }
+
+        $scope.modalHeader = '';
+        $scope.toggleEdit = function (row) {
+            $scope.modalHeader = 'Edit '+$scope.MasterTable+' data';
+            $scope.masterModel.ID = row.ID;
+            $scope.masterModel.Name = row.Name;
+
+            $('#addModal').modal('show');
+        };
+
+        $scope.toggleAdd = function () {
+            $scope.modalHeader = 'Add data to ' + $scope.MasterTable ;
+            $scope.masterModel.ID = 0;
+            $scope.masterModel.Name = '';
+            $('#addModal').modal('show');
+        }
+
+        $scope.Save = function () {
+            var action = '';
+            if ($scope.masterModel.ID != 0 && $scope.masterModel.ID != '') {
+                action = 'edit';
+            }
+            else {
+                action = 'add';
+            }
+
+            $http.post('/WorkflowModule/MasterManage/AddItemToMaster', { obj: $scope.masterModel, masterId: $scope.MasterTable, action: action })
+            .then(function (s) {
+                if (s.data.Code == '1') {
+                    toastr.success(s.data.Message);
+                    $('#addModal').modal('hide');
+                    $scope.loadAllMasterData();
+                }
+                else {
+                    toastr.error(s.data.Message);
+                }
+
+            }, function (e) {
+                toastr.error('Failed');
+            });
+
+        }
+
+        $scope.delete = function (row) {
+            $scope.masterModel.ID = row.ID;
+            $scope.masterModel.Name = row.Name;
+
+            $http.post('/WorkflowModule/MasterManage/AddItemToMaster', { obj: $scope.masterModel, masterId: $scope.MasterTable, action: 'delete' })
+            .then(function (s) {
+                if (s.data.Code == '1') {
+                    toastr.success(s.data.Message);
+                    $('#addModal').modal('hide');
+                    $scope.loadAllMasterData();
+                }
+                else {
+                    toastr.error(s.data.Message);
+                }
+
+            }, function (e) {
+                toastr.error('Failed');
+            });
+        }
+
+    }]);
+</script>

@@ -1,0 +1,281 @@
+
+Update WFM_UserStagePermission Set UserID =23101500001 Where  RoleID=23101500001
+Update WFM_UserStagePermission Set UserID =23101500002 Where  RoleID=23101500002
+Update WFM_UserStagePermission Set UserID =23101500003 Where  RoleID=23101500003
+
+Update WFM_UserStagePermission Set UserID ='' Where  RoleID=23101500001
+Update WFM_UserStagePermission Set UserID =23101500002 Where  RoleID=23101500002
+Update WFM_UserStagePermission Set UserID =23101500003 Where  RoleID=23101500003
+
+Exec CheckUserValidity @user='based',@password='zJdngus7TNI=',@userIP='142.',@p_Status=0
+----
+
+DECLARE @roleID nvarchar(12)=(Select RoleID from SEC_User Where  UserID= @UserID)
+
+-----------------
+SELECT *
+FROM WFM_UserStagePermission
+WHERE  ((UserID = '' OR UserID IS NULL) AND RoleID = '23102400001' )  OR ( UserID IS NOT NULL AND UserID = '23102400002' AND RoleID = '23102400001');
+
+
+------------------------------------------------
+ALTER TABLE WFM_UserStagePermission
+ADD RoleID nvarchar(12) NULL,UserLevelID Int Default(0);
+
+-------
+Update WFM_UserStagePermission Set RoleID=23101500001 Where UserID =23101500001
+Update WFM_UserStagePermission Set RoleID=23101500002 Where UserID =23101500002
+Update WFM_UserStagePermission Set RoleID=23101500003 Where UserID =23101500003
+
+--------------------------------------------------------
+
+
+-- =============================================  
+-- Author:  Mir Sadequr Rahman
+-- ALTER date: <ALTER Date,,>  
+-- Description: <Description,,>  
+-- =============================================  
+ALTER PROCEDURE [dbo].[CheckUserValidity]  
+ -- Add the parameters for the stored procedure here  
+ @user nvarchar(50),  
+ @password nvarchar(128),  
+ @userIP nvarchar(128),  
+ @p_Status INT output  
+AS  
+BEGIN  
+ -- SET NOCOUNT ON added to prevent extra result sets from  EXEC CheckUserValidity 'shalim','zJdngus7TNI=','192.168.3.1',1  
+ -- interfering with SELECT statements.  SELECT * FROM SEC_User WHERE UserName='Badhon' AND UserPassword='zJdngus7TNI=' AND [Status]=1 AND SecurityStatus='Enabled'  
+    SET NOCOUNT ON;  
+  
+ DECLARE @UserID nvarchar(12);  
+ DECLARE @tempId nvarchar(12);  
+ DECLARE @FinalTable Table(  
+  OwnerLevelID nvarchar(12),  
+  LevelName nvarchar(128),  
+  OwnerID nvarchar(12),  
+  OwnerName nvarchar(128),  
+  RoleID nvarchar(12),  
+  RoleTitle nvarchar(128),  
+  RoleType nvarchar(128),  
+  UserID nvarchar(12),  
+  UserName nvarchar(128),   
+  DefaultServer nvarchar(256),  
+  PasswordResetDate date  
+ );  
+   
+ DECLARE @MenuTable Table(  
+  MenuID NVARCHAR(12),  
+  MenuTitle nvarchar(256),  
+  ParentMenuID nvarchar(12),  
+  MenuUrl nvarchar(MAX),  
+  MenuIcon nvarchar(128),  
+  MenuOrder int,  
+  PermissionClass nvarchar(128),  
+  MenuLevel INT  
+ );  
+  
+    -- Insert statements for procedure here  
+ SET @user = (select @user)  
+ IF(LOWER(@user) ='superadmin')   
+ BEGIN  
+  SELECT @UserID = UserID FROM SEC_User   
+  WHERE UserName=@user AND [Status]=1 AND SecurityStatus='Enabled'  
+ END  
+ ELSE  
+ BEGIN  
+     SELECT @UserID = UserID FROM SEC_User   
+  WHERE UserName=@user AND UserPassword=@password AND [Status]=1 AND SecurityStatus='Enabled'  
+ END  
+-- Add For WorkflowRole
+DECLARE @roleID nvarchar(12)=(Select RoleID from SEC_User Where  UserID= @UserID)
+DECLARE @userLevel varchar(2)=(Select UserLevelID from SEC_User Where  UserID= @UserID)
+  
+    IF(@UserID is not null and @UserID != '')  
+ BEGIN  
+  IF EXISTS(  
+     SELECT * FROM SEC_User usr  
+     INNER JOIN SEC_Role rol ON usr.RoleID = rol.RoleID   
+     WHERE rol.[Status]='1' AND rol.RoleTitle ='Super Admin' AND usr.UserID=@UserID  
+    )  
+  BEGIN  
+   INSERT INTO @FinalTable (OwnerLevelID, LevelName)  
+   SELECT ISNULL(owl.OwnerLevelID,'') OwnerLevelID,ISNULL(owl.LevelName,'') LevelName  FROM  DSM_OwnerLevel owl   
+     
+   INSERT INTO @FinalTable (OwnerID, OwnerName)  
+   SELECT ISNULL(ow.OwnerID,'') OwnerID,ISNULL(ow.OwnerName,'') OwnerName FROM  DSM_Owner ow   
+  
+   INSERT INTO @FinalTable (RoleID, RoleTitle, RoleType)  
+   SELECT ISNULL(ow.RoleID,'') RoleID,ISNULL(ow.RoleTitle,'') RoleTitle,ISNULL(ow.RoleType,'') RoleType FROM  SEC_Role ow   
+     
+   INSERT INTO @FinalTable (UserID, UserName,DefaultServer,PasswordResetDate)  
+   SELECT ISNULL(UserID,'') UserID, UserName,ISNULL(DefaultServer,'') DefaultServer,PasswordResetDate  FROM  SEC_User  
+  
+  
+   Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+   MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+   SELECT MenuID,MenuTitle,ParentMenuID,  
+   MenuUrl,MenuIcon,MenuOrder,PermissionClass,-1 FROM SEC_Menu where IsStageRelated = 0 and Status=1 --status considering update in feb-05,2020  
+  
+   DECLARE @LogID NVARCHAR(12)  
+   EXEC SP_SerialGenerator 'SEC_UserLog', @LogID OUTPUT   
+   INSERT INTO SEC_UserLog(LogID, UserID,UsedIP,UserAction,ActionUrl,ActionEventTime,[Status])   
+   SELECT @LogID,@UserID,@userIP,'Login','/SecurityModule/Account/Login',GETDATE(),'1' FROM SEC_User WHERE UserID=@UserID   
+  END  
+  ELSE  
+  BEGIN  
+   INSERT INTO @FinalTable  
+   SELECT ISNULL(owl.OwnerLevelID,'') OwnerLevelID,owl.LevelName,ISNULL(own.OwnerID,'') OwnerID,own.OwnerName,rol.RoleID,rol.RoleTitle,rol.RoleType,usr.UserID,usr.UserName,ISNULL(usr.DefaultServer,'') DefaultServer,usr.PasswordResetDate  
+   FROM SEC_User usr  
+   LEFT JOIN SEC_Role rol ON usr.RoleID = rol.RoleID   
+   LEFT JOIN DSM_OwnerLevel owl ON usr.OwnerLevelID = owl.OwnerLevelID  
+   LEFT JOIN DSM_Owner own ON usr.OwnerID = own.OwnerID   
+   WHERE usr.UserID = @UserID AND (owl.[Status]='1' AND own.[Status]='1' AND usr.[Status]='1' AND rol.[Status]='1')  
+    
+     
+  
+   Insert into @MenuTable(MenuID,MenuTitle,MenuUrl,ParentMenuID,MenuIcon,MenuOrder,PermissionClass,MenuLevel)  
+   SELECT ISNULL(mnu.MenuID,'') MenuID, mnu.MenuTitle, mnu.MenuUrl,mnu.ParentMenuID,mnu.MenuIcon,mnu.MenuOrder,ISNULL(mnu.PermissionClass,'') PermissionClass,-1  
+   FROM SEC_User usr  
+   INNER JOIN SEC_RoleMenuPermission rmp ON usr.RoleID = rmp.RoleID  
+   INNER JOIN SEC_Menu mnu ON rmp.MenuID = mnu.MenuID   
+   WHERE usr.UserID = @UserID AND mnu.IsStageRelated = 0 AND (usr.[Status]='1' AND rmp.[Status]='1' AND mnu.[Status]='1')  
+   ORDER BY mnu.MenuOrder ASC  
+  END  
+  
+  
+  Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+  SELECT m.MenuID,m.MenuTitle,m.ParentMenuID,  
+  m.MenuUrl,m.MenuIcon,m.MenuOrder,m.PermissionClass,0 FROM WFM_UserStagePermission p INNER JOIN WFM_StageMap s   
+  on p.StageMapID=s.StageMapID  
+  INNER JOIN SEC_Menu m ON s.MenuID=m.MenuID 
+  WHERE  --p.UserID = @UserID   --//Add For WorkflowRole
+  ((p.UserID = '' OR p.UserID IS NULL) AND p.RoleID = @roleID AND p.UserLevelID=@userLevel)  OR ( p.UserID IS NOT NULL AND p.UserID = @UserID  AND p.RoleID = @roleID AND p.UserLevelID=@userLevel)
+  
+ORDER BY m.MenuOrder ASC  
+    
+  Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+  SELECT MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,1 FROM SEC_Menu where IsStageRelated = 1   
+  AND MenuLevel = 1 AND MenuID IN (SELECT ParentMenuID FROM @MenuTable where MenuLevel=0)  
+  
+  Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+  SELECT MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,2 FROM SEC_Menu where IsStageRelated = 1   
+  AND MenuLevel = 2 AND MenuID IN (SELECT ParentMenuID FROM @MenuTable where MenuLevel=1)  
+  
+  Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+  SELECT MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,3 FROM SEC_Menu where IsStageRelated = 1   
+  AND MenuLevel = 3 AND MenuID IN (SELECT ParentMenuID FROM @MenuTable where MenuLevel=2)  
+  
+  Insert into @MenuTable(MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,MenuLevel)   
+  SELECT MenuID,MenuTitle,ParentMenuID,  
+  MenuUrl,MenuIcon,MenuOrder,PermissionClass,4 FROM SEC_Menu where IsStageRelated = 1   
+  AND MenuLevel = 4 AND MenuID IN (SELECT ParentMenuID FROM @MenuTable where MenuLevel=3)  
+  
+  SELECT * FROM @FinalTable  
+  SELECT * FROM @MenuTable  
+  
+  IF EXISTS (select * from SEC_LoginAttempts  where UserId = @UserID and IP =@userIP)  
+  BEGIN  
+   UPDATE SEC_LoginAttempts SET AttemptCount = 0, LastAttempt = SYSDATETIME() where UserId = @UserID and IP =@userIP  
+  END  
+  
+  SET @p_Status='1'    
+ END  
+ ELSE  
+ BEGIN  
+  SELECT @tempId = UserID FROM SEC_User WHERE UserName=@user  
+  IF(@tempId is not null and @tempId != '')  
+   BEGIN  
+       IF EXISTS (select * from SEC_LoginAttempts  where UserId = @tempId and IP =@userIP)  
+     BEGIN  
+        UPDATE SEC_LoginAttempts SET AttemptCount = AttemptCount+1, LastAttempt = SYSDATETIME() where UserId = @tempId and IP =@userIP  
+     END  
+          ELSE   
+    BEGIN  
+       INSERT into SEC_LoginAttempts (UserId,AttemptCount,LastAttempt,IP) Values (@tempId,1,SYSDATETIME(),@userIP)  
+    END  
+   END  
+      
+  SET @p_Status='0'   
+ END  
+  
+    
+  --WHERE usr.UserID = @UserID AND (usr.[Status]='1' AND usr.SecurityStatus='Enabled' AND rmp.[Status]='1' AND mnu.[Status]='1')  
+END  
+  
+---------------------------------------------------------------------
+    
+ -- EXEC WFM_GetStagePropertyAndUserPermission 391,'23110900001' 
+
+ALTER PROCEDURE [dbo].[WFM_GetStagePropertyAndUserPermission]  
+ @StageMapID INT,  
+ @UserID Nvarchar(12)  
+AS  
+BEGIN  
+ -- EXEC DSM_GetStagePropertyAndUserPermission '63','17083000001'  
+ SET NOCOUNT ON;  
+ DECLARE @TempMkPermission BIT  
+ DECLARE @TempCkPermission BIT  
+
+ DECLARE @roleID nvarchar(12)=(Select RoleID from SEC_User Where  UserID= @UserID)
+ DECLARE @userLevel varchar(2)=(Select UserLevelID from SEC_User Where  UserID= @UserID)
+
+ SELECT @TempMkPermission=MkPermission,@TempCkPermission=CkPermission   
+ FROM WFM_UserStagePermission Where StageMapID = @StageMapID 
+ --AND UserID = @UserID  
+ AND  ((UserID = '' OR UserID IS NULL) AND RoleID = @roleID AND UserLevelID=@userLevel)  OR ( UserID IS NOT NULL AND UserID = @UserID  AND RoleID = @roleID AND UserLevelID=@userLevel)
+   
+
+
+ SELECT sm.StageID,ow.OwnerLevelID,sm.OwnerID,sm.DocCategoryID,sm.DocTypeID,sm.StageMapPosition,sm.HaveMk,sm.HaveCk,  
+ ps.StageName,@TempMkPermission MkPermission,@TempCkPermission CkPermission,ps.StageSerial,  
+ ol.LevelName,ow.OwnerName,dc.DocCategoryName,dt.DocTypeName   
+ FROM WFM_StageMap sm   
+ INNER JOIN WFM_ProcessingStage ps ON sm.StageID=ps.StageID   
+ INNER JOIN DSM_Owner ow ON sm.OwnerID=ow.OwnerID  
+ INNER JOIN DSM_DocCategory dc ON sm.DocCategoryID = dc.DocCategoryID  
+ INNER JOIN DSM_DocType dt ON sm.DocTypeID= dt.DocTypeID  
+ INNER JOIN DSM_OwnerLevel ol ON ow.OwnerLevelID=ol.OwnerLevelID  
+ where sm.StageMapID=@StageMapID  
+END  
+  
+  
+  
+-----------------------------------------------------------------  
+    
+  
+--//  Exec WFM_GetUserStagePermissionForStages '23103000001','23101500003'  
+ALTER PROCEDURE [dbo].[WFM_GetUserStagePermissionForStages]    
+ @DocTypeID nvarchar(12),  
+ @UserID Nvarchar(12)  
+AS  
+BEGIN  
+SET NOCOUNT ON;  
+ DECLARE @roleID nvarchar(12)=(Select RoleID from SEC_User Where  UserID= @UserID)
+ DECLARE @userLevel varchar(2)=(Select UserLevelID from SEC_User Where  UserID= @UserID)
+  
+ select t1.StageID,StageName,UserStagePermissionID,MkPermission,CkPermission,t2.UserID from WFM_ProcessingStage as t1  
+ left join   
+ (
+ SELECT StageID,UserStagePermissionID,MkPermission,CkPermission,UserID FROM WFM_UserStagePermission 
+ WHERE --UserID=@UserID
+    ((UserID = '' OR UserID IS NULL) AND RoleID = @roleID AND UserLevelID=@userLevel)  OR ( UserID IS NOT NULL AND UserID = @UserID  AND RoleID = @roleID AND UserLevelID=@userLevel)
+ ) t2  
+ ON t1.StageID=t2.StageID  
+  where DocTypeID =@DocTypeID   
+END  
+  
+
+-------------------------------------------   
+  
+  
+  
+  
+  

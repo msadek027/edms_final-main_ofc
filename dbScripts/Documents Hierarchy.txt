@@ -1,0 +1,35 @@
+--//
+--//Document Master Hierarchy:
+
+Select * from DSM_OwnerLevel Where OwnerLevelID=16060800002 --//Company
+Select * from DSM_Owner Where OwnerID=16060800002 AND  OwnerLevelID=16060800002 --//Department
+Select * from DSM_DocCategory --//Document Category
+Select * from DSM_DocType  --//Document Type
+Select * from DSM_DocProperty Where  DocPropertyID IN (16092900001, 16092900002) AND OwnerID=16060800002 AND  OwnerLevelID=16060800002 --//Document Name
+Select * from DSM_DocPropIdentify Where  DocPropertyID IN (16092900001, 16092900002) AND OwnerID=16060800002 AND  OwnerLevelID=16060800002--//Attribute
+
+--// Document Save Table:Transaction: It has primary Key but not relation to others
+Select *  from DSM_Documents
+Select *  from DSM_DocumentsMeta
+
+Select * from DSM_DocumentsVersion
+Select * from DSM_DocumentsMetaVersion
+
+
+Delete from DSM_OwnerLevel --//Company
+Delete from DSM_Owner --//Department
+Delete from DSM_DocCategory --//Document Category
+Delete from DSM_DocType  --//Document Type
+Delete from DSM_DocProperty --//Document Name
+Delete from DSM_DocPropIdentify --//Attribute
+
+Delete from DSM_Documents
+Delete from DSM_DocumentsMeta
+Delete from DSM_DocumentsVersion
+Delete from DSM_DocumentsMetaVersion
+
+
+
+
+
+Sp_HelpText 'DeleteDocument'

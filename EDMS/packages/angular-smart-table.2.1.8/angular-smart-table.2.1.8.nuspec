@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>angular-smart-table</id>
+    <version>2.1.8</version>
+    <title>angular-smart-table</title>
+    <authors>RENARD Laurent</authors>
+    <owners>RENARD Laurent</owners>
+    <projectUrl>http://lorenzofox3.github.io/smart-table-website/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>http://lorenzofox3.github.io/smart-table-website/</description>
+    <summary>angular smart table package</summary>
+    <releaseNotes>breaking changes since version 1.4.
+
+most notably:
+smart-table.debug.js was renamed to smart-table.js.</releaseNotes>
+    <tags>angular smart table grid</tags>
+    <dependencies>
+      <dependency id="AngularJS.Core" version="1.3.4" />
+    </dependencies>
+  </metadata>
+</package>

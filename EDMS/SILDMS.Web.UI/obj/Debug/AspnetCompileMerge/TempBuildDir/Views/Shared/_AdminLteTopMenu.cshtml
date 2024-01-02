@@ -1,0 +1,135 @@
+﻿@* 
+ This partial controls the top menu of the AdminLTE Template, being called automatically by _AdminLteLayout
+    TODO: All of the content in here is stand-in that must be replaced by the real behavior of your app
+*@
+
+@{
+    ViewBag.Layout = null;
+}
+
+<script src="~/Scripts/App/app.js"></script>
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/SecurityModule/Account/Dashboard" class="logo"><b>E-DMS</b></a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation" ng-controller="navCtrl">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                
+                <li class="dropdown notifications-menu">
+                    <!-- Menu toggle button -->
+                    <a href="#" class="dropdown-toggle" ng-click="toggleNotification()" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="label label-danger">{{notificationCount == 0 ? '': notificationCount}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <!-- Inner Menu: contains the notifications -->
+                            <ul class="menu">
+                                <li ng-repeat="item in notificationlist">
+                                    <!-- start notification -->
+                                    <a href="/WorkflowModule/DocMkCkStage?id={{item.StageMapID}}">
+                                        <i class="fa" ng-class="{' fa-comment-o  text-aqua' : item.IsNew,' fa-comment text-danger' : !item.IsNew}"></i> {{item.Message}} <br />
+                                        <span class="pull-right" style="font-size:xx-small">{{item.NotifyAt | date:'medium'}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="dropdown user user-menu">
+                    @if(User.Identity.IsAuthenticated)
+                    {                   
+                        
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/Content/AdminLTE/img/avatar60x60.png" class="user-image" alt="User Image" />
+                            <span class="hidden-xs">
+                                @if (@Session["User"] != null)
+                                {@Session["User"].ToString()}
+                            </span>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                        <!-- User image -->
+                            <li class="user-header">
+                                <img src="/Content/AdminLTE/img/avatar160x160.png" class="img-circle" alt="User Image" />
+                                <label>Hi, @if (@Session["User"] != null)
+                                {@Session["User"].ToString()} </label> !!
+                                <p>
+                                    <label>
+                                        Welcome to - SQUARE GROUP E-DMS
+                                    </label>
+                                </p>
+                                <p>
+
+                                    @if (@Session["PasswordReset"] != null)
+                                    {
+                                        <script>
+                                            var reset = false;
+                                        </script>
+                                        if (Convert.ToInt32(@Session["PasswordReset"]) > 0 && Convert.ToInt32(@Session["PasswordReset"])<10)
+                                        {
+                                            <label style="font-size:small ;color:white"> Please Change your Password within  @Session["PasswordReset"].ToString()  Days</label>;
+                                        }
+                                        //else if (Convert.ToInt32(@Session["PasswordReset"]) < 0)
+                                        //{
+                                        //    //doesn't need to change password
+                                        //    //**Either The role doesn't need to change password
+                                        //    //** or he has more than 5 days
+                                        //}
+                                        else if(Convert.ToInt32(@Session["PasswordReset"]) ==0)
+                                        {
+                                            <script>
+                                                reset = true;
+                                             
+                                            </script>
+                                        }
+                                    }
+
+
+                                </p>
+                            </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="col-xs-4 text-center">
+                                <a href="#">
+                              
+                                    Profile
+                                </a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="/SecurityModule/User/ChangePassword">Change Password</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">News</a>
+                            </div>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                @*<a href="#" class="btn btn-default btn-flat">Profile</a>*@
+                            </div>
+                            <div class="pull-right">
+                                <a href="/SecurityModule/Account/Logout" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                    }
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+
+

@@ -1,0 +1,73 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+
+        <div id="DynamicMenu">
+
+
+        </div>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+
+<script>
+
+    var path = window.location.pathname; // get the current url 
+    //console.log(path);
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: '/SecurityModule/Account/GetDynamicMenu',
+        //contentType: "application/json",
+        data: { 'html': JSON.stringify(path) },
+        dataType: 'text',
+        
+        success: function (data) {
+            
+            $("#DynamicMenu").html(data);
+            var dt = $("#DynamicMenu").html();
+
+            if (dt.length > 0) {
+                $("#DynamicMenu a").each(function () { // get url for every menu item
+                    var href = $(this).attr('href');
+                    if (path == href) {
+                        $(this).parent('li').addClass('active');
+                        $(this).parent('li').css('background-color', '#30988F')
+                        $(this).parent('li').parent('ul').css({ display: "block" });
+                    }
+                });
+            }
+            else {
+                window.location.href = "/SecurityModule/Account/Logout"; // Redirect to logout page
+            }
+          
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

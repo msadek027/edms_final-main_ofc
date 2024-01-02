@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Layout = null;
+}
+
+<script src="~/Scripts/App/app.js"></script>
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/SecurityModule/Account/Dashboard" class="logo"><b>E-DMS</b></a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation" ng-controller="navCtrl">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown messages-menu">        
+                        <a href="http://techeureka.com/" target="_blank" class="dropdown-toggle">
+                        <img src="~/Content/AdminLTE/img/TechEureka.png"
+                             alt="Tech Eureka"
+                             class="brand-image img-rectangle elevation-3"
+                             style="opacity: 0.8" />
+                        <i class="fa"><b> <span>Tech Eureka</span></b></i>
+                    </a>
+                </li>
+
+
+               @*<li class="dropdown notifications-menu">               
+                    <a href="#" class="dropdown-toggle" ng-click="toggleNotification()" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="label label-danger">{{notificationCount == 0 ? '': notificationCount}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>                         
+                            <ul class="menu">
+                                <li ng-repeat="item in notificationlist">                 
+                                    <a href="/WorkflowModule/DocMkCkStage?id={{item.StageMapID}}">
+                                        <i class="fa" ng-class="{' fa-comment-o  text-aqua' : item.IsNew,' fa-comment text-danger' : !item.IsNew}"></i> {{item.Message}} <br />
+                                        <span class="pull-right" style="font-size:xx-small">{{item.NotifyAt | date:'medium'}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>*@
+
+
+                <li class="dropdown user user-menu">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/Content/AdminLTE/img/avatar60x60.png" class="user-image" alt="User Image" />
+                            <span class="hidden-xs">
+                                @if (@Session["User"] != null)
+                                {  @Session["User"].ToString()  }
+                            </span>
+                        </a>
+                            <ul class="dropdown-menu">                           
+                                <li class="user-header">
+                                    <img src="/Content/AdminLTE/img/avatar160x160.png" class="img-circle" alt="User Image" />
+                                    <label>
+                                        Hi, @if (@Session["User"] != null)
+                                        {    @Session["User"].ToString()   }
+                                    </label> !!
+                                    <p>
+                                        <label>
+                                            Welcome to - Tech Eureka E-DMS
+                                        </label>
+                                    </p>
+                                    <p>
+
+                        @if (@Session["PasswordReset"] != null)
+                        {
+                         <script>
+                         var reset = false;
+                        </script> if (Convert.ToInt32(@Session["PasswordReset"]) > 0 && Convert.ToInt32(@Session["PasswordReset"]) < 10)  
+                        {
+                        <label style="font-size:small ;color:white"> Please Change your Password within  @Session["PasswordReset"].ToString()  Days</label>;
+                        }
+                        //else if (Convert.ToInt32(@Session["PasswordReset"]) < 0)
+                        //{
+                        //    //doesn't need to change password
+                        //    //**Either The role doesn't need to change password
+                        //    //** or he has more than 5 days
+                        //}
+                        else if (Convert.ToInt32(@Session["PasswordReset"]) == 0)
+                        {  <script>  reset = true; </script> }
+
+
+                        }
+                        </p>
+                                </li>                          
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center"> </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="/SecurityModule/User/ChangePassword">Change Password</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center"> </div>
+                                </li>                            
+                                <li class="user-footer">
+                                    <div class="pull-left">
+
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/SecurityModule/Account/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                      }
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</header>
+
+

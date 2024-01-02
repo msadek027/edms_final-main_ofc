@@ -1,0 +1,15 @@
+E:\DMS_FINAL2\SILDMS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.pdb
+E:\CBPS_TFS\CBPS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.dll
+E:\CBPS_TFS\CBPS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.pdb
+E:\CBPS_TFS\CBPS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.dll
+E:\CBPS_TFS\CBPS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.pdb
+E:\CBPS_TFS\CBPS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.csprojResolveAssemblyReference.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\bin\Release\SILDMS.Utillity.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.csprojAssemblyReference.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.Utillity\obj\Release\SILDMS.Utillity.csproj.CoreCompileInputs.cache

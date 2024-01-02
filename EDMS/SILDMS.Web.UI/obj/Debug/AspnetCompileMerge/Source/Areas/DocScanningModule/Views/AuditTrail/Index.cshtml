@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="AuditTrail">
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <i class="fa  fa-table"></i>
+                <h3 class="box-title">Audit Trail Report</h3>
+
+            </div>
+            <div class="col-lg-6">
+                <table class="pull-right">
+                    <tr>
+                        <td>
+                            <div class="input-group">                                
+                                <button type="button" id="btnPrint" data-ng-click="ShowData()" class="btn btn-info btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Show Data</button>                               
+                            </div>
+                        </td>
+                        <td>                            
+                            <div class="box-tools ">
+                                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-default btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="box-body">
+            <div class="row">
+                <div class="table-responsive">
+                    <h5 class="pull-right" style="padding-right:3px;margin-top:0px;margin-bottom:3px">Showing {{pagingInfo.totalItems==0 ? 0 : ((pagingInfo.page -1) * pagingInfo.itemsPerPage)+1}}-{{(((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage) >= pagingInfo.totalItems ? pagingInfo.totalItems : (((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage)}} of {{pagingInfo.totalItems}} results</h5>
+                    <table class="table table-condensed table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Document Name</th>
+                                <th>User</th>
+                                <th>Reasons</th>
+                                <th>Audit Timestamps</th>
+                                <th>Doc Status</th>
+                                <th>Obsolete Time</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <input placeholder="Document Name" class="input-sm form-control" ng-model="pagingInfo.SearchBy" ng-keyup="WildSearch()" type="text" />
+                                </th>
+                                <th>
+                                    <input placeholder="Name" class="input-sm form-control" ng-model="pagingInfo.search" ng-keyup="WildSearchByName()" type="text" />
+                                </th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in GridDisplayCollection">
+                                <td class="col-lg-2">{{row.UserAction}}</td>
+                                <td class="col-lg-2">{{row.MetaValue}}</td>
+                                <td class="col-lg-2">{{row.UserFullName}}</td>
+                                <td class="col-lg-3">{{row.Remarks}}</td>
+                                <td class="col-lg-3">{{row.ActionEventTime}}</td>                                
+                                <td class="col-lg-2">{{row.DocumentStatus}}</td>
+                                <td class="col-lg-3">{{row.ObsoleteTime}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-if="pagingInfo.totalItems > 0" class="text-center">
+                        <ul uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page" items-per-page="pagingInfo.itemsPerPage" max-size="7" boundary-links="true" rotate="true" force-ellipses="true" ng-change="selectPage()"></ul>
+                    </div>
+                    <div ng-if="pagingInfo.totalItems <= 0" class="text-center">
+                        NO ITEM
+                    </div>
+
+                </div>
+            </div>
+
+            
+        </div>
+
+        <div id="ShowDataModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h3 class="modal-title"></h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="box-body">
+                            <div class="row">
+                                <input type="button" class="btn btn-primary pull-right" value="Print" ng-click="printData()" />
+                            </div>
+                            <br />
+
+                            <div class="row" id="printDiv">
+                                <div class="table-responsive">
+                                    <table class="table" style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Action</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Document Name</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">User</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Remarks</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Audit Timestamps</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Doc Status</th>
+                                                <th style="border: 1px solid black; text-align: left; padding: 8px; ">Obsolete Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="border: 1px solid black;">
+                                            <tr ng-repeat="row in GridDisplayCollectionReport">
+                                                <td class="col-lg-2" style="border: 1px solid black;">{{row.UserAction}}</td>
+                                                <td class="col-lg-2" style="border: 1px solid black;">{{row.MetaValue}}</td>
+                                                <td class="col-lg-2" style="border: 1px solid black;">{{row.UserFullName}}</td>
+                                                <td class="col-lg-3" style="border: 1px solid black;">{{row.Remarks}}</td>
+                                                <td class="col-lg-3" style="border: 1px solid black;">{{row.ActionEventTime}}</td>
+                                                <td class="col-lg-2" style="border: 1px solid black;">{{row.DocumentStatus}}</td>
+                                                <td class="col-lg-3" style="border: 1px solid black;">{{row.ObsoleteTime}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    app.controller('AuditTrail', function ($scope, $http) {
+        applySecurity();
+
+        $scope.itemsByPage = 10;
+        $scope.loading = true;
+
+        $scope.AuditTrailModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+           
+        };
+        $scope.pagingInfo = {
+            SearchBy: null,
+            page: 1,
+            itemsPerPage: 20,
+            sortBy: null,
+            reverse: false,
+            search: null,
+            totalItems: 0
+        };
+        $(function () {
+            $scope.init();
+        });
+        //################ Get Data And Binds Table ########
+        $scope.init = function () {
+            $scope.loading = true;
+            $http.post('/DocScanningModule/AuditTrail/GetAllAuditTrail',
+            {
+                _SearchBy: $scope.pagingInfo.SearchBy,
+                page: $scope.pagingInfo.page,
+                itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                sortBy: $scope.pagingInfo.itemsPerPage,
+                reverse: $scope.pagingInfo.reverse,
+                attribute: $scope.AttrName,
+                search: $scope.pagingInfo.search,
+            })
+            .success(function (pageable) {
+                if (pageable.respStatus == null) {
+
+                    $scope.GridDisplayCollection = pageable.lstLogSearch;
+                    $scope.pagingInfo.totalItems = pageable.totalPages;
+                    $scope.loading = false;
+                }
+                else {
+                    $scope.GridDisplayCollection = pageable.lstLogSearch;
+                    $scope.pagingInfo.totalItems = pageable.totalPages;
+                    toastr.error(pageable.respStatus.Message);
+                    $scope.loading = false;
+                }
+
+                applySecurity();
+            }).error(function () {
+                $scope.loading = false;
+            });
+
+        };
+
+        $scope.WildSearch = function (e) {
+            if ($scope.pagingInfo.SearchBy.length > 2 || $scope.pagingInfo.SearchBy.length === 0) {
+                $scope.init();
+            }
+            //if (e.which === 13) {
+            //    $scope.init();
+            //}
+        }
+
+        $scope.WildSearchByName = function ()
+        {
+            if ($scope.pagingInfo.search.length > 2 || $scope.pagingInfo.search.length === 0) {
+                $scope.init();
+            }
+            //if (e.which === 13) {
+            //    $scope.init();
+            //}
+        }
+       
+        $scope.printData = function () {
+            var PrintData = document.getElementById("printDiv");
+            newWin = window.open("");
+            newWin.document.write(PrintData.outerHTML);            
+            newWin.print();
+            newWin.close();
+        };
+
+        $scope.selectPage = function () {
+            $scope.loading = true;
+            $scope.init();           
+        }
+
+
+        $scope.ShowData = function () {
+
+           $http.post('/DocScanningModule/AuditTrail/GetAllAuditTrailForReport',
+           {
+               _SearchBy: $scope.pagingInfo.SearchBy,
+               page: $scope.pagingInfo.page,
+               itemsPerPage: $scope.pagingInfo.itemsPerPage,
+               sortBy: $scope.pagingInfo.itemsPerPage,
+               reverse: $scope.pagingInfo.reverse,
+               attribute: $scope.AttrName,
+               search: $scope.pagingInfo.search
+           })
+           .success(function (pageable) {
+               if (pageable.respStatus == null) {
+                   $scope.GridDisplayCollectionReport = pageable.lstLogSearch;
+                   $scope.pagingInfo.totalItems = pageable.totalPages;
+                   $scope.loading = false;
+               }
+               else {
+                   $scope.GridDisplayCollectionReport = pageable.lstLogSearch;
+                   $scope.pagingInfo.totalItems = pageable.totalPages;
+                   toastr.error(pageable.respStatus.Message);
+                   $scope.loading = false;
+               }
+               
+           }).error(function () {
+               $scope.loading = false;
+           });
+            $('#ShowDataModal').modal('show');
+        }
+    });
+</script>

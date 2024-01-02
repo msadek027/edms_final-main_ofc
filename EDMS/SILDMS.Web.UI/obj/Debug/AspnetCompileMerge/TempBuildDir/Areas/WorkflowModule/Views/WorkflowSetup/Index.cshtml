@@ -1,0 +1,296 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<style type="text/css">
+    .drag-and-drop ul[dnd-list] {
+        min-height: 42px;
+        padding-left: 0px;
+    }
+
+    .drag-and-drop ul[dnd-list] .dndDraggingSource {
+        display: none;
+    }
+
+    .drag-and-drop ul[dnd-list] .dndPlaceholder {
+        background-color: #ddd;
+        display: block;
+        min-height: 42px;
+    }
+
+    .drag-and-drop ul[dnd-list] li {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: -1px;
+    }
+
+    .drag-and-drop ul[dnd-list] li.selected {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+</style>
+
+<div class="box box-primary box-body" ng-controller="ownerCtrl">
+    <!-- box-header -->
+    <div class="box-header with-border">
+        <i class="fa fa-list-alt"></i>
+        <h3 class="box-title">Workflow Setup</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-flat pull-right"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="OwnerLevel">Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="vmBase.OwnerLevel" ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="Owner">Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="vmBase.Owner" data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID" data-ng-disabled="!vmBase.OwnerLevel">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="vmBase.DocCategory" data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID" data-ng-disabled="!vmBase.Owner">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Type</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select id="" name="" class="form-control" data-ng-model="vmBase.DocType" data-ng-options="docType as docType.DocTypeName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID" data-ng-disabled="!vmBase.DocCategory">
+                        <option value="">-- Select One --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row drag-and-drop">
+        <div ng-repeat="(listName, list) in stageModels.lists" class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{listName == 'A' ? 'List of Unselected Stages' : 'List of Selected Stages'}}</h3>
+                </div>
+                <ul dnd-list="list" style="margin-bottom:0px">
+                    <li ng-repeat="item in list"
+                        dnd-draggable="item"
+                        dnd-moved="list.splice($index, 1)"
+                        dnd-effect-allowed="move"
+                        dnd-selected="dndSelected(item,listName,$index)"
+                        ng-class="{'selected': stageModels.selected === item}">
+                        {{$index + 1}}. {{item.StageName}}
+
+                        <div class="collapse" id="edit_{{listName}}_{{$index}}">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="checkbox" ng-model="item.HaveMk" />&nbsp;Have Make
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="checkbox" ng-model="item.HaveCk" />&nbsp;Have Check
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" ng-click="UpdateTypeStage()" class="btn btn-primary">Update Stages</button>
+
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <i class="fa fa-refresh fa-spin"></i>Loading...
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    app.controller('ownerCtrl', function ($scope, $http) {
+        //applySecurity();
+
+        $scope.stageModels = {
+            selected: null,
+            lists: { "A": [], "B": [] }
+        };
+
+        var previousIdCollups = '';
+
+        $scope.dndSelected = function (item, listName, index) {
+            $scope.stageModels.selected = item;
+            if (previousIdCollups == '') {
+                $("#edit_" + listName + "_" + index + "").collapse('show');
+                previousIdCollups = listName + '_' + index;
+            }
+            else if (previousIdCollups == listName +'_'+ index) {
+                $("#edit_" + previousIdCollups + "").collapse('hide');
+                previousIdCollups = '';
+            }
+            else {
+                $("#edit_" + previousIdCollups + "").collapse('hide');
+                $("#edit_" + listName + "_" + index + "").collapse('show');
+                previousIdCollups = listName + '_' + index;
+            }
+        };
+
+        $scope.vmBase = {
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" }
+        }
+
+        //################ Bind Dropdown ###################
+        // To get all the active owner level to bind to the dropdown
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+        .success(function (response) {
+            $scope.vmBase.OwnerLevel = "";
+            $scope.ownerLevels = response.result;
+            $scope.loading = false;
+        })
+        .error(function () {
+            $scope.loading = false;
+        });
+
+        $scope.$watch('vmBase.OwnerLevel', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.Owner = "";
+                $scope.vmBase.DocCategory = "";
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.DocProperty = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                    { _OwnerLevelID: $scope.vmBase.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('vmBase.Owner', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.DocCategory = "";
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.DocProperty = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.vmBase.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('vmBase.DocCategory', function (newVal) {
+            if (newVal) {
+                $scope.vmBase.DocType = "";
+                $scope.vmBase.DocProperty = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.vmBase.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.vmBase.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('vmBase.DocType', function (newVal) {
+            if (newVal) {
+                $scope.loadStagesForType();
+            }
+        });
+
+        $scope.loadStagesForType = function () {
+            $scope.stageModels.lists.A = [];
+            $scope.stageModels.lists.B = [];
+
+            if ($scope.vmBase.DocType.DocTypeID != "") {
+                var url = '/WorkflowModule/WorkflowSetup/GetALLStagesForType?DocCategoryID=' + $scope.vmBase.DocCategory.DocCategoryID + ' &OwnerID=' + $scope.vmBase.Owner.OwnerID + ' &DocTypeID=' + $scope.vmBase.DocType.DocTypeID + '';
+                $http.get(url).success(function (response) {
+                    angular.forEach(response.obj, function (item) {
+                        if (!item.IsChecked) {
+                            $scope.stageModels.lists.A.push(item);
+                        }
+                        else {
+                            $scope.stageModels.lists.B.push(item);
+                        }
+                    });
+
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                    toastr.error('Data Loading Faild.');
+                });
+            }
+        }
+
+        $scope.UpdateTypeStage = function () {
+            $http.post('/WorkflowModule/WorkflowSetup/SetStagesForType/', { objs: $scope.stageModels.lists.B, OwnerID: $scope.vmBase.Owner.OwnerID, DocCategoryID: $scope.vmBase.DocCategory.DocCategoryID, DocTypeID: $scope.vmBase.DocType.DocTypeID })
+                  .success(function (data) {
+                      if (data.Code === "1") {
+                          $scope.loadStagesForType();
+                          $scope.loading = false;
+                          toastr.success(data.Message);
+                      }
+                      else {
+                          $scope.loading = false;
+                          toastr.error(data.Message);
+                      }
+                  }).error(function (data) {
+                      $scope.loading = false;
+                      toastr.error('Saved Faild.');
+                  });
+        };
+
+        $scope.toggleRefreshTable = function () {
+            $scope.loading = true;
+            $scope.loadDocPropertyTable();
+        };
+    });
+
+</script>

@@ -1,0 +1,758 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="OwnerProperIdentityCtrl" data-ng-init="init()">
+    <!-- box-header -->
+    <div class="box-header with-border">
+        <i class="fa fa-key"></i>
+        <h3 class="box-title">Stage Permisson Setup Form</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="ResetModel()" class="btn btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+
+    <div class="box-body">
+        <form role="form" name="frmStagePermission">
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Owner Level</label>
+                </div>
+                <div class="col-lg-4">
+                    <select id="ddOwnerLevel" class="form-control" ng-model="StagePermissionModel.OwnerLevel"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+
+
+                 
+
+                </div>
+                <div class="col-lg-2">
+                    <label>Number of User</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="Number of User"
+                           ng-model="UserModel.UserNo" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label for="Owner">Owner</label>
+                </div>
+                <div class="col-lg-4">
+                    <select id="ddOwner" class="form-control" ng-model="StagePermissionModel.Owner"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!StagePermissionModel.OwnerLevel" ng-click="RestUserInfo()">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label>User Name</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="User Name"
+                           ng-model="UserModel.UserName" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Employee ID</label>
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Employee ID" name="EmployeeID"
+                           ng-model="UserModel.EmployeeID" readonly="readonly" ng-maxlength="256" required />
+                    <div ng-show="frmOwnerPermission.$submitted || frmOwnerPermission.EmployeeID.$touched">
+                        <span ng-show="frmOwnerPermission.EmployeeID.$error.required" class="label label-danger">
+                            Please Select an Employee
+                        </span>
+                    </div>
+                    <input type="hidden" class="form-control" placeholder="User ID"
+                           ng-model="UserModel.UserID" readonly="readonly" id="userID" />
+                </div>
+                <div class="col-lg-2">
+                    <input type="button" class="form-control btn btn-info"
+                           value="Employee List" ng-click="showEmployeeList()" />
+                </div>
+                <div class="col-lg-2">
+                    <label>User Role</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="User Role" ng-model="UserModel.RoleTitle" readonly="readonly" />
+                </div>
+
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>User Full Name</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="User Full Name"
+                           ng-model="UserModel.UserFullName" readonly="readonly" />
+                </div>
+                <div class="col-lg-2">
+                    <label>Permission Level</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="Permission Level"
+                           ng-model="UserModel.PermissionLevel" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Designation</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="Designation"
+                           ng-model="UserModel.UserDesignation" readonly="readonly" />
+                </div>
+                <div class="col-lg-2">
+                    <label>Supervisor Level</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="Supervisor Level"
+                           ng-model="UserModel.SupervisorLevel" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Job Location</label>
+                </div>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" placeholder="Job Location"
+                           ng-model="UserModel.JobLocation" readonly="readonly" />
+                </div>
+                <div class="col-lg-2">
+                    <label>User Level</label>
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="User Level"
+                           ng-model="UserModel.UserLevel" readonly="readonly" />
+                </div>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="Role Id" ng-model="UserModel.RoleID" readonly="readonly" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Owner Level</label>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control" ng-model="StagePermissionModel.OwnerLevelForStages"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                        track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label>Owner</label>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control" ng-model="StagePermissionModel.OwnerForStages"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevelForStages track by owner.OwnerID"
+                            data-ng-disabled="!StagePermissionModel.OwnerLevelForStages">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <label>Doc. Category</label>
+                </div>
+                <div class="col-lg-4">
+                    <select class="form-control" data-ng-model="StagePermissionModel.DocCategory"
+                            data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                            data-ng-disabled="!StagePermissionModel.OwnerForStages">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label>Doc. Type</label>
+                </div>
+                <div class="col-lg-3">
+                    <select class="form-control" data-ng-model="StagePermissionModel.DocType"
+                            data-ng-options="docType as docType.DocTypeName for docType in
+                         docTypeForSpecificDocCategory track by docType.DocTypeID"
+                            data-ng-disabled="!StagePermissionModel.DocCategory">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-lg-1">
+                    <input type="button" class="form-control btn btn-info" value="Report" ng-click="ReportView()" />
+                </div>
+            </div>
+     
+            <div class="row">
+                <div class="col-lg-2 col-sm-2 col-md-2">
+
+                </div>
+                <div class="col-lg-10 col-sm-10 col-md-10">
+                    <div class="box box-primary">
+                        <div class="box-header with-border" style="padding:0px;">
+                            <div class="pull-left" style="padding-top:1%">
+                                <i class="fa fa-binoculars"></i>
+                                <h3 class="box-title">Permission Setup</h3>
+                            </div>
+                            <input type="button" class="btn btn-flat btn-primary pull-right" value="Unselect All" ng-click="UnSelectAll()" />
+                            <input type="button" class="btn btn-flat btn-primary pull-right" value="Select All" ng-click="SelectAll()" />
+                        </div>
+                        <div class="box-body">
+                            <div class="row form-group">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <label>Stage</label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <label>Modify/Verify Permission</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="pull-right">
+                                        <label>User / Role Base</label>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="row form-group ">
+                                <div ng-repeat="item in userStagePermissionModal">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <i class="fa fa-cog"></i>&nbsp;{{item.StageName}}
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                        <input type="checkbox" ng-model="item.IsChecked" />
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="pull-right">
+                                            <label>
+                                                <input type="radio" name="RoleBase{{$index}}" ng-model="item.NotifyCk"  ng-checked="item.NotifyCk === true" ng-click="toggleNotifyCk(item)" /> User
+                                            </label>
+                                            <label for="RoleBase{{$index}}"> / </label>
+                                            <label>
+                                                <input type="radio" name="RoleBase{{$index}}" ng-model="item.NotifyMk" ng-checked="item.NotifyMk === true" ng-click="toggleNotifyMk(item)" /> Role
+                                            </label>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="box-footer">
+                    <button type="button" data-ng-click="Save()" class="btn btn-primary pull-right btnSave" ng-disabled="loading">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Add Menu Modal -->
+    <div id="addModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="" aria-hidden="true">x</button>
+                    <h3 class="modal-title">Employee List</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-sm-12 table-responsive">
+                            <table st-table="displayedCollection" st-safe-src="EmployeeGridData" class="table table-condensed table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th st-sort="EmployeeID">Employee ID</th>
+                                        <th st-sort="UserFullName">Full Name</th>
+                                        <th st-sort="UserDesignation">Designation</th>
+                                        <th st-sort="JobLocation">Job Location</th>
+                                        <th st-sort="UserNo">User No.</th>
+                                        <th st-sort="UserName">User Name</th>
+                                        <th st-sort="RoleName">Role</th>
+                                        <th st-sort="PermissionLevel">Permission Level</th>
+                                        <th st-sort="SupervisorLevel">Supervisor Level</th>
+                                        <th st-sort="UserLevelName">User Level</th>
+                                        <th st-sort="RoleId">Role ID</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <input st-search="EmployeeID" placeholder="EmployeeID"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserFullName"
+                                                   placeholder="UserFullName" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserDesignation" placeholder="UserDesignation"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="JobLocation"
+                                                   placeholder="JobLocation" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserNo" placeholder="UserNo"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserName"
+                                                   placeholder="UserName" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="RoleName" placeholder="RoleName"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="PermissionLevel"
+                                                   placeholder="PermissionLevel" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="SupervisorLevel" placeholder="SupervisorLevel"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserLevelName"
+                                                   placeholder="UserLevelName" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="RoleId"
+                                                   placeholder="RoleId" class="input-sm form-control" type="search" />
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="row in displayedCollection">
+                                        <td>{{row.EmployeeID}}</td>
+                                        <td>{{row.UserFullName}}</td>
+                                        <td>{{row.UserDesignation}}</td>
+                                        <td>{{row.JobLocation}}</td>
+                                        <td>{{row.UserNo}}</td>
+                                        <td>{{row.UserName}}</td>
+                                        <td>{{row.RoleTitle}}</td>
+                                        <td>{{row.PermissionLevel}}</td>
+                                        <td>{{row.SupervisorLevel}}</td>
+                                        <td>{{row.UserLevel}}</td>
+                                        <td>{{row.RoleID}}</td>
+                                        <td>
+
+                                            <a class="btn btn-sm btn-flat btn-success" ng-href="#" ng-rel="" data-ng-click="toggleSelect($event, row)">Select</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="12" class="text-center">
+                                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Report Modal -->
+    <div id="reportModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="" aria-hidden="true">x</button>
+                    <h3 class="modal-title">Stage Assigned in Role / User</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-sm-12 table-responsive">
+                            <table st-table="displayedCollectionReport" st-safe-src="ReportStageAssignedGridData" class="table table-condensed table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th st-sort="StageID">Stage ID</th>
+                                        <th st-sort="StageName">Stage Name</th>
+                                        <th st-sort="NumberOfStage">Number Of Stage</th>
+                                        <th st-sort="WorkdflowID">Workdflow ID</th>
+                                        <th st-sort="WorkdflowName">Workdflow Name</th>
+
+                                        <th st-sort="RoleUserBase">Role / User Base</th>
+                                        <th st-sort="RoleID">Role ID</th>
+                                        <th st-sort="RoleName">Role Name</th>
+                                        <th st-sort="UserLevelID">User Level</th>
+                                        <th st-sort="UserID">User ID</th>
+
+
+
+
+
+                                    </tr>
+                                    @*<tr>
+                                        <th>
+                                            <input st-search="EmployeeID" placeholder="EmployeeID"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserFullName"
+                                                   placeholder="UserFullName" class="input-sm form-control" type="search" />
+                                        </th>
+
+                                        <th>
+                                            <input st-search="UserName"
+                                                   placeholder="UserName" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="RoleName" placeholder="RoleName"
+                                                   class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="RoleId"
+                                                   placeholder="RoleId" class="input-sm form-control" type="search" />
+                                        </th>
+                                        <th>
+                                            <input st-search="UserLevelName"
+                                                   placeholder="UserLevelName" class="input-sm form-control" type="search" />
+                                        </th>
+
+                                    </tr>*@
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="row in displayedCollectionReport">
+                                        <td>{{row.StageID}}</td>
+                                        <td>{{row.StageName}}</td>
+                                        <td>{{row.NumberOfStage}}</td>
+                                        <td>{{row.WorkdflowID}}</td>
+                                        <td>{{row.WorkdflowName}}</td>
+
+                                        <td>{{row.RoleUserBase}}</td>
+                                        <td>{{row.RoleID}}</td>
+                                        <td>{{row.RoleName}}</td>
+                                        <td>{{row.UserLevelID}}</td>
+                                        <td>{{row.UserID}}</td>
+
+
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="12" class="text-center">
+                                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /Add Menu Modal -->
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    app.controller('OwnerProperIdentityCtrl', function ($scope, $http) {
+        // applySecurity();
+
+        $scope.EmployeeGridData = [];
+
+        $scope.itemsByPage = 10;
+        $scope.loading = true;
+        $scope.RoleBase = false;
+        $scope.displayedCollection = [].concat($scope.EmployeeGridData);
+
+
+
+        $scope.ReportStageAssignedGridData = [];
+        $scope.displayedCollectionReport = [].concat($scope.ReportStageAssignedGridData);
+
+        $scope.toggleNotifyCk = function (item) {
+            
+            item.NotifyMk = false;
+            item.NotifyCk = true;
+        };
+
+        $scope.toggleNotifyMk = function (item) {
+            item.NotifyCk = false;
+            item.NotifyMk = true;
+        };
+
+        $scope.StagePermissionModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            OwnerLevelForStages: { OwnerLevelID: "", LevelName: "" },
+            OwnerForStages: { OwnerID: "", OwnerName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" }
+        };
+       
+     
+        $scope.UserModel = {
+            UserID: "",
+            EmployeeID: "",
+            UserFullName: "",
+            UserDesignation: "",
+            JobLocation: "",
+            UserNo: "",
+            UserName: "",
+            UserPassword: "",
+            RoleTitle: "",
+            PermissionLevel: "",
+            UserLevel: "",
+            SupervisorLevel: ""
+        };
+
+        $scope.ResetModel = function () {
+            $scope.StagePermissionModel = "";
+            $scope.UserModel = "";
+            $("#ownerCheckbox").addClass('hidden');
+            location.reload();
+        };
+
+        // To get all the active owner level to bind to the dropdown
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+        .success(function (response) {
+            $scope.ownerLevels = response.result;
+            $scope.StagePermissionModel.OwnerLevel = response.result[0];
+            //$scope.StagePermissionModel.OwnerLevelForStages = "";
+            $scope.loading = false;
+        })
+        .error(function () {
+            $scope.loading = false;
+        });
+
+        $scope.$watch('StagePermissionModel.OwnerLevel', function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $scope.StagePermissionModel.Owner = "";
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                    { _OwnerLevelID: $scope.StagePermissionModel.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+
+                        $scope.StagePermissionModel.Owner = response.result[0]; //add new
+
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+     
+        $scope.showEmployeeList = function (model) {
+            $('#addModal').modal('show');
+            $http.post('/SecurityModule/OwnerLevelPermission/GetEmployeeListForOwner',
+            {
+                _OwnerID: $scope.StagePermissionModel.Owner.OwnerID
+            })
+            .success(function (response) {
+                $scope.EmployeeGridData = response;
+                $scope.displayedCollection = [].concat($scope.EmployeeGridData);
+                $scope.loading = false;
+            }).error(function () {
+                $scope.loading = false;
+            });
+        };
+
+        $scope.toggleSelect = function (event,tableRow) {
+            event.preventDefault();
+            $scope.UserModel = [];
+            $scope.UserModel.UserID = tableRow.UserID;
+            $scope.UserModel.EmployeeID = tableRow.EmployeeID;
+            $scope.UserModel.UserFullName = tableRow.UserFullName;
+            $scope.UserModel.UserDesignation = tableRow.UserDesignation;
+
+            $scope.UserModel.JobLocation = tableRow.JobLocation;
+            $scope.UserModel.UserNo = (tableRow.UserNo).toString();
+            $scope.UserModel.UserName = (tableRow.UserName).toString();
+            $scope.UserModel.RoleTitle = (tableRow.RoleTitle).toString();
+            $scope.UserModel.PermissionLevel = (tableRow.PermissionLevel).toString();
+
+            $scope.UserModel.SupervisorLevel = (tableRow.SupervisorLevel).toString();
+            $scope.UserModel.UserLevel = (tableRow.UserLevel).toString();
+            $scope.UserModel.RoleID = (tableRow.RoleID).toString();
+            $scope.StagePermissionModel.EnableOwnerSecurity = "";
+            $scope.ownerLevelsAccess = [];
+            $scope.ownersListForSpecificOwnerLevel = [];
+
+            $('#addModal').modal('hide');
+        };
+        $scope.ReportView = function (model) {
+            $('#reportModal').modal('show');
+            $http.post('/WorkflowModule/WorkflowPermission/GetReportView_StageAssignedRoleUser',
+                {
+                    WorkdflowID: $scope.StagePermissionModel.DocType.DocTypeID
+                })
+                .success(function (response) {
+                    $scope.ReportStageAssignedGridData = response;
+                 
+                    $scope.displayedCollectionReport = [].concat($scope.ReportStageAssignedGridData);
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        };
+        $scope.$watch('StagePermissionModel.OwnerLevelForStages', function (newVal) {
+            $scope.StagePermissionModel.OwnerForStages = "";
+            $scope.StagePermissionModel.DocCategory = "";
+            $scope.StagePermissionModel.DocType = "";
+            $scope.userStagePermissionModal = [];
+
+            if (newVal) {
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                { _OwnerLevelID: $scope.StagePermissionModel.OwnerLevelForStages.OwnerLevelID })
+                .success(function (response) {
+                    $scope.ownersForSpecificOwnerLevelForStages = response.result;
+                  //  $scope.StagePermissionModel.OwnerLevelForStages = response.result[0] //add new
+
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+            }
+        });
+
+        $scope.$watch('StagePermissionModel.OwnerForStages', function (newVal) {
+            if (newVal) {
+                $scope.StagePermissionModel.DocCategory = "";
+                $scope.StagePermissionModel.DocType = "";
+                $scope.userStagePermissionModal = [];
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                { _OwnerID: $scope.StagePermissionModel.OwnerForStages.OwnerID })
+                .success(function (response) {
+                    $scope.docCategoriesForSpecificOwner = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+            }
+        });
+
+        $scope.$watch('StagePermissionModel.DocCategory', function (newVal) {
+            if (newVal) {
+                $scope.StagePermissionModel.DocType = "";
+                $scope.userStagePermissionModal = [];
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                {
+                    _DocCategoryID: $scope.StagePermissionModel.DocCategory.DocCategoryID,
+                    _OwnerID: $scope.StagePermissionModel.OwnerForStages.OwnerID
+                })
+                .success(function (response) {
+                    $scope.docTypeForSpecificDocCategory = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+            }
+        });
+
+        $scope.$watch('StagePermissionModel.DocType', function (newVal) {
+            $scope.userStagePermissionModal = [];
+            if (newVal) {
+                loadPropsDocs();
+            }
+        });
+
+        $scope.userStagePermissionModal = [];
+        var loadPropsDocs = function () {
+            if ($scope.UserModel.UserID == '')
+            {
+                toastr.error("Please! Select an User first");
+                return;
+            }
+
+            $http.post('/WorkflowModule/WorkflowPermission/GetStagesWithPermission',
+            {
+                _OwnerID: $scope.StagePermissionModel.OwnerForStages.OwnerID,
+                _DocCategoryID: $scope.StagePermissionModel.DocCategory.DocCategoryID,
+                _DocTypeID: $scope.StagePermissionModel.DocType.DocTypeID,
+                _UserID: $scope.UserModel.UserID
+
+            })
+            .success(function (response) {
+                $scope.userStagePermissionModal = response;
+                console.log(response);
+                $scope.loading = false;
+            }).error(function () {
+                $scope.loading = false;
+            });
+        };
+
+        $scope.SelectAll = function () {
+            angular.forEach($scope.userStagePermissionModal, function (item) {
+                item.IsChecked = true;
+            })
+        };
+
+        $scope.UnSelectAll = function () {
+            angular.forEach($scope.userStagePermissionModal, function (item) {
+                item.IsChecked = false;
+            })
+        };
+
+        var SelectedObj = []
+
+        $scope.Save = function () {
+
+            debugger;
+
+            console.log($scope.userStagePermissionModal);
+
+            SelectedObj = [];
+            angular.forEach($scope.userStagePermissionModal, function (item) {
+                if (item.IsChecked) {
+                    SelectedObj.push(item);
+                };
+            });
+
+            if (SelectedObj.length < 1) {
+                toastr.error('Please! Select a stage permission');
+                return;
+            }
+
+            console.log(SelectedObj);
+            $http.post('/WorkflowModule/WorkflowPermission/SetStagesWithPermission',
+            {
+                _OwnerID: $scope.StagePermissionModel.OwnerForStages.OwnerID,
+                _DocCategoryID: $scope.StagePermissionModel.DocCategory.DocCategoryID,
+                _DocTypeID: $scope.StagePermissionModel.DocType.DocTypeID,
+                _UserID: $scope.UserModel.UserID,
+                objs: SelectedObj,             
+                RoleID: $scope.UserModel.RoleID,
+                OwnerLevelID: $scope.UserModel.UserLevel
+            })
+            .success(function (response) {
+                $scope.loading = false;
+                if (response.Code = '1') {
+                    toastr.success(response.Message);
+                    loadPropsDocs();
+                }
+                else
+                    toastr.error(response.Message);
+            }).error(function () {
+                toastr.error('User Stage Permission Setup Failed');
+                $scope.loading = false;
+            });
+        }
+    });
+</script>

@@ -1,0 +1,83 @@
+INTO TempDB_SEC_Menu
+INTO TempDB_Del_SEC_Menu
+
+Select * from  SEC_Menu Where MenuID IN
+(
+16021100071,
+23082900001,
+18121800005,
+18121800006,
+18121800010,
+22021100026,
+21021100026,
+23080700001,
+18021100027,
+16082300001,
+16082300331,
+21021100027,
+16021100031,
+16021100028,
+16021100333,
+16082300001,
+18070500007,
+18070500006
+);
+Delete from  SEC_Menu Where MenuID IN
+(
+16021100071,
+23082900001,
+18121800005,
+18121800006,
+18121800010,
+22021100026,
+21021100026,
+23080700001,
+18021100027,
+16082300001,
+16082300331,
+21021100027,
+16021100031,
+16021100028,
+16021100333,
+16082300001,
+18070500007,
+18070500006
+);
+Update   SEC_Menu SET MenuTitle='Doc Distribution & Sharing Search' Where MenuID IN
+(
+22080100015
+);
+Update SEC_Menu Set MenuTitle='Processing Stage Setup' Where MenuID=18070500003
+Update SEC_Menu Set MenuTitle='Workflow Configuration' Where MenuID=18070500004
+Update SEC_Menu Set MenuTitle='Stage Configuration' Where MenuID=18070500005
+------------
+Update SEC_Menu Set MenuTitle='Stage Setup' Where MenuID=18070500003
+Update SEC_Menu Set MenuTitle='Stage Path Drawing' Where MenuID=18070500004
+Update SEC_Menu Set MenuTitle='Stage Details Setup' Where MenuID=18070500005
+------------
+
+Workflow Delete:
+
+Delete from  SEC_Menu
+Where MenuURL LIKE '%/WorkflowModule/DocMkCkStage?id=%'
+
+
+Select * from  SEC_Menu Where ParentMenuID= 18071000001
+UNION ALL
+Select * from  SEC_Menu Where ParentMenuID IN( 
+18102900002,
+19031300001,
+20122200001,
+22062900001,
+22080100001
+)
+UNION ALL 
+Select * from  SEC_Menu Where ParentMenuID IN( 
+18102900003,
+19031300002,
+20122200002,
+22062900002,
+22062900014,
+22080100002
+)
+

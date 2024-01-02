@@ -1,0 +1,35 @@
+
+
+Delete from DSM_Documents
+Delete from DSM_DocumentsMeta
+
+Delete from DSM_DocumentsVersion
+Delete from DSM_DocumentsMetaVersion
+
+delete from WFM_DocTypeProperty
+delete from WFM_ObjectNextStageMap
+delete from WFM_ObjectPropertyMap
+delete from WFM_Objects
+delete from WFM_ObjectStatusForStages
+delete from WFM_ProcessingStage
+delete from WFM_ProcessingStageConnection
+
+delete from WFM_StageChangeHistory
+delete from WFM_StageMap
+delete from WFM_StageWiseDocumentPermission
+
+delete from WFM_UserStagePermission
+delete from WFM_Workflow
+
+
+delete from Z_20021700003
+delete from Z_20021700007
+
+Select * from DSM_DocType  order by seton DESC--//Document Type
+Select * from DSM_DocProperty order by seton DESC
+--ShortCut
+Select *  from DSM_DocType Where DocTypeID=23102600003 and OwnerID=23101500001
+Select *  from DSM_DocProperty Where DocTypeID In (23102600003) and OwnerID=23101500001
+
+ Delete from DSM_DocType Where DocTypeID=23102600003 and OwnerID=23101500001
+ Delete from DSM_DocProperty Where DocTypeID In (23102600003) and OwnerID=23101500001

@@ -1,0 +1,1227 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+@*<link href="~/Content/css/select2.min.css" rel="stylesheet" />*@
+<div class="box box-primary box-body" ng-controller="OwnerProperIdentityCtrl" data-ng-init="init()">
+    <div class="box-header with-border">
+        <i class="fa fa-key"></i>
+        <h3 class="box-title">Document Destroy Policy</h3>
+        <div class="box-tools pull-right">
+            <button type="button" id="btnRefresh" data-ng-click="ResetModel()" class="btn btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button" id="btnAdd" data-ng-click="toggleAdd()" class="btn btnSave btn-flat btn-primary pull-right btnSave" ng-disabled="loading"> <i class="fa fa-plus"></i> Add New</button>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.OwnerLevel"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="Owner">Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.Owner"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!docPropIdentityModel.OwnerLevel">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docPropIdentityModel.DocCategory"
+                            data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                            data-ng-disabled="!docPropIdentityModel.Owner">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Doc Sub Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" data-ng-model="docPropIdentityModel.DocType"
+                            data-ng-options="docType as docType.DocTypeName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID"
+                            data-ng-disabled="!docPropIdentityModel.DocCategory">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Documents</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docPropIdentityModel.DocProperty"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!docPropIdentityModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="table-responsive">
+            <table st-table="GridDisplayCollection" st-safe-src="docPropIdentityGridData" class="table table-condensed table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th st-sort="IdentificationSL">Policy No.</th>
+                        <th st-sort="IdentificationAttribute">Policy Name</th>
+                        <th st-sort="IdentificationCode">Document Nature</th>
+                        <th st-sort="IsRequired"> Applicable To</th>
+                        <th st-sort="IsAuto">Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input st-search="IdentificationAttribute" placeholder="Attribute" class="input-sm form-control" type="search" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in GridDisplayCollection">
+                        <td>{{row.DestroyPolicyID}}</td>
+                        <td>{{row.PolicyFor}}</td>
+                        <td>{{row.DocumentNature}}</td>
+                        <td>{{row.PolicyApplicableTo}}</td>
+                        <td>
+                            <span ng-attr-class="{{row.Status ==true? 'label label-success' : 'label label-danger' }}">
+                                {{row.Status == true? 'Active':'InActive'}}
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)"><i class="fa fa-edit"></i> Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div id="addModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form name="addForm" role="form">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" ng-click="" aria-hidden="true">x</button>
+                            <h3 class="modal-title">Document Destroy Policy</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+
+                                <div class="row form-group">
+                                    <div class="col-lg-2">
+                                        <label>Destroy Policy No.</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input id="DestroyPolicyID" type="text" class="form-control" placeholder="Policy No." readonly="readonly"
+                                               ng-model="docPropIdentityModel.DestroyPolicyID" />
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label>Policy For</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input id="PolicyFor" name="PolicyFor" type="text" class="form-control" placeholder="Policy For"
+                                               ng-model="docPropIdentityModel.PolicyFor" ng-required="true" />
+                                        <span class="help-block" ng-if="addForm.PolicyFor.$error.required && addForm.PolicyFor.$touched">PolicyFor is Required.</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-lg-2">
+                                        <label>Document Nature</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <select data-ng-model="docPropIdentityModel.DocumentNature" id="DocumentNature" name="DocumentNature" ng-required="true"
+                                                class="form-control">
+                                            <option value="">--Select--</option>
+                                            <option value="Original">Original</option>
+                                            <option value="Version">Version</option>
+                                        </select>
+
+                                        <span class="help-block" ng-if="addForm.DocumentNature.$error.required && addForm.DocumentNature.$touched">DocumentNature is Required.</span>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <label>Applicable To</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <select data-ng-model="docPropIdentityModel.PolicyApplicableTo" id="PolicyApplicableTo" name="PolicyApplicableTo"
+                                                class="form-control" ng-required="true">
+                                            <option value="">--Select--</option>
+                                            <option value="Category">Category</option>
+                                            <option value="Type">Type</option>
+                                            <option value="Document">Document</option>
+                                            <option value="Attribute">Attribute</option>
+                                        </select>
+                                        <span class="help-block" ng-if="addForm.PolicyApplicableTo.$error.required && addForm.PolicyApplicableTo.$touched">PolicyApplicableTo is Required.</span>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-lg-2">
+                                        <label>Status</label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <select data-ng-model="docPropIdentityModel.Status" name="Status" id="Status"
+                                                class="form-control" ng-required="true">
+                                            <option value="" style="display: none;">--Select--</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                        <span class="help-block" ng-if="addForm.Status.$error.required && addForm.Status.$touched">Status is Required.</span>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Owner Level</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="docPropIdentityModel.OwnerLevel" id="OwnerLevel" name="OwnerLevel"
+                                                    ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID"
+                                                    ng-disabled="!docPropIdentityModel.PolicyApplicableTo" ng-required="true">
+                                                <option value="">--Select--</option>
+                                            </select>
+
+                                            @*<select class="form-control" ng-model="docPropIdentityModel.OwnerLevel" ng-change="loadOwner()"
+                                                    ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels track by ownerLevel.OwnerLevelID">
+                                                <option value="">--Select--</option>
+                                            </select>*@
+
+                                            <span class="help-block" ng-if="addForm.OwnerLevel.$error.required && addForm.OwnerLevel.$touched">Owner Level is Required.</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Owner</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="docPropIdentityModel.Owner" id="Owner" name="Owner"
+                                                    data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                                                    data-ng-disabled="!docPropIdentityModel.OwnerLevel" ng-required="true">
+                                                <option value="">--Select--</option>
+                                            </select>
+
+                                            @*<select class="form-control" ng-model="docPropIdentityModel.Owner" ng-change="loadCategory()"
+                                                    data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                                                    data-ng-disabled="!docPropIdentityModel.OwnerLevel">
+                                                <option value="">--Select--</option>
+                                            </select>*@
+
+                                            <span class="help-block" ng-if="addForm.Owner.$error.required && addForm.Owner.$touched">Owner is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Document Category</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <select class="form-control" data-ng-model="docPropIdentityModel.DocCategory" id="DocCategory"
+                                                    data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                                                    data-ng-disabled="!docPropIdentityModel.Owner || !(docPropIdentityModel.PolicyApplicableTo == 'Type' || docPropIdentityModel.PolicyApplicableTo == 'Document' || docPropIdentityModel.PolicyApplicableTo == 'Attribute')">
+                                                <option value="">--Select--</option>
+                                            </select>
+
+                                            @*<select class="form-control" data-ng-model="docPropIdentityModel.DocCategory" ng-change="loadType()"
+                                                    data-ng-options="docCategory as docCategory.DocCategoryName for docCategory in docCategoriesForSpecificOwner track by docCategory.DocCategoryID"
+                                                    data-ng-disabled="!docPropIdentityModel.Owner || !(docPropIdentityModel.PolicyApplicableTo == 'Type' || docPropIdentityModel.PolicyApplicableTo == 'Document' || docPropIdentityModel.PolicyApplicableTo == 'Attribute')">
+                                                <option value="">--Select--</option>
+                                            </select>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Doc Sub Category</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <select class="form-control" data-ng-model="docPropIdentityModel.DocType" id="DocType"
+                                                    data-ng-options="docType as docType.DocTypeName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID"
+                                                    data-ng-disabled="!docPropIdentityModel.DocCategory || !(docPropIdentityModel.PolicyApplicableTo == 'Document' || docPropIdentityModel.PolicyApplicableTo == 'Attribute')">
+                                                <option value="">--Select--</option>
+                                            </select>
+
+                                            @*<select class="form-control" data-ng-model="docPropIdentityModel.DocType" ng-change="loadPropert()"
+                                                    data-ng-options="docType as docType.DocTypeName for docType in docTypeForSpecificDocCategory track by docType.DocTypeID"
+                                                    data-ng-disabled="!docPropIdentityModel.DocCategory || !(docPropIdentityModel.PolicyApplicableTo == 'Document' || docPropIdentityModel.PolicyApplicableTo == 'Attribute')">
+                                                <option value="">--Select--</option>
+                                            </select>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Documents</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <select class="form-control" data-ng-model="docPropIdentityModel.DocProperty" id="DocProperty"
+                                                data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                                                data-ng-disabled="!docPropIdentityModel.DocType || docPropIdentityModel.PolicyApplicableTo != 'Attribute'">
+                                            <option value="">--Select--</option>
+                                        </select>
+
+                                        @*<select class="form-control" data-ng-model="docPropIdentityModel.DocProperty"
+                                                data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                                                data-ng-disabled="!docPropIdentityModel.DocType || docPropIdentityModel.PolicyApplicableTo != 'Attribute'">
+                                            <option value="">--Select--</option>
+                                        </select>*@
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div id="docCategoryCheckbox" class="row" ng-if="(docPropIdentityModel.PolicyApplicableTo == 'Category') && docPropIdentityModel.Owner">
+                                    <div class="row form-group ">
+                                        <div class="col-lg-3">
+                                            <label>Category</label>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Time Unit</label>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>Time Delate</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Confirm</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Auto Delete</label>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group ">
+                                        <div ng-repeat="category in docCategoriesCheckboxForSpecificOwner">
+                                            <div class="row" style="margin: 0; padding: 0;">
+                                                <div class="col-lg-3">
+                                                    <input type="checkbox" ng-model="category.IsSelected" /> {{category.DocCategoryName}}
+                                                    <input type="hidden" ng-model="DocCategoryID" />
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <select ng-model="category.TimeUnit" name="catTimeUnit" class="form-control">
+                                                        <option value="">--Select--</option>
+                                                        <option value="Days">Days</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="number" ng-model="category.TimeValue" name="catTimeValue" class="form-control" min="0"/>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="number" ng-model="category.TimeValueCon" name="catTimeValueCon" class="form-control" min="0" max="{{category.TimeValue}}" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="checkbox" ng-model="category.AutoDelete" />
+
+                                                    <select ng-model="category.ExceptionValue" ng-show="false">
+                                                        <option value="">--Select--</option>
+                                                        <option value="FirstOne">First One</option>
+                                                        <option value="FirstTwo">First Two</option>
+                                                        <option value="LastOne">Last One</option>
+                                                        <option value="LastTwo">Last Two</option>
+                                                    </select>
+                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="docTypeCheckbox" class="row" ng-if="(docPropIdentityModel.PolicyApplicableTo == 'Type') && docPropIdentityModel.DocCategory">
+                                    <div class="row form-group ">
+                                        <div class="col-lg-3">
+                                            <label>Type</label>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Time Unit</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Delate</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Confirm</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Auto Delete</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div ng-repeat="type in docTypeCheckboxForSpecificDocCategory">
+                                            <div class="row" style="margin: 0; padding: 0;">
+                                                <div class="col-lg-3">
+                                                    <input type="checkbox" name="docType" ng-model="type.IsSelected"
+                                                           ng-change="" /> {{type.DocTypeName}}
+                                                    <input type="hidden" ng-model="type.DocTypeID" />
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <select ng-model="type.TimeUnit" class="form-control">
+                                                        <option value="">--Select--</option>
+                                                        <option value="Days">Days</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="type.TimeValue" class="form-control" min="0"/>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="type.TimeValueCon" class="form-control" min="0" max="{{type.TimeValue}}" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="checkbox" name="docType" ng-model="type.AutoDelete">
+
+                                                    <select ng-model="type.ExceptionValue" ng-show="false">
+                                                        <option value="">--Select--</option>
+                                                        <option value="FirstOne">First One</option>
+                                                        <option value="FirstTwo">First Two</option>
+                                                        <option value="LastOne">Last One</option>
+                                                        <option value="LastTwo">Last Two</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="propertyCheckbox" class="row" ng-if="(docPropIdentityModel.PolicyApplicableTo == 'Document') && docPropIdentityModel.DocType">
+                                    <div class="row form-group ">
+                                        <div class="col-lg-3">
+                                            <label>Documents</label>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>Time Unit</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Delate</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Confirm</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Auto Delete</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div ng-repeat="property in docPropertyCheckboxForSpecificDocType">
+                                            <div class="row" style="margin: 0; padding: 0;">
+                                                <div class="col-lg-3">
+                                                    <input type="checkbox" ng-model="property.IsSelected" /> {{property.DocPropertyName}}
+                                                    <input type="hidden" ng-model="property.DocPropertyID" />
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <select ng-model="property.TimeUnit" class="form-control">
+                                                        <option value="">--Select--</option>
+                                                        <option value="Days">Days</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="property.TimeValue" class="form-control" min="0"/>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="property.TimeValueCon" class="form-control" min="0" max="{{property.TimeValue}}" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="checkbox" name="docType" ng-model="property.AutoDelete">
+                                                    <select ng-model="property.ExceptionValue" ng-show="false">
+                                                        <option value="">--Select--</option>
+                                                        <option value="FirstOne">First One</option>
+                                                        <option value="FirstTwo">First Two</option>
+                                                        <option value="LastOne">Last One</option>
+                                                        <option value="LastTwo">Last Two</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="propIdentityCheckbox" class="row" ng-if="(docPropIdentityModel.PolicyApplicableTo =='Attribute') && docPropIdentityModel.DocProperty">
+                                    <div class="row form-group ">
+                                        <div class="col-lg-2">
+                                            <label>Attribute</label>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>Attribute Value</label>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>Time Unit</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Delate</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Time Confirm</label>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Auto Delete</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div ng-repeat="propIdentity in docPropIdentityCheckbox">
+                                            <div class="row" style="margin: 0; padding: 0;">
+                                                <div class="col-lg-2">
+                                                    <input type="checkbox" ng-model="propIdentity.IsSelected" /> {{propIdentity.IdentificationAttribute}}
+                                                    <input type="hidden" ng-model="propIdentity.DocPropIdentifyID" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="propIdentity.PropIdentityMetaValue" class="form-control" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <select ng-model="propIdentity.TimeUnit" class="form-control">
+                                                        <option value="">--Select--</option>
+                                                        <option value="Days">Days</option>
+                                                        <option value="Months">Months</option>
+                                                        <option value="Years">Years</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="propIdentity.TimeValue" class="form-control" min="0"/>
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="text" ng-model="propIdentity.TimeValueCon" class="form-control" min="0" max="{{propIdentity.TimeValue}}" />
+                                                </div>
+
+                                                <div class="col-lg-2">
+                                                    <input type="checkbox" ng-model="propIdentity.AutoDelete" />
+
+                                                    <select ng-model="propIdentity.ExceptionValue" ng-show="false">
+                                                        <option value="">--Select--</option>
+                                                        <option value="FirstOne">First One</option>
+                                                        <option value="FirstTwo">First Two</option>
+                                                        <option value="LastOne">Last One</option>
+                                                        <option value="LastTwo">Last Two</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2 col-lg-2">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10 col-md-10 col-lg-10">
+                                        <div class="form-group">
+                                            <select mail-select ng-model="docPropIdentityModel.Emails" multiple="multiple" style="width:100%;"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{docPropIdentityModel.Emails | json}}
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <button type="button" data-ng-click="Save()" ng-disabled="addForm.$invalid || loading" class="btn btn-primary btn-flat">Save</button>
+                                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal" ng-click="">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="mydiv" data-ng-show="loading">
+            <div class="overlay">
+                <i class="fa fa-refresh fa-spin"></i>Loading...
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/Scripts/select2.min.js"></script>*@
+
+<script type="text/javascript">
+
+    app.controller('OwnerProperIdentityCtrl', function ($scope, $http) {
+
+        var popupModeAdd = true;
+        var errorCount = 0;
+        var selectedDataCount = 0;
+
+        $scope.itemsByPage = 10;
+        $scope.loading = true;
+
+        $scope.docPropIdentityModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+            DocPropIdentifyID: "",
+            DestroyPolicyID: "",
+            PolicyFor: "",
+            PolicyApplicableTo: "",
+            DocumentNature: "",
+            Status: "",
+            Emails: ""
+        };
+
+        $scope.$watch('docPropIdentityModel.PolicyApplicableTo', function (newVal) {
+            if (newVal) {
+                if (popupModeAdd) {
+                    $scope.docPropIdentityModel.Owner = "";
+                    $scope.docPropIdentityModel.DocCategory = "";
+                    $scope.docPropIdentityModel.DocType = "";
+                    $scope.docPropIdentityModel.DocProperty = "";
+                    $scope.docPropIdentityGridData = "";
+                }
+            }
+        });
+
+        // To get all the active owner level to bind to the dropdown
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.ownerLevels = response.result;
+                $scope.docPropIdentityModel.OwnerLevel = "";
+                $scope.docPropIdentityModel.Owner = "";
+                $scope.docPropIdentityModel.DocCategory = "";
+                $scope.docPropIdentityModel.DocType = "";
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+        // to bind owner dropdown against owner level dropdown change of value
+        $scope.$watch('docPropIdentityModel.OwnerLevel', function (newVal) {
+            if (newVal) {
+                if (popupModeAdd) {
+                    $scope.docPropIdentityModel.Owner = "";
+                    $scope.docPropIdentityModel.DocCategory = "";
+                    $scope.docPropIdentityModel.DocType = "";
+                    $scope.docPropIdentityModel.DocProperty = "";
+                    $scope.docPropIdentityGridData = "";
+                }
+         
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                    { _OwnerLevelID: $scope.docPropIdentityModel.OwnerLevel.OwnerLevelID })
+                    .success(function (response) {
+                        $scope.ownersForSpecificOwnerLevel = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        // to bind Doc Category dropdown against owner dropdown change of value
+        $scope.$watch('docPropIdentityModel.Owner', function (newVal) {
+            if (newVal) {
+                //BindDataToCategoryDropdown();
+
+                $scope.docPropIdentityModel.DocCategory = "";
+                $scope.docPropIdentityModel.DocType = "";
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.docPropIdentityGridData = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+
+                if ($('#addModal').is(':visible')) {
+                    ShowCategoryCheckBoxes();
+                }
+
+                BindDataToGrid();
+            }
+        });
+
+        //var BindDataToCategoryDropdown = function () {
+        //    $scope.docPropIdentityModel.DocCategory = "";
+        //    $scope.docPropIdentityModel.DocType = "";
+        //    $scope.docPropIdentityModel.DocProperty = "";
+        //    $scope.docPropIdentityGridData = "";
+
+        //    $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+        //        { _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID })
+        //        .success(function (response) {
+        //            $scope.docCategoriesForSpecificOwner = response.result;
+        //            $scope.loading = false;
+        //        }).error(function () {
+        //            $scope.loading = false;
+        //        });
+        //};
+
+        $scope.$watch('docPropIdentityModel.DocCategory', function (newVal) {
+            if (newVal) {
+                //BindDataToTypeDropdown();
+
+                $scope.docPropIdentityModel.DocType = "";
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.docPropIdentityGridData = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+                        $scope.loading = false;
+                    })
+                    .error(function () {
+                        $scope.loading = false;
+                    });
+
+                if ($('#addModal').is(':visible')) {
+                    ShowTypeCheckBoxes();
+                }
+
+                BindDataToGrid();
+            }
+        });
+
+        var ShowCategoryCheckBoxes = function () {
+            $http.post('/DocScanningModule/DocDestroyPolicy/GetDocCategoriesForSpecificUser',
+                {
+                    _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                    _DestroyPolicyID: $scope.docPropIdentityModel.DestroyPolicyID
+                })
+                .success(function (response) {
+                    $scope.docCategoriesCheckboxForSpecificOwner = response.result;
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        //var BindDataToTypeDropdown = function () {
+        //    $scope.docPropIdentityModel.DocType = "";
+        //    $scope.docPropIdentityModel.DocProperty = "";
+        //    $scope.docPropIdentityGridData = "";
+
+        //    $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+        //        {
+        //            _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+        //            _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID
+        //        })
+        //        .success(function (response) {
+        //            $scope.docTypeForSpecificDocCategory = response.result;
+        //            $scope.loading = false;
+        //        })
+        //        .error(function () {
+        //            $scope.loading = false;
+        //        });
+        //};
+
+        // to bind Doc property dropdown against doc type dropdown change of value
+        $scope.$watch('docPropIdentityModel.DocType', function (newVal) {
+            if (newVal) {
+                //BindDataToPropertyDropdown();
+
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.docPropIdentityGridData = "";
+
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentPropertyForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+                        _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                        _DocTypeID: $scope.docPropIdentityModel.DocType.DocTypeID
+                    })
+                    .success(function (response) {
+                        $scope.docPropertyForSpecificDocType = response.result;
+                        $scope.loading = false;
+                    })
+                    .error(function () {
+                        $scope.loading = false;
+                    });
+
+                if ($('#addModal').is(':visible')) {
+                    ShowPropertyCheckBoxes();
+                }
+
+                BindDataToGrid();
+            }
+        });
+
+        var ShowTypeCheckBoxes = function () {
+            $http.post('/DocScanningModule/DocDestroyPolicy/GetDocumentTypeForSpecificUser',
+                {
+                    _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+                    _DestroyPolicyID: $scope.docPropIdentityModel.DestroyPolicyID
+                })
+                .success(function (response) {
+                    $scope.docCategoriesCheckboxForSpecificOwner = [];
+                    $scope.docTypeCheckboxForSpecificDocCategory = response.result;
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        }
+
+        //var BindDataToPropertyDropdown = function () {
+        //    $scope.docPropIdentityModel.DocProperty = "";
+        //    $scope.docPropIdentityGridData = "";
+
+        //    $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentPropertyForSpecificDocCategory',
+        //        {
+        //            _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+        //            _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+        //            _DocTypeID: $scope.docPropIdentityModel.DocType.DocTypeID
+        //        })
+        //        .success(function (response) {
+        //            $scope.docPropertyForSpecificDocType = response.result;
+        //            $scope.loading = false;
+        //        })
+        //        .error(function () {
+        //            $scope.loading = false;
+        //        });
+        //};
+
+        $scope.$watch('docPropIdentityModel.DocProperty', function (newValue, oldValue) {
+            if (newValue) {
+
+                if ($('#addModal').is(':visible')) {
+                    ShowPropIdentityCheckBoxes();
+                }
+
+                BindDataToGrid();
+            };
+        });
+
+        var ShowPropertyCheckBoxes = function () {
+            $http.post('/DocScanningModule/DocDestroyPolicy/GetDocumentPropertyForSpecificUser',
+                {
+                    _DocTypeID: $scope.docPropIdentityModel.DocType.DocTypeID,
+                    _DestroyPolicyID: $scope.docPropIdentityModel.DestroyPolicyID
+                })
+                .success(function (response) {
+                    $scope.docTypeCheckboxForSpecificDocCategory = [];
+                    $scope.docPropertyCheckboxForSpecificDocType = response.result;
+                    $scope.loading = false;
+                })
+                .error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        var ShowPropIdentityCheckBoxes = function () {
+            $http.post('/DocScanningModule/DocDestroyPolicy/GetDocPropIdentityForSpecificUser',
+                {
+                    _DocPropertyID: $scope.docPropIdentityModel.DocProperty.DocPropertyID,
+                    _DestroyPolicyID: $scope.docPropIdentityModel.DestroyPolicyID
+                })
+                .success(function (response) {
+                    $scope.docPropertyCheckboxForSpecificDocType = [];
+                    $scope.docPropIdentityCheckbox = response.result;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        var BindDataToGrid = function () {
+            $http.post('/DocScanningModule/DocDestroyPolicy/GetDestroyPolicyBySearchParam',
+                {
+                    _DocCategoryID: $scope.docPropIdentityModel.DocCategory.DocCategoryID,
+                    _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                    _DocTypeID: $scope.docPropIdentityModel.DocType.DocTypeID,
+                    _DocPropertyID: $scope.docPropIdentityModel.DocProperty.DocPropertyID
+                })
+                .success(function (response) {
+                    $scope.docPropIdentityGridData = response;
+                    $scope.GridDisplayCollection = [].concat($scope.docPropIdentityGridData);
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+        };
+
+        $scope.ResetModel = function () {
+            $scope.docCategoriesCheckboxForSpecificOwner = [];
+            $scope.docTypeCheckboxForSpecificDocCategory = [];
+            $scope.docPropertyCheckboxForSpecificDocType = [];
+            $scope.docPropIdentityCheckboxForSpecificDocType = [];
+            $scope.GridDisplayCollection = [];
+            $scope.docPropIdentityModel.PolicyFor = "";
+            $scope.docPropIdentityModel.PolicyApplicableTo = "";
+            $scope.docPropIdentityModel.DocumentNature = "";
+            $scope.docPropIdentityModel.OwnerLevel = "";
+            $scope.docPropIdentityModel.Owner = "";
+            $scope.docPropIdentityModel.DocCategory = "";
+            $scope.docPropIdentityModel.DocType = "";
+            $scope.docPropIdentityModel.DocProperty = "";
+            $scope.docPropIdentityModel.Status = "";
+        };
+
+        $scope.toggleAdd = function () {
+            popupModeAdd = true;
+
+            $scope.addForm.$setPristine();
+            $scope.addForm.$setUntouched();
+
+            $scope.ResetModel();
+            $scope.docPropIdentityModel.Status = "1";
+            $scope.docPropIdentityModel.DestroyPolicyID = "";
+
+            $('#addModal').modal('show');
+        };
+
+        $scope.toggleEdit = function (tableRow) {
+            popupModeAdd = false;
+
+            $scope.addForm.$setPristine();
+            $scope.addForm.$setUntouched();
+
+            $scope.docPropIdentityModel.DestroyPolicyID = tableRow.DestroyPolicyID;
+            $scope.docPropIdentityModel.PolicyFor = tableRow.PolicyFor;
+            $scope.docPropIdentityModel.PolicyApplicableTo = tableRow.PolicyApplicableTo;
+            $scope.docPropIdentityModel.DocumentNature = tableRow.DocumentNature;
+            $scope.docPropIdentityModel.Status = (tableRow.Status).toString();
+
+            if (tableRow.PolicyApplicableTo === "Category") {
+                ShowCategoryCheckBoxes();
+            } else if (tableRow.PolicyApplicableTo === "Type") {
+                ShowTypeCheckBoxes();
+            }
+            else if (tableRow.PolicyApplicableTo === "Document") {
+                ShowPropertyCheckBoxes();
+            }
+            else if (tableRow.PolicyApplicableTo === "Attribute") {
+                ShowPropIdentityCheckBoxes();
+            }
+
+            $('#addModal').modal('show');
+        };
+
+        //############## Save Modal ########################
+        var DocCategoryModel = {
+            DestroyPolicyDtlID: "",
+            CategoryID: "",
+            TimeValue: "",
+            TimeUnit: "",
+            TimeValueCon: "",
+            AutoDelete: "",
+            ExceptionValue: ""
+        };
+
+        var DocTypeModel = {
+            DestroyPolicyDtlID: "",
+            TypeID: "",
+            TimeValue: "",
+            TimeUnit: "",
+            TimeValueCon: "",
+            AutoDelete: "",
+            ExceptionValue: ""
+        };
+
+        var DocPropertyModel = {
+            DestroyPolicyDtlID: "",
+            PropertyID: "",
+            TimeValue: "",
+            TimeUnit: "",
+            TimeValueCon: "",
+            AutoDelete: "",
+            ExceptionValue: ""
+        };
+
+        var DocPropIdentityModel = {
+            DestroyPolicyDtlID: "",
+            PropIdentityID: "",
+            PropIdentityMetaValue: "",
+            TimeValue: "",
+            TimeUnit: "",
+            TimeValueCon: "",
+            AutoDelete: "",
+            ExceptionValue: ""
+        };
+
+        var FinalObject = {
+            "DestroyPolicyID": "", "DocCategoryID": "", "DocTypeID": "", "DocPropertyID": "",
+            "PolicyFor": "", "DocumentNature": "", "PolicyApplicableTo": "", "OwnerID": "",
+            "Status": "", "DocCategoryModel": [], "DocTypeModel": [], "DocPropertyModel": [],
+            "DocPropIdentityModel": []
+        };
+
+        $scope.Save = function () {
+            if ($scope.docPropIdentityModel.PolicyApplicableTo === 'Category') {
+                FinalObject.DocCategoryModel = [];
+                angular.forEach($scope.docCategoriesCheckboxForSpecificOwner, function (item) {
+                    if (item.IsSelected) {
+
+                        selectedDataCount++;
+
+                        if (angular.isUndefined(item.TimeValue) || item.TimeValue < 1) {
+                            errorCount++;
+                        }
+
+                        if (angular.isUndefined(item.TimeUnit) || item.TimeValue == '') {
+                            errorCount++;
+                        }
+
+                        DocCategoryModel.CategoryID = item.DocCategoryID;
+                        DocCategoryModel.DestroyPolicyDtlID = item.DestroyPolicyDtlID;
+                        DocCategoryModel.TimeValue = item.TimeValue;
+                        DocCategoryModel.TimeValueCon = item.TimeValueCon;
+                        DocCategoryModel.TimeUnit = item.TimeUnit;
+                        DocCategoryModel.AutoDelete = item.AutoDelete;
+                        DocCategoryModel.ExceptionValue = item.ExceptionValue;
+                        FinalObject.DocCategoryModel.push(DocCategoryModel);
+                    };
+                });
+            }
+            else if ($scope.docPropIdentityModel.PolicyApplicableTo === 'Type') {
+                FinalObject.DocTypeModel = [];
+                angular.forEach($scope.docTypeCheckboxForSpecificDocCategory, function (item) {
+                    if (item.IsSelected) {
+
+                        selectedDataCount++;
+
+                        if (angular.isUndefined(item.TimeValue) || item.TimeValue < 1) {
+                            errorCount++;
+                        }
+
+                        if (angular.isUndefined(item.TimeUnit) || item.TimeValue == '') {
+                            errorCount++;
+                        }
+
+                        DocTypeModel.TypeID = item.DocTypeID;
+                        DocTypeModel.DestroyPolicyDtlID = item.DestroyPolicyDtlID;
+                        DocTypeModel.TimeValue = item.TimeValue;
+                        DocTypeModel.TimeValueCon = item.TimeValueCon;
+                        DocTypeModel.TimeUnit = item.TimeUnit;
+                        DocTypeModel.AutoDelete = item.AutoDelete;
+                        DocTypeModel.ExceptionValue = item.ExceptionValue;
+
+                        FinalObject.DocTypeModel.push(DocTypeModel);
+                    };
+                });
+            }
+            else if ($scope.docPropIdentityModel.PolicyApplicableTo === 'Document') {
+                FinalObject.DocPropertyModel = [];
+                angular.forEach($scope.docPropertyCheckboxForSpecificDocType, function (item) {
+                    if (item.IsSelected) {
+                        selectedDataCount++;
+
+                        if (angular.isUndefined(item.TimeValue) || item.TimeValue < 1) {
+                            errorCount++;
+                        }
+
+                        if (angular.isUndefined(item.TimeUnit) || item.TimeValue == '') {
+                            errorCount++;
+                        }
+
+                        DocPropertyModel.PropertyID = item.DocPropertyID;
+                        DocPropertyModel.DestroyPolicyDtlID = item.DestroyPolicyDtlID;
+                        DocPropertyModel.TimeValue = item.TimeValue;
+                        DocPropertyModel.TimeValueCon = item.TimeValueCon;
+                        DocPropertyModel.TimeUnit = item.TimeUnit;
+                        DocPropertyModel.AutoDelete = item.AutoDelete;
+                        DocPropertyModel.ExceptionValue = item.ExceptionValue;
+
+                        FinalObject.DocPropertyModel.push(DocPropertyModel);
+                    };
+                });
+            }
+            else if ($scope.docPropIdentityModel.PolicyApplicableTo === 'Attribute') {
+                FinalObject.DocPropIdentityModel = [];
+                angular.forEach($scope.docPropIdentityCheckbox, function (item) {
+                    if (item.IsSelected) {
+
+                        selectedDataCount++;
+
+                        if (angular.isUndefined(item.TimeValue) || item.TimeValue < 1) {
+                            errorCount++;
+                        }
+
+                        if (angular.isUndefined(item.TimeUnit) || item.TimeValue == '') {
+                            errorCount++;
+                        }
+
+                        if (angular.isUndefined(item.PropIdentityMetaValue) || item.PropIdentityMetaValue == '') {
+                            errorCount++;
+                        }
+
+                        DocPropIdentityModel.PropIdentityID = item.DocPropIdentifyID;
+                        DocPropIdentityModel.DestroyPolicyDtlID = item.DestroyPolicyDtlID;
+                        DocPropIdentityModel.PropIdentityMetaValue = item.PropIdentityMetaValue;
+                        DocPropIdentityModel.TimeValue = item.TimeValue;
+                        DocPropIdentityModel.TimeValueCon = item.TimeValueCon;
+                        DocPropIdentityModel.TimeUnit = item.TimeUnit;
+                        DocPropIdentityModel.AutoDelete = item.AutoDelete;
+                        DocPropIdentityModel.ExceptionValue = item.ExceptionValue;
+
+                        FinalObject.DocPropIdentityModel.push(DocPropIdentityModel);
+                    };
+                });
+            }
+            else {
+                toastr.error("Please select correct Data for 'Applicable To'");
+            }
+
+            if (errorCount > 0 || selectedDataCount < 1)
+            {
+                toastr.error("Error!!! Please Provide all the data");
+                errorCount = 0;
+                selectedDataCount = 0;
+                return;
+            }
+
+            FinalObject.DestroyPolicyID = $scope.docPropIdentityModel.DestroyPolicyID;
+            FinalObject.PolicyFor = $scope.docPropIdentityModel.PolicyFor;
+            FinalObject.DocumentNature = $scope.docPropIdentityModel.DocumentNature;
+            FinalObject.PolicyApplicableTo = $scope.docPropIdentityModel.PolicyApplicableTo;
+            FinalObject.OwnerID = $scope.docPropIdentityModel.Owner.OwnerID;
+            FinalObject.Status = $scope.docPropIdentityModel.Status;
+            FinalObject.Emails = $scope.docPropIdentityModel.Emails.join();
+            FinalObject.DocCategoryID = $scope.docPropIdentityModel.DocCategory.DocCategoryID;
+            FinalObject.DocPropertyID = $scope.docPropIdentityModel.DocProperty.DocPropertyID;
+            FinalObject.DocTypeID = $scope.docPropIdentityModel.DocType.DocTypeID;
+
+            $.ajax({
+                url: '/DocScanningModule/DocDestroyPolicy/SetDocDestroyPolicy',
+                data: JSON.stringify(FinalObject),
+                type: 'POST',
+                contentType: 'application/json;',
+                dataType: 'json',
+                success: function (response) {
+                    $scope.loading = false;
+                    $('#addModal').modal('hide');
+                    toastr.success(response.Message);
+                    BindDataToGrid();
+                },
+                error: function (response) {
+                    $scope.loading = false;
+                    $('#addModal').modal('hide');
+                    toastr.error(response.Message);
+                }
+            });
+        }
+    });
+
+    app.directive('mailSelect', function ($http) {
+        return {
+            restrict: 'A',
+            scope: {
+                'model': '='
+            },
+            link: function (scope, elem, attrs) {        
+                $.ajax({
+                    url: '/DocScanningModule/DocDestroyPolicy/GetAllUserMail',
+                    type: 'POST',
+                    contentType: 'application/json;',
+                    dataType: 'json',
+                    success: function (response) {
+                        $(elem).select2({
+                            data: response
+                        });
+                    }
+                });
+            }
+        };
+    });
+
+</script>
+

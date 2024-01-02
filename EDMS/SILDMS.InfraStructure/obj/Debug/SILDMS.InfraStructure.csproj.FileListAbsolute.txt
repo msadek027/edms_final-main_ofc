@@ -1,0 +1,622 @@
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\DMS_FINAL2\SILDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\CBPS_Source\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\CBPS_Source\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+E:\CBPS_Source\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\CBPS_Source\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\CBPS_TFS\CBPS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\DMS\Source\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+E:\DMS\Source\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\DMS\Source\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\Working Directory\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+D:\Working Directory\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+D:\Working Directory\DMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+D:\Working Directory\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojAssemblyReference.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+E:\DMS\Source\DMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\DMS\EDMS_WEB_TFS\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+D:\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+D:\EDMS_TFS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+D:\EDMS_SPL_TFS\EDMS_SPL\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS_TFS_LATEST\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csprojResolveAssemblyReference.cache
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+F:\EDMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+F:\EDMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+F:\EDMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+F:\EDMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+F:\EDMS\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+F:\EDMS\EDMSGit\edms\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+F:\UniArt@U\HTML Design\bkup\edms_final-main\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+E:\Officials Projects\Year 2023\edms_final-main\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\DocDistributionService.cs
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\DocDistribution\IDocDistributionService.cs
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll.config
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.InfraStructure.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\WebActivatorEx.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccessInterface.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.DataAccess.dll.config
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Service.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Utillity.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Newtonsoft.Json.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Common.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Ninject.Web.Mvc.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Net.Http.Formatting.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\System.Web.Http.WebHost.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.pdb
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\SILDMS.Model.dll.config
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.AssemblyReference.cache
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CoreCompileInputs.cache
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.csproj.CopyComplete
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.dll
+D:\SIL\EDMS_SIL_Ofc\edms_final-main_ofc\EDMS\SILDMS.InfraStructure\obj\Debug\SILDMS.InfraStructure.pdb

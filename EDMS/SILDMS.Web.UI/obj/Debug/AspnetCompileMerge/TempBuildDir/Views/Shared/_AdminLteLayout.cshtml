@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title E-DMS</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    @Styles.Render("~/bundles/css")
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
+    
+    @Scripts.Render("~/bundles/preScript")
+</head>
+<body class="skin-blue" ng-app="dmsApp">
+    <div class="wrapper">
+        @Html.Partial("_AdminLteTopMenu")
+        @Html.Partial("_AdminLteLeftMenu")
+        <div class="content-wrapper">
+            <section class="content-header">
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> <small> @Html.MvcSiteMap().SiteMapPath() </small> </a></li>
+                </ol>
+            </section>
+            <section class="content">
+                @RenderBody()
+                <form name="name" id="name" ng-submit="Save()" ng-controller="navCtrl">
+                    <div class="bs-example">
+                        <div id="ChangePasswordModal" class="modal fade" data-backdrop="static" data-keyboard="false">
+                            <!-- Modal HTML -->
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+
+                                        <h3 class="modal-title"> Change Password Form</h3>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <div class="box box-primary direct-chat direct-chat-warning">
+                                            <div class="box-body">
+
+                                                <div class="row">
+                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Old Password</label>
+                                                            <input type="password" data-ng-model="vmUser.OldPassword" class="form-control" id="OldPassword" required="required" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>New Password</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                                <input type="password" data-ng-model="vmUser.UserPassword" class="form-control" id="UserPassword" placeholder="******" required="required" />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Re-Type Password</label>
+                                                            <input type="password" data-ng-model="vmUser.RePassword" class="form-control" id="RePassword" required="required" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div><!-- /.box-body -->
+                                            <div class="modal-footer box-footer">
+                                                <div class="form-group pull-right">
+                                                    <button type="submit" id="btnSubmitChangePasswordModal" class="btn btn-primary btnSave" ng-disabled="loading">Save</button>
+
+                                                    <a href="/SecurityModule/Account/Logout" class="btn btn-default btn-flat">Sign out</a>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Modal HTML end -->
+                    </div>
+                </form>
+                <div id="mydiv" ng-show="loading">
+                    <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>Loading...
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <a target="_blank" href="http://www.e-home2u.com/">
+                    <img class="image" src="~/Content/AdminLTE/img/Tech.jpeg" height="80" width="100" />
+                </a>
+            </div>
+            <div class="hidden-xs">
+                <a target="_blank" href="http://www.squarepharma.com.bd/">
+                    <img src="../../Content/AdminLTE/img/Tech.jpeg" height="80" width="100" />
+                </a>
+            </div>
+
+            @*<strong>Copyright &copy; 2016</strong> All Rights Reserved By - <i>Square Informatix Ltd.</i>*@
+
+
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/postScript")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery.signalR-2.3.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            if (reset) {
+
+                $("#ChangePasswordModal").modal('show');
+
+
+
+            }
+        });
+        var classes = ["animated fadeIn", "animated fadeInDown", "animated fadeInLeft", "animated fadeInUp", "animated fadeInRight"];
+        var randomnumber = Math.floor(Math.random() * classes.length);
+        $('table').addClass(classes[randomnumber]);
+        $('.form-control').addClass(classes[randomnumber]);
+
+        function copyToClipboard() {
+            var aux = document.createElement("input");
+            aux.setAttribute("value", "Don't Copy!!! Confidential Page");
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+        }
+
+        window.isFoccused = true;
+
+
+        window.addEventListener("keyup", function (e) {
+            if (e.keyCode == 44 && window.isFoccused) {
+                copyToClipboard();
+            }
+        });
+
+
+        $(window).focus(function () {
+            window.isFoccused = true;
+        }).blur(function () {
+            window.isFoccused = false;
+        });
+
+
+        var notificationHub = $.connection.notificationHub;
+
+        $(function () {
+            $.connection.hub.start().done(function () {
+                console.log('Notification hub started');
+            });
+
+            //window.addEventListener("keyup", function (e) {
+            //    if (e.keyCode == 44 && window.isFoccused) {
+            //        copyToClipboard();
+            //    }
+            //});
+        })
+        app.controller('navCtrl', ["$scope", "$http", function ($scope, $http) {
+            $scope.notificationCount = 0;
+
+            var newCount = 0;
+
+            var flagNew = false;
+
+            $scope.notificationlist = [];
+            $scope.vmUser =
+                {
+                    OldPassword: "",
+                    UserPassword: "",
+                    RePassword: "",
+                };
+
+            $scope.Save = function () {
+                console.log("test");
+                if ($scope.vmUser.UserPassword === $scope.vmUser.RePassword) {
+                    if ($scope.vmUser.UserPassword === $scope.vmUser.OldPassword) {
+                        $scope.vmUser.RePassword = "";
+                        $scope.vmUser.UserPassword = "";
+                        toastr.error("Old Password and New Password cannot be same");
+                    }
+                    else {
+                        $http.post('/SecurityModule/User/ChangePassword', { password: $scope.vmUser.UserPassword, oldPassword: $scope.vmUser.OldPassword })
+                            .success(function (response) {
+
+                                $scope.ownersForSpecificOwnerLevel = response.result;
+                                if (response.Message != "Data Validation Failed.") {
+                                    $scope.loading = false;
+                                    $('#ChangePasswordModal').modal('hide');
+
+
+                                }
+                                toastr.success(response.Message);
+
+                            }).error(function () {
+                                $scope.loading = false;
+
+                                toastr.error(response.Message);
+                            });
+                    }
+                }
+
+                else {
+                    $scope.vmUser.RePassword = "";
+                    toastr.error("Password not matched.");
+                }
+
+            };
+
+            notificationHub.client.notify = function (message) {
+                console.log(message);
+                $scope.notificationCount++;
+                $scope.notificationlist.unshift(message);
+                toastr.info(message.Message)
+                $scope.$apply();
+            };
+
+            $scope.toggleNotification = function () {
+                console.log($scope.notificationCount);
+                for (var i = $scope.notificationCount; i < $scope.notificationlist.length; i++) {
+                    $scope.notificationlist[i].IsNew = false;
+                }
+                $scope.notificationCount = 0;
+            }
+        }]);
+
+    </script>
+
+</body>
+
+</html>

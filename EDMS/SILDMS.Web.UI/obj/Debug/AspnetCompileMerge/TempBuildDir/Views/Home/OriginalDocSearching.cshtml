@@ -1,0 +1,1320 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+}
+
+<div class="box box-primary box-body" ng-controller="OwnerProperIdentityCtrl">
+
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-lg-6">
+                <i class="fa  fa-table"></i>
+                <h3 class="box-title">Search Original Document</h3>
+
+            </div>
+            <div class="col-lg-6">
+                <table class="pull-right">
+                    <tr>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" style="height: 34px;" ng-model="pagingInfo.search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="button" name="search" id="search-btn" class="btn btn-flat" ng-click="search()"><i class="fa fa-search"></i> Search </button>
+                                </span>
+                            </div>
+                        </td>
+                        @*<td>
+                                <div class="input-group">
+                                    <button ng-disabled="saveIsReadOnly" type="submit" id="btnSubmit" name="ReportType" ng-click="Marge()" ng-disabled="loading" class="btn btn-flat btn-info pull-right">
+                                        <i class="fa fa-copy"></i> Merge Doc
+                                    </button>
+                                </div>
+                            </td>*@
+                        <td>
+                            <div class="input-group">
+                                <a id="anchor" class="btn btn-flat btn-success pull-right" ng-hide="DWReadOnly" target="_blank" href="@Url.Action("GetPdf", "OriginalDocSearching")">Download</a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="box-tools ">
+                                <button type="button" id="btnRefresh" data-ng-click="toggleRefreshTable()" class="btn btn-default btn-flat pull-right" ng-disabled="loading"><i class="fa fa-refresh"></i> Refresh</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="box-body">
+
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner Level</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.OwnerLevel"
+                            ng-options="ownerLevel as ownerLevel.LevelName for ownerLevel in ownerLevels
+                        track by ownerLevel.OwnerLevelID">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Owner</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <select class="form-control" ng-model="docPropIdentityModel.Owner"
+                            data-ng-options="owner as owner.OwnerName for owner in ownersForSpecificOwnerLevel track by owner.OwnerID"
+                            data-ng-disabled="!docPropIdentityModel.OwnerLevel">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Document Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+
+                    <select ui-select2="{ allowClear: true}" id="select-option" ng-model="docPropIdentityModel.DocCat" data-placeholder="Document Category" style="width:100%;" class="form-control">
+                        <option value=""></option>
+                        <option ng-repeat="item in DocCatForOwner" value="{{item.DocCategoryID}}">{{item.DocCategoryName}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Doc Sub Category</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+
+                    <select ui-select2="{ allowClear: true}" id="select-option" ng-model="docPropIdentityModel.DocType" data-placeholder="Document Sub Category" style="width:100%; height:32px">
+                        <option value=""></option>
+                        <option ng-repeat="item in DocTypeForOwner" value="{{item.DocTypeID}}">{{item.DocTypeName}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label>Documents</label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select class="form-control" data-ng-model="docPropIdentityModel.DocProperty"
+                        data-ng-options="docProperty as docProperty.DocPropertyName for docProperty in
+                         docPropertyForSpecificDocType track by docProperty.DocPropertyID"
+                        data-ng-disabled="!docPropIdentityModel.DocType">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <label>Search By</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <select data-ng-model="docPropIdentityModel.SearchBy" class="form-control" ng-init="docPropIdentityModel.SearchBy='1'">
+                    <option value="1" selected>Required Attribute</option>
+                    <option value="0">Optional Attribute</option>
+                </select>
+
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="table-responsive">
+                <h5 class="pull-right" style="padding-right:3px;margin-top:0px;margin-bottom:3px">Showing {{pagingInfo.totalItems==0 ? 0 : ((pagingInfo.page -1) * pagingInfo.itemsPerPage)+1}}-{{(((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage) >= pagingInfo.totalItems ? pagingInfo.totalItems : (((pagingInfo.page -1) * pagingInfo.itemsPerPage)+pagingInfo.itemsPerPage)}} of {{pagingInfo.totalItems}} results</h5>
+                <table class="table table-condensed table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Document Name</th>
+                            <th>Identificaiton Attribute</th>
+                            <th>Attribute Value</th>
+                            <th class="hidden">FileServerURL</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <input placeholder="Attribute Name" class="input-sm form-control" ng-model="AttrName" type="text" />
+                            </th>
+                            <th>
+                                <input placeholder="Attribute Value" class="input-sm form-control" ng-model="AttrValue" type="text" />
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-primary" ng-click="search()" ng-disabled="AttrName=='' || AttrValue==''">Search</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in GridDisplayCollection">
+                            <td class="hidden">{{row.DocumentID}}</td>
+                            <td class="hidden">{{row.DocDistributionID}}</td>
+                            <td class="col-lg-2">{{row.DocPropertyName}}</td>
+                            <td class="col-lg-3">{{row.DocPropIdentifyName}}</td>
+                            <td class="col-lg-3">{{row.MetaValue}}</td>
+                            <td class="hidden">{{row.FileServerURL}}</td>
+                            <td class="col-lg-4">
+                                <button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-info btn-flat" data-ng-click="LoadImage(row)" style="display: inline-block;"><i class="fa fa-search-plus"></i> Quick View</button>
+                                <button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-success btn-flat" data-ng-click="ShowDetailView(row)" style="display: inline-block;"><i class="fa fa-list"></i> Detail View</button>
+                                <a class="btn btn-xs btn-warning btn-flat btnDownload" href="/DocScanningModule/MultiDocScan/downloadFile?token={{urlParameter(row)}}">Download</a>
+                                @*<a class="btn btn-xs btn-warning btn-flat btnDownload" style="display: inline-block;" href="/Download/DownloadDocument?serverIP={{row.ServerIP}}&ftpPort={{row.ServerPort}}&ftpUserName={{row.FtpUserName}}&ftpPassword={{row.FtpPassword}}&serverURL={{row.FileServerURL}}&documentID={{row.DocumentID}}&Ext={{row.FileExtenstion}}">Download</a>*@
+                                <button type="button" class="btn btn-xs btn-primary btn-flat btnEdit" data-ng-click="toggleEdit(row)" style="display: inline-block;"><i class="fa fa-edit"></i> Edit</button>
+                                @*<button type="button" class="btn btn-xs btn-danger btn-flat btnEdit" data-ng-click="ShowDeleteConfirmModal(row)" style="display: inline-block;"><i class="fa fa-edit"></i> Delete</button>*@
+                                <a class="btn btn-xs btn-danger btn-flat btnRemove" ng-click="ShowDeleteConfirmModal(row)">
+                                    <i class="fa fa-remove"></i> Remove
+                                </a>
+                                <button type="button" ng-if="row.FileExtenstion==null || row.FileExtenstion=='' || row.FileExtenstion=='pdf'" class="btn btn-xs btn-info btn-flat" data-ng-click="LoadMergeImage(row)" style="display: inline-block;"><i class="fa fa-search-plus"></i> Merge Quick View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-if="pagingInfo.totalItems > 0" class="text-center">
+                    <ul uib-pagination total-items="pagingInfo.totalItems" ng-model="pagingInfo.page" items-per-page="pagingInfo.itemsPerPage" max-size="7" boundary-links="true" rotate="true" force-ellipses="true" ng-change="selectPage()"></ul>
+                </div>
+                <div ng-if="pagingInfo.totalItems <= 0" class="text-center">
+                    NO ITEM
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <form name="myForm" ng-submit="">
+        <div class="bs-example">
+            <!-- Modal HTML -->
+            <div id="addModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                            <h3 class="modal-title">Change Attribute Value</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-body">
+                                <div class="row">
+                                    {{documentID}}
+                                    <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="{{item.DocMetaID}}" class="control-label">{{item.DocPropIdentifyName}}</label>
+                                            <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.MetaValue" ng-required="true" class="form-control" />
+                                            <span class="label label-danger" ng-show="myForm[item.DocMetaID].$error.required && myForm[item.DocMetaID].$touched">{{item.DocPropIdentifyName}} is Required.</span>
+                                            <span ng-hide="myForm[item.DocMetaID].$error.required && myForm[item.DocMetaID].$touched">&nbsp;</span>
+                                        </div>
+
+                                    </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <button type="button" data-ng-click="Save()" class="btn btn-primary btn-flat" ng-disabled="myForm.$invalid || loading">Save</button>
+                                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="bs-example">
+        <!-- Modal HTML -->
+        <div id="DetailViewModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h4 class="modal-title">Document Detail View</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <h4><label>Thumbnail:</label></h4>
+                            </div>
+                            <div class="col-lg-10">
+                                <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomIn()"> Zoom In</button>
+                                <button class="btn btn-flat btn-sm btn-default" data-ng-click="ZoomOut()"> Zoom Out</button>
+                                <button class="btn btn-flat btn-sm btn-default" data-ng-click="RotateRight()"> Rotate</button>
+                                <button class="btn btn-flat btn-sm btn-default btnPrint" data-ng-click="DetailPrint()"> Print</button>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <input type="hidden" id="serverIp" class="form-control" />
+                            <input type="hidden" id="FtpUserName" class="form-control" />
+                            <input type="hidden" id="FtpPassword" class="form-control" />
+                            <input type="hidden" id="FileServerURL" class="form-control" />
+                            <input type="hidden" id="IsObsolutable" class="form-control" />
+                            <input type="hidden" id="DocumentID" class="form-control" />
+                            <input type="hidden" id="ServerPort" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div id="dwtVerticalThumbnil" class="box-body"></div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div id="dwtLargeViewer" class="box-body"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{item.DocMetaID}}" class="control-label" style="font-size: smaller">{{item.DocPropIdentifyName}} Remarks</label>
+                                        @*<textarea name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.Remarks" ng-required="true" style="width: 300px; font-size: smaller" class="form-control" />*@
+                                        <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.Remarks" ng-required="true" style="width: 300px; height: 25px; font-size: smaller" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="QuickViewModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h4 class="modal-title">Document Quick View</h4>
+                    </div>
+                    <div class="modal-body">
+                        <a class="btn btnc2 btn-app btn-flat btnPrint" ng-click="showPDF(row)">
+                            <i class="fa fa-print"></i> Print
+                        </a>
+
+                        <div id="dwtQuickViewer" class="box-body"></div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div ng-repeat="item in DocumentsAttributeList" class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="{{item.DocMetaID}}" class="control-label" style="font-size:smaller;">{{item.DocPropIdentifyName}} Remarks</label>
+                                        <input type="text" name="{{item.DocMetaID}}" id="{{item.DocMetaID}}" ng-model="item.Remarks" ng-required="true" style="width: 150px; height: 25px; font-size: smaller" class="form-control" />
+                                    </div>
+                                </div>
+                                <input type="hidden" id="serverIp" class="form-control" />
+                                <input type="hidden" id="FtpUserName" class="form-control" />
+                                <input type="hidden" id="FtpPassword" class="form-control" />
+                                <input type="hidden" id="FileServerURL" class="form-control" />
+                                <input type="hidden" id="IsObsolutable" class="form-control" />
+                                <input type="hidden" id="DocumentID" class="form-control" />
+                                <input type="hidden" id="ServerPort" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="QuickViewModal2" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        <h4 class="modal-title">Document Quick View</h4>
+                    </div>
+                    <div class="modal-body">
+                        @*<a class="btn btnc2 btn-app btn-flat btnPrint" ng-click="Print()">
+                                <i class="fa fa-print"></i> Print
+                            </a>*@
+
+                        <div id="dwtQuickViewer2" class="box-body"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="mydiv" data-ng-show="loading">
+        <div class="overlay">
+            <div class="loder">
+                <img src="~/Content/AdminLTE/img/cube.gif" /> <span class="text-bold">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="ConfirmDelete" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Are You Sure?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <input type="hidden" ng-model="DocumentIDForDelete" />
+                            <h4>You Want to Delete the Document?</h4>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="yes" class="btn btn-danger" ng-disabled="loading" data-ng-click="DeleteDocument()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.intellisense.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.initiate.js"></script>
+<script type="text/javascript" src="~/Resources/dynamsoft.webtwain.config.js"></script>
+<script type="text/javascript" src="~/Resources/addon/dynamsoft.webtwain.addon.pdf.js"></script>
+
+<script type="text/javascript">
+
+
+    app.controller('OwnerProperIdentityCtrl', function ($scope, $sce, $http) {
+        applySecurity();
+
+        $scope.docPropIdentityModel = {
+            OwnerLevel: { OwnerLevelID: "", LevelName: "" },
+            Owner: { OwnerID: "", OwnerName: "" },
+            DocCategory: { DocCategoryID: "", DocCategoryName: "" },
+            DocType: { DocTypeID: "", DocTypeName: "" },
+            DocProperty: { DocPropertyID: "", DocPropertyName: "" },
+            SearchBy: '1',
+            SearchFor: "",
+            DocCat: '',
+            DocType: '',
+            Status: ""
+        };
+        $scope.DWReadOnly = true;
+        $scope.pagingInfo = {
+            page: 1,
+            itemsPerPage: 20,
+            sortBy: null,
+            reverse: false,
+            search: null,
+            totalItems: 0 
+        };
+
+
+        $scope.search = function () {
+            $scope.pagingInfo.page = 1;
+            $scope.BindDataToGrid();
+        };
+
+        $scope.AttrName = '';
+        $scope.AttrValue = '';
+
+
+        $scope.sort = function (sortBy) {
+            if (sortBy === $scope.pagingInfo.sortBy) {
+                $scope.pagingInfo.reverse = !$scope.pagingInfo.reverse;
+            } else {
+                $scope.pagingInfo.sortBy = sortBy;
+                $scope.pagingInfo.reverse = false;
+            }
+            $scope.pagingInfo.page = 1;
+            $scope.BindDataToGrid();
+        };
+
+        $scope.selectPage = function () {
+            $scope.BindDataToGrid();
+        };
+
+
+        $scope.ShowDeleteConfirmModal = function (row) {
+            $scope.DocumentIDForDelete = row.DocumentID;
+            $scope.DocDistributionIDForDelete = row.DocDistributionID;
+            $('#ConfirmDelete').modal('show');
+        };
+
+        $scope.DeleteDocument = function () {
+            $scope.loading = true;
+            $http.post('/DocScanningModule/OriginalDocSearching/DeleteDocument',
+                {
+                    _DocumentID: $scope.DocumentIDForDelete,
+                    _DocDistributionID: $scope.DocDistributionIDForDelete,
+                    _DocumentType: "Original"
+                })
+                .success(function (response) {
+                    $('#ConfirmDelete').modal('hide');
+                    $scope.BindDataToGrid();
+                    $scope.loading = false;
+                    toastr.success("Delete Successful");
+                }).error(function (error) {
+                    $scope.loading = false;
+                    toastr.error("Delete Failed");
+                });
+        };
+
+
+        Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', Dynamsoft_OnReady);
+
+        var DWObject;
+        var DWObjectLargeViewer;
+        var DWObjectQuickViewer;
+
+        var DWObjectQuickViewer2;
+        var zoomFactor = .5;
+
+
+
+        function Dynamsoft_OnReady() {
+            DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtVerticalThumbnil');
+            DWObjectQuickViewer = Dynamsoft.WebTwainEnv.GetWebTwain('dwtQuickViewer');
+
+            DWObjectQuickViewer2 = Dynamsoft.WebTwainEnv.GetWebTwain('dwtQuickViewer2');
+            DWObjectLargeViewer = Dynamsoft.WebTwainEnv.GetWebTwain('dwtLargeViewer');
+
+            DWObjectQuickViewer.SetViewMode(1, 1);
+            DWObjectQuickViewer2.SetViewMode(1, 1);
+
+            DWObjectQuickViewer.Width = 9.69 * 100;
+            DWObjectQuickViewer.Height = 10.69 * 70;
+
+            DWObjectQuickViewer2.Width = 9.69 * 100;
+            DWObjectQuickViewer2.Height = 10.69 * 70;
+
+            DWObjectLargeViewer.SetViewMode(-1, -1);
+            DWObjectLargeViewer.MaxImagesInBuffer = 1;
+            DWObjectLargeViewer.Width = 9.69 * 90;
+
+            DWObject.SetViewMode(-1, 4);
+            DWObject.FitWindowType = 0;
+            DWObject.SelectionImageBorderColor = 0x691254;
+            DWObject.ShowPageNumber = true;
+            DWObject.IfAppendImage = true;
+
+            DWObject.RegisterEvent('OnMouseClick', $scope.updateLargeViewer);
+
+
+            //DWObject.Addon.PDF.Download("../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+            //    function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+            //    function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            //);
+
+            //DWObject.Addon.PDF.SetResolution(200);
+            //DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            //DWObject.IfShowFileDialog = true;
+
+            //DWObject.RemoveAllImages();
+            //DWObjectQuickViewer.RemoveAllImages();
+            //DWObjectLargeViewer.RemoveAllImages();
+        };
+
+        $scope.ResetImageViewrs = function () {
+            DWObjectQuickViewer.RemoveAllImages();
+            DWObject.RemoveAllImages();
+            DWObjectLargeViewer.RemoveAllImages();
+
+            DWObjectQuickViewer2.RemoveAllImages();
+        }
+
+        $scope.ZoomIn = function () {
+            DWObjectLargeViewer.Zoom = zoomFactor * 1.2;
+            zoomFactor = zoomFactor * 1.2;
+        };
+
+        $scope.ZoomOut = function () {
+            DWObjectLargeViewer.Zoom = zoomFactor / 1.2;
+            zoomFactor = zoomFactor / 1.2;
+        };
+
+        $scope.RotateRight = function () {
+            DWObjectLargeViewer.RotateRight(DWObjectLargeViewer.GetSelectedImageIndex(0));
+        }
+
+        $scope.LoadImage = function (tableRow, e) {
+            //DWObject.Addon.PDF.Download("../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+            //    function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+            //    function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            //);
+
+            //DWObject.Addon.PDF.SetResolution(200);
+            //DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            //DWObject.IfShowFileDialog = true;
+
+            //DWObject.RemoveAllImages();
+            //DWObjectQuickViewer.RemoveAllImages();
+
+
+            // For Remarks
+            $http.post('/DocScanningModule/OriginalDocSearching/GetDocPropIdentityForSpecificDocType',
+                {
+                    _DocumentID: tableRow.DocumentID,
+                    _DocDistributionID: tableRow.DocDistributionID
+                })
+                .success(function (response) {
+                    $scope.DocumentsAttributeList = response;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+
+            applySecurity();
+
+            DWObjectQuickViewer.Addon.PDF.Download("../Resources/addon/Pdf.zip",   // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+            DWObjectQuickViewer.IfShowFileDialog = false;
+            DWObjectQuickViewer.RemoveAllImages();
+            DWObjectQuickViewer.Addon.PDF.SetResolution(200);
+            DWObjectQuickViewer.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            DWObjectQuickViewer.HTTPDownloadEx(location.host, "DocScanningModule/MultiDocScan/GetFilePassWord_r?" + encodeURIComponent("serverIP") + "=" + encodeURIComponent(tableRow.ServerIP)
+                + "&" + encodeURIComponent("ftpPort") + "=" + encodeURIComponent(tableRow.ServerPort)
+                + "&" + encodeURIComponent("ftpUserName") + "=" + encodeURIComponent(tableRow.FtpUserName)
+                + "&" + encodeURIComponent("ftpPassword") + "=" + encodeURIComponent(tableRow.FtpPassword)
+                + "&" + encodeURIComponent("serverURL") + "=" + encodeURIComponent(tableRow.FileServerURL)
+                + "&" + encodeURIComponent("documentID") + "=" + encodeURIComponent(tableRow.DocumentID)
+                + "&" + encodeURIComponent("isObsolete") + "=" + encodeURIComponent(tableRow.IsObsolutable)
+                + "&" + encodeURIComponent("isSecured") + "=" + encodeURIComponent(tableRow.IsSecured), 4, function () {
+                    $('#QuickViewModal').modal('show');
+                    $('#serverIp').val(tableRow.ServerIP);
+                    $('#ServerPort').val(tableRow.ServerPort);
+                    $('#FtpUserName').val(tableRow.FtpUserName);
+                    $('#FtpPassword').val(tableRow.FtpPassword);
+                    $('#FileServerURL').val(tableRow.FileServerURL);
+                    $('#DocumentID').val(tableRow.DocumentID);
+                    $('#IsObsolutable').val(tableRow.IsObsolutable);
+                }, function () {
+                    toastr.error('File Not Found');
+                });
+        };
+
+
+        var MetaValues = {
+            MetaValue: ""
+        };
+
+        var FinalObj = { "MetaValues": [] };
+        
+        $scope.LoadMergeImage = function (GridDisplayCollection, e) {
+        
+            angular.forEach($scope.GridDisplayCollection, function (item) {
+
+                MetaValue = item.DocumentID;
+
+                FinalObj.MetaValues.push(MetaValue);
+
+            });
+
+            var Docs = FinalObj.MetaValues.join();
+
+            $http.post('/DocScanningModule/MossDocumentPrint/Marge',
+                {
+                    _DocCategoryID: $scope.docPropIdentityModel.DocCat,
+                    _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                    _DocTypeID: $scope.docPropIdentityModel.DocType,
+                    _DocPropertyID: $scope.docPropIdentityModel.DocProperty.DocPropertyID,
+                    _SearchBy: $scope.docPropIdentityModel.SearchBy,
+                    page: $scope.pagingInfo.page,
+                    itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                    sortBy: $scope.pagingInfo.itemsPerPage,
+                    reverse: $scope.pagingInfo.reverse,
+                    attribute: $scope.AttrName,
+                    Docs: Docs,
+                    search: $scope.AttrName == '' ? $scope.pagingInfo.search : $scope.AttrValue
+                })
+                .success(function (response) {
+
+                    $scope.showPrint = false;
+                    $scope.loading = false;
+                    if (response.Message == "Document Merge Successfully") {
+
+                        DWObjectQuickViewer.Addon.PDF.Download("../Resources/addon/Pdf.zip",   // specify the url of the add-on resource
+                            function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                            function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+                        );
+                        DWObjectQuickViewer.IfShowFileDialog = false;
+                        DWObjectQuickViewer.RemoveAllImages();
+                        DWObjectQuickViewer.Addon.PDF.SetResolution(200);
+                        DWObjectQuickViewer.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+                        DWObjectQuickViewer.HTTPDownloadEx(location.host, "DocScanningModule/OriginalDocSearching/GetPdf1?" + encodeURIComponent("serverIP") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].ServerIP)
+                            + "&" + encodeURIComponent("ftpPort") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].ServerPort)
+                            + "&" + encodeURIComponent("ftpUserName") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].FtpUserName)
+                            + "&" + encodeURIComponent("ftpPassword") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].FtpPassword)
+                            + "&" + encodeURIComponent("serverURL") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].FileServerURL)
+                            + "&" + encodeURIComponent("documentID") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].DocumentID)
+                            + "&" + encodeURIComponent("isObsolete") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].IsObsolutable)
+                            + "&" + encodeURIComponent("isSecured") + "=" + encodeURIComponent($scope.GridDisplayCollection[0].IsSecured), 4, function () {
+                                $('#QuickViewModal').modal('show');
+                                //$('#serverIp').val(tableRow.ServerIP);
+                                //$('#ServerPort').val(tableRow.ServerPort);
+                                //$('#FtpUserName').val(tableRow.FtpUserName);
+                                //$('#FtpPassword').val(tableRow.FtpPassword);
+                                //$('#FileServerURL').val(tableRow.FileServerURL);
+                                //$('#DocumentID').val(tableRow.DocumentID);
+                                //$('#IsObsolutable').val(tableRow.IsObsolutable);
+                            }, function () {
+                                toastr.error('File Not Found');
+                            });
+
+
+
+
+
+                        $scope.DWReadOnly = false;
+                        toastr.success(response.Message);
+                    }
+                    else if (response.Message == "Document Not Found") {
+                        $scope.DWReadOnly = true;
+                        toastr.error(response.Message);
+                    }
+                    else {
+                        $scope.DWReadOnly = true;
+                        toastr.error(response.Message);
+                    }
+                    //toggleRefreshTable();
+                })
+                .error(function (response) {
+                    $scope.loading = false;
+                    $scope.DWReadOnly = true;
+                    e.PreverntDefault();
+                    toastr.error("Document Merge Failed.");
+                });
+        };
+
+
+        $scope.Print = function () {
+            applySecurity();
+            DWObjectQuickViewer2.Addon.PDF.Download(
+                "../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+            var ServerIP = $('#serverIp').val();
+            var ServerPort = $('#ServerPort').val();
+            var FtpUserName = $('#FtpUserName').val();
+            var FtpPassword = $('#FtpPassword').val();
+            var FileServerURL = $('#FileServerURL').val();
+            var DocumentID = $('#DocumentID').val();
+            var IsObsolutable = $('#IsObsolutable').val();
+            var IsSecured = "";
+
+            DWObjectQuickViewer2.IfShowFileDialog = false;
+            DWObjectQuickViewer2.RemoveAllImages();
+            DWObjectQuickViewer2.Addon.PDF.SetResolution(200);
+            DWObjectQuickViewer2.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            DWObjectQuickViewer2.HTTPDownloadEx(location.host, "DocScanningModule/MultiDocScan/GetInformationCopy?" + encodeURIComponent("serverIP") + "=" + encodeURIComponent(ServerIP)
+                + "&" + encodeURIComponent("ftpPort") + "=" + encodeURIComponent(ServerPort)
+                + "&" + encodeURIComponent("ftpUserName") + "=" + encodeURIComponent(FtpUserName)
+                + "&" + encodeURIComponent("ftpPassword") + "=" + encodeURIComponent(FtpPassword)
+                + "&" + encodeURIComponent("serverURL") + "=" + encodeURIComponent(FileServerURL)
+                + "&" + encodeURIComponent("documentID") + "=" + encodeURIComponent(DocumentID)
+                + "&" + encodeURIComponent("isObsolete") + "=" + encodeURIComponent(IsObsolutable)
+                + "&" + encodeURIComponent("isSecured") + "=" + encodeURIComponent(true), 3, function () {
+                    //$('#QuickViewModal2').modal('show');
+                    $scope.Print2();
+                }, function () {
+                    toastr.error('File Not Found');
+                });
+            //DWObjectQuickViewer2.HTTPDownloadEx(location.host, "DocScanningModule/MultiDocScan/GetInformationCopy?serverIP=173.16.191.141&ftpPort=21&ftpUserName=administrator&ftpPassword=sysadmiN&serverURL=DUDepartment/DUQASPL/ECP/FU1/QC&documentID=19031900005&Ext=pdf", 4, function () {
+            //       //$('#QuickViewModal2').modal('show');
+            //       $scope.Print2();
+            //   }, function () {
+            //       toastr.error('File Not Found');
+            //   });
+
+        };
+
+        $scope.Print2 = function () {
+            //DWObjectQuickViewer2.Print();
+
+        }
+
+
+        $scope.DetailPrint = function () {
+            var ServerIP = $('#serverIp').val();
+            var ServerPort = $('#ServerPort').val();
+            var FtpUserName = $('#FtpUserName').val();
+            var FtpPassword = $('#FtpPassword').val();
+            var FileServerURL = $('#FileServerURL').val();
+            var DocumentID = $('#DocumentID').val();
+            var IsObsolutable = $('#IsObsolutable').val();
+            var IsSecured = 0;
+            var InformationCopy = 0;
+            var addTextAction = 0;
+            $http.post('/DocScanningModule/MultiDocScan/GetInformationCopyToPrint',
+                {
+                    serverIP: ServerIP,
+                    ftpPort: ServerPort,
+                    ftpUserName: FtpUserName,
+                    ftpPassword: FtpPassword,
+                    serverURL: FileServerURL,
+                    documentID: DocumentID,
+                    isObsolete: IsObsolutable,
+                    isSecured: IsSecured,
+                    InformationCopy: InformationCopy,
+                    Action: 1,// 1 Stands for Printing
+                    addTextAction: addTextAction,
+                    TextAddPropertyCollection: TextAddPropertyCollection
+
+
+                }).success(function (response) {
+                    //var pdfAsDataUri = "data:application/pdf;base64," +response;
+                    //$scope.content = $sce.trustAsResourceUrl(pdfAsDataUri);
+                    //var win = window.open();
+                    //win.document.write('<iframe src="' + pdfAsDataUri + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                    var arrBuffer = base64ToArrayBuffer(response);
+
+                    var file = new Blob([arrBuffer], { type: 'application/pdf' });
+                    var fileURL = URL.createObjectURL(file);
+                    //window.open(fileURL, "EPrescription");
+                    window.open().document.write('<iframe src="' + fileURL + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                });
+        };
+
+
+        $scope.ShowDetailView = function (tableRow, e) {
+            DWObject.Addon.PDF.Download("../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+
+            DWObject.Addon.PDF.SetResolution(200);
+            DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            DWObject.IfShowFileDialog = true;
+            DWObject.RemoveAllImages();
+            DWObjectLargeViewer.RemoveAllImages();
+
+
+            $http.post('/DocScanningModule/OriginalDocSearching/GetDocPropIdentityForSpecificDocType',
+                {
+                    _DocumentID: tableRow.DocumentID,
+                    _DocDistributionID: tableRow.DocDistributionID
+                })
+                .success(function (response) {
+                    debugger
+                    $scope.DocumentsAttributeList = response;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+
+
+            //applySecurity();
+            //DWObject.Addon.PDF.Download(
+            //    location.host + "/Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+            //    function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+            //    function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            //);
+
+            //DWObject.IfShowFileDialog = false;
+            //DWObject.RemoveAllImages();
+            //DWObjectLargeViewer.RemoveAllImages();
+
+            //DWObject.Addon.PDF.SetResolution(200);
+            //DWObject.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            DWObject.HTTPDownloadEx(location.host, "DocScanningModule/MultiDocScan/GetFilePassWord_r?" + encodeURIComponent("serverIP") + "=" + encodeURIComponent(tableRow.ServerIP)
+                + "&" + encodeURIComponent("ftpPort") + "=" + encodeURIComponent(tableRow.ServerPort)
+                + "&" + encodeURIComponent("ftpUserName") + "=" + encodeURIComponent(tableRow.FtpUserName)
+                + "&" + encodeURIComponent("ftpPassword") + "=" + encodeURIComponent(tableRow.FtpPassword)
+                + "&" + encodeURIComponent("serverURL") + "=" + encodeURIComponent(tableRow.FileServerURL)
+                + "&" + encodeURIComponent("documentID") + "=" + encodeURIComponent(tableRow.DocumentID)
+                + "&" + encodeURIComponent("isObsolete") + "=" + encodeURIComponent(tableRow.IsObsolutable)
+                + "&" + encodeURIComponent("isSecured") + "=" + encodeURIComponent(tableRow.IsSecured), 4, function () {
+                    $('#DetailViewModal').modal('show');
+                    $('#serverIp').val(tableRow.ServerIP);
+                    $('#ServerPort').val(tableRow.ServerPort);
+                    $('#FtpUserName').val(tableRow.FtpUserName);
+                    $('#FtpPassword').val(tableRow.FtpPassword);
+                    $('#FileServerURL').val(tableRow.FileServerURL);
+                    $('#DocumentID').val(tableRow.DocumentID);
+                    $('#IsObsolutable').val(tableRow.IsObsolutable);
+                }, function () {
+                    toastr.error('File Not Found');
+                });
+        };
+
+
+        $scope.updateLargeViewer = function () {
+            DWObject.CopyToClipboard(DWObject.CurrentImageIndexInBuffer);
+            DWObjectLargeViewer.LoadDibFromClipboard();
+        };
+
+        $scope.urlParameter = function (tableRow) {
+            var serverIP = tableRow.ServerIP;
+            var ftpPort = tableRow.ServerPort;
+            var ftpUserName = tableRow.FtpUserName;
+            var ftpPassword = tableRow.FtpPassword;
+            var serverURL = tableRow.FileServerURL;
+            var documentID = tableRow.DocumentID;
+
+            var token = "" + serverIP + "..|.." + ftpPort + "..|.." + ftpUserName + "..|.." + ftpPassword + "..|.." + serverURL + "..|.." + documentID;
+            return btoa(token);
+        }; 
+        $scope.DocumentIDForDelete = "";
+        $scope.loading = true;
+
+
+        $http.get('/DocScanningModule/OwnerProperIdentity/GetOwnerLevel?_OwnerLevelID=')
+            .success(function (response) {
+                $scope.ownerLevels = response.result;
+                $scope.docPropIdentityModel.OwnerLevel = response.result[0];
+                //$scope.docPropIdentityModel.OwnerLevel = "";
+                $scope.loading = false;
+            })
+            .error(function () {
+                $scope.loading = false;
+            });
+
+
+        $scope.$watch('docPropIdentityModel.OwnerLevel', function (newVal, oldVal) {
+            if (newVal) {
+                if (newVal != "" && newVal != oldVal) {
+                    $scope.docPropIdentityModel.Owner = "";
+                    $scope.docPropIdentityModel.DocCategory = "";
+                    $scope.docPropIdentityModel.DocType = "";
+                    $scope.docPropIdentityModel.DocProperty = "";
+                    //$scope.ResetImageViewrs();
+                    $http.post('/DocScanningModule/OwnerProperIdentity/GetOwnerForSpecificOwnerLevel',
+                        { _OwnerLevelID: $scope.docPropIdentityModel.OwnerLevel.OwnerLevelID })
+                        .success(function (response) {
+                            $scope.ownersForSpecificOwnerLevel = response.result;
+                            $scope.docPropIdentityModel.Owner = response.result[0];
+                            $scope.loading = false;
+                        }).error(function () {
+                            $scope.loading = false;
+                        });
+                }
+            }
+        });
+
+
+
+
+        $scope.DocCatForOwner = [];
+        $scope.$watch('docPropIdentityModel.Owner', function (newVal) {
+            if (newVal) {
+                $scope.docPropIdentityModel.DocCategory = "";
+                $scope.docPropIdentityModel.DocType = "";
+                $scope.docPropIdentityModel.DocProperty = "";
+                //$scope.ResetImageViewrs();
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentCategoriesForSpecificOwner',
+                    { _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID })
+                    .success(function (response) {
+                        $scope.docCategoriesForSpecificOwner = response.result;
+                        $scope.DocCatForOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.DocTypeForOwner = [];
+        $scope.$watch('docPropIdentityModel.DocCat', function (newVal) {
+            if (newVal) {
+                $scope.docPropIdentityModel.DocType = "";
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.ResetImageViewrs();
+                $http.post('/DocScanningModule/OwnerProperIdentity/GetDocumentTypeForSpecificDocCategory',
+                    {
+                        _DocCategoryID: $scope.docPropIdentityModel.DocCat,
+                        _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID
+                    })
+                    .success(function (response) {
+                        $scope.docTypeForSpecificDocCategory = response.result;
+                        $scope.DocTypeForOwner = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('docPropIdentityModel.DocType', function (newVal) {
+            if (newVal) {
+                $scope.docPropIdentityModel.DocProperty = "";
+                $scope.ResetImageViewrs();
+
+                $http.post('/DocScanningModule/MultiDocScan/GetDocumentProperty',
+                    {
+                        _DocCategoryID: $scope.docPropIdentityModel.DocCat,
+                        _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                        _DocTypeID: $scope.docPropIdentityModel.DocType
+                    })
+                    .success(function (response) {
+                        $scope.docPropertyForSpecificDocType = response.result;
+                        $scope.loading = false;
+                    }).error(function () {
+                        $scope.loading = false;
+                    });
+            }
+        });
+
+        $scope.$watch('docPropIdentityModel.DocProperty', function (newVal, oldVal) {
+            if (newVal) {
+                $scope.BindDataToGrid();
+                $scope.ResetImageViewrs();
+            }
+        });
+
+        $scope.$watch('docPropIdentityModel.SearchBy', function (newVal, oldVal) {
+            if (newVal) {
+                if (newVal != oldVal) {
+                    $scope.BindDataToGrid();
+                    $scope.ResetImageViewrs();
+                }
+
+            }
+        });
+
+        $scope.BindDataToGrid = function () {
+            $scope.loading = true;
+            $http.post('/DocScanningModule/OriginalDocSearching/GetDocumentsBySearchParam',
+                {
+                    _DocCategoryID: $scope.docPropIdentityModel.DocCat,
+                    _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                    _DocTypeID: $scope.docPropIdentityModel.DocType,
+                    _DocPropertyID: $scope.docPropIdentityModel.DocProperty.DocPropertyID,
+                    _SearchBy: $scope.docPropIdentityModel.SearchBy,
+                    page: $scope.pagingInfo.page,
+                    itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                    sortBy: $scope.pagingInfo.itemsPerPage,
+                    reverse: $scope.pagingInfo.reverse,
+                    attribute: $scope.AttrName,
+                    search: $scope.AttrName == '' ? $scope.pagingInfo.search : $scope.AttrValue
+                })
+                .success(function (pageable) {
+                    if (pageable.respStatus == null) {
+
+                        $scope.GridDisplayCollection = pageable.lstDocSearch;
+                        $scope.pagingInfo.totalItems = pageable.totalPages;
+                        $scope.loading = false;
+                    }
+                    else {
+                        $scope.GridDisplayCollection = pageable.lstDocSearch;
+                        $scope.pagingInfo.totalItems = pageable.totalPages;
+                        toastr.error(pageable.respStatus.Message);
+                        $scope.loading = false;
+                    }
+
+                    applySecurity();
+                }).error(function () {
+                    $scope.loading = false;
+                });
+
+        };
+
+        $scope.toggleEdit = function (tableRow) {
+            $http.post('/DocScanningModule/OriginalDocSearching/GetDocPropIdentityForSpecificDocType',
+                {
+                    _DocumentID: tableRow.DocumentID,
+                    _DocDistributionID: tableRow.DocDistributionID
+                })
+                .success(function (response) {
+                    $scope.DocumentsAttributeList = response;
+                    $scope.documentID = tableRow.DocumentID;
+                    $scope.loading = false;
+                }).error(function () {
+                    $scope.loading = false;
+                });
+
+            $('#addModal').modal('show');
+        };
+        var TextAddPropertyCollection = [];
+        $scope.showPDF = function () {
+
+            var ServerIP = $('#serverIp').val();
+            var ServerPort = $('#ServerPort').val();
+            var FtpUserName = $('#FtpUserName').val();
+            var FtpPassword = $('#FtpPassword').val();
+            var FileServerURL = $('#FileServerURL').val();
+            var DocumentID = $('#DocumentID').val();
+            var IsObsolutable = $('#IsObsolutable').val();
+            var IsSecured = 0;
+            var InformationCopy = 0;
+            var addTextAction = 0;
+            $http.post('/DocScanningModule/MultiDocScan/GetInformationCopyToPrint',
+                {
+                    serverIP: ServerIP,
+                    ftpPort: ServerPort,
+                    ftpUserName: FtpUserName,
+                    ftpPassword: FtpPassword,
+                    serverURL: FileServerURL,
+                    documentID: DocumentID,
+                    isObsolete: IsObsolutable,
+                    isSecured: IsSecured,
+                    InformationCopy: InformationCopy,
+                    Action: 1,// 1 Stands for Printing
+                    addTextAction: addTextAction,
+                    TextAddPropertyCollection: TextAddPropertyCollection
+
+
+                }).success(function (response) {
+                    //var pdfAsDataUri = "data:application/pdf;base64," +response;
+                    //$scope.content = $sce.trustAsResourceUrl(pdfAsDataUri);
+                    //var win = window.open();
+                    //win.document.write('<iframe src="' + pdfAsDataUri + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                    var arrBuffer = base64ToArrayBuffer(response);
+
+                    var file = new Blob([arrBuffer], { type: 'application/pdf' });
+                    var fileURL = URL.createObjectURL(file);
+                    //window.open(fileURL, "EPrescription");
+                    window.open().document.write('<iframe src="' + fileURL + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                });
+            addTextAction = 0;
+            TextAddPropertyCollection = [];
+
+        };
+
+        //Download Method for the documnet
+        $scope.Download = function (tableRow, e) {
+            applySecurity();
+            DWObjectQuickViewer2.Addon.PDF.Download(
+                "../Resources/addon/Pdf.zip",  // specify the url of the add-on resource
+                function () { console.log('Successfully Downloaded PDF add-on'); }, // successful callback
+                function (errorCode, errorString) { alert(errorString); }  // failure callback and show error message
+            );
+            debugger;
+            var ServerIP = tableRow.ServerIP;
+            var ServerPort = tableRow.ServerPort;
+            var FtpUserName = tableRow.FtpUserName;
+            var FtpPassword = tableRow.FtpPassword;
+            var FileServerURL = tableRow.FileServerURL;
+            var DocumentID = tableRow.DocumentID;
+            var IsObsolutable = tableRow.IsObsolutable;
+            var IsSecured = tableRow.IsSecured;
+            var InformationCopy = 0;
+
+
+            DWObjectQuickViewer2.IfShowFileDialog = false;
+            DWObjectQuickViewer2.RemoveAllImages();
+            DWObjectQuickViewer2.Addon.PDF.SetResolution(200);
+            DWObjectQuickViewer2.Addon.PDF.SetConvertMode(EnumDWT_ConverMode.CM_RENDERALL);
+
+            //if (addTextAction) {
+
+            //    PageFrom = from;
+            //    PageTo = to;
+            //    TextToAdd = textThatWillBeAdded;
+
+            //}
+            $http.post('/DocScanningModule/MultiDocScan/GetInformationCopyToPrint',
+                {
+                    serverIP: ServerIP,
+                    ftpPort: ServerPort,
+                    ftpUserName: FtpUserName,
+                    ftpPassword: FtpPassword,
+                    serverURL: FileServerURL,
+                    documentID: DocumentID,
+                    isObsolete: IsObsolutable,
+                    isSecured: IsSecured,
+                    InformationCopy: InformationCopy,
+                    Action: 0, // 0 Stands for downloading
+                    addTextAction: 0,
+                    TextAddPropertyCollection: TextAddPropertyCollection
+
+
+                }).success(function (response) {
+
+                    //var element = document.createElement('a');
+                    //var pdfAsDataUri = "data:application/pdf;base64," + response;
+                    //element.setAttribute('href', pdfAsDataUri);
+                    //element.setAttribute('download', DocumentID+ ".pdf");
+
+                    //element.style.display = 'none';
+                    //document.body.appendChild(element);
+
+                    //element.click();
+
+                    //document.body.removeChild(element);
+                    $scope.downloadPDFWithArrayBuffer(response, DocumentID);
+
+                });
+
+
+
+        }
+        $scope.downloadPDFWithArrayBuffer = function (base64Data, DocumentID) {
+
+            var arrBuffer = base64ToArrayBuffer(base64Data);
+
+            // It is necessary to create a new blob object with mime-type explicitly set
+            // otherwise only Chrome works like it should
+            var newBlob = new Blob([arrBuffer], { type: "application/pdf" });
+
+            // IE doesn't allow using a blob object directly as link href
+            // instead it is necessary to use msSaveOrOpenBlob
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(newBlob);
+                return;
+            }
+
+            // For other browsers:
+            // Create a link pointing to the ObjectURL containing the blob.
+            var data = window.URL.createObjectURL(newBlob);
+
+            var link = document.createElement('a');
+            document.body.appendChild(link); //required in FF, optional for Chrome
+            link.href = data;
+            link.download = DocumentID + ".pdf";
+            link.click();
+            window.URL.revokeObjectURL(data);
+            link.remove();
+        }
+
+        function base64ToArrayBuffer(data) {
+            var binaryString = window.atob(data);
+            var binaryLen = binaryString.length;
+            var bytes = new Uint8Array(binaryLen);
+            for (var i = 0; i < binaryLen; i++) {
+                var ascii = binaryString.charCodeAt(i);
+                bytes[i] = ascii;
+            }
+            return bytes;
+        };
+        var DocMetaValues = {
+            MetaValue: "",
+            DocMetaID: ""
+        };
+
+        var FinalObject = { "DocMetaValues": [] };
+
+
+        $scope.Save = function () {
+            $scope.loading = true;
+
+            angular.forEach($scope.DocumentsAttributeList, function (item) {
+
+                DocMetaValues.DocMetaID = item.DocMetaID;
+                DocMetaValues.MetaValue = item.MetaValue;
+
+                FinalObject.DocMetaValues.push(DocMetaValues);
+                FinalObject.DocumentID = $scope.documentID;
+                DocMetaValues = {
+                    MetaValue: "",
+                    DocMetaID: ""
+                };
+
+            });
+
+            $.ajax({
+                url: '/DocScanningModule/OriginalDocSearching/UpdateDocMetaInfo',
+                data: JSON.stringify(FinalObject),
+                type: 'POST',
+                contentType: 'application/json;',
+                dataType: 'json',
+                //async: false,
+                success: function (response) {
+                    $scope.loading = false;
+                    $('#addModal').modal('hide');
+                    $scope.BindDataToGrid();
+                    toastr.success(response.Message);
+                },
+                error: function (response) {
+                    $scope.loading = false;
+                    toastr.error(response.Message);
+                }
+            });
+
+            FinalObject = { "DocMetaValues": [] };
+        }
+
+        $scope.toggleRefreshTable = function (row) {
+            location.reload();
+        };
+
+        $scope.Marge = function () {
+            $scope.DWReadOnly = true;
+            $scope.loading = true;
+            $http.post('/DocScanningModule/OriginalDocSearching/Marge',
+                {
+                    _DocCategoryID: $scope.docPropIdentityModel.DocCat,
+                    _OwnerID: $scope.docPropIdentityModel.Owner.OwnerID,
+                    _DocTypeID: $scope.docPropIdentityModel.DocType,
+                    _DocPropertyID: $scope.docPropIdentityModel.DocProperty.DocPropertyID,
+                    _SearchBy: $scope.docPropIdentityModel.SearchBy,
+                    page: $scope.pagingInfo.page,
+                    itemsPerPage: $scope.pagingInfo.itemsPerPage,
+                    sortBy: $scope.pagingInfo.itemsPerPage,
+                    reverse: $scope.pagingInfo.reverse,
+                    attribute: $scope.AttrName,
+                    search: $scope.AttrName == '' ? $scope.pagingInfo.search : $scope.AttrValue
+                })
+                .success(function (response) {
+
+                    $scope.showPrint = false;
+                    $scope.loading = false;
+                    if (response.Message == "Document Merge Successfully") {
+                        $scope.DWReadOnly = false;
+                        toastr.success(response.Message);
+                    }
+                    else if (response.Message == "Document Not Found") {
+                        $scope.DWReadOnly = true;
+                        toastr.error(response.Message);
+                    }
+                    else {
+                        $scope.DWReadOnly = true;
+                        toastr.error(response.Message);
+                    }
+                    //toggleRefreshTable();
+                })
+                .error(function (response) {
+                    $scope.loading = false;
+                    $scope.DWReadOnly = true;
+                    e.PreverntDefault();
+                    toastr.error("Document Merge Failed.");
+                });
+        }
+
+
+    });
+</script>
+
