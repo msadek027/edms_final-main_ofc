@@ -633,7 +633,7 @@
         //    });
      
 
-            pdfSplit_ZipExtract_FileList_Final_MoreSynchronous($scope.PDF_Images, cookie)
+        pdfSplit_ZipExtract_FileList_Final($scope.PDF_Images, cookie)
             .then(function (fileList) {
                 // Store the fileList in $scope.fileListF
                 $scope.fileListF = fileList;
@@ -840,9 +840,8 @@
                             debugger;
                             if ($scope.fileListF.length == response.DistinctID.length) {
                                 for (var i = 0; i < $scope.fileListF.length; i++) {
-                                    debugger;
-                                 //  $scope.generatePDF_pdfSplit_ZipExtract_FileList($scope.fileListF[i], response, response.DistinctID[i].FileServerUrl, response.DistinctID[i].DocumentID)
-                                 //   $scope.generatePDF_pdfSplit_ZipExtract_FileList($scope.fileListF[i].blobData, response, response.DistinctID[i].FileServerUrl, response.DistinctID[i].DocumentID)
+                                    debugger;                            
+
                                     $scope.generatePDF_pdfSplit_ZipExtract_FileList($scope.fileListF[i].blobData, response, dataList[i].FileServerUrl, dataList[i].DocumentID)
                                 }
                             }
@@ -1923,7 +1922,7 @@
             }
         );
     }
-
+ 
     /** Processes the scan result */
     function displayImagesOnPage(successful, mesg, response) {
         if (!successful) { // On error
@@ -1937,19 +1936,19 @@
         }
 
         var scannedImages = scanner.getScannedImages(response, true, false); // returns an array of ScannedImage
+        var TotalCount  = scannedImages.length;
         for (var i = 0; (scannedImages instanceof Array) && i < scannedImages.length; i++) {
             debugger
             var scannedImage = scannedImages[i];
-
-            processScannedImage(scannedImage);
+            processScannedImage(scannedImage, TotalCount);
         }
     }
 
     /** Images scanned so far. */
     var imagesScanned = [];
-
+    var pdfArray = [];
     /** Processes a ScannedImage */
-    function processScannedImage(scannedImage) {
+    function processScannedImage(scannedImage, TotalCount) {
         imagesScanned.push(scannedImage);
         var elementImg = scanner.createDomElementFromModel({
             'name': 'img',
@@ -1967,9 +1966,51 @@
         while (n_--) {
             u8arr_[n_] = bstr_.charCodeAt(n_);
         }
-        $scope.convertImageToPDF(bstr_, 'example.pdf', u8arr_);
-    }
+       
+       // $scope.convertImageToPDF(bstr_, 'example.pdf', u8arr_);
 
+        // Add the Uint8Array to the array of Uint8Arrays
+       pdfArray.push(u8arr_);
+        // Check if all images are processed, then merge into a single PDF
+        if (imagesScanned.length === TotalCount) {
+            console.log(pdfArray);
+            console.log("Total Count: " + TotalCount);         
+            // Now you have the total number of images dynamically
+            $scope.convertImageToSinglePDF('example.pdf', pdfArray);
+        }
+    }
+    //-----------------by me 
+    $scope.convertImageToSinglePDF = async function (pdfPath, u8arrList) {
+        const pdfDoc = await PDFLib.PDFDocument.create();
+
+        for (const u8arr_ of u8arrList) {
+            const imageBytes = u8arr_;
+            const image = await pdfDoc.embedJpg(imageBytes);
+
+            // Add a new page for each image
+            const page = pdfDoc.addPage([image.width, image.height]);
+            page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+        }
+
+        const pdfBytes = await pdfDoc.save();
+        const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+
+        //// Optionally, you can save or display the generated PDF     
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(pdfBlob);
+        link.download = pdfPath;
+        link.click();
+
+        $scope.PDF_TO_Images_AnotherPDF(pdfBlob, 1, 0);
+    };
+
+    
+
+
+
+  
+    //--------------
     //< !--Previous lines are same as demo - 01, below is new addition to demo - 02 -- >
 
     /** Upload scanned images by submitting the form */
@@ -2021,7 +2062,6 @@
 
         $scope.convertImageToPDF(bstr_, 'example.pdf', u8arr_);
         // Optional: Create a download link for the Blob file
-
     }
     $scope.convertImageToPDF = async function (imageData, pdfPath, u8arr_) {
         const pdfDoc = await PDFLib.PDFDocument.create();
@@ -2029,19 +2069,23 @@
 
         const image = await pdfDoc.embedJpg(imageBytes);
         const page = pdfDoc.addPage([image.width, image.height]);
-        page.drawImage(image, {
-            x: 0,
-            y: 0,
-            width: image.width,
-            height: image.height,
-        });
+        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height, });
+
+
         const pdfBytes = await pdfDoc.save();
         const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+
         //const pdfURL = URL.createObjectURL(pdfBlob);
         //const downloadLink = document.createElement('a');
         //downloadLink.href = pdfURL;
         //downloadLink.download = pdfPath;
         //downloadLink.click();
+        debugger;
+
+
+     
+
         if ($scope.PDF_Images == null) {
             $scope.PDF_TO_Images(pdfBlob, 1, 0);
         } else {

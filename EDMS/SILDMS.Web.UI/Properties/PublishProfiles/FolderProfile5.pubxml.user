@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\PublishWebSite\eDMS_SIL</_PublishTargetUrl>
-    <History>True|2023-12-21T09:40:33.5593572Z;True|2023-12-20T13:26:00.3492897+06:00;</History>
+    <History>True|2024-01-08T10:56:15.5413837Z;True|2024-01-08T16:48:23.6548482+06:00;True|2024-01-08T16:34:26.4794901+06:00;True|2023-12-21T15:40:33.5593572+06:00;True|2023-12-20T13:26:00.3492897+06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/DocScanningModule/Views/AuditTrail/Index.cshtml">
@@ -393,13 +393,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/23/2023 11:50:01</publishTime>
     </File>
     <File Include="bin/SILDMS.DataAccess.dll">
-      <publishTime>12/21/2023 15:37:32</publishTime>
+      <publishTime>12/26/2023 09:09:47</publishTime>
     </File>
     <File Include="bin/SILDMS.DataAccess.dll.config">
       <publishTime>11/23/2023 11:49:59</publishTime>
     </File>
     <File Include="bin/SILDMS.DataAccess.pdb">
-      <publishTime>12/21/2023 15:37:32</publishTime>
+      <publishTime>12/26/2023 09:09:47</publishTime>
     </File>
     <File Include="bin/SILDMS.DataAccessInterface.dll">
       <publishTime>12/21/2023 15:37:30</publishTime>
@@ -408,13 +408,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/21/2023 15:37:30</publishTime>
     </File>
     <File Include="bin/SILDMS.InfraStructure.dll">
-      <publishTime>12/21/2023 15:37:34</publishTime>
+      <publishTime>12/26/2023 09:09:49</publishTime>
     </File>
     <File Include="bin/SILDMS.InfraStructure.dll.config">
       <publishTime>11/23/2023 11:49:59</publishTime>
     </File>
     <File Include="bin/SILDMS.InfraStructure.pdb">
-      <publishTime>12/21/2023 15:37:34</publishTime>
+      <publishTime>12/26/2023 09:09:49</publishTime>
     </File>
     <File Include="bin/SILDMS.Model.dll">
       <publishTime>12/21/2023 15:37:29</publishTime>
@@ -426,10 +426,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/21/2023 15:37:29</publishTime>
     </File>
     <File Include="bin/SILDMS.Service.dll">
-      <publishTime>12/21/2023 15:37:33</publishTime>
+      <publishTime>12/26/2023 09:09:48</publishTime>
     </File>
     <File Include="bin/SILDMS.Service.pdb">
-      <publishTime>12/21/2023 15:37:33</publishTime>
+      <publishTime>12/26/2023 09:09:48</publishTime>
     </File>
     <File Include="bin/SILDMS.Utillity.dll">
       <publishTime>12/21/2023 15:37:29</publishTime>
@@ -438,10 +438,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/21/2023 15:37:29</publishTime>
     </File>
     <File Include="bin/SILDMS.Web.UI.dll">
-      <publishTime>12/21/2023 15:37:43</publishTime>
+      <publishTime>12/27/2023 12:52:42</publishTime>
     </File>
     <File Include="bin/SILDMS.Web.UI.pdb">
-      <publishTime>12/21/2023 15:37:43</publishTime>
+      <publishTime>12/27/2023 12:52:42</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/23/2023 11:50:17</publishTime>
@@ -912,7 +912,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/23/2023 11:50:01</publishTime>
     </File>
     <File Include="log.txt">
-      <publishTime>11/23/2023 11:50:05</publishTime>
+      <publishTime>12/24/2023 16:52:00</publishTime>
     </File>
     <File Include="Mvc.sitemap">
       <publishTime>11/23/2023 11:50:01</publishTime>
@@ -930,7 +930,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/09/2023 08:26:57</publishTime>
     </File>
     <File Include="NgScripts/Controller/DocumentScanCtr.js">
-      <publishTime>11/08/2023 14:42:33</publishTime>
+      <publishTime>01/08/2024 16:48:00</publishTime>
     </File>
     <File Include="NgScripts/Controller/DocumentSharingCtr.js">
       <publishTime>11/26/2023 12:31:03</publishTime>
@@ -3123,7 +3123,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/23/2023 11:50:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/21/2023 15:40:19</publishTime>
+      <publishTime>01/08/2024 16:34:20</publishTime>
     </File>
   </ItemGroup>
 </Project>
