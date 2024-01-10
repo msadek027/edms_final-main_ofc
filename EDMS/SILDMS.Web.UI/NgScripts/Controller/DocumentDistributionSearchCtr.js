@@ -27,31 +27,37 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
 
     var date = new Date(), y = date.getFullYear(), m = date.getMonth();
     var firstDay = new Date(y, m, 1);
-    var dateInFirst = firstDay.getFullYear() + '-' + (firstDay.getMonth() + 1) + '-' + '0' + (firstDay.getDate());
+    var month = firstDay.getMonth() + 1;
+    var paddedMonth = month < 10 ? '0' + month : month;
+    var dateInFirst = firstDay.getFullYear() + '-' + paddedMonth + '-' + '0' + (firstDay.getDate());
 
     var currentDate = new Date();
-    var dateInmmddyyyy = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + (currentDate.getDate() + 1);
+    var monthCurrent = currentDate.getMonth() + 1;
+    var paddedMonthCurrent = monthCurrent < 10 ? '0' + monthCurrent : monthCurrent;
 
-
+    var dateInmmddyyyy = currentDate.getFullYear() + '-' + paddedMonthCurrent + '-' + (currentDate.getDate() + 1);
     $scope.FromDate = dateInFirst;
     $scope.ToDate = dateInmmddyyyy;
 
-    $scope.validateDates = function () {
 
+    $scope.validateDates = function () {
+        debugger;
+        // AngularJS already binds the values to the $scope, no need for jQuery here
+        console.log("FromDate:", $scope.FromDate);
+        console.log("ToDate:", $scope.ToDate);
     };
+  
     $scope.toggleRefreshTable = function (row) {
         location.reload();
     };
-    $scope.ZoomIn = function () {
-  
+    $scope.ZoomIn = function () {  
         var doc_view_ref = document.getElementById('Large-pdf-Viewer');
         var dz = parseFloat($scope.Zoom_Count) + parseFloat('0.2');
         doc_view_ref.style = 'zoom: ' + dz;
         $scope.Zoom_Count = dz;
     };
 
-    $scope.ZoomOut = function () {
-      
+    $scope.ZoomOut = function () {      
         var doc_view_ref = document.getElementById('Large-pdf-Viewer');
         var dk = parseFloat($scope.Zoom_Count) - parseFloat('0.2');
         doc_view_ref.style = 'zoom: ' + dk;
@@ -133,7 +139,6 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
                 $(".mydiv").hide();
             }, function (error) {
                 console.log(error.data);
-
                 $scope.loading = false;
                 $(".mydiv").hide();
 

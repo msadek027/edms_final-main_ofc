@@ -1973,8 +1973,8 @@
        pdfArray.push(u8arr_);
         // Check if all images are processed, then merge into a single PDF
         if (imagesScanned.length === TotalCount) {
-            console.log(pdfArray);
-            console.log("Total Count: " + TotalCount);         
+            //console.log(pdfArray);
+           // console.log("Total Count: " + TotalCount);         
             // Now you have the total number of images dynamically
             $scope.convertImageToSinglePDF('example.pdf', pdfArray);
         }
@@ -1997,10 +1997,10 @@
 
 
         //// Optionally, you can save or display the generated PDF     
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(pdfBlob);
-        link.download = pdfPath;
-        link.click();
+        //const link = document.createElement('a');
+        //link.href = URL.createObjectURL(pdfBlob);
+        //link.download = pdfPath;
+        //link.click();
 
         $scope.PDF_TO_Images_AnotherPDF(pdfBlob, 1, 0);
     };
@@ -2081,11 +2081,7 @@
         //downloadLink.href = pdfURL;
         //downloadLink.download = pdfPath;
         //downloadLink.click();
-        debugger;
-
-
-     
-
+        debugger;    
         if ($scope.PDF_Images == null) {
             $scope.PDF_TO_Images(pdfBlob, 1, 0);
         } else {

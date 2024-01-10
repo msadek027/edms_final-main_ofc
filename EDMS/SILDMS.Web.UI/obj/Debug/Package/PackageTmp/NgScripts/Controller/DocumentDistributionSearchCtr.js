@@ -27,10 +27,17 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
 
     var date = new Date(), y = date.getFullYear(), m = date.getMonth();
     var firstDay = new Date(y, m, 1);
-    var dateInFirst = firstDay.getFullYear() + '-' + (firstDay.getMonth() + 1) + '-' + '0' + (firstDay.getDate());
+    var month = firstDay.getMonth() + 1;
+    var paddedMonth = month < 10 ? '0' + month : month;
+
+    var dateInFirst = firstDay.getFullYear() + '-' + paddedMonth + '-' + '0' + (firstDay.getDate());
 
     var currentDate = new Date();
-    var dateInmmddyyyy = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + (currentDate.getDate() + 1);
+
+    var monthCurrent = currentDate.getMonth() + 1;
+    var paddedMonthCurrent = monthCurrent < 10 ? '0' + monthCurrent : monthCurrent;
+
+    var dateInmmddyyyy = currentDate.getFullYear() + '-' + paddedMonthCurrent + '-' + (currentDate.getDate() + 1);
 
 
     $scope.FromDate = dateInFirst;
