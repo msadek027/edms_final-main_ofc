@@ -56,16 +56,12 @@
                 </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
-
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="FromDate" style="width: 120px;" ng-model="FromDate" ng-change="validateDates()" />
+                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="FromDate" style="width: 120px;" data-ng-model="FromDate"  />
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="ToDate" style="width: 120px;" ng-model="ToDate" ng-change="validateDates()" />
-
+                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="ToDate" style="width: 120px;" data-ng-model="ToDate"  />
                 </div>
-
-
                 <p ng-show="isDateInvalid">To Date must be greater than or equal to From Date.</p>
             </div>
 
@@ -102,9 +98,7 @@
                             <th>Operation Who / Whom</th>
                             <th>Action</th>
                         </tr>
-
                     </thead>
-
                     <tbody>
                         <tr ng-repeat="row in GridDisplayCollection">
                             <td class="hidden">{{row.DocumentID}}</td>
@@ -158,14 +152,10 @@
                     <div id="dwtVerticalThumbnil" class="box-body"></div>
                 </div>
             </div>
-
         </div>
 
     <div class="box-footer with-border">
-
-
     </div>
-
     <div id="viewerModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -176,7 +166,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-
                                 <button type="button" class="btn btn-danger btn-sm btn-flat pull-right" ng-click="CloseModalView('viewerModal')"><span class="glyphicon glyphicon-remove"></span> Close</button>
                                 <button type="button" class="btn btn-primary btn-sm pull-right" ng-click="showPDF(row);"><span class="glyphicon glyphicon-print"></span> Print </button>
                                 @*<button class="btn btn-flat btn-sm btn-default pull-right" data-ng-click="ZoomIn()"><span class="glyphicon glyphicon-zoom-in"></span> Zoom In</button>
@@ -190,7 +179,6 @@
 
                 <div class="modal-body">
                     <div class="box-body">
-
                         <div id="dwtLargeViewer" class="box-body"></div>
                     </div>
                 </div>
@@ -225,16 +213,9 @@
     $('.DatePicker').datepicker({
         format: "yyyy-mm-dd"
     });
-
-
-  
-
-
-
-
 </script>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     app.directive('editInPlace', function () {
         return {
             restrict: 'E',
@@ -270,4 +251,4 @@
                 });
             }
         };
-    });</script>
+    });</script>*@

@@ -5,8 +5,7 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
     'use strict'
     $scope.Zoom_Count = .5;
 
-    applySecurity();
-  
+    applySecurity();  
     $scope.PDF_Images = [];
     $scope.last_page = 0;
     $scope.file_list = [];
@@ -18,47 +17,37 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
     $scope.Url_Ref = null;
     $scope.docPropIdentityGridData2 = [];
     $scope.btnDistribute = false;
-
-
     $scope.DistributionShare = 'Distribution';
-
-/*    var dwtHorizontalThumbnil;*/
- /*   var zoomFactor = .5;*/
 
     var date = new Date(), y = date.getFullYear(), m = date.getMonth();
     var firstDay = new Date(y, m, 1);
     var month = firstDay.getMonth() + 1;
     var paddedMonth = month < 10 ? '0' + month : month;
-
     var dateInFirst = firstDay.getFullYear() + '-' + paddedMonth + '-' + '0' + (firstDay.getDate());
 
     var currentDate = new Date();
-
     var monthCurrent = currentDate.getMonth() + 1;
     var paddedMonthCurrent = monthCurrent < 10 ? '0' + monthCurrent : monthCurrent;
 
     var dateInmmddyyyy = currentDate.getFullYear() + '-' + paddedMonthCurrent + '-' + (currentDate.getDate() + 1);
-
-
     $scope.FromDate = dateInFirst;
     $scope.ToDate = dateInmmddyyyy;
 
-    $scope.validateDates = function () {
 
-    };
+ 
+
+
     $scope.toggleRefreshTable = function (row) {
         location.reload();
     };
-    $scope.ZoomIn = function () {
-  
+    $scope.ZoomIn = function () {  
         var doc_view_ref = document.getElementById('Large-pdf-Viewer');
         var dz = parseFloat($scope.Zoom_Count) + parseFloat('0.2');
         doc_view_ref.style = 'zoom: ' + dz;
         $scope.Zoom_Count = dz;
     };
 
-    $scope.ZoomOut = function () {
-      
+    $scope.ZoomOut = function () {      
         var doc_view_ref = document.getElementById('Large-pdf-Viewer');
         var dk = parseFloat($scope.Zoom_Count) - parseFloat('0.2');
         doc_view_ref.style = 'zoom: ' + dk;
@@ -140,7 +129,6 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
                 $(".mydiv").hide();
             }, function (error) {
                 console.log(error.data);
-
                 $scope.loading = false;
                 $(".mydiv").hide();
 
@@ -217,7 +205,23 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
     $scope.BindDataToGrid = function () {
         debugger;
 
-  
+        $scope.FromDate = $('#FromDate').val();
+        $scope.ToDate = $('#ToDate').val();
+        var FromDate = $("#FromDate").val();
+        var ToDate = $("#ToDate").val();
+        var fromDateParts = FromDate.split("-");
+        var fromDateObject = new Date(fromDateParts[2], fromDateParts[1] - 1, fromDateParts[0]);
+
+        var toDateParts = ToDate.split("-");
+        var toDateObject = new Date(toDateParts[2], toDateParts[1] - 1, toDateParts[0]);
+
+        if (fromDateObject > toDateObject) {
+            $('#FromDate').css("border", "1px solid red");
+            $('#ToDate').css("border", "1px solid red");
+            $('#ToDate').val("");
+            toastr.warning("The second date is always greater than the first date");
+            return false;
+        }
 
         if ($scope.FromDate != null && $scope.FromDate != "" && $scope.FromDate != 'undefined' && $scope.ToDate != null && $scope.ToDate != "" && $scope.ToDate != 'undefined' && $scope.DistributionOf != "--Select--" && $scope.DistributionOf != "" && $scope.DistributionOf != "undefined" ) {
 

@@ -58,10 +58,9 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="text"  class="DatePicker" placeholder="yyyy-mm-dd" id="FromDate" style="width: 120px;" data-ng-model="FromDate" ng-change="validateDates()" />
+                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="FromDate" style="width: 120px;" data-ng-model="FromDate"  />
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="ToDate" style="width: 120px;" data-ng-model="ToDate" ng-change="validateDates()" />
-
+                    <input type="text" class="DatePicker" placeholder="yyyy-mm-dd" id="ToDate" style="width: 120px;" data-ng-model="ToDate"  />
                 </div>
                 <p ng-show="isDateInvalid">To Date must be greater than or equal to From Date.</p>
             </div>

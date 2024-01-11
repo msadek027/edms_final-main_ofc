@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>D:\PublishWebSite\eDMS_SIL</_PublishTargetUrl>
-    <History>True|2024-01-09T05:05:36.4907528Z;True|2024-01-09T09:54:46.2861760+06:00;True|2024-01-09T09:26:24.6863642+06:00;True|2024-01-08T16:56:15.5413837+06:00;True|2024-01-08T16:48:23.6548482+06:00;True|2024-01-08T16:34:26.4794901+06:00;True|2023-12-21T15:40:33.5593572+06:00;True|2023-12-20T13:26:00.3492897+06:00;</History>
+    <History>True|2024-01-11T10:48:15.2546728Z;True|2024-01-09T11:05:36.4907528+06:00;True|2024-01-09T09:54:46.2861760+06:00;True|2024-01-09T09:26:24.6863642+06:00;True|2024-01-08T16:56:15.5413837+06:00;True|2024-01-08T16:48:23.6548482+06:00;True|2024-01-08T16:34:26.4794901+06:00;True|2023-12-21T15:40:33.5593572+06:00;True|2023-12-20T13:26:00.3492897+06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/DocScanningModule/Views/AuditTrail/Index.cshtml">
@@ -924,7 +924,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/26/2023 12:16:39</publishTime>
     </File>
     <File Include="NgScripts/Controller/DocumentDistributionSearchCtr.js">
-      <publishTime>01/09/2024 11:04:07</publishTime>
+      <publishTime>01/11/2024 16:40:15</publishTime>
     </File>
     <File Include="NgScripts/Controller/DocumentMakeCheckStageCtr.js">
       <publishTime>01/09/2024 09:25:15</publishTime>
@@ -3000,7 +3000,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/24/2023 09:21:04</publishTime>
     </File>
     <File Include="Views/Home/DocumentDistributionSearch.cshtml">
-      <publishTime>11/23/2023 11:22:00</publishTime>
+      <publishTime>01/11/2024 16:23:01</publishTime>
     </File>
     <File Include="Views/Home/DocumentScan.cshtml">
       <publishTime>11/02/2023 15:36:53</publishTime>
