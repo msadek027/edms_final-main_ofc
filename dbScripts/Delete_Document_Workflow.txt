@@ -6,6 +6,9 @@ Delete from DSM_DocumentsMeta
 Delete from DSM_DocumentsVersion
 Delete from DSM_DocumentsMetaVersion
 
+Delete from DSM_Share_Documents
+Delete from DSM_Share_DocumentsVersion
+
 delete from WFM_DocTypeProperty
 delete from WFM_ObjectNextStageMap
 delete from WFM_ObjectPropertyMap

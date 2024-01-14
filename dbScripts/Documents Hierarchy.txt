@@ -1,12 +1,12 @@
 --//
 --//Document Master Hierarchy:
-
-Select * from DSM_OwnerLevel Where OwnerLevelID=16060800002 --//Company
-Select * from DSM_Owner Where OwnerID=16060800002 AND  OwnerLevelID=16060800002 --//Department
-Select * from DSM_DocCategory --//Document Category
-Select * from DSM_DocType  --//Document Type
-Select * from DSM_DocProperty Where  DocPropertyID IN (16092900001, 16092900002) AND OwnerID=16060800002 AND  OwnerLevelID=16060800002 --//Document Name
-Select * from DSM_DocPropIdentify Where  DocPropertyID IN (16092900001, 16092900002) AND OwnerID=16060800002 AND  OwnerLevelID=16060800002--//Attribute
+--// OwnerLevel and OwnerID wise view and deleted 
+Select * from DSM_OwnerLevel Where OwnerLevelID=23122700001 --//Company
+Select * from DSM_Owner Where OwnerLevelID=23122700001   --//Department
+Select * from DSM_DocCategory Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Category
+Select * from DSM_DocType Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Type
+Select * from DSM_DocProperty Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Name
+Select * from DSM_DocPropIdentify Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Attribute
 
 --// Document Save Table:Transaction: It has primary Key but not relation to others
 Select *  from DSM_Documents
@@ -16,12 +16,21 @@ Select * from DSM_DocumentsVersion
 Select * from DSM_DocumentsMetaVersion
 
 
-Delete from DSM_OwnerLevel --//Company
-Delete from DSM_Owner --//Department
-Delete from DSM_DocCategory --//Document Category
-Delete from DSM_DocType  --//Document Type
-Delete from DSM_DocProperty --//Document Name
-Delete from DSM_DocPropIdentify --//Attribute
+Select * from DSM_OwnerLevel --//Company
+Select * from DSM_Owner --//Department
+Select * from DSM_DocCategory --//Document Category
+Select * from DSM_DocType  --//Document Type
+Select * from DSM_DocProperty --//Document Name
+Select * from DSM_DocPropIdentify --//Attribute
+
+
+Delete from DSM_OwnerLevel Where OwnerLevelID=23122700001 --//Company
+Delete from DSM_Owner Where OwnerLevelID=23122700001   --//Department
+Delete from DSM_DocCategory Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Category
+Delete from DSM_DocType Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Type
+Delete from DSM_DocProperty Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Document Name
+Delete from DSM_DocPropIdentify Where OwnerID IN (Select OwnerID from DSM_Owner Where OwnerLevelID=23122700001) --//Attribute
+
 
 Delete from DSM_Documents
 Delete from DSM_DocumentsMeta
@@ -29,6 +38,32 @@ Delete from DSM_DocumentsVersion
 Delete from DSM_DocumentsMetaVersion
 
 
+
+
+Delete from SEC_Role Where OwnerID NOT IN 
+(
+16060800001,
+16060800002,
+22060800001,
+23100900001
+);
+
+Delete from SEC_RoleMenuPermission Where OwnerID NOT IN 
+(
+16060800001,
+16060800002,
+22060800001,
+23100900001
+);
+Delete from SEC_User Where OwnerID NOT IN 
+(
+16060800001,
+16060800002,
+22060800001,
+23100900001
+);
+
+Select * from SEC_Server
 
 
 
