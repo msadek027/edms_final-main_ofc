@@ -377,6 +377,7 @@ namespace SILDMS.Web.UI.Areas.DocScanningModule.Controllers
         [Authorize]
         public async Task<dynamic> GetDistributionVersionDocuments(string FromDate, string ToDate)
         {
+
             List<DocSearch> lstDocSearch = null;
             string connString = ConfigurationManager.ConnectionStrings["AuthContext"].ToString();
             //  exec dbo.GetDistributionDocumentsVersion @UserID='16060900001' , @FromDate='2023-01-01', @ToDate='2023-10-16'
@@ -502,11 +503,9 @@ namespace SILDMS.Web.UI.Areas.DocScanningModule.Controllers
 
         [HttpGet]
         public ActionResult GetEmployee()
-        {
-            
+        {            
             string Qry = @"Select UserID, EmployeeID,UserFullName from SEC_User Where Status='1' AND UserFullName Is Not Null AND OwnerLevelID='"+ownerLevelId+ "' AND UserID NOT IN('"+_userId+"')";
-            DataTable dt = CommandExecute(Qry);          
-
+            DataTable dt = CommandExecute(Qry);         
             List<DefaultBEL> data;
             data = (from DataRow row in dt.Rows
                     select new DefaultBEL

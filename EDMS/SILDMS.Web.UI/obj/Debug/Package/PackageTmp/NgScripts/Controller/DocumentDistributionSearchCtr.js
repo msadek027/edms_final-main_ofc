@@ -559,8 +559,8 @@ app.controller('DocumentDistributionSearchCtr', ['$scope', '$http', 'ImageProces
             div_add.style.position = 'relative';
             pdf_container.appendChild(div_add);
 
-            pdf_container.style.minHeight = '600px';
-            pdf_container.style.maxHeight = '700px';
+            pdf_container.style.minHeight = '800px';
+            pdf_container.style.maxHeight = '800px';
             pdf_container.style.minWidth = '100%';
             pdf_container.style.maxWidth = '700px';
 
