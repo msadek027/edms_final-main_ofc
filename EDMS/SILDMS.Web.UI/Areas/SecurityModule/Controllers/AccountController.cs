@@ -148,10 +148,7 @@ namespace SILDMS.Web.UI.Areas.SecurityModule.Controllers
                         Session["PasswordReset"] = 0;
                     }
 
-                }
-                
-                
-              
+                }              
                 HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
             }
             else

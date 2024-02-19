@@ -14,10 +14,6 @@
     $scope.response = [];
     $scope.PDF1 = null;
 
-
-
-
-
     $scope.ZoomIn = function () {     
         var doc_view_ref = document.getElementById('Large-pdf-Viewer');
         var dz = parseFloat($scope.Zoom_Count) + parseFloat('0.2');
@@ -441,8 +437,6 @@
                             return { filename, blobData };
                         })
                     );
-
-
                     debugger;
                     resolve(fileList);
                 } else {
@@ -651,7 +645,7 @@
     };
     $scope.SaveImage= function () {
         $('#ConfirmSave').modal('hide');
-        debugger
+        debugger;
         var cookie = $scope.getCookie('access');
         $scope.loading = true;
         $("#mydiv").show();
@@ -1344,7 +1338,8 @@
         }
         if (files != null && files.length > 0 && cookie != "") {
             const webUrl = 'http://202.59.140.136:8000/api/merge/'
-            ImageProcessServices.RotatePage_RemovePage_AddBlankPage_Pdf(webUrl, formData, cookie)
+           // ImageProcessServices.merge_pdf_from_multiple_pdf(files)
+           ImageProcessServices.RotatePage_RemovePage_AddBlankPage_Pdf(webUrl, formData, cookie)
                 .then(pdfData => {
                     if (pdfData) {
                         // Handle the case where the operation was successful

@@ -1,5 +1,42 @@
 ﻿app.service("ImageProcessServices", function ($http) {
 
+
+    this.merge_pdf_from_multiple_pdf = async function (array_of_file_list, token) {
+        debugger;
+        const apiEndpoint = 'http://127.0.0.1:5000/merge_pdf_from_multiple_pdf';
+
+        const formData = new FormData();
+        formData.append('file', array_of_file_list);
+        try {
+            const response = await fetch(apiEndpoint, {
+                method: 'POST',
+                //  headers: { 'Authorization': `Bearer ${token}` },
+                body: formData,
+            });
+            if (response.ok) {
+
+                debugger;
+                const blob = await response.blob();
+                const vBlob = new Blob([blob], { type: 'application/pdf' });
+                const vvBlob = new Blob([blob], { type: 'application/octet-stream' });
+                const pdfData = await new Promise((resolve, reject) => {
+                    this.pdfToArrayBuffer(vvBlob, function (pdfData) {
+                        resolve(pdfData);
+                    });
+                });
+                console.log('PDF data as ArrayBuffer:', pdfData);
+                return pdfData; // Return the ArrayBuffer
+            } else {
+                // Handle errors here
+                throw new Error('Request failed');
+            }
+        } catch (error) {
+
+            console.error('Error:', error);
+            return null;
+        }
+    }
+
     this.RegisterUser = function (username,email,password) {
         return $http.post(this.BaseRoute + '/user/register/', {
             "username": username,
@@ -481,8 +518,6 @@
         //const formData = new FormData();
         //formData.append('file', file);
         //formData.append('page_num', page_num);
-
-
         try {
             const response = await fetch(webUrl, {
                 method: 'POST',
