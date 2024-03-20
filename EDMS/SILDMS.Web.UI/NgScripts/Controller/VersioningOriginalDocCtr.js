@@ -1240,7 +1240,6 @@ app.controller('VersioningOriginalDocCtr', ['$scope', '$http', 'ImageProcessServ
             $scope.Large_Viewer_RenderPage(pdf_container, page_num);
             $scope.page_backup = page_num;
         }
-
     }
   
 
